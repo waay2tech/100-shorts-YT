@@ -1,0 +1,588 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="MILESTONE — watch a vision compile into reality. Three lines of code type themselves on an emerald terminal, then the achievement unlocks in a burst of particles. Loops forever.">
+  <title>MILESTONE · Achievement Protocol | WAAY2TECH</title>
+  <link rel="canonical" href="achieve.html">
+  <meta property="og:site_name" content="WAAY2TECH">
+  <meta name="author" content="WAAY2TECH">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="MILESTONE · Achievement Protocol | WAAY2TECH">
+  <meta property="og:description" content="Watch a vision compile into reality. Three lines of code type themselves on an emerald terminal, then the achievement unlocks in a burst of particles.">
+  <meta property="og:url" content="achieve.html">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="MILESTONE · Achievement Protocol">
+  <meta name="twitter:description" content="Watch a vision compile into reality. Three lines of code type themselves on an emerald terminal, then the achievement unlocks in a burst of particles.">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "MILESTONE · Achievement Protocol | WAAY2TECH",
+    "description": "Watch a vision compile into reality. Three lines of code type themselves on an emerald terminal, then the achievement unlocks in a burst of particles.",
+    "url": "achieve.html"
+  }
+  </script>
+  <style>
+    /* ---------- 1. MILESTONE tokens ---------- */
+    :root {
+      --bg-0: #f6f8f7;
+      --bg-1: #fbfdfc;
+      --bg-2: #e9efec;
+      --bg-3: #d9e3de;
+      --surface: #ffffff;
+      --glass: rgba(255, 255, 255, 0.8);
+      --glass-strong: rgba(255, 255, 255, 0.94);
+      --stroke: rgba(22, 35, 29, 0.12);
+      --stroke-strong: rgba(22, 35, 29, 0.24);
+      --text-1: #16231d;
+      --text-2: #4b5b52;
+      --text-3: #84928a;
+      --indigo: #10b981;
+      --indigo-soft: #34d399;
+      --violet: #0ea5e9;
+      --magenta: #0284c7;
+      --cyan: #38bdf8;
+      --lime: #10b981;
+      --amber: #f59e0b;
+      --grad-primary: linear-gradient(135deg, #10b981 0%, #0ea5e9 55%, #f59e0b 100%);
+      --grad-cyber: linear-gradient(135deg, #38bdf8 0%, #10b981 60%, #f59e0b 100%);
+      --grad-lime: linear-gradient(135deg, #10b981 0%, #0ea5e9 100%);
+      --grad-text: linear-gradient(120deg, #0ea5e9 0%, #10b981 45%, #f59e0b 80%, #38bdf8 100%);
+      --glow-indigo: 0 8px 22px rgba(16, 185, 129, 0.35);
+      --glow-violet: 0 8px 26px rgba(14, 165, 233, 0.32);
+      --glow-cyan: 0 8px 20px rgba(56, 189, 248, 0.32);
+      --glow-lime: 0 8px 20px rgba(16, 185, 129, 0.35);
+      --shadow-card: 0 24px 60px -28px rgba(22, 35, 29, 0.3);
+      --blur-glass: 16px;
+      --radius-sm: 10px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --radius-xl: 26px;
+      --radius-full: 999px;
+      --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px;
+      --space-5: 24px; --space-6: 32px; --space-7: 48px; --space-8: 64px; --space-9: 96px;
+      --text-xs: clamp(0.72rem, 0.7rem + 0.15vw, 0.8rem);
+      --text-sm: clamp(0.85rem, 0.82rem + 0.2vw, 0.95rem);
+      --text-md: clamp(1rem, 0.95rem + 0.3vw, 1.15rem);
+      --text-lg: clamp(1.2rem, 1.1rem + 0.6vw, 1.6rem);
+      --text-xl: clamp(1.7rem, 1.4rem + 1.6vw, 2.6rem);
+      --text-2xl: clamp(2.2rem, 1.6rem + 3vw, 4rem);
+      --text-3xl: clamp(3rem, 2rem + 5vw, 6rem);
+      --speed-1: 140ms; --speed-2: 280ms; --speed-3: 500ms; --speed-4: 900ms;
+      --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+      --ease-spring: cubic-bezier(0.22, 1.4, 0.36, 1);
+      --font-display: 'Sora', sans-serif;
+      --font-body: 'Inter', sans-serif;
+      --font-mono: ui-monospace, 'SF Mono', 'Cascadia Code', 'Segoe UI Mono', Consolas, monospace;
+    }
+
+    /* ---------- 2. Base ---------- */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      font-size: var(--text-md);
+      background: var(--bg-0);
+      color: var(--text-1);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    body::before {
+      content: ''; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+      background:
+        radial-gradient(50% 40% at 15% 10%, rgba(16, 185, 129, 0.1), transparent 60%),
+        radial-gradient(44% 40% at 88% 88%, rgba(14, 165, 233, 0.1), transparent 62%);
+    }
+    ::selection { background: var(--lime); color: var(--bg-0); }
+    ::-webkit-scrollbar { width: 10px; }
+    ::-webkit-scrollbar-track { background: var(--bg-0); }
+    ::-webkit-scrollbar-thumb { background: var(--bg-3); border-radius: var(--radius-full); }
+    ::-webkit-scrollbar-thumb:hover { background: var(--lime); }
+    :focus-visible { outline: 2px solid var(--lime); outline-offset: 3px; border-radius: 2px; }
+    a { color: inherit; }
+    .shell { position: relative; width: min(1180px, 92%); margin-inline: auto; padding: var(--space-6) 0 var(--space-9); }
+
+    .skip-link {
+      position: fixed; top: 12px; left: 12px; z-index: 9999;
+      padding: 10px 18px; border-radius: var(--radius-md);
+      background: var(--lime); color: var(--bg-0);
+      font-family: var(--font-body); font-size: var(--text-sm); font-weight: 700;
+      text-decoration: none; box-shadow: var(--glow-lime);
+      transform: translateY(-200%); transition: transform var(--speed-2) var(--ease-out);
+    }
+    .skip-link:focus { transform: translateY(0); }
+
+    /* ---------- 3. Header ---------- */
+    .site-header {
+      display: flex; align-items: center; justify-content: space-between; gap: var(--space-4);
+      padding: var(--space-3) max(4vw, 16px);
+      background: color-mix(in srgb, var(--bg-0) 76%, transparent);
+      -webkit-backdrop-filter: blur(var(--blur-glass)); backdrop-filter: blur(var(--blur-glass));
+      border-bottom: 1px solid var(--stroke);
+    }
+    .brand {
+      font-family: var(--font-display); font-weight: 800; letter-spacing: -0.01em;
+      text-decoration: none; color: var(--text-1); font-size: var(--text-lg);
+      display: inline-flex; align-items: center; gap: 10px;
+    }
+    .brand::before {
+      content: '✓'; display: grid; place-items: center;
+      width: 26px; height: 26px; border-radius: 50%;
+      background: var(--lime); color: var(--bg-0); font-weight: 800;
+      box-shadow: var(--glow-lime);
+    }
+    .header-note {
+      font-size: var(--text-xs); letter-spacing: 0.24em; text-transform: uppercase;
+      color: var(--text-3);
+    }
+
+    /* ---------- 4. Typography + chips ---------- */
+    .kicker {
+      font-family: var(--font-body); font-size: var(--text-xs); font-weight: 600;
+      letter-spacing: 0.32em; text-transform: uppercase; color: var(--lime);
+      display: inline-flex; align-items: center; gap: var(--space-2);
+    }
+    .kicker::before { content: '▸ '; color: var(--amber); }
+    .h1, h1 { font-family: var(--font-display); font-size: var(--text-3xl); font-weight: 800; line-height: 1.04; letter-spacing: -0.02em; }
+    .h3, h3 { font-family: var(--font-display); font-size: var(--text-xl); font-weight: 700; line-height: 1.2; }
+    .lead { font-size: var(--text-lg); color: var(--text-2); line-height: 1.55; }
+    .muted { color: var(--text-3); }
+    .small { font-size: var(--text-sm); }
+    .mono { font-family: var(--font-mono); }
+    .grad-text {
+      background: var(--grad-text); -webkit-background-clip: text; background-clip: text;
+      -webkit-text-fill-color: transparent; color: transparent;
+      background-size: 200% auto; animation: grad-shift 6s linear infinite;
+    }
+    @keyframes grad-shift { to { background-position: 200% center; } }
+    .chip {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: var(--font-body); font-size: var(--text-xs); font-weight: 600;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--text-2); text-decoration: none;
+      padding: 7px 14px; border-radius: var(--radius-full);
+      border: 1px solid var(--stroke); background: var(--surface);
+      transition: color var(--speed-2), border-color var(--speed-2), transform var(--speed-2);
+    }
+    .chip:hover { color: var(--lime); border-color: var(--lime); transform: translateY(-2px); }
+    .dot {
+      width: 7px; height: 7px; border-radius: 50%; flex: none;
+      background: var(--lime); box-shadow: var(--glow-lime); animation: blinker 2s steps(2) infinite;
+    }
+    @keyframes blinker { 50% { opacity: 0.25; } }
+    .stat-row { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-top: var(--space-3); justify-content: center; }
+
+    .reveal {
+      opacity: 0; transform: translateY(28px);
+      transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
+      transition-delay: var(--reveal-delay, 0ms); will-change: opacity, transform;
+    }
+    .reveal.in { opacity: 1; transform: none; }
+    .reveal-zoom { transform: scale(0.96); }
+    .reveal-zoom.in { transform: scale(1); }
+
+    .glass {
+      background: var(--glass);
+      -webkit-backdrop-filter: blur(var(--blur-glass)); backdrop-filter: blur(var(--blur-glass));
+    }
+    .card {
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-card);
+      padding: var(--space-5);
+    }
+
+    /* ---------- 5. Hero ---------- */
+    .hero { text-align: center; display: grid; gap: var(--space-4); justify-items: center; margin-bottom: var(--space-6); }
+    .hero .lead { max-width: 56ch; }
+
+    /* ---------- 6. Stage ---------- */
+    .stage-wrap { display: grid; grid-template-columns: 1.4fr 1fr; gap: var(--space-5); align-items: stretch; }
+
+    .demo-card {
+      position: relative; overflow: hidden; min-height: 360px;
+      display: grid; place-items: center;
+      background: radial-gradient(120% 120% at 50% 30%, #1d2b23, #0f1913);
+      border-color: rgba(16, 185, 129, 0.25);
+    }
+    .demo-card::before,
+    .demo-card::after {
+      content: ''; position: absolute; border-radius: 50%; pointer-events: none; filter: blur(40px);
+    }
+    .demo-card::before {
+      width: 46%; aspect-ratio: 1; top: -12%; right: 6%;
+      background: radial-gradient(circle, rgba(16, 185, 129, 0.3), transparent 70%);
+    }
+    .demo-card::after {
+      width: 50%; aspect-ratio: 1; bottom: -14%; left: 4%;
+      background: radial-gradient(circle, rgba(14, 165, 233, 0.24), transparent 70%);
+    }
+
+    .type-zone { position: relative; z-index: 2; display: flex; flex-direction: column; gap: var(--space-2); align-items: flex-start; width: 92%; max-width: 100%; overflow-x: auto; }
+    .code-line {
+      font-family: var(--font-mono); font-size: clamp(0.85rem, 1.8vw, 1.4rem);
+      line-height: 1.5; color: #d9e8df; white-space: nowrap;
+      min-height: 1.5em; text-shadow: 0 0 18px rgba(255, 255, 255, 0.12);
+      display: inline-block;
+    }
+    .code-line .keyword { color: var(--amber); }
+    .code-line .function { color: var(--indigo-soft); }
+    .code-line .parameter { color: #d9e8df; }
+    .code-line .punctuation { color: #9fb5a9; }
+    .code-line .method { color: var(--cyan); }
+
+    .cursor {
+      display: inline-block; width: 8px; height: 1.2em; background-color: var(--lime);
+      animation: blink 1s infinite; position: absolute;
+      box-shadow: var(--glow-lime); pointer-events: none; opacity: 0;
+      transition: top 50ms linear, left 50ms linear;
+    }
+    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+    .success-message {
+      color: var(--indigo-soft); font-family: var(--font-display); font-weight: 700;
+      font-size: clamp(1.2rem, 2.5vw, 1.8rem); letter-spacing: 0.08em;
+      text-align: center; opacity: 0; transition: opacity 1s ease;
+      text-shadow: 0 0 22px rgba(16, 185, 129, 0.55);
+      width: 100%; margin-top: var(--space-3);
+    }
+
+    .particle { position: absolute; border-radius: 50%; pointer-events: none; opacity: 0; }
+
+    .editor-card { display: flex; flex-direction: column; }
+    .editor-card .win-dots { display: flex; gap: 6px; flex: none; }
+    .editor-card .win-dots span { width: 11px; height: 11px; border-radius: 50%; }
+    .editor-card .win-dots .d-red { background: #ff5f57; }
+    .editor-card .win-dots .d-yellow { background: #febc2e; }
+    .editor-card .win-dots .d-green { background: #28c840; }
+    .editor-card .code-content {
+      font-family: var(--font-mono); font-size: var(--text-xs); line-height: 1.6;
+      color: var(--text-1); overflow-x: auto; margin-top: var(--space-4);
+    }
+    .editor-card .ln { white-space: pre; margin-bottom: 3px; }
+    .editor-card .html-tag { color: var(--lime); }
+    .editor-card .html-attr { color: var(--cyan); }
+    .editor-card .html-value { color: var(--indigo-soft); }
+    .editor-card .js-keyword { color: #0ea5e9; }
+    .editor-card .js-method { color: #0284c7; }
+    .editor-card .js-string { color: var(--indigo); }
+    .editor-card .js-comment { color: var(--text-3); }
+    .editor-card .indent-1 { margin-left: 16px; }
+    .editor-card .indent-2 { margin-left: 32px; }
+
+    .row { display: flex; align-items: center; gap: var(--space-4); }
+    .between { justify-content: space-between; }
+
+    .note { margin-top: var(--space-6); text-align: center; display: grid; gap: var(--space-2); justify-items: center; }
+
+    /* ---------- 7. Footer ---------- */
+    .site-footer {
+      display: flex; align-items: center; justify-content: space-between; gap: var(--space-3);
+      flex-wrap: wrap; padding: var(--space-5) max(4vw, 16px) var(--space-7);
+      border-top: 1px solid var(--stroke);
+      font-size: var(--text-sm); color: var(--text-3);
+    }
+    .site-footer .brand { font-size: var(--text-sm); }
+
+    /* ---------- 8. Responsive ---------- */
+    @media (max-width: 980px) {
+      .stage-wrap { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 768px) {
+      .header-note { display: none; }
+    }
+    @media (max-width: 620px) {
+      .demo-card { min-height: 300px; }
+    }
+    @media (max-width: 480px) {
+      .demo-card { min-height: 260px; padding: var(--space-3); }
+      .type-zone { width: 100%; }
+      .code-line { font-size: 0.8rem; }
+      .editor-card .indent-1 { margin-left: 10px; }
+      .editor-card .indent-2 { margin-left: 20px; }
+    }
+
+    /* ---------- 9. Reduced motion ---------- */
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        animation-duration: 0.001s !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001s !important;
+      }
+      .cursor { display: none !important; }
+      .success-message { opacity: 1 !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header class="site-header">
+    <a href="#main" class="brand">WAAY2TECH</a>
+    <span class="header-note">achievement protocol · v2026</span>
+  </header>
+
+  <main id="main" class="shell">
+    <header class="hero reveal">
+      <p class="kicker">Typewriter · Achievement Loop</p>
+      <h1>Milestones <span class="grad-text">compound</span>.</h1>
+      <p class="lead">A vision compiles into a plan, the plan runs daily, and the terminal finally reports back. Watch the achievement protocol type itself — then unlock the payoff.</p>
+      <div class="stat-row">
+        <span class="chip"><span class="dot"></span>self-typing code</span>
+        <span class="chip">particle unlock</span>
+        <span class="chip">loops forever</span>
+      </div>
+    </header>
+
+    <div class="stage-wrap">
+      <section class="demo-card card glass reveal reveal-zoom" id="demo-section" aria-label="Achievement typing demo">
+        <div class="type-zone" id="type-zone">
+          <div class="code-line" id="line1"></div>
+          <div class="code-line" id="line2"></div>
+          <div class="code-line" id="line3"></div>
+          <div class="cursor" id="cursor" aria-hidden="true"></div>
+          <p class="success-message" id="success-message" role="status" aria-live="polite">ACHIEVEMENT UNLOCKED</p>
+        </div>
+      </section>
+
+      <section class="card glass editor-card reveal" aria-labelledby="achieve-code-title" style="--reveal-delay:120ms">
+        <div class="row between">
+          <span class="kicker" id="achieve-code-title">script.js</span>
+          <div class="win-dots" aria-hidden="true">
+            <span class="d-red"></span><span class="d-yellow"></span><span class="d-green"></span>
+          </div>
+        </div>
+        <div class="code-content">
+          <div class="ln"><span class="js-keyword">function</span> <span class="js-method">typeCode</span>() {</div>
+          <div class="ln indent-1"><span class="js-keyword">const</span> lines = [</div>
+          <div class="ln indent-2">{text: <span class="js-string">'let vision = define(goal);'</span>, id: <span class="js-string">'line1'</span>},</div>
+          <div class="ln indent-2">{text: <span class="js-string">'let plan = breakDown(vision);'</span>, id: <span class="js-string">'line2'</span>},</div>
+          <div class="ln indent-2">{text: <span class="js-string">'execute(plan).daily().until(achieved);'</span>, id: <span class="js-string">'line3'</span>}</div>
+          <div class="ln indent-1">];</div>
+          <div class="ln indent-1">lines.forEach(<span class="js-keyword">async</span> (line, i) =&gt; {</div>
+          <div class="ln indent-2"><span class="js-keyword">await</span> <span class="js-method">typeLine</span>(line.text, line.id, i * 800);</div>
+          <div class="ln indent-1">});</div>
+          <div class="ln indent-1"><span class="js-method">showSuccess</span>();</div>
+          <div class="ln">}</div>
+          <div class="ln"></div>
+          <div class="ln"><span class="js-method">typeCode</span>();</div>
+          <div class="ln js-comment">// executed with 100% consistency</div>
+        </div>
+      </section>
+    </div>
+
+    <aside class="note reveal">
+      <p class="small muted">Consistency &gt; intensity — small daily commits compound into a life you didn't have to plan for.</p>
+    </aside>
+  </main>
+
+  <footer class="site-footer">
+    <span class="brand">WAAY2TECH</span>
+    <span>✓ one commit at a time</span>
+  </footer>
+
+  <script>
+    (function () {
+      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var reveals = document.querySelectorAll('.reveal');
+      if ('IntersectionObserver' in window && !reduce) {
+        var io = new IntersectionObserver(function (entries, obs) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); }
+          });
+        }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
+        reveals.forEach(function (el) { io.observe(el); });
+      } else {
+        reveals.forEach(function (el) { el.classList.add('in'); });
+      }
+    })();
+  </script>
+  <script>
+    'use strict';
+
+    (() => {
+      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      const codeLines = [
+        [
+          { text: 'let', class: 'keyword' },
+          { text: ' ', class: 'text' },
+          { text: 'vision', class: 'parameter' },
+          { text: ' ', class: 'text' },
+          { text: '=', class: 'punctuation' },
+          { text: ' ', class: 'text' },
+          { text: 'define', class: 'function' },
+          { text: '(', class: 'punctuation' },
+          { text: 'goal', class: 'parameter' },
+          { text: ');', class: 'punctuation' },
+        ],
+        [
+          { text: 'let', class: 'keyword' },
+          { text: ' ', class: 'text' },
+          { text: 'plan', class: 'parameter' },
+          { text: ' ', class: 'text' },
+          { text: '=', class: 'punctuation' },
+          { text: ' ', class: 'text' },
+          { text: 'breakDown', class: 'function' },
+          { text: '(', class: 'punctuation' },
+          { text: 'vision', class: 'parameter' },
+          { text: ');', class: 'punctuation' },
+        ],
+        [
+          { text: 'execute', class: 'function' },
+          { text: '(', class: 'punctuation' },
+          { text: 'plan', class: 'parameter' },
+          { text: ').', class: 'punctuation' },
+          { text: 'daily', class: 'method' },
+          { text: '(', class: 'punctuation' },
+          { text: ')', class: 'punctuation' },
+          { text: '.', class: 'punctuation' },
+          { text: 'until', class: 'method' },
+          { text: '(', class: 'punctuation' },
+          { text: 'achieved', class: 'parameter' },
+          { text: ');', class: 'punctuation' },
+        ],
+      ];
+
+      const line1El = document.getElementById('line1');
+      const line2El = document.getElementById('line2');
+      const line3El = document.getElementById('line3');
+      const lineElements = [line1El, line2El, line3El];
+      const typeZone = document.getElementById('type-zone');
+
+      const cursor = document.getElementById('cursor');
+      const successMessage = document.getElementById('success-message');
+
+      if (reduced) {
+        line1El.textContent = 'let vision = define(goal);';
+        line2El.textContent = 'let plan = breakDown(vision);';
+        line3El.textContent = 'execute(plan).daily().until(achieved);';
+        successMessage.style.opacity = '1';
+        return;
+      }
+
+      const positionCursor = (lineEl) => {
+        const zoneRect = typeZone.getBoundingClientRect();
+        const lineRect = lineEl.getBoundingClientRect();
+        cursor.style.left = `${lineRect.right - zoneRect.left}px`;
+        cursor.style.top = `${lineRect.top - zoneRect.top}px`;
+      };
+
+      const typeText = (lineIndex, callback) => {
+        const lineEl = lineElements[lineIndex];
+        const lineData = codeLines[lineIndex];
+        let currentPartIndex = 0;
+        let currentCharIndex = 0;
+
+        lineEl.innerHTML = '';
+
+        const typingLoop = () => {
+          if (currentPartIndex >= lineData.length) {
+            if (callback) setTimeout(callback, 400);
+            return;
+          }
+
+          const currentPart = lineData[currentPartIndex];
+
+          if (currentCharIndex === 0) {
+            const span = document.createElement('span');
+            span.className = currentPart.class;
+            span.id = `line${lineIndex + 1}-part${currentPartIndex}`;
+            span.textContent = '';
+            lineEl.appendChild(span);
+          }
+
+          const span = document.getElementById(`line${lineIndex + 1}-part${currentPartIndex}`);
+          span.textContent += currentPart.text[currentCharIndex];
+          currentCharIndex++;
+
+          positionCursor(lineEl);
+
+          if (currentCharIndex >= currentPart.text.length) {
+            currentPartIndex++;
+            currentCharIndex = 0;
+          }
+
+          setTimeout(typingLoop, 40);
+        };
+
+        typingLoop();
+      };
+
+      const createParticles = () => {
+        const colors = ['#10b981', '#34d399', '#38bdf8', '#f59e0b', '#fde68a'];
+        const demo = document.getElementById('demo-section');
+        
+        document.querySelectorAll('.particle').forEach(p => p.remove());
+
+        for (let i = 0; i < 40; i++) {
+          const particle = document.createElement('div');
+          particle.classList.add('particle');
+
+          const x = Math.random() * 80 + 10;
+          const y = Math.random() * 60 + 20;
+          const size = Math.random() * 5 + 2;
+          const color = colors[Math.floor(Math.random() * colors.length)];
+
+          particle.style.width = `${size}px`;
+          particle.style.height = `${size}px`;
+          particle.style.left = `${x}%`;
+          particle.style.top = `${y}%`;
+          particle.style.backgroundColor = color;
+          particle.style.boxShadow = `0 0 10px ${color}`;
+
+          demo.appendChild(particle);
+
+          setTimeout(() => {
+            particle.style.opacity = '1';
+            particle.style.transform = `translate(${Math.random() * 80 - 40}px, ${Math.random() * -100 - 20}px)`;
+            particle.style.transition = `opacity 0.4s ease, transform ${Math.random() * 1.5 + 1}s ease`;
+
+            setTimeout(() => {
+              particle.style.opacity = '0';
+              setTimeout(() => particle.remove(), 800);
+            }, 800);
+          }, Math.random() * 600);
+        }
+      };
+
+      const startAnimation = () => {
+        cursor.style.opacity = '1';
+        typeText(0, () => {
+          typeText(1, () => {
+            typeText(2, () => {
+              setTimeout(() => {
+                cursor.style.opacity = '0';
+                successMessage.style.opacity = '1';
+                createParticles();
+
+                setTimeout(() => {
+                  resetAnimation();
+                }, 6000);
+              }, 1000);
+            });
+          });
+        });
+      };
+
+      const resetAnimation = () => {
+        lineElements.forEach((el) => {
+          el.innerHTML = '';
+        });
+        successMessage.style.opacity = '0';
+        setTimeout(startAnimation, 800);
+      };
+
+      startAnimation();
+    })();
+  </script>
+</body>
+</html>

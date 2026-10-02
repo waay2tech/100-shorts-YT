@@ -1,0 +1,622 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="MEW RATE — rate your experience and watch the kitty react. Sad, happy, or fully excited, she feels every star.">
+  <title>MEW RATE · Purr-Rating Widget | Waay2Tech</title>
+  <link rel="canonical" href="cat.html">
+  <meta property="og:site_name" content="WAAY2TECH">
+  <meta name="author" content="Waay2Tech">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="MEW RATE · Purr-Rating Widget | Waay2Tech">
+  <meta property="og:description" content="MEW RATE — rate your experience and watch the kitty react. Sad, happy, or fully excited, she feels every star.">
+  <meta property="og:url" content="cat.html">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="MEW RATE · Purr-Rating Widget">
+  <meta name="twitter:description" content="MEW RATE — rate your experience and watch the kitty react. Sad, happy, or fully excited, she feels every star.">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "MEW RATE · Purr-Rating Widget | Waay2Tech",
+    "description": "MEW RATE — rate your experience and watch the kitty react. Sad, happy, or fully excited, she feels every star.",
+    "url": "cat.html"
+  }
+  </script>
+  <style>
+    :root {
+      --bg: #fbf3e2;
+      --bg-2: #f6e7c8;
+      --surface: #fffaf0;
+      --surface-2: #fff3dc;
+      --text: #4a3a22;
+      --text-2: #8a7350;
+      --text-3: #b39a6e;
+      --line: #e9d7b2;
+      --primary: #f59e0b;
+      --accent: #ff7a59;
+      --accent-2: #38bdf8;
+      --amber: #f59e0b;
+      --indigo: #ff7a59;
+      --stroke-strong: #ead8b4;
+      --s1: 4px; --s2: 8px; --s3: 12px; --s4: 16px; --s5: 20px; --s6: 28px; --s7: 40px; --s8: 56px; --s9: 80px;
+      --radius-sm: 10px; --radius-md: 16px; --radius-lg: 24px; --radius-full: 999px;
+      --shadow-card: 0 18px 50px -18px rgba(74, 58, 34, 0.28);
+      --shadow-soft: 0 10px 30px -12px rgba(74, 58, 34, 0.18);
+      --ease: cubic-bezier(0.22, 1, 0.36, 1);
+      --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+      --font-display: 'Fredoka', sans-serif;
+      --font-body: 'Nunito', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: var(--font-body);
+      color: var(--text);
+      background:
+        radial-gradient(60% 40% at 85% -5%, rgba(255, 122, 89, 0.18), transparent 60%),
+        radial-gradient(50% 40% at 8% 10%, rgba(56, 189, 248, 0.14), transparent 60%),
+        radial-gradient(70% 55% at 50% 110%, rgba(245, 158, 11, 0.16), transparent 60%),
+        var(--bg);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    ::selection { background: var(--primary); color: #fff; }
+    ::-webkit-scrollbar { width: 12px; }
+    ::-webkit-scrollbar-track { background: var(--bg-2); }
+    ::-webkit-scrollbar-thumb { background: #dfc58c; border-radius: 8px; border: 3px solid var(--bg-2); }
+
+    .skip-link {
+      position: fixed; top: 12px; left: 12px; z-index: 9999;
+      padding: 10px 18px; border-radius: var(--radius-md);
+      background: var(--text); color: var(--surface);
+      font-family: var(--font-body); font-weight: 800; text-decoration: none;
+      transform: translateY(-200%); transition: transform 0.25s var(--ease);
+    }
+    .skip-link:focus { transform: translateY(0); }
+
+    .site-header {
+      width: min(1240px, 92%);
+      margin-inline: auto;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 0;
+    }
+    .wordmark {
+      font-family: var(--font-display);
+      font-weight: 700; font-size: 1.45rem; letter-spacing: 0.01em;
+      color: var(--text); text-decoration: none;
+      display: inline-flex; align-items: center; gap: 10px;
+    }
+    .wordmark .mark {
+      width: 38px; height: 38px; border-radius: 12px;
+      display: grid; place-items: center;
+      background: linear-gradient(145deg, var(--primary), var(--accent));
+      box-shadow: 0 8px 18px -8px rgba(245, 158, 11, 0.65);
+      font-size: 1.15rem;
+    }
+    .site-nav { display: flex; gap: 6px; }
+    .site-nav a {
+      color: var(--text-2); text-decoration: none; font-weight: 800; font-size: 0.95rem;
+      padding: 8px 14px; border-radius: var(--radius-full);
+      transition: background 0.25s, color 0.25s;
+    }
+    .site-nav a:hover { background: var(--surface-2); color: var(--text); }
+
+    main { width: min(1240px, 92%); margin-inline: auto; flex: 1; }
+
+    .hero {
+      text-align: center;
+      display: grid; justify-items: center; gap: var(--s3);
+      padding: clamp(40px, 8vh, 84px) 0 var(--s6);
+    }
+    .kicker {
+      font-weight: 900; letter-spacing: 0.22em; text-transform: uppercase;
+      font-size: 0.78rem; color: var(--accent);
+      background: var(--surface); border: 1px solid var(--line);
+      padding: 8px 16px; border-radius: var(--radius-full);
+      box-shadow: var(--shadow-soft);
+    }
+    .kicker::before { content: '🐾 '; }
+    h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.6rem, 8vw, 5rem);
+      font-weight: 700; line-height: 1; letter-spacing: -0.02em;
+      margin: 0;
+    }
+    h1 .grad {
+      background: linear-gradient(120deg, var(--primary), var(--accent) 55%, var(--accent-2));
+      -webkit-background-clip: text; background-clip: text;
+      -webkit-text-fill-color: transparent; color: transparent;
+    }
+    .lead {
+      max-width: 52ch; margin: 0;
+      color: var(--text-2); font-size: clamp(1.05rem, 2.4vw, 1.2rem);
+      font-weight: 600; line-height: 1.6;
+    }
+    .chips { display: flex; flex-wrap: wrap; gap: var(--s2); justify-content: center; margin-top: var(--s2); }
+    .chip {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 0.82rem; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase;
+      color: var(--text-2); background: var(--surface);
+      border: 1px solid var(--line); border-radius: var(--radius-full);
+      padding: 8px 16px; box-shadow: var(--shadow-soft);
+      transition: transform 0.3s var(--ease-bounce), border-color 0.3s;
+    }
+    .chip:hover { transform: translateY(-3px); border-color: var(--primary); }
+    .chip .dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--accent-2); box-shadow: 0 0 10px var(--accent-2);
+      animation: dot-pulse 1.8s ease-in-out infinite;
+    }
+    @keyframes dot-pulse { 50% { transform: scale(0.55); opacity: 0.6; } }
+
+    .rating-card {
+      width: min(520px, 100%);
+      margin: var(--s6) auto 0;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 32px;
+      padding: clamp(28px, 5vw, 48px);
+      display: flex; flex-direction: column; gap: var(--s5);
+      align-items: center; text-align: center;
+      box-shadow: var(--shadow-card);
+      position: relative; overflow: hidden;
+    }
+    .rating-card::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(320px circle at 50% -10%, rgba(245, 158, 11, 0.14), transparent 60%);
+      pointer-events: none;
+    }
+
+    .cat-stage { position: relative; width: 220px; height: 190px; }
+
+    .cat { position: absolute; inset: 0; transition: all 0.4s ease; }
+    .cat-body {
+      width: 120px; height: 100px;
+      background: linear-gradient(145deg, var(--amber), #f97316);
+      border-radius: 50px 50px 40px 40px;
+      position: absolute; bottom: 0; left: 50%;
+      transform: translateX(-50%);
+      box-shadow: 0 8px 24px rgba(249, 115, 22, 0.35);
+    }
+    .cat-head {
+      width: 100px; height: 90px;
+      background: linear-gradient(145deg, #fbbf24, var(--amber));
+      border-radius: 50px 50px 45px 45px;
+      position: absolute; top: 20px; left: 50%;
+      transform: translateX(-50%);
+      box-shadow: 0 8px 24px rgba(249, 115, 22, 0.3);
+      transition: all 0.3s ease;
+    }
+    .cat-ear {
+      width: 25px; height: 30px;
+      background: linear-gradient(145deg, #fbbf24, var(--amber));
+      border-radius: 15px 15px 0 0;
+      position: absolute; top: -5px;
+      transform-origin: bottom center;
+      transition: all 0.3s ease;
+    }
+    .cat-ear.left { left: 15px; transform: rotate(-20deg); }
+    .cat-ear.right { right: 15px; transform: rotate(20deg); }
+    .cat-ear-inner {
+      width: 12px; height: 15px;
+      background: var(--accent);
+      border-radius: 10px 10px 0 0;
+      position: absolute; top: 3px; left: 50%; transform: translateX(-50%);
+    }
+    .cat-eyes { position: absolute; top: 25px; left: 50%; transform: translateX(-50%); display: flex; gap: 20px; }
+    .cat-eye {
+      width: 16px; height: 16px;
+      background: var(--text); border-radius: 50%;
+      position: relative; transition: all 0.3s ease;
+    }
+    .cat-eye::after {
+      content: ''; position: absolute; top: 3px; left: 3px;
+      width: 4px; height: 4px; background: #fff; border-radius: 50%;
+      animation: eyeShine 3s ease-in-out infinite;
+    }
+    @keyframes eyeShine { 0%, 90%, 100% { opacity: 1; } 95% { opacity: 0.3; } }
+    .cat-nose {
+      width: 8px; height: 6px; background: #ef4444;
+      border-radius: 50% 50% 0 0;
+      position: absolute; top: 45px; left: 50%; transform: translateX(-50%);
+    }
+    .cat-mouth { position: absolute; top: 55px; left: 50%; transform: translateX(-50%); }
+    .cat-mouth-line {
+      width: 20px; height: 2px; background: var(--text);
+      border-radius: 2px; position: relative;
+    }
+    .cat-mouth-line::before,
+    .cat-mouth-line::after {
+      content: ''; width: 10px; height: 2px; background: var(--text);
+      border-radius: 2px; position: absolute; top: 3px; transition: all 0.3s ease;
+    }
+    .cat-mouth-line::before { left: 0; transform: rotate(20deg); }
+    .cat-mouth-line::after { right: 0; transform: rotate(-20deg); }
+    .cat-whiskers { position: absolute; top: 42px; left: 50%; transform: translateX(-50%); width: 100%; }
+    .whisker {
+      position: absolute; height: 1.5px; background: var(--text-2);
+      border-radius: 2px; opacity: 0.8; transition: all 0.3s ease;
+    }
+    .whisker.left-1 { width: 18px; top: 0; left: 8px; transform: rotate(-15deg); }
+    .whisker.left-2 { width: 16px; top: 6px; left: 6px; transform: rotate(-8deg); }
+    .whisker.right-1 { width: 18px; top: 0; right: 8px; transform: rotate(15deg); }
+    .whisker.right-2 { width: 16px; top: 6px; right: 6px; transform: rotate(8deg); }
+    .cat-tail {
+      width: 60px; height: 15px;
+      background: linear-gradient(90deg, var(--amber), #f97316);
+      border-radius: 30px;
+      position: absolute; bottom: 20px; right: -40px;
+      transform-origin: left center;
+      animation: tailWag 2s ease-in-out infinite;
+      box-shadow: 0 4px 12px rgba(249, 115, 22, 0.3);
+    }
+    @keyframes tailWag { 0%, 100% { transform: rotate(10deg); } 50% { transform: rotate(-10deg); } }
+    .cat-stripes { position: absolute; top: 35px; left: 50%; transform: translateX(-50%); }
+    .stripe {
+      width: 60px; height: 3px; background: rgba(249, 115, 22, 0.6);
+      border-radius: 2px; margin: 8px 0;
+    }
+
+    .cat.sad .cat-eye { height: 8px; border-radius: 0 0 50% 50%; transform: translateY(4px); }
+    .cat.sad .cat-mouth-line::before { transform: rotate(-30deg) translateY(2px); }
+    .cat.sad .cat-mouth-line::after { transform: rotate(30deg) translateY(2px); }
+    .cat.sad .cat-ear.left { transform: rotate(-40deg); }
+    .cat.sad .cat-ear.right { transform: rotate(40deg); }
+    .cat.happy .cat-eye { height: 6px; border-radius: 50% 50% 0 0; transform: translateY(5px); }
+    .cat.happy .cat-mouth-line::before { transform: rotate(-45deg) translateY(-2px); }
+    .cat.happy .cat-mouth-line::after { transform: rotate(45deg) translateY(-2px); }
+    .cat.excited { animation: bounce 0.6s ease infinite; }
+    .cat.excited .cat-eye {
+      width: 18px; height: 18px;
+      background: radial-gradient(circle, var(--text), #374151);
+    }
+    .cat.excited .cat-ear.left { animation: earWiggle 0.5s ease infinite; }
+    .cat.excited .cat-ear.right { animation: earWiggle 0.5s ease infinite reverse; }
+    @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+    @keyframes earWiggle { 0%, 100% { transform: rotate(20deg); } 50% { transform: rotate(0deg); } }
+
+    .stars { display: flex; justify-content: center; gap: var(--s2); position: relative; z-index: 1; }
+    .star {
+      width: 48px; height: 48px; cursor: pointer; position: relative;
+      transition: all 0.3s var(--ease-bounce); border-radius: var(--radius-sm); padding: 4px;
+      background: none; border: none;
+    }
+    .star svg {
+      width: 100%; height: 100%;
+      fill: var(--stroke-strong); stroke: var(--text-3); stroke-width: 1.5;
+      transition: all 0.3s var(--ease-bounce);
+    }
+    .star.active svg {
+      fill: var(--amber); stroke: #f97316; filter: drop-shadow(0 0 8px rgba(245, 158, 11, 0.5));
+    }
+    .star:hover:not(.active) svg {
+      fill: rgba(245, 158, 11, 0.25); stroke: var(--amber); transform: scale(1.1);
+    }
+    .star.active:hover svg { transform: scale(1.1); }
+    .star:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+    .rating-text {
+      min-height: 32px; font-weight: 900; color: var(--text); position: relative; z-index: 1;
+      opacity: 0; transform: translateY(8px); transition: all 0.3s ease;
+    }
+    .rating-text.show { opacity: 1; transform: translateY(0); }
+
+    .reset-btn {
+      font-family: var(--font-body); font-weight: 900; font-size: 0.95rem;
+      color: var(--text-2); background: var(--surface-2);
+      border: 1px solid var(--line); border-radius: var(--radius-full);
+      padding: 11px 22px; cursor: pointer; position: relative; z-index: 1;
+      opacity: 0; transform: translateY(8px); transition: all 0.3s ease;
+    }
+    .reset-btn.show { opacity: 1; transform: translateY(0); }
+    .reset-btn:hover { background: #ffe3b0; color: var(--text); transform: translateY(-2px); }
+    .reset-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+    .hearts {
+      position: absolute; top: -10px; left: 50%; transform: translateX(-50%);
+      pointer-events: none; width: 80px; height: 60px;
+    }
+    .heart { position: absolute; font-size: 20px; opacity: 0; animation: floatHeart 2s ease-out; }
+    @keyframes floatHeart {
+      0% { opacity: 1; transform: translateY(0) scale(0); }
+      20% { opacity: 1; transform: translateY(-10px) scale(1); }
+      100% { opacity: 0; transform: translateY(-50px) scale(1.2); }
+    }
+    .sparkles { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+    .sparkle {
+      position: absolute; width: 4px; height: 4px; background: var(--amber);
+      border-radius: 50%; opacity: 0; animation: twinkle 1.2s ease-in-out infinite;
+    }
+    @keyframes twinkle { 0%, 100% { opacity: 0; transform: scale(0); } 50% { opacity: 1; transform: scale(1); } }
+
+    .site-footer {
+      border-top: 1px solid var(--line);
+      margin-top: var(--s8);
+      padding: var(--s5) max(4vw, 16px);
+      display: flex; flex-wrap: wrap; gap: var(--s3);
+      align-items: center; justify-content: space-between;
+      color: var(--text-3); font-size: 0.95rem; font-weight: 700;
+    }
+    .site-footer a { color: var(--accent); text-decoration: none; }
+    .site-footer a:hover { text-decoration: underline; }
+
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.8s var(--ease), transform 0.8s var(--ease); transition-delay: var(--reveal-delay, 0ms); }
+    .reveal.in { opacity: 1; transform: none; }
+
+    @media (max-width: 620px) {
+      .star { width: 42px; height: 42px; }
+      .stars { gap: 8px; }
+      .cat-stage { width: 180px; height: 160px; }
+      .site-nav { display: none; }
+      .rating-card { padding: var(--s5) var(--s4); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .reveal { opacity: 1; transform: none; transition: none; }
+      .cat.excited, .cat-tail, .sparkle, .heart, .cat-eye::after, .chip .dot { animation: none; }
+    }
+  </style>
+  <style>html,body{overflow-x:hidden}</style>
+</head>
+<body>
+<script>
+(function () {
+  if (!('ontouchstart' in window) || window.__touchBridge) return;
+  window.__touchBridge = true;
+  var lt = null;
+  function fire(type, t) {
+    var el = document.elementFromPoint(t.clientX, t.clientY) || document;
+    el.dispatchEvent(new MouseEvent(type, {
+      bubbles: true, cancelable: true, view: window,
+      clientX: t.clientX, clientY: t.clientY,
+      button: 0, buttons: type === 'mousemove' ? 1 : 0
+    }));
+  }
+  document.addEventListener('touchstart', function (e) {
+    if (e.touches.length !== 1) return;
+    lt = e.touches[0];
+    fire('mousemove', lt); fire('mousedown', lt);
+  }, { passive: true });
+  document.addEventListener('touchmove', function (e) {
+    if (e.touches.length !== 1 || !lt) return;
+    lt = e.touches[0];
+    fire('mousemove', lt);
+  }, { passive: true });
+  document.addEventListener('touchend', function () {
+    if (!lt) return;
+    fire('mouseup', lt);
+    lt = null;
+  }, { passive: true });
+})();
+</script>
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header class="site-header">
+    <a href="#main" class="wordmark"><span class="mark" aria-hidden="true">😺</span>MEW RATE</a>
+    <nav class="site-nav" aria-label="Site">
+      <a href="#">How it works</a>
+      <a href="#">Cats</a>
+      <a href="#">Contact</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero" aria-labelledby="mew-title">
+      <p class="kicker reveal">Purr Meter · Emotion Engine</p>
+      <h1 id="mew-title" class="reveal" style="--reveal-delay:80ms">MEW <span class="grad">RATE</span></h1>
+      <p class="lead reveal" style="--reveal-delay:160ms">Rate your experience and watch the kitty react — sad, happy, or fully wired on catnip, she feels every star.</p>
+      <div class="chips reveal" style="--reveal-delay:240ms">
+        <span class="chip"><span class="dot"></span>star powered</span>
+        <span class="chip">reactive moods</span>
+        <span class="chip">5/5 = happy dance</span>
+      </div>
+    </section>
+
+    <section class="rating-card reveal reveal-zoom" style="--reveal-delay:200ms" aria-label="Star rating widget">
+      <div class="cat-stage">
+        <div class="sparkles"></div>
+        <div class="hearts"></div>
+        <div class="cat" id="cat">
+          <div class="cat-tail"></div>
+          <div class="cat-body">
+            <div class="cat-stripes">
+              <div class="stripe"></div>
+              <div class="stripe"></div>
+              <div class="stripe"></div>
+            </div>
+          </div>
+          <div class="cat-head">
+            <div class="cat-ear left"><div class="cat-ear-inner"></div></div>
+            <div class="cat-ear right"><div class="cat-ear-inner"></div></div>
+            <div class="cat-whiskers">
+              <div class="whisker left-1"></div>
+              <div class="whisker left-2"></div>
+              <div class="whisker right-1"></div>
+              <div class="whisker right-2"></div>
+            </div>
+            <div class="cat-eyes">
+              <div class="cat-eye"></div>
+              <div class="cat-eye"></div>
+            </div>
+            <div class="cat-nose"></div>
+            <div class="cat-mouth"><div class="cat-mouth-line"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="stars" role="radiogroup" aria-label="Star rating">
+        <button class="star" data-rating="1" role="radio" aria-label="Rate 1 star">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </button>
+        <button class="star" data-rating="2" role="radio" aria-label="Rate 2 stars">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </button>
+        <button class="star" data-rating="3" role="radio" aria-label="Rate 3 stars">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </button>
+        <button class="star" data-rating="4" role="radio" aria-label="Rate 4 stars">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </button>
+        <button class="star" data-rating="5" role="radio" aria-label="Rate 5 stars">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </button>
+      </div>
+
+      <p class="rating-text" id="ratingText" aria-live="polite"></p>
+
+      <button class="reset-btn" id="resetBtn">🐾 Reset Rating</button>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span>WAAY2TECH · <span data-year></span></span>
+    <a href="#">Made with 💛 for cats everywhere</a>
+  </footer>
+
+  <script>
+    (() => {
+      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      document.querySelectorAll('[data-year]').forEach((el) => { el.textContent = new Date().getFullYear(); });
+      if (reduced) {
+        document.querySelectorAll('.reveal').forEach((el) => el.classList.add('in'));
+      } else if ('IntersectionObserver' in window) {
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('in');
+              io.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.15 });
+        document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+      } else {
+        document.querySelectorAll('.reveal').forEach((el) => el.classList.add('in'));
+      }
+    })();
+  </script>
+  <script>
+    'use strict';
+    document.addEventListener('DOMContentLoaded', () => {
+      const stars = document.querySelectorAll('.star');
+      const ratingText = document.getElementById('ratingText');
+      const resetBtn = document.getElementById('resetBtn');
+      const cat = document.getElementById('cat');
+      const heartsContainer = document.querySelector('.hearts');
+      const sparklesContainer = document.querySelector('.sparkles');
+      let currentRating = 0;
+
+      const messages = {
+        1: '😿 Poor — we\'ll do much better next time',
+        2: '😾 Fair — there\'s room for improvement',
+        3: '😸 Good — thanks for your feedback!',
+        4: '😺 Great — we\'re happy you enjoyed it',
+        5: '😻 Excellent — you made our day!'
+      };
+
+      const updateStars = (rating) => {
+        stars.forEach((star, index) => {
+          if (index < rating) {
+            star.classList.add('active');
+            star.setAttribute('aria-checked', 'true');
+          } else {
+            star.classList.remove('active');
+            star.setAttribute('aria-checked', 'false');
+          }
+        });
+      };
+
+      const updateCatEmotion = (rating) => {
+        cat.classList.remove('sad', 'happy', 'excited');
+        if (rating === 0) return;
+        if (rating <= 2) cat.classList.add('sad');
+        else if (rating <= 4) cat.classList.add('happy');
+        else cat.classList.add('excited');
+      };
+
+      const createHearts = () => {
+        const emojis = ['💕', '💖', '💗', '💝', '💘'];
+        for (let i = 0; i < 5; i++) {
+          setTimeout(() => {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+            heart.style.left = (Math.random() * 60 + 10) + 'px';
+            heart.style.animationDelay = Math.random() * 0.3 + 's';
+            heartsContainer.appendChild(heart);
+            setTimeout(() => heart.remove(), 2000);
+          }, i * 100);
+        }
+      };
+
+      const createBurst = () => {
+        for (let i = 0; i < 10; i++) {
+          setTimeout(() => {
+            const s = document.createElement('div');
+            s.className = 'sparkle';
+            s.style.left = Math.random() * 100 + '%';
+            s.style.top = Math.random() * 100 + '%';
+            s.style.animationDelay = Math.random() * 0.2 + 's';
+            sparklesContainer.appendChild(s);
+            setTimeout(() => s.remove(), 1500);
+          }, i * 50);
+        }
+      };
+
+      const rate = (rating) => {
+        currentRating = rating;
+        updateStars(rating);
+        ratingText.textContent = messages[rating];
+        ratingText.classList.add('show');
+        updateCatEmotion(rating);
+        resetBtn.classList.add('show');
+        if (rating === 5) { createHearts(); createBurst(); }
+      };
+
+      stars.forEach((star) => {
+        star.addEventListener('click', () => rate(Number(star.dataset.rating)));
+        star.addEventListener('mouseenter', () => {
+          if (currentRating === 0) updateStars(Number(star.dataset.rating));
+        });
+        star.addEventListener('focus', () => {
+          if (currentRating === 0) updateStars(Number(star.dataset.rating));
+        });
+      });
+
+      document.querySelector('.stars').addEventListener('mouseleave', () => {
+        if (currentRating === 0) updateStars(0);
+      });
+
+      resetBtn.addEventListener('click', () => {
+        currentRating = 0;
+        updateStars(0);
+        updateCatEmotion(0);
+        ratingText.classList.remove('show');
+        resetBtn.classList.remove('show');
+        heartsContainer.innerHTML = '';
+      });
+
+      setInterval(() => {
+        if (Math.random() < 0.2) {
+          const s = document.createElement('div');
+          s.className = 'sparkle';
+          s.style.left = Math.random() * 100 + '%';
+          s.style.top = Math.random() * 100 + '%';
+          s.style.opacity = '0.3';
+          sparklesContainer.appendChild(s);
+          setTimeout(() => s.remove(), 1500);
+        }
+      }, 2000);
+    });
+  </script>
+</body>
+</html>

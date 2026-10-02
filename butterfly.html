@@ -1,0 +1,424 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Flutter — a GPU-fed swarm of phong-lit butterflies that steers, zooms and slides with your input. Three.js particle attraction in real time.">
+  <title>Flutter · GPU Butterfly Swarm | Waay2Tech</title>
+  <link rel="canonical" href="butterfly.html">
+  <meta property="og:site_name" content="WAAY2TECH">
+  <meta name="author" content="Waay2Tech">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&display=swap" rel="stylesheet">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Flutter · GPU Butterfly Swarm | Waay2Tech">
+  <meta property="og:description" content="Flutter — a GPU-fed swarm of phong-lit butterflies that steers, zooms and slides with your input. Three.js particle attraction in real time.">
+  <meta property="og:url" content="butterfly.html">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Flutter · GPU Butterfly Swarm">
+  <meta name="twitter:description" content="Flutter — a GPU-fed swarm of phong-lit butterflies that steers, zooms and slides with your input. Three.js particle attraction in real time.">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Flutter · GPU Butterfly Swarm | Waay2Tech",
+    "description": "A GPU-fed flock of phong-lit butterflies that steers, zooms and slides on demand. Drag, scroll or touch — the swarm reads your intent in real time.",
+    "about": { "@type": "Thing", "name": "Three.js GPU Particle Simulation" },
+    "keywords": "three.js, gpu, particles, butterflies, swarm, webgl, flock",
+    "url": "butterfly.html"
+  }
+  </script>
+  <style>
+    :root {
+      --bg: #0d1117;
+      --bg-0: #0d1117;
+      --bg-1: #161d26;
+      --bg-2: #1c2530;
+      --bg-3: #26313f;
+      --text-1: #e8edf2;
+      --text-2: #aab8c4;
+      --text-3: #5f7180;
+      --coral: #ff7a59;
+      --sky: #2dd4bf;
+      --gold: #fbbf24;
+      --indigo: #ff7a59;
+      --indigo-soft: #ffa183;
+      --violet: #2dd4bf;
+      --magenta: #fbbf24;
+      --cyan: #ff7a59;
+      --lime: #2dd4bf;
+      --amber: #fbbf24;
+      --stroke: rgba(45, 212, 191, 0.16);
+      --stroke-strong: rgba(255, 122, 89, 0.35);
+      --glass: rgba(22, 29, 38, 0.55);
+      --grad-primary: linear-gradient(135deg, #ff7a59 0%, #2dd4bf 55%, #fbbf24 100%);
+      --grad-text: linear-gradient(120deg, #ff7a59 0%, #2dd4bf 55%, #fbbf24 100%);
+      --glow-indigo: 0 0 24px rgba(255, 122, 89, 0.45);
+      --glow-cyan: 0 0 22px rgba(45, 212, 191, 0.4);
+      --shadow-card: 0 26px 60px rgba(0, 0, 0, 0.45);
+      --radius-sm: 10px;
+      --radius-md: 16px;
+      --radius-lg: 24px;
+      --radius-xl: 32px;
+      --radius-full: 999px;
+      --space-1: 4px;
+      --space-2: 8px;
+      --space-3: 12px;
+      --space-4: 16px;
+      --space-5: 24px;
+      --space-6: 32px;
+      --space-7: 48px;
+      --space-8: 64px;
+      --space-9: 96px;
+      --speed-2: 0.25s;
+      --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+      --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+      --blur-glass: 12px;
+      --text-xs: 12px;
+      --text-sm: 14px;
+      --text-md: 17px;
+      --text-xl: 26px;
+      --font-display: 'Fraunces', serif;
+      --font-body: 'DM Sans', sans-serif;
+      --font-mono: ui-monospace, 'Cascadia Mono', Consolas, monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+    body {
+      font-family: var(--font-body);
+      background: var(--bg);
+      color: var(--text-1);
+      line-height: 1.6;
+      min-height: 100vh;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      background:
+        radial-gradient(860px 560px at 82% -10%, rgba(255, 122, 89, 0.12), transparent 62%),
+        radial-gradient(680px 500px at 0% 42%, rgba(45, 212, 191, 0.1), transparent 60%),
+        radial-gradient(600px 480px at 52% 118%, rgba(251, 191, 36, 0.08), transparent 60%),
+        var(--bg);
+    }
+    ::selection { background: rgba(255, 122, 89, 0.35); color: #fff7f2; }
+    ::-webkit-scrollbar { width: 10px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: rgba(45, 212, 191, 0.3); border-radius: 6px; }
+    :focus-visible { outline: 2px solid var(--coral); outline-offset: 3px; border-radius: 6px; }
+
+    .skip-link {
+      position: fixed; top: -60px; left: 16px; z-index: 200;
+      background: var(--coral); color: #1a0d07; font-weight: 700;
+      padding: 10px 18px; border-radius: 8px; text-decoration: none;
+      transition: top 0.3s ease;
+    }
+    .skip-link:focus { top: 16px; }
+
+    .site-header {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(13, 17, 23, 0.82);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--stroke);
+    }
+    .site-header .bar {
+      max-width: 1120px; margin-inline: auto; padding: 14px clamp(16px, 4vw, 40px);
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    }
+    .wordmark {
+      font-family: var(--font-display); font-weight: 700; font-size: 1.25rem;
+      letter-spacing: 0.16em; color: var(--text-1); text-decoration: none;
+      display: inline-flex; align-items: center; gap: 12px;
+    }
+    .wordmark .wing {
+      display: inline-block;
+      animation: flap 0.75s ease-in-out infinite;
+      transform-origin: right center;
+    }
+    @keyframes flap {
+      0%, 20%, 80%, 100% { transform: scaleX(1) rotate(3deg); }
+      50% { transform: scaleX(0.6) rotate(7deg); }
+    }
+    .site-nav { display: flex; gap: 24px; }
+    .site-nav a { color: var(--text-2); text-decoration: none; font-size: 0.9rem; font-weight: 600; transition: color 0.25s ease; }
+    .site-nav a:hover { color: var(--sky); }
+
+    .shell { max-width: 1120px; margin-inline: auto; padding-inline: clamp(16px, 4vw, 40px); }
+
+    .stack { display: flex; flex-direction: column; gap: var(--space-4); }
+    .stack--lg { gap: var(--space-6); }
+    .hero { text-align: center; display: grid; gap: var(--space-4); justify-items: center; margin-bottom: var(--space-6); margin-top: 48px; }
+    .kicker { font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.3em; text-transform: uppercase; color: var(--sky); }
+    .h1 { font-family: var(--font-display); font-weight: 700; font-size: clamp(2.4rem, 7vw, 4.2rem); letter-spacing: -0.02em; line-height: 1.05; color: var(--text-1); }
+    .lead { font-size: clamp(1rem, 1.6vw, 1.15rem); color: var(--text-2); max-width: 58ch; }
+    .grad-text { background: var(--grad-text); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; }
+
+    .stat-row { display: flex; flex-wrap: wrap; gap: var(--space-2); justify-content: center; }
+    .chip {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: var(--text-sm); color: var(--text-2);
+      border: 1px solid var(--stroke); border-radius: var(--radius-full);
+      padding: 7px 15px; background: rgba(22, 29, 38, 0.55);
+    }
+    .chip .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--coral); box-shadow: 0 0 10px rgba(255, 122, 89, 0.8); }
+
+    .demo-stage {
+      isolation: isolate;
+      position: relative;
+      height: clamp(460px, 78vh, 860px);
+      padding: 0;
+      overflow: hidden;
+      background: var(--bg-1);
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--stroke);
+      box-shadow: var(--shadow-card);
+    }
+    #app { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; touch-action: pan-y; }
+    #app canvas { position: absolute; top: 0; left: 0; z-index: 0; }
+
+    .flock-overlay {
+      position: absolute; inset: 0; z-index: 2;
+      display: grid; place-items: center;
+      padding: var(--space-5);
+      pointer-events: none;
+    }
+    .flock-card {
+      pointer-events: auto;
+      display: grid; gap: var(--space-4); justify-items: center; text-align: center;
+      background: color-mix(in srgb, var(--bg-1) 55%, transparent);
+      -webkit-backdrop-filter: blur(var(--blur-glass));
+              backdrop-filter: blur(var(--blur-glass));
+      border: 1px solid var(--stroke-strong);
+      border-radius: var(--radius-xl);
+      padding: clamp(var(--space-5), 5vw, var(--space-7));
+      max-width: 560px;
+    }
+    .flock-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 7vw, 4.2rem);
+      font-weight: 700; letter-spacing: -0.02em; line-height: 1.05;
+    }
+    .flock-title span { display: inline-block; animation: flap 0.75s ease-in-out infinite; }
+    .flock-sub { font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-2); }
+    .flock-controls { display: flex; flex-wrap: wrap; gap: var(--space-3); justify-content: center; }
+
+    .btn {
+      font-family: var(--font-body); font-weight: 700; font-size: var(--text-sm);
+      border: 1px solid var(--stroke-strong); color: var(--text-1);
+      background: rgba(22, 29, 38, 0.6); border-radius: var(--radius-full);
+      padding: 10px 20px; cursor: pointer; text-decoration: none; display: inline-flex;
+      align-items: center; gap: 8px; transition: transform 0.25s var(--ease-spring), border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+    .btn:hover { transform: translateY(-2px); border-color: var(--sky); box-shadow: var(--glow-cyan); }
+    .btn:active { transform: scale(0.97); }
+
+    .stage-status {
+      position: absolute; z-index: 5; left: 50%; bottom: var(--space-4);
+      transform: translateX(-50%); font-family: var(--font-mono);
+      font-size: var(--text-xs); color: var(--text-1); letter-spacing: 0.18em;
+      text-transform: uppercase; text-align: center; white-space: nowrap;
+      background: var(--glass); border: 1px solid var(--stroke);
+      padding: 6px 14px; border-radius: var(--radius-full);
+      -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+    }
+    .demo-stage:fullscreen { border-radius: 0; border: none; }
+
+    .site-footer {
+      margin-top: var(--space-9);
+      border-top: 1px solid var(--stroke);
+      padding: 28px clamp(16px, 4vw, 40px);
+      display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; align-items: center;
+      max-width: 1120px; margin-inline: auto;
+      color: var(--text-3); font-size: var(--text-sm);
+    }
+    .site-footer a { color: var(--text-2); text-decoration: none; }
+    .site-footer a:hover { color: var(--sky); }
+
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s var(--ease-out); transition-delay: var(--reveal-delay, 0ms); }
+    .reveal.in { opacity: 1; transform: none; }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.001s !important; animation-iteration-count: 1 !important; transition-duration: 0.001s !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+
+    @media (max-width: 620px) {
+      .site-nav { display: none; }
+      .stage-status { white-space: normal; max-width: 86%; }
+    }
+  </style>
+</head>
+<body>
+<script>
+(function () {
+  if (!('ontouchstart' in window) || window.__touchBridge) return;
+  window.__touchBridge = true;
+  var lt = null;
+  function fire(type, t) {
+    var el = document.elementFromPoint(t.clientX, t.clientY) || document;
+    el.dispatchEvent(new MouseEvent(type, {
+      bubbles: true, cancelable: true, view: window,
+      clientX: t.clientX, clientY: t.clientY,
+      button: 0, buttons: type === 'mousemove' ? 1 : 0
+    }));
+  }
+  document.addEventListener('touchstart', function (e) {
+    if (e.touches.length !== 1) return;
+    lt = e.touches[0];
+    fire('mousemove', lt); fire('mousedown', lt);
+  }, { passive: true });
+  document.addEventListener('touchmove', function (e) {
+    if (e.touches.length !== 1 || !lt) return;
+    lt = e.touches[0];
+    fire('mousemove', lt);
+  }, { passive: true });
+  document.addEventListener('touchend', function () {
+    if (!lt) return;
+    fire('mouseup', lt);
+    lt = null;
+  }, { passive: true });
+})();
+</script>
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header class="site-header">
+    <div class="bar">
+      <a class="wordmark" href="#main"><span class="wing" aria-hidden="true">🦋</span>WAAY2TECH</a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="#flockStage">Swarm</a>
+        <a href="#engine">Engine</a>
+        <a href="#how">How it works</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="shell">
+    <header class="hero reveal">
+      <p class="kicker">three.js · GPU particle swarm</p>
+      <h1 class="h1">Flutter<span class="grad-text">Field</span></h1>
+      <p class="lead" style="max-width:56ch">A GPU-fed flock of phong-lit butterflies that steers, zooms and slides on demand. Drag, scroll or touch — the swarm reads your intent in real time.</p>
+      <div class="stat-row">
+        <span class="chip"><span class="dot"></span>drag to steer</span>
+        <span class="chip">scroll to zoom</span>
+        <span class="chip">touch to slide</span>
+      </div>
+    </header>
+
+    <section class="demo-stage reveal reveal-zoom" id="flockStage" aria-label="GPU butterfly swarm demo">
+      <div id="app"></div>
+
+      <div class="flock-overlay">
+        <div class="flock-card">
+          <p class="kicker">Lepidop//tera engine</p>
+          <h2 class="flock-title"><span>Flutter</span>Field</h2>
+          <p class="flock-sub">drag · zoom · slide — the swarm tracks your input</p>
+          <div class="flock-controls">
+            <button class="btn" id="fullscreenBtn" aria-label="Toggle fullscreen demo">⛶ Fullscreen</button>
+          </div>
+        </div>
+      </div>
+
+      <p class="stage-status" id="flock-status" role="status" aria-live="polite">incubating swarm…</p>
+    </section>
+
+    <section id="engine" class="stack reveal" style="--reveal-delay:120ms; margin-top:var(--space-7)">
+      <span class="kicker">Engine notes</span>
+      <h2 class="h1" style="font-size:clamp(1.6rem,4vw,2.4rem)">Born on the <span class="grad-text">GPU</span></h2>
+      <p class="lead" id="how">Every butterfly is a pair of phong-lit wings displaced by a shared noise field, integrated each frame on the graphics card. Position, velocity and attraction live in floating-point textures, so ten thousand wings can steer, zoom and slide without breaking a sweat.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span>WAAY2TECH · <span data-year></span></span>
+    <a href="#main">Back to top</a>
+  </footer>
+
+  <script>
+    'use strict';
+
+    (function () {
+      var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      document.querySelectorAll('[data-year]').forEach(function (el) {
+        el.textContent = new Date().getFullYear();
+      });
+
+      var reveals = document.querySelectorAll('.reveal');
+      if (reduced || !('IntersectionObserver' in window)) {
+        reveals.forEach(function (r) { r.classList.add('in'); });
+      } else {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('in');
+              io.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+        reveals.forEach(function (r) { io.observe(r); });
+      }
+    })();
+  </script>
+  <script type="module">
+    import { butterfliesBackground } from 'https://unpkg.com/threejs-toys@0.0.8/build/threejs-toys.module.cdn.min.js';
+
+    const status = document.getElementById('flock-status');
+    const stage = document.getElementById('flockStage');
+    const fullscreenBtn = document.getElementById('fullscreenBtn');
+
+    try {
+      const pc = butterfliesBackground({
+        el: document.getElementById('app'),
+        eventsEl: document.body,
+        gpgpuSize: 18,
+        background: 0x88CEFF,
+        material: 'phong',
+        lights: [
+          { type: 'ambient', params: [0xffffff, 0.5] },
+          { type: 'directional', params: [0xffffff, 1], props: { position: [10, 0, 0] } }
+        ],
+        materialParams: { transparent: true, alphaTest: 0.5 },
+        texture: 'https://assets.codepen.io/33787/butterflies.png',
+        textureCount: 4,
+        wingsScale: [2, 2, 2],
+        wingsWidthSegments: 16,
+        wingsHeightSegments: 16,
+        wingsSpeed: 0.75,
+        wingsDisplacementScale: 1.25,
+        noiseCoordScale: 0.01,
+        noiseTimeCoef: 0.0005,
+        noiseIntensity: 0.0025,
+        attractionRadius1: 100,
+        attractionRadius2: 150,
+        maxVelocity: 0.1
+      });
+      status.textContent = 'swarm airborne · wings synced';
+    } catch (err) {
+      status.textContent = 'swarm offline · webgl unavailable';
+    }
+
+    if (fullscreenBtn && stage) {
+      fullscreenBtn.addEventListener('click', async () => {
+        try {
+          if (!document.fullscreenElement) {
+            await stage.requestFullscreen();
+          } else {
+            await document.exitFullscreen();
+          }
+        } catch {}
+      });
+
+      document.addEventListener('fullscreenchange', () => {
+        fullscreenBtn.textContent = document.fullscreenElement ? '✕ Exit fullscreen' : '⛶ Fullscreen';
+      });
+    }
+  </script>
+</body>
+</html>

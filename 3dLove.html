@@ -1,0 +1,893 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="SPHERE&HEART — eighty neon spheres pile onto a crimson heart terrain under real rigid-body physics. Drag to orbit, scroll to zoom, freeze the sim with one tap.">
+  <title>SPHERE&HEART · Physics Heart Sandbox | Waay2Tech</title>
+  <link rel="canonical" href="3dLove.html">
+  <meta property="og:site_name" content="WAAY2TECH">
+  <meta name="author" content="WAAY2TECH">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="SPHERE&HEART · Physics Heart Sandbox | Waay2Tech">
+  <meta property="og:description" content="80 neon spheres pile onto a heart terrain under real rigid-body physics. Drag to orbit, scroll to zoom, hit STOP to freeze the sim.">
+  <meta property="og:url" content="3dLove.html">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="SPHERE&HEART · Physics Heart Sandbox">
+  <meta name="twitter:description" content="80 neon spheres pile onto a heart terrain under real rigid-body physics. Drag to orbit, scroll to zoom, hit STOP to freeze the sim.">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "SPHERE&HEART · Physics Heart Sandbox | Waay2Tech",
+    "description": "A romantic 3D sphere-packing sandbox — 80 neon spheres collide on a heart terrain under real rigid-body physics.",
+    "url": "3dLove.html"
+  }
+  </script>
+  <style>
+    /* ---------- 1. SPHERE&HEART tokens ---------- */
+    :root {
+      --bg-0: #0d0508;
+      --bg-1: #15080e;
+      --bg-2: #1c0a12;
+      --bg-3: #270e1a;
+      --glass: rgba(28, 10, 18, 0.72);
+      --glass-strong: rgba(39, 14, 26, 0.92);
+      --stroke: rgba(255, 233, 239, 0.12);
+      --stroke-strong: rgba(255, 233, 239, 0.24);
+      --text-1: #ffe9ef;
+      --text-2: #e5bcc8;
+      --text-3: #9d6a7a;
+      --indigo: #ff3b6b;
+      --indigo-soft: #ff6b9d;
+      --violet: #ff6b9d;
+      --magenta: #c9184a;
+      --cyan: #ff6b9d;
+      --lime: #c9184a;
+      --amber: #ff3b6b;
+      --grad-primary: linear-gradient(135deg, #ff3b6b 0%, #ff6b9d 55%, #c9184a 100%);
+      --grad-cyber: linear-gradient(135deg, #ff6b9d 0%, #ff3b6b 60%, #c9184a 100%);
+      --grad-lime: linear-gradient(135deg, #c9184a 0%, #ff6b9d 100%);
+      --grad-text: linear-gradient(120deg, #ff6b9d 0%, #ff3b6b 35%, #c9184a 100%);
+      --glow-indigo: 0 0 24px rgba(255, 59, 107, 0.55);
+      --glow-violet: 0 0 30px rgba(255, 107, 157, 0.5);
+      --glow-cyan: 0 0 22px rgba(255, 107, 157, 0.5);
+      --glow-lime: 0 0 22px rgba(201, 24, 74, 0.45);
+      --shadow-card: 0 20px 60px -20px rgba(0, 0, 0, 0.75);
+      --blur-glass: 18px;
+      --radius-sm: 10px;
+      --radius-md: 16px;
+      --radius-lg: 24px;
+      --radius-xl: 32px;
+      --radius-full: 999px;
+      --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px;
+      --space-5: 24px; --space-6: 32px; --space-7: 48px; --space-8: 64px; --space-9: 96px;
+      --text-xs: clamp(0.72rem, 0.7rem + 0.15vw, 0.8rem);
+      --text-sm: clamp(0.85rem, 0.82rem + 0.2vw, 0.95rem);
+      --text-md: clamp(1rem, 0.95rem + 0.3vw, 1.15rem);
+      --text-lg: clamp(1.2rem, 1.1rem + 0.6vw, 1.6rem);
+      --text-xl: clamp(1.7rem, 1.4rem + 1.6vw, 2.6rem);
+      --text-2xl: clamp(2.2rem, 1.6rem + 3vw, 4rem);
+      --text-3xl: clamp(3rem, 2rem + 5vw, 6rem);
+      --speed-1: 140ms; --speed-2: 280ms; --speed-3: 500ms; --speed-4: 900ms;
+      --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+      --ease-spring: cubic-bezier(0.22, 1.4, 0.36, 1);
+      --font-display: 'Poppins', sans-serif;
+      --font-body: 'DM Sans', sans-serif;
+      --font-mono: 'Poppins', monospace;
+    }
+
+    /* ---------- 2. Base ---------- */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      font-size: var(--text-md);
+      background: var(--bg-0);
+      color: var(--text-1);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    ::selection { background: var(--indigo); color: var(--bg-0); }
+    ::-webkit-scrollbar { width: 10px; }
+    ::-webkit-scrollbar-track { background: var(--bg-0); }
+    ::-webkit-scrollbar-thumb { background: var(--stroke-strong); border-radius: var(--radius-full); }
+    ::-webkit-scrollbar-thumb:hover { background: var(--indigo); }
+    :focus-visible { outline: 2px solid var(--indigo); outline-offset: 3px; border-radius: 2px; }
+    a { color: inherit; }
+    .shell { position: relative; width: min(1240px, 92%); margin-inline: auto; padding: var(--space-6) 0 var(--space-9); }
+    body::before {
+      content: ''; position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      background:
+        radial-gradient(50% 45% at 50% 15%, rgba(255, 59, 107, 0.12), transparent 60%),
+        radial-gradient(45% 40% at 85% 90%, rgba(201, 24, 74, 0.1), transparent 60%);
+    }
+
+    /* The physics canvas is fixed behind the UI chrome */
+    canvas { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 1; }
+
+    .skip-link {
+      position: fixed; top: 12px; left: 12px; z-index: 9999;
+      padding: 10px 18px; border-radius: var(--radius-md);
+      background: var(--indigo); color: var(--bg-0);
+      font-family: var(--font-body); font-size: var(--text-sm); font-weight: 700;
+      text-decoration: none; box-shadow: var(--glow-indigo);
+      transform: translateY(-200%); transition: transform var(--speed-2) var(--ease-out);
+    }
+    .skip-link:focus { transform: translateY(0); }
+
+    /* ---------- 3. Header ---------- */
+    .site-header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 10;
+      display: flex; align-items: center; justify-content: space-between; gap: var(--space-4);
+      padding: var(--space-3) max(4vw, 16px);
+      background: color-mix(in srgb, var(--bg-0) 62%, transparent);
+      -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--stroke);
+    }
+    .brand {
+      font-family: var(--font-display); font-weight: 700; letter-spacing: 0.06em;
+      text-decoration: none; color: var(--text-1); font-size: var(--text-sm);
+      display: inline-flex; align-items: center; gap: 10px;
+    }
+    .brand b { color: var(--indigo); }
+    .brand::after { content: '♥'; color: var(--indigo); text-shadow: var(--glow-indigo); animation: heart-beat 1.8s ease-in-out infinite; }
+    @keyframes heart-beat { 50% { transform: scale(1.35); } }
+    .site-nav { display: flex; gap: var(--space-4); }
+    .site-nav a {
+      font-family: var(--font-body); font-size: var(--text-sm); font-weight: 500;
+      letter-spacing: 0.06em; text-decoration: none; color: var(--text-3);
+      transition: color var(--speed-2);
+    }
+    .site-nav a:hover { color: var(--indigo); }
+
+    /* ---------- 4. Typography + chips ---------- */
+    .kicker {
+      font-family: var(--font-mono); font-size: var(--text-xs); font-weight: 600;
+      letter-spacing: 0.32em; text-transform: uppercase; color: var(--indigo);
+      display: inline-flex; align-items: center; gap: var(--space-2);
+    }
+    .kicker::before { content: '♥ '; color: var(--indigo); }
+    .h1, h1 { font-family: var(--font-display); font-size: var(--text-3xl); font-weight: 800; line-height: 1.06; letter-spacing: -0.02em; }
+    .h3, h3 { font-family: var(--font-display); font-size: var(--text-xl); font-weight: 700; line-height: 1.2; }
+    .lead { font-size: var(--text-lg); color: var(--text-2); line-height: 1.55; }
+    .grad-text {
+      background: var(--grad-text); -webkit-background-clip: text; background-clip: text;
+      -webkit-text-fill-color: transparent; color: transparent;
+      background-size: 200% auto; animation: grad-shift 6s linear infinite;
+    }
+    @keyframes grad-shift { to { background-position: 200% center; } }
+    .mono { font-family: var(--font-mono); }
+    .small { font-size: var(--text-sm); color: var(--text-2); }
+    .muted { color: var(--text-2); }
+    .chip {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: var(--font-mono); font-size: var(--text-xs); font-weight: 500;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--text-2); text-decoration: none;
+      padding: 7px 14px; border-radius: var(--radius-full);
+      border: 1px solid var(--stroke); background: var(--glass);
+      -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+      transition: color var(--speed-2), border-color var(--speed-2), transform var(--speed-2);
+    }
+    .chip:hover { color: var(--indigo); border-color: var(--indigo); transform: translateY(-2px); }
+    .dot {
+      width: 7px; height: 7px; border-radius: 50%; flex: none;
+      background: var(--indigo); box-shadow: var(--glow-indigo); animation: heart-beat 2s ease-in-out infinite;
+    }
+    .row { display: flex; align-items: center; gap: var(--space-4); }
+    .row--wrap { flex-wrap: wrap; }
+    .stack { display: flex; flex-direction: column; gap: var(--space-4); }
+    .text-center { text-align: center; }
+
+    .reveal {
+      opacity: 0; transform: translateY(28px);
+      transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
+      transition-delay: var(--reveal-delay, 0ms); will-change: opacity, transform;
+    }
+    .reveal.in { opacity: 1; transform: none; }
+
+    /* ---------- 5. Hero (over the canvas) ---------- */
+    #main { pointer-events: none; }
+    #main .hero {
+      position: relative; z-index: 5;
+      padding: clamp(140px, 24vh, 220px) 0 var(--space-6);
+      display: flex; flex-direction: column; align-items: center; gap: var(--space-4);
+      text-align: center;
+    }
+    #main .lead { max-width: 56ch; text-shadow: 0 2px 18px rgba(13, 5, 8, 0.8); }
+
+    /* ---------- 6. Info panel + stop button ---------- */
+    #info {
+      position: fixed; top: calc(var(--space-5) + 56px); left: max(4vw, 16px); z-index: 60;
+      max-width: 300px; display: flex; flex-direction: column; gap: var(--space-1);
+      background: var(--glass-strong); border: 1px solid var(--stroke-strong); border-radius: var(--radius-md);
+      padding: var(--space-4); -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px);
+      box-shadow: var(--shadow-card);
+    }
+    #info[hidden] { display: none; }
+    #info h3 { font-size: var(--text-md); color: var(--indigo); }
+    #info p { font-size: var(--text-xs); color: var(--text-2); }
+    #info .mono { color: var(--indigo-soft); }
+
+    .btn {
+      position: relative; display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2);
+      font-family: var(--font-body); font-weight: 600; font-size: var(--text-sm);
+      padding: 11px 22px; border-radius: var(--radius-full); border: none;
+      cursor: pointer; text-decoration: none; color: var(--text-1);
+      background: var(--glass); border: 1px solid var(--stroke-strong);
+      transition: transform var(--speed-2) var(--ease-spring), box-shadow var(--speed-2) var(--ease-out), filter var(--speed-2);
+    }
+    .btn:hover { border-color: var(--indigo); color: var(--indigo); box-shadow: var(--glow-indigo); transform: translateY(-2px); }
+    .btn:focus-visible { outline: 2px solid var(--indigo); outline-offset: 3px; }
+
+    .btn_stop {
+      position: fixed; left: max(4vw, 16px); bottom: var(--space-5); z-index: 60;
+      touch-action: manipulation;
+    }
+    .btn_stop:disabled { opacity: 0.5; cursor: not-allowed; transform: none !important; }
+
+    #loading {
+      position: fixed; inset: 0; z-index: 200; display: grid; place-items: center;
+      background: color-mix(in srgb, var(--bg-0) 80%, transparent);
+      -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px);
+    }
+    .boot-card {
+      display: flex; flex-direction: column; align-items: center; gap: var(--space-3);
+      background: var(--glass); border: 1px solid var(--stroke); border-radius: var(--radius-lg);
+      padding: var(--space-7) var(--space-8); box-shadow: var(--shadow-card), var(--glow-indigo);
+      -webkit-backdrop-filter: blur(var(--blur-glass)); backdrop-filter: blur(var(--blur-glass));
+    }
+    .boot-card::before {
+      content: '♥'; font-size: 2.4rem; color: var(--indigo);
+      text-shadow: var(--glow-indigo); animation: heart-beat 1.4s ease-in-out infinite;
+    }
+
+    /* ---------- 7. Footer ---------- */
+    .site-footer {
+      position: relative; z-index: 5;
+      border-top: 1px solid var(--stroke);
+      padding: var(--space-4) max(4vw, 16px); display: flex; flex-wrap: wrap;
+      gap: var(--space-4); align-items: center; justify-content: space-between;
+      color: var(--text-3); font-size: var(--text-sm);
+      font-family: var(--font-mono); letter-spacing: 0.14em; text-transform: uppercase;
+      background: color-mix(in srgb, var(--bg-0) 45%, transparent);
+    }
+    .site-footer .sig { color: var(--indigo); }
+
+    /* ---------- 8. Responsive ---------- */
+    @media (max-width: 980px) {
+      .site-nav a { font-size: var(--text-sm); }
+    }
+    @media (max-width: 620px) {
+      #info { top: calc(var(--space-4) + 56px); left: max(4vw, 12px); max-width: 78vw; }
+      .btn_stop { bottom: var(--space-4); }
+      .shell { width: 94%; padding-top: var(--space-4); }
+      .site-nav { display: none; }
+      #main .hero { padding-top: clamp(120px, 20vh, 180px); }
+    }
+
+    /* ---------- 9. Reduced motion ---------- */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.001ms !important; animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important; scroll-behavior: auto !important;
+      }
+      .reveal { opacity: 1 !important; transform: none !important; }
+    }
+  </style>
+</head>
+<body>
+<script>
+(function () {
+  if (!('ontouchstart' in window) || window.__touchBridge) return;
+  window.__touchBridge = true;
+  var lt = null;
+  function fire(type, t) {
+    var el = document.elementFromPoint(t.clientX, t.clientY) || document;
+    el.dispatchEvent(new MouseEvent(type, {
+      bubbles: true, cancelable: true, view: window,
+      clientX: t.clientX, clientY: t.clientY,
+      button: 0, buttons: type === 'mousemove' ? 1 : 0
+    }));
+  }
+  document.addEventListener('touchstart', function (e) {
+    if (e.touches.length !== 1) return;
+    lt = e.touches[0];
+    fire('mousemove', lt); fire('mousedown', lt);
+  }, { passive: true });
+  document.addEventListener('touchmove', function (e) {
+    if (e.touches.length !== 1 || !lt) return;
+    lt = e.touches[0];
+    fire('mousemove', lt);
+  }, { passive: true });
+  document.addEventListener('touchend', function () {
+    if (!lt) return;
+    fire('mouseup', lt);
+    lt = null;
+  }, { passive: true });
+})();
+</script>
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header class="site-header">
+    <a class="brand" href="#">WAAY2TECH</a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="#">Sim</a>
+      <a href="#">Physics</a>
+      <a href="#">Heart</a>
+    </nav>
+  </header>
+
+  <main id="main" class="shell">
+    <section class="hero reveal">
+      <p class="kicker">Physics Sandbox · Ammo.js Rigid Bodies</p>
+      <h1 class="h1">Sphere<span class="grad-text">Core</span></h1>
+      <p class="lead">80 neon spheres pile onto a heart terrain under real rigid-body physics. Drag to orbit, scroll to zoom, hit STOP to freeze the sim.</p>
+      <div class="row row--wrap" style="justify-content:center">
+        <span class="chip"><span class="dot"></span>80 spheres</span>
+        <span class="chip">ammo.js physics</span>
+        <span class="chip">heart terrain</span>
+      </div>
+    </section>
+  </main>
+
+  <div id="loading" role="status" aria-live="polite" aria-label="Loading physics engine">
+    <div class="boot-card">
+      <span class="kicker">Physics Engine</span>
+      <h2 class="h3 grad-text">Booting simulation…</h2>
+      <p class="small muted">Initializing rigid-body world · compiling collision meshes</p>
+    </div>
+  </div>
+
+  <div id="info" role="note" aria-label="Simulation instructions" hidden>
+    <h3>Sphere Core</h3>
+    <p>Physics-based sphere sim with Ammo.js — spheres rain onto a heart terrain.</p>
+    <p class="mono">Drag: rotate · Scroll: zoom</p>
+  </div>
+
+  <footer class="site-footer">
+    <span>WAAY2TECH · <span data-year></span></span>
+    <span class="sig">♥ physics warm</span>
+  </footer>
+
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://unpkg.com/three@0.177.0/build/three.module.js",
+      "three/addons/": "https://unpkg.com/three@0.177.0/examples/jsm/"
+    }
+  }
+  </script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/chroma-js/2.4.2/chroma.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.177.0/examples/jsm/libs/ammo.wasm.js"></script>
+
+  <script>
+    (function () {
+      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      document.querySelectorAll('[data-year]').forEach(function (el) { el.textContent = new Date().getFullYear(); });
+      var reveals = document.querySelectorAll('.reveal');
+      if ('IntersectionObserver' in window && !reduce) {
+        var io = new IntersectionObserver(function (entries, obs) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); }
+          });
+        }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
+        reveals.forEach(function (el) { io.observe(el); });
+      } else {
+        reveals.forEach(function (el) { el.classList.add('in'); });
+      }
+    })();
+  </script>
+
+  <script type="module">
+    import * as THREE from "three";
+    import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+    import { OBJLoader } from "three/addons/loaders/OBJLoader.js";
+    import { RGBELoader } from "three/addons/loaders/RGBELoader.js";
+    import "three/addons/exporters/PLYExporter.js";
+    import * as BufferGeometryUtils from "three/addons/utils/BufferGeometryUtils.js";
+
+    let camera, scene, renderer, controls, physics, terrainGeometry, environment;
+    let terrainMesh, sphereInstances, loadingElement, infoElement;
+
+    const impressiveColors = [
+      '#ff006e', '#8338ec', '#3a86ff', '#06ffa5', '#ffbe0b',
+      '#fb5607', '#ff4081', '#7c4dff', '#00e5ff', '#76ff03',
+      '#ff3d00', '#e91e63', '#9c27b0', '#673ab7', '#3f51b5',
+      '#2196f3', '#03a9f4', '#00bcd4', '#009688', '#4caf50',
+      '#8bc34a', '#cddc39', '#ffeb3b', '#ffc107', '#ff9800',
+      '#ff5722', '#f44336', '#ff2e93',
+    ];
+
+    const neonColors = [
+      '#ff073a', '#39ff14', '#ff073a', '#1b03a3', '#ffff33',
+      '#bc13fe', '#ff6600', '#00ffff', '#ff69b4', '#adff2f',
+    ];
+
+    const getRandomColor = () => {
+      const selectedSet = Math.random() < 0.5 ? impressiveColors : neonColors;
+      if (typeof chroma !== 'undefined') {
+        try {
+          const baseColor = selectedSet[Math.floor(Math.random() * selectedSet.length)];
+          return chroma(baseColor).saturate(2).brighten(0.5).hex();
+        } catch (e) {
+          console.warn('Chroma error, using fallback colors');
+        }
+      }
+      return selectedSet[Math.floor(Math.random() * selectedSet.length)];
+    };
+
+    const onWindowResize = () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    };
+
+    const animate = () => {
+      requestAnimationFrame(animate);
+      controls.update();
+      renderer.render(scene, camera);
+    };
+
+    const init = async () => {
+      try {
+        loadingElement = document.getElementById('loading');
+        infoElement = document.getElementById('info');
+
+        physics = await initAmmoPhysics();
+        if (!physics) throw new Error('Failed to initialize physics engine');
+
+        camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 1000);
+        camera.position.set(0, 0, 2);
+        camera.lookAt(0, 0, 0);
+
+        scene = new THREE.Scene();
+        scene.background = null;
+
+        scene.add(new THREE.AmbientLight(0xffffff, 0.6));
+        scene.add(new THREE.HemisphereLight(0xffffff, 0x444444, 0.6));
+
+        const directionalLight1 = new THREE.DirectionalLight(0xffffff, 1.2);
+        directionalLight1.position.set(1, 1, 1);
+        scene.add(directionalLight1);
+
+        const directionalLight2 = new THREE.DirectionalLight(0xff6b6b, 0.8);
+        directionalLight2.position.set(-1, 1, -1);
+        scene.add(directionalLight2);
+
+        const directionalLight3 = new THREE.DirectionalLight(0x6b6bff, 0.6);
+        directionalLight3.position.set(0, -1, 1);
+        scene.add(directionalLight3);
+
+        renderer = new THREE.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true, alpha: true });
+        renderer.setPixelRatio(window.devicePixelRatio);
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.shadowMap.enabled = true;
+        renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+        renderer.toneMapping = THREE.ACESFilmicToneMapping;
+        renderer.toneMappingExposure = 1.2;
+        document.body.appendChild(renderer.domElement);
+
+        controls = new OrbitControls(camera, renderer.domElement);
+        controls.target.y = 0;
+        controls.autoRotate = false;
+        controls.enableDamping = true;
+        controls.enablePan = false;
+        controls.minDistance = 1;
+        controls.minPolarAngle = 0;
+        controls.maxPolarAngle = Math.PI / 2;
+        controls.update();
+
+        try {
+          const rgbeLoader = new RGBELoader();
+          environment = await new Promise((resolve, reject) => {
+            rgbeLoader.load(
+              "https://raw.githubusercontent.com/mrdoob/three.js/dev/examples/textures/equirectangular/quarry_01_1k.hdr",
+              resolve,
+              undefined,
+              reject
+            );
+          });
+          environment.mapping = THREE.EquirectangularReflectionMapping;
+          scene.environment = environment;
+        } catch (error) {
+          console.warn('Failed to load HDR environment:', error);
+          environment = null;
+        }
+
+        const sphereMaterial = new THREE.MeshPhongMaterial({
+          envMap: environment,
+          reflectivity: 0.9,
+          emissive: 0x000000,
+          specular: 0xffffff,
+          shininess: 150,
+          flatShading: false,
+          transparent: true,
+          opacity: 0.95
+        });
+
+        await createTerrain();
+        createSpheres(sphereMaterial);
+
+        if (loadingElement) loadingElement.style.display = 'none';
+        if (infoElement) infoElement.style.display = 'flex';
+
+        animate();
+
+        window.addEventListener('resize', onWindowResize);
+      } catch (error) {
+        console.error('Failed to initialize simulation:', error);
+        if (loadingElement) loadingElement.innerHTML = 'Failed to load simulation. Please refresh the page.';
+      }
+    };
+
+    const createTerrain = async () => {
+      try {
+        const objLoader = new OBJLoader();
+        const heartModel = await new Promise((resolve, reject) => {
+          objLoader.load(
+            "https://happy358.github.io/misc/model/Heart/Heart.obj",
+            resolve,
+            undefined,
+            reject
+          );
+        });
+
+        let geometry = heartModel.children[0].geometry;
+        geometry = geometry.index ? geometry : BufferGeometryUtils.mergeVertices(geometry);
+        geometry.computeVertexNormals();
+        geometry.computeBoundingBox();
+        geometry.computeBoundingSphere();
+
+        terrainGeometry = geometry.clone();
+        terrainGeometry.scale(0.1, 0.1, 0.11);
+        geometry.center();
+        geometry.computeVertexNormals();
+        geometry.computeBoundingBox();
+        geometry.computeBoundingSphere();
+        terrainGeometry.name = "terrain";
+      } catch (error) {
+        console.warn('Failed to load heart model, using fallback geometry:', error);
+        terrainGeometry = createHeartGeometry();
+        terrainGeometry.name = "terrain";
+      }
+
+      const terrainMaterial = new THREE.MeshLambertMaterial({
+        color: new THREE.Color("#ff1744"),
+        side: THREE.DoubleSide,
+        wireframe: true,
+        transparent: true,
+        opacity: 0.8
+      });
+
+      terrainMesh = new THREE.Mesh(terrainGeometry, terrainMaterial);
+      terrainMesh.visible = false;
+      terrainMesh.userData.physics = { mass: 0 };
+      scene.add(terrainMesh);
+
+      physics.addMesh(terrainMesh, 0);
+    };
+
+    const createHeartGeometry = () => {
+      const shape = new THREE.Shape();
+      const x = 0, y = 0;
+
+      shape.moveTo(x + 5, y + 5);
+      shape.bezierCurveTo(x + 5, y + 5, x + 4, y, x, y);
+      shape.bezierCurveTo(x - 6, y, x - 6, y + 3.5, x - 6, y + 3.5);
+      shape.bezierCurveTo(x - 6, y + 5.5, x - 4, y + 7.7, x, y + 10);
+      shape.bezierCurveTo(x + 4, y + 7.7, x + 6, y + 5.5, x + 6, y + 3.5);
+      shape.bezierCurveTo(x + 6, y + 3.5, x + 6, y, x + 5, y + 5);
+
+      const extrudeSettings = {
+        depth: 2,
+        bevelEnabled: true,
+        bevelSegments: 2,
+        steps: 2,
+        bevelSize: 0.5,
+        bevelThickness: 0.5
+      };
+
+      const geometry = new THREE.ExtrudeGeometry(shape, extrudeSettings);
+      geometry.scale(0.02, 0.02, 0.02);
+      geometry.center();
+
+      return geometry;
+    };
+
+    const createSpheres = (material) => {
+      const sphereGeometry = new THREE.IcosahedronGeometry(0.15, 1);
+      const sphereCount = 80;
+
+      sphereInstances = new THREE.InstancedMesh(sphereGeometry, material, sphereCount);
+      sphereInstances.instanceMatrix.setUsage(THREE.DynamicDrawUsage);
+      sphereInstances.userData.physics = { mass: 1 };
+
+      const matrix = new THREE.Matrix4();
+      const color = new THREE.Color();
+
+      for (let i = 0; i < sphereCount; i++) {
+        matrix.setPosition(
+          THREE.MathUtils.randFloat(-0.7, 0.7),
+          THREE.MathUtils.randFloat(-0.4, 0.2),
+          THREE.MathUtils.randFloat(-0.2, 0.2)
+        );
+        sphereInstances.setMatrixAt(i, matrix);
+
+        color.set(getRandomColor());
+        color.multiplyScalar(1.2);
+        sphereInstances.setColorAt(i, color);
+      }
+
+      scene.add(sphereInstances);
+      physics.addMesh(sphereInstances, 1);
+
+      createStopButton();
+    };
+
+    const createStopButton = () => {
+      const stopButton = document.createElement("button");
+      stopButton.className = "btn btn_stop";
+      stopButton.innerText = "Freeze Physics ❄";
+      document.body.appendChild(stopButton);
+
+      const stopPhysics = (event) => {
+        event.preventDefault();
+        if (physics && typeof physics.destroy === 'function') {
+          physics.destroy();
+          stopButton.disabled = true;
+          stopButton.style.display = "none";
+        }
+      };
+
+      stopButton.addEventListener("pointerdown", stopPhysics, { passive: true });
+      stopButton.addEventListener("click", stopPhysics);
+    };
+
+    const initAmmoPhysics = async () => {
+      if (typeof Ammo === 'undefined') {
+        console.error("AmmoPhysics: Couldn't find Ammo.js");
+        return null;
+      }
+
+      try {
+        const AmmoLib = await Ammo();
+
+        const collisionConfiguration = new AmmoLib.btDefaultCollisionConfiguration();
+        const dispatcher = new AmmoLib.btCollisionDispatcher(collisionConfiguration);
+        const overlappingPairCache = new AmmoLib.btDbvtBroadphase();
+        const solver = new AmmoLib.btSequentialImpulseConstraintSolver();
+        const dynamicsWorld = new AmmoLib.btDiscreteDynamicsWorld(
+          dispatcher,
+          overlappingPairCache,
+          solver,
+          collisionConfiguration
+        );
+
+        dynamicsWorld.setGravity(new AmmoLib.btVector3(0, -9.8, 0));
+
+        const transform = new AmmoLib.btTransform();
+        let tempVector = new AmmoLib.btVector3(0, 0, 0);
+        const rigidBodies = [];
+        const meshMap = new WeakMap();
+
+        const createCollisionShape = (geometry) => {
+          const parameters = geometry.parameters;
+          let shape;
+
+          if (geometry.type === "BoxGeometry") {
+            const sx = parameters.width !== undefined ? parameters.width / 2 : 0.5;
+            const sy = parameters.height !== undefined ? parameters.height / 2 : 0.5;
+            const sz = parameters.depth !== undefined ? parameters.depth / 2 : 0.5;
+            shape = new AmmoLib.btBoxShape(new AmmoLib.btVector3(sx, sy, sz));
+          } else if (geometry.type === "IcosahedronGeometry") {
+            const radius = parameters.radius !== undefined ? parameters.radius : 1;
+            shape = new AmmoLib.btSphereShape(radius);
+          } else if (geometry.name === "terrain") {
+            const vertices = geometry.attributes.position.array;
+            const indices = geometry.index.array;
+            const triangleMesh = new AmmoLib.btTriangleMesh();
+
+            for (let i = 0; i < indices.length; i += 3) {
+              const v1 = new AmmoLib.btVector3(
+                vertices[indices[i] * 3],
+                vertices[indices[i] * 3 + 1],
+                vertices[indices[i] * 3 + 2]
+              );
+              const v2 = new AmmoLib.btVector3(
+                vertices[indices[i + 1] * 3],
+                vertices[indices[i + 1] * 3 + 1],
+                vertices[indices[i + 1] * 3 + 2]
+              );
+              const v3 = new AmmoLib.btVector3(
+                vertices[indices[i + 2] * 3],
+                vertices[indices[i + 2] * 3 + 1],
+                vertices[indices[i + 2] * 3 + 2]
+              );
+              triangleMesh.addTriangle(v1, v2, v3);
+            }
+            shape = new AmmoLib.btBvhTriangleMeshShape(triangleMesh, true, true);
+          } else {
+            const positionAttribute = geometry.getAttribute("position");
+            shape = new AmmoLib.btConvexHullShape();
+            for (let i = 0; i < positionAttribute.count; i++) {
+              const x = positionAttribute.getX(i);
+              const y = positionAttribute.getY(i);
+              const z = positionAttribute.getZ(i);
+              const vertex = new AmmoLib.btVector3(x, y, z);
+              shape.addPoint(vertex, true);
+            }
+          }
+
+          shape.setMargin(0.015);
+          return shape;
+        };
+
+        const addMesh = (mesh, mass = 0) => {
+          const shape = createCollisionShape(mesh.geometry);
+          if (!shape) return;
+
+          if (mesh.isInstancedMesh) {
+            const instancedMesh = mesh;
+            const instanceMatrices = instancedMesh.instanceMatrix.array;
+            const bodies = [];
+
+            for (let i = 0; i < instancedMesh.count; i++) {
+              const matrixOffset = i * 16;
+              const instanceTransform = new AmmoLib.btTransform();
+              instanceTransform.setFromOpenGLMatrix(
+                instanceMatrices.slice(matrixOffset, matrixOffset + 16)
+              );
+
+              const motionState = new AmmoLib.btDefaultMotionState(instanceTransform);
+              const localInertia = new AmmoLib.btVector3(0, 0, 0);
+              shape.calculateLocalInertia(mass, localInertia);
+
+              const rbInfo = new AmmoLib.btRigidBodyConstructionInfo(
+                mass,
+                motionState,
+                shape,
+                localInertia
+              );
+              const body = new AmmoLib.btRigidBody(rbInfo);
+              body.setRestitution(0.3);
+              body.setFriction(0.8);
+
+              dynamicsWorld.addRigidBody(body);
+              bodies.push(body);
+            }
+
+            if (mass > 0) {
+              rigidBodies.push(instancedMesh);
+              meshMap.set(instancedMesh, bodies);
+            }
+          } else if (mesh.isMesh) {
+            const position = mesh.position;
+            const quaternion = mesh.quaternion;
+
+            transform.setIdentity();
+            transform.setOrigin(new AmmoLib.btVector3(position.x, position.y, position.z));
+            transform.setRotation(new AmmoLib.btQuaternion(quaternion.x, quaternion.y, quaternion.z, quaternion.w));
+
+            const motionState = new AmmoLib.btDefaultMotionState(transform);
+            const localInertia = new AmmoLib.btVector3(0, 0, 0);
+            shape.calculateLocalInertia(mass, localInertia);
+
+            const rbInfo = new AmmoLib.btRigidBodyConstructionInfo(mass, motionState, shape, localInertia);
+            const body = new AmmoLib.btRigidBody(rbInfo);
+            body.setRestitution(0.3);
+            body.setFriction(0.8);
+
+            dynamicsWorld.addRigidBody(body);
+
+            if (mass > 0) {
+              rigidBodies.push(mesh);
+              meshMap.set(mesh, body);
+            }
+          }
+        };
+
+        let lastTime = 0;
+        const updatePhysics = setInterval(() => {
+          const time = performance.now();
+          if (lastTime > 0) {
+            const deltaTime = (time - lastTime) / 1000;
+            dynamicsWorld.stepSimulation(deltaTime, 10);
+
+            for (let i = 0; i < rigidBodies.length; i++) {
+              const mesh = rigidBodies[i];
+
+              if (mesh.isInstancedMesh) {
+                const instanceMatrices = mesh.instanceMatrix.array;
+                const bodies = meshMap.get(mesh);
+
+                for (let j = 0; j < bodies.length; j++) {
+                  bodies[j].getMotionState().getWorldTransform(transform);
+                  const origin = transform.getOrigin();
+                  const rotation = transform.getRotation();
+
+                  if (origin.y() < -3 || origin.y() > 3) {
+                    tempVector.setValue(
+                      THREE.MathUtils.randFloat(-0.5, 0.5),
+                      THREE.MathUtils.randFloat(0, 1),
+                      THREE.MathUtils.randFloat(-0.5, 0.5)
+                    );
+                    transform.setIdentity();
+                    transform.setOrigin(tempVector);
+                    bodies[j].setWorldTransform(transform);
+                    bodies[j].setLinearVelocity(new AmmoLib.btVector3(0, 0, 0));
+                    bodies[j].setAngularVelocity(new AmmoLib.btVector3(0, 0, 0));
+                    bodies[j].clearForces();
+                  }
+
+                  const matrixOffset = j * 16;
+                  const matrix = new THREE.Matrix4();
+                  matrix.makeRotationFromQuaternion(
+                    new THREE.Quaternion(rotation.x(), rotation.y(), rotation.z(), rotation.w())
+                  );
+                  matrix.setPosition(origin.x(), origin.y(), origin.z());
+                  matrix.toArray(instanceMatrices, matrixOffset);
+                }
+
+                mesh.instanceMatrix.needsUpdate = true;
+                mesh.computeBoundingSphere();
+              } else if (mesh.isMesh) {
+                const body = meshMap.get(mesh);
+                body.getMotionState().getWorldTransform(transform);
+                const origin = transform.getOrigin();
+                const rotation = transform.getRotation();
+
+                mesh.position.set(origin.x(), origin.y(), origin.z());
+                mesh.quaternion.set(rotation.x(), rotation.y(), rotation.z(), rotation.w());
+              }
+            }
+          }
+          lastTime = time;
+        }, 1000 / 60);
+
+        return {
+          addMesh,
+          destroy: function () {
+            clearInterval(updatePhysics);
+
+            for (const mesh of rigidBodies) {
+              const bodies = meshMap.get(mesh);
+              if (Array.isArray(bodies)) {
+                for (const body of bodies) {
+                  dynamicsWorld.removeRigidBody(body);
+                  AmmoLib.destroy(body);
+                }
+              } else {
+                dynamicsWorld.removeRigidBody(bodies);
+                AmmoLib.destroy(bodies);
+              }
+              meshMap.delete(mesh);
+            }
+
+            rigidBodies.length = 0;
+            AmmoLib.destroy(dynamicsWorld);
+            AmmoLib.destroy(solver);
+            AmmoLib.destroy(overlappingPairCache);
+            AmmoLib.destroy(dispatcher);
+            AmmoLib.destroy(collisionConfiguration);
+            AmmoLib.destroy(tempVector);
+            AmmoLib.destroy(transform);
+          }
+        };
+
+      } catch (error) {
+        console.error('Failed to initialize Ammo.js:', error);
+        return null;
+      }
+    };
+
+    init();
+  </script>
+</body>
+</html>

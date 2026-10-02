@@ -1,0 +1,476 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="TOMORROW — a warm terracotta 404 countdown. A live launch timer ticks toward the next chapter while a terracotta hourglass spins in orbit. Drop your email and we'll ping you the moment it lands.">
+  <title>TOMORROW · 404 — The Corner Countdown | Waay2Tech</title>
+  <link rel="canonical" href="404.html">
+  <meta property="og:site_name" content="WAAY2TECH">
+  <meta name="author" content="WAAY2TECH">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="TOMORROW · 404 — The Corner Countdown | Waay2Tech">
+  <meta property="og:description" content="A warm terracotta 404 countdown. A live launch timer ticks toward the next chapter while a terracotta hourglass spins in orbit.">
+  <meta property="og:url" content="404.html">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="TOMORROW · 404 — The Corner Countdown">
+  <meta name="twitter:description" content="A warm terracotta 404 countdown. A live launch timer ticks toward the next chapter while a terracotta hourglass spins in orbit.">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "TOMORROW · 404 — The Corner Countdown | Waay2Tech",
+    "description": "A warm terracotta 404 countdown. A live launch timer ticks toward the next chapter while a terracotta hourglass spins in orbit.",
+    "url": "404.html"
+  }
+  </script>
+  <style>
+    /* ---------- 1. TOMORROW tokens ---------- */
+    :root {
+      --bg-0: #f5ede5;
+      --bg-1: #faf3ea;
+      --bg-2: #efdfd0;
+      --bg-3: #e5cdb8;
+      --surface: #fffaf4;
+      --glass: rgba(255, 250, 244, 0.72);
+      --glass-strong: rgba(255, 250, 244, 0.92);
+      --stroke: rgba(58, 42, 32, 0.14);
+      --stroke-strong: rgba(58, 42, 32, 0.28);
+      --text-1: #3a2a20;
+      --text-2: #6f5648;
+      --text-3: #9c8272;
+      --indigo: #e07a4f;
+      --indigo-soft: #ef9a72;
+      --violet: #c95d3a;
+      --magenta: #b04e30;
+      --cyan: #f4a261;
+      --lime: #e07a4f;
+      --amber: #f4a261;
+      --grad-primary: linear-gradient(135deg, #e07a4f 0%, #c95d3a 55%, #f4a261 100%);
+      --grad-cyber: linear-gradient(135deg, #f4a261 0%, #e07a4f 60%, #c95d3a 100%);
+      --grad-lime: linear-gradient(135deg, #e07a4f 0%, #f4a261 100%);
+      --grad-text: linear-gradient(120deg, #c95d3a 0%, #e07a4f 40%, #f4a261 75%, #b04e30 100%);
+      --glow-indigo: 0 6px 20px rgba(224, 122, 79, 0.4);
+      --glow-violet: 0 6px 26px rgba(201, 93, 58, 0.35);
+      --glow-cyan: 0 6px 18px rgba(244, 162, 97, 0.35);
+      --glow-lime: 0 6px 18px rgba(224, 122, 79, 0.4);
+      --shadow-card: 0 24px 60px -28px rgba(58, 42, 32, 0.42);
+      --blur-glass: 16px;
+      --radius-sm: 10px;
+      --radius-md: 16px;
+      --radius-lg: 22px;
+      --radius-xl: 30px;
+      --radius-full: 999px;
+      --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px;
+      --space-5: 24px; --space-6: 32px; --space-7: 48px; --space-8: 64px; --space-9: 96px;
+      --text-xs: clamp(0.72rem, 0.7rem + 0.15vw, 0.8rem);
+      --text-sm: clamp(0.85rem, 0.82rem + 0.2vw, 0.95rem);
+      --text-md: clamp(1rem, 0.95rem + 0.3vw, 1.15rem);
+      --text-lg: clamp(1.2rem, 1.1rem + 0.6vw, 1.6rem);
+      --text-xl: clamp(1.7rem, 1.4rem + 1.6vw, 2.6rem);
+      --text-2xl: clamp(2.2rem, 1.6rem + 3vw, 4rem);
+      --text-3xl: clamp(3rem, 2rem + 5vw, 6rem);
+      --speed-1: 140ms; --speed-2: 280ms; --speed-3: 500ms; --speed-4: 900ms;
+      --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+      --ease-spring: cubic-bezier(0.22, 1.4, 0.36, 1);
+      --font-display: 'Sora', sans-serif;
+      --font-body: 'Inter', sans-serif;
+      --font-mono: 'Sora', sans-serif;
+    }
+
+    /* ---------- 2. Base ---------- */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      font-size: var(--text-md);
+      background: var(--bg-0);
+      color: var(--text-1);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    body::before {
+      content: ''; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+      background:
+        radial-gradient(50% 42% at 18% 12%, rgba(244, 162, 97, 0.16), transparent 60%),
+        radial-gradient(46% 44% at 88% 90%, rgba(201, 93, 58, 0.14), transparent 62%);
+    }
+    ::selection { background: var(--lime); color: var(--bg-0); }
+    ::-webkit-scrollbar { width: 10px; }
+    ::-webkit-scrollbar-track { background: var(--bg-0); }
+    ::-webkit-scrollbar-thumb { background: var(--bg-3); border-radius: var(--radius-full); }
+    ::-webkit-scrollbar-thumb:hover { background: var(--amber); }
+    :focus-visible { outline: 2px solid var(--lime); outline-offset: 3px; border-radius: 2px; }
+    a { color: inherit; }
+    .shell { position: relative; width: min(1120px, 92%); margin-inline: auto; padding: var(--space-6) 0 var(--space-9); }
+
+    .skip-link {
+      position: fixed; top: 12px; left: 12px; z-index: 9999;
+      padding: 10px 18px; border-radius: var(--radius-md);
+      background: var(--lime); color: var(--bg-0);
+      font-family: var(--font-body); font-size: var(--text-sm); font-weight: 700;
+      text-decoration: none; box-shadow: var(--glow-lime);
+      transform: translateY(-200%); transition: transform var(--speed-2) var(--ease-out);
+    }
+    .skip-link:focus { transform: translateY(0); }
+
+    /* ---------- 3. Header ---------- */
+    .site-header {
+      display: flex; align-items: center; justify-content: space-between; gap: var(--space-4);
+      padding: var(--space-3) max(4vw, 16px);
+      background: color-mix(in srgb, var(--bg-0) 74%, transparent);
+      -webkit-backdrop-filter: blur(var(--blur-glass)); backdrop-filter: blur(var(--blur-glass));
+      border-bottom: 1px solid var(--stroke);
+    }
+    .brand {
+      font-family: var(--font-display); font-weight: 800; letter-spacing: -0.01em;
+      text-decoration: none; color: var(--text-1); font-size: var(--text-lg);
+      display: inline-flex; align-items: center; gap: 10px;
+    }
+    .brand::before { content: '☀'; color: var(--lime); animation: rise 3s ease-in-out infinite; }
+    @keyframes rise { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
+    .header-note {
+      font-size: var(--text-xs); letter-spacing: 0.24em; text-transform: uppercase;
+      color: var(--text-3);
+    }
+
+    /* ---------- 4. Typography + chips ---------- */
+    .kicker {
+      font-family: var(--font-body); font-size: var(--text-xs); font-weight: 600;
+      letter-spacing: 0.32em; text-transform: uppercase; color: var(--lime);
+      display: inline-flex; align-items: center; gap: var(--space-2);
+    }
+    .kicker::before { content: '☼ '; color: var(--amber); }
+    .h1, h1 { font-family: var(--font-display); font-size: var(--text-3xl); font-weight: 800; line-height: 1.04; letter-spacing: -0.02em; }
+    .h2, h2 { font-family: var(--font-display); font-weight: 800; letter-spacing: -0.02em; }
+    .lead { font-size: var(--text-lg); color: var(--text-2); line-height: 1.55; }
+    .muted { color: var(--text-3); }
+    .grad-text {
+      background: var(--grad-text); -webkit-background-clip: text; background-clip: text;
+      -webkit-text-fill-color: transparent; color: transparent;
+      background-size: 200% auto; animation: grad-shift 6s linear infinite;
+    }
+    @keyframes grad-shift { to { background-position: 200% center; } }
+
+    .reveal {
+      opacity: 0; transform: translateY(28px);
+      transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
+      transition-delay: var(--reveal-delay, 0ms); will-change: opacity, transform;
+    }
+    .reveal.in { opacity: 1; transform: none; }
+
+    /* ---------- 5. Hero ---------- */
+    .hero {
+      text-align: center; display: grid; gap: var(--space-4);
+      justify-items: center; margin-bottom: var(--space-6);
+    }
+    .hero .lead { max-width: 56ch; }
+
+    /* ---------- 6. Lost panel ---------- */
+    .glass {
+      background: var(--glass);
+      -webkit-backdrop-filter: blur(var(--blur-glass)); backdrop-filter: blur(var(--blur-glass));
+    }
+    .lost-panel {
+      width: min(920px, 100%);
+      display: grid; grid-template-columns: 1fr 1fr; gap: clamp(24px, 5vw, 64px);
+      align-items: center;
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-card), inset 0 0 60px rgba(244, 162, 97, 0.06);
+    }
+
+    .lost-copy { display: flex; flex-direction: column; gap: var(--space-4); }
+    .lost-title { font-size: clamp(3.2rem, 9vw, 5.4rem); line-height: 0.96; font-weight: 800; }
+    .lost-outline {
+      font-family: var(--font-display); font-weight: 800; font-size: clamp(4rem, 14vw, 8rem);
+      line-height: 1; color: transparent; -webkit-text-stroke: 1px var(--lime);
+      opacity: 0.9; user-select: none;
+    }
+
+    /* Live countdown */
+    .countdown { display: flex; gap: var(--space-3); flex-wrap: wrap; }
+    .cd-tile {
+      flex: 1 1 70px; text-align: center;
+      padding: var(--space-3) var(--space-2);
+      background: var(--glass-strong); border: 1px solid var(--stroke-strong);
+      border-radius: var(--radius-md);
+      -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    }
+    .cd-num {
+      font-family: var(--font-mono); font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-weight: 700; color: var(--lime); line-height: 1;
+      text-shadow: 0 0 18px rgba(224, 122, 79, 0.3);
+    }
+    .cd-label {
+      display: block; margin-top: var(--space-2);
+      font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.22em;
+      text-transform: uppercase; color: var(--text-3);
+    }
+
+    /* Notify form */
+    .notify-form { display: flex; gap: var(--space-2); flex-wrap: wrap; }
+    .input {
+      flex: 1 1 220px;
+      font-family: var(--font-body); font-size: var(--text-sm); color: var(--text-1);
+      padding: 12px 16px; border-radius: var(--radius-full);
+      border: 1px solid var(--stroke-strong); background: var(--surface);
+      transition: border-color var(--speed-2), box-shadow var(--speed-2);
+    }
+    .input::placeholder { color: var(--text-3); }
+    .input:focus { outline: none; border-color: var(--lime); box-shadow: var(--glow-lime); }
+    .notify-status { font-size: var(--text-xs); color: var(--text-3); min-height: 1.4em; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: var(--font-body); font-size: var(--text-sm); font-weight: 700;
+      letter-spacing: 0.02em; color: var(--bg-0);
+      padding: 12px 22px; border-radius: var(--radius-full);
+      border: 1px solid var(--lime); background: var(--lime);
+      cursor: pointer; box-shadow: var(--glow-lime);
+      transition: transform var(--speed-2) var(--ease-spring), box-shadow var(--speed-2);
+    }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(224, 122, 79, 0.45); }
+    .magnetic { will-change: transform; }
+
+    /* Hourglass orbit */
+    .orbit {
+      position: relative; width: clamp(220px, 30vw, 320px); height: clamp(220px, 30vw, 320px);
+      margin: 0 auto;
+    }
+    .orbit-ring {
+      position: absolute; border-radius: 50%; border: 1px solid;
+      animation: lost-spin linear infinite;
+    }
+    .ring-a { inset: 0; border-color: var(--stroke-strong); animation-duration: 22s; }
+    .ring-b { inset: 9%; border-color: rgba(224, 122, 79, 0.85); animation-duration: 19s; animation-direction: reverse; }
+    .ring-c { inset: 0 13%; border-color: rgba(201, 93, 58, 0.55); animation-duration: 17s; }
+    .ring-d { inset: 18%; border-color: rgba(244, 162, 97, 0.75); animation-duration: 24s; animation-direction: reverse; }
+    @keyframes lost-spin { to { transform: rotate(360deg); } }
+
+    .glass-core { position: absolute; inset: 27%; animation: lost-core 10s linear infinite; }
+    @keyframes lost-core { to { transform: rotate(360deg); } }
+
+    .hg { position: relative; width: 100%; height: 100%; }
+    .hg-bar { position: absolute; left: 0; width: 100%; height: 7%; border: 1px solid var(--stroke-strong); }
+    .hg-bar--top { top: 0; }
+    .hg-bar--bot { bottom: 0; }
+    .hg-side { position: absolute; left: 8%; width: 12%; height: 24%; border: 1px solid var(--stroke-strong); }
+    .hg-side--tl { top: 7%; }
+    .hg-side--tr { left: auto; right: 8%; top: 7%; }
+    .hg-side--bl { bottom: 7%; }
+    .hg-side--br { left: auto; right: 8%; bottom: 7%; }
+
+    .sand-zone { position: absolute; left: 22%; width: 56%; height: 34%; overflow: hidden; }
+    .sand-zone--top { top: 8%; }
+    .sand-zone--bot { bottom: 8%; }
+    .sand {
+      position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+      width: 78%; background: linear-gradient(180deg, var(--lime), var(--violet));
+      box-shadow: var(--glow-lime);
+      animation: lost-sand 7s ease-in-out infinite;
+    }
+    .sand--top { height: 88%; border-radius: 50% 50% 0 0; }
+    .sand--bot { height: 0; border-radius: 0 0 50% 50%; animation-name: lost-sand-b; }
+    .sand-stream {
+      position: absolute; left: 50%; top: 50%; width: 3px; height: 16%;
+      background: var(--lime); box-shadow: var(--glow-lime);
+      transform: translate(-50%, -50%); opacity: 0;
+      animation: lost-stream 7s ease-in-out infinite;
+    }
+    .hg-neck {
+      position: absolute; left: 50%; top: 50%; width: 12%; height: 3%;
+      background: var(--stroke-strong); transform: translate(-50%, -50%);
+    }
+    @keyframes lost-sand { 0%, 45% { height: 88%; } 50%, 95% { height: 0; } 100% { height: 88%; } }
+    @keyframes lost-sand-b { 0%, 45% { height: 0; } 50%, 95% { height: 88%; } 100% { height: 0; } }
+    @keyframes lost-stream { 0%, 40% { opacity: 0; } 45%, 55% { opacity: 1; } 62%, 100% { opacity: 0; } }
+
+    /* ---------- 7. Footer ---------- */
+    .site-footer {
+      display: flex; align-items: center; justify-content: space-between; gap: var(--space-3);
+      flex-wrap: wrap; padding: var(--space-5) max(4vw, 16px) var(--space-7);
+      border-top: 1px solid var(--stroke);
+      font-size: var(--text-sm); color: var(--text-3);
+    }
+    .site-footer .brand { font-size: var(--text-sm); }
+
+    /* ---------- 8. Responsive ---------- */
+    @media (max-width: 980px) {
+      .lost-panel { gap: var(--space-5); }
+    }
+    @media (max-width: 860px) {
+      .lost-panel { grid-template-columns: 1fr; }
+      .orbit { order: -1; }
+    }
+    @media (max-width: 620px) {
+      .header-note { display: none; }
+      .lost-panel { gap: var(--space-5); }
+    }
+
+    /* ---------- 9. Reduced motion ---------- */
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        animation-duration: 0.001s !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001s !important;
+      }
+    }
+  </style>
+</head>
+<body>
+<script>
+(function () {
+  if (!('ontouchstart' in window) || window.__touchBridge) return;
+  window.__touchBridge = true;
+  var lt = null;
+  function fire(type, t) {
+    var el = document.elementFromPoint(t.clientX, t.clientY) || document;
+    el.dispatchEvent(new MouseEvent(type, {
+      bubbles: true, cancelable: true, view: window,
+      clientX: t.clientX, clientY: t.clientY,
+      button: 0, buttons: type === 'mousemove' ? 1 : 0
+    }));
+  }
+  document.addEventListener('touchstart', function (e) {
+    if (e.touches.length !== 1) return;
+    lt = e.touches[0];
+    fire('mousemove', lt); fire('mousedown', lt);
+  }, { passive: true });
+  document.addEventListener('touchmove', function (e) {
+    if (e.touches.length !== 1 || !lt) return;
+    lt = e.touches[0];
+    fire('mousemove', lt);
+  }, { passive: true });
+  document.addEventListener('touchend', function () {
+    if (!lt) return;
+    fire('mouseup', lt);
+    lt = null;
+  }, { passive: true });
+})();
+</script>
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header class="site-header">
+    <a href="#main" class="brand">WAAY2TECH</a>
+    <span class="header-note">404 · the corner countdown</span>
+  </header>
+
+  <main id="main" class="shell">
+    <header class="hero reveal">
+      <p class="kicker">Coming soon · just around the corner</p>
+      <h1>Tomorrow is <span class="grad-text">almost here</span>.</h1>
+      <p class="lead">You reached the empty socket before the build hit the wire. The timer below is counting down to the moment it does — and it's shorter than you think.</p>
+    </header>
+
+    <section class="demo-stage" aria-label="Coming soon countdown demo" style="display:grid;justify-items:center">
+      <div class="lost-panel glass" style="padding:clamp(24px,5vw,48px)">
+        <div class="lost-copy">
+          <p class="lost-outline" aria-hidden="true">404</p>
+          <h2 class="lost-title" style="margin-top:var(--space-2)">Not here <span class="muted">yet.</span></h2>
+          <p class="muted" style="font-size:var(--text-sm);max-width:42ch">
+            This page is still warming up behind the scenes. Drop your email and we'll ping you
+            the second the corner is turned — no noise, just a heads-up.
+          </p>
+
+          <div class="countdown" id="countdown" role="timer" aria-live="polite" aria-label="Time until launch">
+            <div class="cd-tile"><span class="cd-num" id="cd-d">00</span><span class="cd-label">Days</span></div>
+            <div class="cd-tile"><span class="cd-num" id="cd-h">00</span><span class="cd-label">Hours</span></div>
+            <div class="cd-tile"><span class="cd-num" id="cd-m">00</span><span class="cd-label">Mins</span></div>
+            <div class="cd-tile"><span class="cd-num" id="cd-s">00</span><span class="cd-label">Secs</span></div>
+          </div>
+
+          <form class="notify-form" id="notify-form" novalidate>
+            <label for="notify-email" class="visually-hidden" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Email address</label>
+            <input class="input" type="email" id="notify-email" name="email" placeholder="you@tomorrow.io" autocomplete="email" required>
+            <button class="btn magnetic" type="submit" data-strength="22">Notify me</button>
+          </form>
+          <p class="notify-status" id="notify-status" role="status" aria-live="polite">You'll be the first to know.</p>
+        </div>
+
+        <div class="orbit" role="img" aria-label="Spinning hourglass with terracotta sand">
+          <div class="orbit-ring ring-a"></div>
+          <div class="orbit-ring ring-b"></div>
+          <div class="orbit-ring ring-c"></div>
+          <div class="orbit-ring ring-d"></div>
+          <div class="glass-core">
+            <div class="hg">
+              <div class="hg-bar hg-bar--top"></div>
+              <div class="hg-bar hg-bar--bot"></div>
+              <div class="hg-side hg-side--tl"></div>
+              <div class="hg-side hg-side--tr"></div>
+              <div class="hg-side hg-side--bl"></div>
+              <div class="hg-side hg-side--br"></div>
+              <div class="sand-zone sand-zone--top"><div class="sand sand--top"></div></div>
+              <div class="sand-zone sand-zone--bot"><div class="sand sand--bot"></div></div>
+              <div class="sand-stream" aria-hidden="true"></div>
+              <div class="hg-neck" aria-hidden="true"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span class="brand">WAAY2TECH</span>
+    <span>☀ the corner is closer than it looks</span>
+  </footer>
+
+  <script>
+    (function () {
+      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      document.querySelectorAll('[data-year]').forEach(function (el) { el.textContent = new Date().getFullYear(); });
+      var reveals = document.querySelectorAll('.reveal');
+      if ('IntersectionObserver' in window && !reduce) {
+        var io = new IntersectionObserver(function (entries, obs) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); }
+          });
+        }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
+        reveals.forEach(function (el) { io.observe(el); });
+      } else {
+        reveals.forEach(function (el) { el.classList.add('in'); });
+      }
+    })();
+  </script>
+  <script>
+    'use strict';
+
+    const pad = (n) => String(n).padStart(2, '0');
+    const LAUNCH = new Date('2026-12-31T23:59:59');
+
+    const render = () => {
+      const diff = Math.max(0, LAUNCH - Date.now());
+      const d = Math.floor(diff / 86400000);
+      const h = Math.floor((diff % 86400000) / 3600000);
+      const m = Math.floor((diff % 3600000) / 60000);
+      const s = Math.floor((diff % 60000) / 1000);
+      document.getElementById('cd-d').textContent = pad(d);
+      document.getElementById('cd-h').textContent = pad(h);
+      document.getElementById('cd-m').textContent = pad(m);
+      document.getElementById('cd-s').textContent = pad(s);
+    };
+
+    render();
+    setInterval(render, 1000);
+
+    document.getElementById('notify-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = document.getElementById('notify-email');
+      if (!email.checkValidity()) {
+        document.getElementById('notify-status').textContent = 'That email doesn\'t parse. Give it another shot.';
+        email.focus();
+        return;
+      }
+      document.getElementById('notify-status').textContent = 'Locked in — watch your inbox when the corner turns.';
+      email.value = '';
+    });
+  </script>
+</body>
+</html>

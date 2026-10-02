@@ -1,0 +1,451 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="GLASS DOCK — a liquid-glass dock and prompt bar with localized SVG distortion and individual icon reflections.">
+  <title>GLASS DOCK · Isolated Reflect Dock | Waay2Tech</title>
+  <link rel="canonical" href="glass.html">
+  <meta property="og:site_name" content="WAAY2TECH">
+  <meta name="author" content="Waay2Tech">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0d14;
+      --bg-1: #0a0d14;
+      --bg-2: #11151f;
+      --bg-3: #171c28;
+      --surface: #11151f;
+      --text: #e5e9f0;
+      --text-1: #e5e9f0;
+      --text-2: #9aa4b2;
+      --text-3: #5f6b7d;
+      --line: rgba(148, 163, 184, 0.18);
+      --primary: #ffffff;
+      --accent: #94a3b8;
+      --accent-2: #22d3ee;
+      --glow: 0 0 20px rgba(34, 211, 238, 0.4);
+      --radius-md: 16px;
+      --radius-lg: 20px;
+      --radius-xl: 26px;
+      --s1: 4px; --s2: 8px; --s3: 12px; --s4: 16px; --s5: 24px;
+      --s6: 32px; --s7: 48px; --s8: 64px; --s9: 96px;
+      --ease: cubic-bezier(0.22, 1, 0.36, 1);
+      --font-display: 'Space Grotesk', sans-serif;
+      --font-body: 'Inter', sans-serif;
+      --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; overflow-x: hidden; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--bg);
+      background-image:
+        radial-gradient(70% 50% at 20% -5%, rgba(34, 211, 238, 0.1), transparent 60%),
+        radial-gradient(60% 46% at 92% 20%, rgba(148, 163, 184, 0.12), transparent 60%),
+        radial-gradient(80% 60% at 50% 115%, rgba(34, 211, 238, 0.07), transparent 60%);
+      background-attachment: fixed;
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    ::selection { background: var(--accent-2); color: #06232b; }
+
+    ::-webkit-scrollbar { width: 10px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: rgba(34, 211, 238, 0.4); border-radius: 999px; border: 2px solid var(--bg); }
+
+    :focus-visible { outline: 3px solid var(--accent-2); outline-offset: 3px; border-radius: 4px; }
+
+    .skip-link {
+      position: fixed; top: -100%; left: var(--s4); z-index: 200;
+      background: var(--accent-2); color: #06232b; padding: var(--s2) var(--s4);
+      border-radius: 0 0 var(--radius-md) var(--radius-md);
+      font-weight: 700; text-decoration: none; transition: top 0.3s var(--ease);
+    }
+    .skip-link:focus { top: 0; }
+
+    .site-header {
+      position: sticky; top: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: var(--s3) var(--s5);
+      background: rgba(10, 13, 20, 0.82);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line);
+    }
+    .brand {
+      font-family: var(--font-display); font-weight: 700; font-size: 1.15rem;
+      letter-spacing: 0.01em; text-decoration: none; color: var(--text);
+      display: flex; align-items: center; gap: 10px;
+    }
+    .brand .mark {
+      width: 30px; height: 30px; border-radius: 9px;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0.05));
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      box-shadow: inset 2px 2px 1px rgba(255, 255, 255, 0.35), 0 0 14px rgba(34, 211, 238, 0.3);
+    }
+    .nav { display: flex; gap: var(--s4); list-style: none; }
+    .nav a { color: var(--text-2); text-decoration: none; font-weight: 600; font-size: 0.88rem; transition: color 0.25s; }
+    .nav a:hover { color: var(--accent-2); }
+
+    .wrap, .stack { max-width: 1100px; margin-inline: auto; padding-inline: var(--s5); }
+    .stack { padding-top: var(--s8); }
+
+    .hero { text-align: center; display: grid; gap: var(--s4); justify-items: center; }
+    .kicker {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: var(--font-mono); font-size: 0.7rem; font-weight: 500;
+      letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent-2);
+    }
+    .kicker::before { content: '❖'; color: var(--accent-2); }
+    h1 {
+      font-family: var(--font-display); font-weight: 700;
+      font-size: clamp(2.2rem, 6vw, 3.8rem);
+      line-height: 1.04; letter-spacing: -0.01em;
+    }
+    h1 .grad {
+      background: linear-gradient(120deg, #ffffff, #94a3b8 55%, #22d3ee);
+      -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent;
+    }
+    .lead { max-width: 54ch; color: var(--text-2); font-size: 1.04rem; }
+
+    .demo-stage {
+      position: relative;
+      min-height: clamp(420px, 64vh, 600px);
+      margin: var(--s6) 0;
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--line);
+      overflow: hidden;
+      background:
+        radial-gradient(ellipse at 50% 30%, rgba(34, 211, 238, 0.14), transparent 55%),
+        linear-gradient(135deg, #11151f 0%, #0a0d14 60%, #171c28 100%);
+      box-shadow: 0 40px 90px -40px rgba(0, 0, 0, 0.9);
+    }
+
+    .svg-asset {
+      position: absolute; width: 0; height: 0; overflow: hidden; pointer-events: none;
+    }
+
+    .content-wrapper {
+      display: flex; flex-direction: column; gap: var(--s6);
+      align-items: center; justify-content: center;
+      width: 100%; min-height: clamp(420px, 64vh, 600px);
+      padding: var(--s5);
+    }
+
+    /* Base Glass Structural Container */
+    .glass-effect {
+      position: relative; display: flex; font-weight: 600;
+      overflow: hidden; color: var(--text-1); cursor: pointer;
+      transition: all 500ms var(--ease);
+      max-width: 100%;
+    }
+
+    /* Disable pointer events on overlay effects to stop container-wide reflections */
+    .glass-backdrop,
+    .glass-overlay,
+    .glass-highlight {
+      pointer-events: none;
+    }
+
+    .glass-backdrop {
+      position: absolute; inset: 0; z-index: 0; overflow: hidden;
+      border-radius: inherit;
+      -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+      filter: url(#glass-distortion); isolation: isolate;
+    }
+
+    .glass-overlay {
+      position: absolute; inset: 0; z-index: 10;
+      border-radius: inherit; background: rgba(255, 255, 255, 0.04);
+    }
+
+    .glass-highlight {
+      position: absolute; inset: 0; z-index: 20;
+      border-radius: inherit; overflow: hidden;
+      box-shadow: inset 1px 1px 1px 0 rgba(255, 255, 255, 0.2), inset -1px -1px 1px 0 rgba(255, 255, 255, 0.1);
+    }
+
+    .glass-content { position: relative; z-index: 30; width: 100%; }
+
+    /* Main Dock Bar */
+    .dock { 
+      border-radius: var(--radius-lg); 
+      padding: 12px; 
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    .dock-icons {
+      display: flex; align-items: center; justify-content: center;
+      gap: 12px; border-radius: var(--radius-lg); padding: 4px;
+      max-width: 100%; flex-wrap: wrap;
+    }
+
+    /* Isolated Reflection Per Dock Icon */
+    .dock-icon-btn {
+      position: relative;
+      background: none; border: none; padding: 0; margin: 0; cursor: pointer;
+      border-radius: 16px; display: inline-flex; transition: transform 0.3s var(--ease);
+      isolation: isolate;
+      overflow: hidden;
+    }
+
+    .dock-icon-btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 16px;
+      box-shadow: inset 1.5px 1.5px 1px 0 rgba(255, 255, 255, 0.45), inset -1px -1px 1px 0 rgba(255, 255, 255, 0.2);
+      pointer-events: none;
+      z-index: 2;
+      transition: box-shadow 0.3s var(--ease), background 0.3s var(--ease);
+    }
+
+    .dock-icon-btn:hover::before, 
+    .dock-icon-btn:focus-visible::before {
+      background: rgba(255, 255, 255, 0.1);
+      box-shadow: inset 2px 2px 2px 0 rgba(255, 255, 255, 0.7), inset -1.5px -1.5px 2px 0 rgba(255, 255, 255, 0.4);
+    }
+
+    .dock-icon {
+      width: clamp(40px, 7vw, 60px); height: clamp(40px, 7vw, 60px);
+      border-radius: 16px; object-fit: cover; display: block; pointer-events: none;
+    }
+
+    .dock-icon-btn:hover, .dock-icon-btn:focus-visible {
+      transform: scale(1.18) translateY(-4px);
+    }
+
+    /* Prompt Section Glass Button */
+    .glass-button {
+      border-radius: var(--radius-lg); padding: 20px 36px;
+      transition: all 400ms var(--ease);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    @media (min-width: 769px) {
+      .glass-button:hover { 
+        border-radius: var(--radius-xl); 
+        border-color: rgba(255, 255, 255, 0.25);
+      }
+      .glass-button:hover .glass-highlight {
+        box-shadow: inset 2px 2px 2px 0 rgba(255, 255, 255, 0.5), inset -1.5px -1.5px 2px 0 rgba(255, 255, 255, 0.3);
+      }
+      .glass-button:hover .button-content { transform: scale(0.98); }
+    }
+
+    .button-content { transition: transform 400ms var(--ease); }
+
+    .button-text {
+      font-family: var(--font-display); font-size: clamp(0.95rem, 2.5vw, 1.25rem);
+      color: var(--text-1); text-align: center; font-weight: 600; letter-spacing: 0.01em;
+    }
+
+    .meta-row {
+      max-width: 1100px; margin: 0 auto var(--s8); padding-inline: var(--s5);
+      display: flex; flex-wrap: wrap; justify-content: center; gap: var(--s2);
+    }
+    .chip {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(17, 21, 31, 0.85); border: 1px solid var(--line);
+      border-radius: 999px; padding: 7px 15px;
+      font-size: 0.78rem; font-weight: 600; color: var(--text-2);
+    }
+    .chip .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent-2); box-shadow: var(--glow); }
+    .mono { font-family: var(--font-mono); font-size: 0.74rem; color: var(--text-3); }
+
+    .site-footer {
+      border-top: 1px solid var(--line); padding: var(--s5) var(--s5) var(--s6);
+      text-align: center; color: var(--text-3); font-size: 0.88rem;
+    }
+    .site-footer .brand-mini { font-family: var(--font-display); font-weight: 600; color: var(--text-2); }
+
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.7s var(--ease), transform 0.7s var(--ease); }
+    .reveal.in { opacity: 1; transform: none; }
+
+    @media (max-width: 620px) {
+      .dock-icons { gap: 8px; }
+      .glass-button { padding: 16px 24px; }
+      .content-wrapper { gap: var(--s4); padding: var(--s3); }
+    }
+
+    @media (max-width: 480px) {
+      .site-header { padding: var(--s3) var(--s4); }
+      .nav { gap: var(--s3); }
+      .wrap, .stack { padding-inline: var(--s4); }
+      .stack { padding-top: var(--s6); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.001s !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001s !important;
+        scroll-behavior: auto !important;
+      }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header class="site-header">
+    <a class="brand" href="#main"><span class="mark"></span>WAAY2TECH GLASS DOCK</a>
+    <nav aria-label="Primary">
+      <ul class="nav">
+        <li><a href="#dock-section">Dock</a></li>
+        <li><a href="#prompt-section">Prompt</a></li>
+        <li><a href="#about-section">About</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="stack" id="dock-section" aria-label="Liquid glass dock demo">
+      <header class="hero">
+        <p class="kicker reveal">SVG filter · isolated specular reflection</p>
+        <h1 class="reveal">Liquid <span class="grad">Glass</span> Dock</h1>
+        <p class="lead reveal">Frosted surfaces with individual icon highlights. Click any app to launch.</p>
+      </header>
+
+      <div class="demo-stage reveal">
+        <div class="svg-asset">
+          <svg width="0" height="0" aria-hidden="true">
+            <filter id="glass-distortion" x="0%" y="0%" width="100%" height="100%" filterUnits="objectBoundingBox">
+              <feTurbulence type="fractalNoise" baseFrequency="0.001 0.005" numOctaves="1" seed="17" result="turbulence" />
+              <feComponentTransfer in="turbulence" result="mapped">
+                <feFuncR type="gamma" amplitude="1" exponent="10" offset="0.5" />
+                <feFuncG type="gamma" amplitude="0" exponent="1" offset="0" />
+                <feFuncB type="gamma" amplitude="0" exponent="1" offset="0.5" />
+              </feComponentTransfer>
+              <feGaussianBlur in="turbulence" stdDeviation="3" result="softMap" />
+              <feSpecularLighting in="softMap" surfaceScale="5" specularConstant="1" specularExponent="100" lightingColor="white" result="specLight">
+                <fePointLight x="-200" y="-200" z="300" />
+              </feSpecularLighting>
+              <feComposite in="specLight" operator="arithmetic" k1="0" k2="1" k3="1" k4="0" result="litImage" />
+              <feDisplacementMap in="SourceGraphic" in2="softMap" scale="200" xChannelSelector="R" yChannelSelector="G" />
+            </filter>
+          </svg>
+        </div>
+
+        <div class="content-wrapper">
+          <div class="glass-effect dock" role="region" aria-label="Interactive App Dock">
+            <div class="glass-backdrop"></div>
+            <div class="glass-overlay"></div>
+            <div class="glass-highlight"></div>
+            <div class="glass-content">
+              <div class="dock-icons">
+                <button class="dock-icon-btn" aria-label="Launch Claude" data-app="Claude">
+                  <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23d97757'/%3E%3Cpath d='M32 8 L36.5 27.5 L56 32 L36.5 36.5 L32 56 L27.5 36.5 L8 32 L27.5 27.5 Z' fill='white'/%3E%3Ccircle cx='52' cy='14' r='5' fill='white' opacity='0.85'/%3E%3C/svg%3E" alt="" class="dock-icon">
+                </button>
+                <button class="dock-icon-btn" aria-label="Launch Finder" data-app="Finder">
+                  <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%233b82f6'/%3E%3Cpath d='M18 24h8v16h-8zM38 24h8v16h-8zM20 44c10 8 14 8 24 0' stroke='white' stroke-width='4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E" alt="" class="dock-icon">
+                </button>
+                <button class="dock-icon-btn" aria-label="Launch ChatGPT" data-app="ChatGPT">
+                  <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2310a37f'/%3E%3Cg fill='none' stroke='white' stroke-width='4'%3E%3Cpath d='M46 22c-4-5-10-7-16-5C22 19 20 27 24 32c4 5 12 6 16 3s6-8 3-13z'/%3E%3Cpath d='M18 42c4 5 10 7 16 5 8-2 10-10 6-15-4-5-12-6-16-3s-6 8-3 13z'/%3E%3C/g%3E%3C/svg%3E" alt="" class="dock-icon">
+                </button>
+                <button class="dock-icon-btn" aria-label="Launch Maps" data-app="Maps">
+                  <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f97316'/%3E%3Cpath d='M32 8c-9 0-16 7-16 16 0 11 16 32 16 32s16-21 16-32C48 15 41 8 32 8z' fill='white'/%3E%3Ccircle cx='32' cy='24' r='7' fill='%23f97316'/%3E%3C/svg%3E" alt="" class="dock-icon">
+                </button>
+                <button class="dock-icon-btn" aria-label="Launch Safari" data-app="Safari">
+                  <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230ea5e9'/%3E%3Ccircle cx='32' cy='32' r='20' fill='none' stroke='white' stroke-width='5'/%3E%3Cpath d='M32 16 L35 30 L48 32 L35 34 L32 48 L29 34 L16 32 L29 30 Z' fill='white'/%3E%3C/svg%3E" alt="" class="dock-icon">
+                </button>
+                <button class="dock-icon-btn" aria-label="Launch Steam" data-app="Steam">
+                  <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%232b3447'/%3E%3Ccircle cx='32' cy='32' r='14' fill='white'/%3E%3Ccircle cx='30' cy='36' r='7' fill='%232b3447'/%3E%3Cpath d='M44 14c-6 2-7 9-7 15 1 8-3 13-8 15' stroke='%236b7ea3' stroke-width='4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E" alt="" class="dock-icon">
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="glass-effect glass-button" role="button" id="prompt-section" tabindex="0" aria-label="Open the glass prompt channel" data-href="https://x.com/notsurajgaud">
+            <div class="glass-backdrop"></div>
+            <div class="glass-overlay"></div>
+            <div class="glass-highlight"></div>
+            <div class="glass-content">
+              <div class="button-content">
+                <div class="button-text">How can I help you today?</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="meta-row" id="about-section">
+        <span class="chip"><span class="dot"></span> feTurbulence · feSpecularLighting</span>
+        <span class="chip mono">tap any glass to launch</span>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span><span class="brand-mini">WAAY2TECH</span> · <span data-year></span> · see through it</span>
+  </footer>
+
+  <script>
+    'use strict';
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (prefersReduced) { document.documentElement.classList.add('reduced-motion'); }
+
+      document.querySelectorAll('[data-year]').forEach(el => { 
+        el.textContent = new Date().getFullYear(); 
+      });
+
+      const revealEls = document.querySelectorAll('.reveal');
+      if ('IntersectionObserver' in window && !prefersReduced) {
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('in');
+              io.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+        revealEls.forEach(el => io.observe(el));
+      } else {
+        revealEls.forEach(el => el.classList.add('in'));
+      }
+
+      const openLink = (url) => {
+        if (url) window.open(url, '_blank', 'noopener,noreferrer');
+      };
+
+      const glassButtons = document.querySelectorAll('.glass-button');
+      glassButtons.forEach(btn => {
+        const url = btn.dataset.href;
+        btn.addEventListener('click', () => openLink(url));
+        btn.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            openLink(url);
+          }
+        });
+      });
+
+      const dockIconBtns = document.querySelectorAll('.dock-icon-btn');
+      dockIconBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const appName = btn.dataset.app;
+          console.log(`Clicked on ${appName}`);
+        });
+      });
+    });
+  </script>
+</body>
+</html>

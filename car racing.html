@@ -1,0 +1,673 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Outrun — a synthwave street pursuit. Drive a neon coupe past glowing barriers, dodge obstacles, chain speed and watch the score climb.">
+  <title>Outrun · Synthwave Pursuit | Waay2Tech</title>
+  <link rel="canonical" href="car racing.html">
+  <meta property="og:site_name" content="WAAY2TECH">
+  <meta name="author" content="Waay2Tech">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700;800;900&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Outrun · Synthwave Pursuit | Waay2Tech">
+  <meta property="og:description" content="Outrun — a synthwave street pursuit. Drive a neon coupe past glowing barriers, dodge obstacles, chain speed and watch the score climb.">
+  <meta property="og:url" content="car racing.html">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Outrun · Synthwave Pursuit">
+  <meta name="twitter:description" content="Outrun — a synthwave street pursuit. Drive a neon coupe past glowing barriers, dodge obstacles, chain speed and watch the score climb.">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Outrun · Synthwave Pursuit | Waay2Tech",
+    "description": "A synthwave street pursuit on an infinite neon road. Weave between glowing barriers, dodge collision cubes, and keep the throttle pinned — every passed block banks 10 points.",
+    "about": { "@type": "Thing", "name": "Three.js Arcade Racing" },
+    "keywords": "racing, synthwave, three.js, webgl, arcade, game, outrun, neon",
+    "url": "car racing.html"
+  }
+  </script>
+  <style>
+    :root {
+      --bg: #12041a;
+      --bg-0: #12041a;
+      --bg-1: #1e0a2c;
+      --bg-2: #2a0f3d;
+      --bg-3: #351649;
+      --text-1: #ffe9f7;
+      --text-2: #cba9d6;
+      --text-3: #8a6b9c;
+      --magenta: #ff2e93;
+      --cyan: #22d3ee;
+      --amber: #ffc72c;
+      --violet: #b026ff;
+      --lime: #2dd4bf;
+      --indigo: #ff2e93;
+      --indigo-soft: #ff6bb0;
+      --grad-primary: linear-gradient(135deg, #ff2e93 0%, #22d3ee 55%, #ffc72c 100%);
+      --grad-text: linear-gradient(120deg, #ff2e93 0%, #22d3ee 55%, #ffc72c 100%);
+      --glow-indigo: 0 0 24px rgba(255, 46, 147, 0.5);
+      --glow-violet: 0 0 30px rgba(176, 38, 255, 0.45);
+      --glow-cyan: 0 0 22px rgba(34, 211, 238, 0.45);
+      --stroke: rgba(255, 46, 147, 0.18);
+      --stroke-strong: rgba(34, 211, 238, 0.4);
+      --glass: rgba(30, 10, 44, 0.6);
+      --shadow-card: 0 26px 60px rgba(0, 0, 0, 0.5);
+      --radius-sm: 10px;
+      --radius-md: 16px;
+      --radius-lg: 24px;
+      --radius-xl: 32px;
+      --radius-full: 999px;
+      --space-1: 4px;
+      --space-2: 8px;
+      --space-3: 12px;
+      --space-4: 16px;
+      --space-5: 24px;
+      --space-6: 32px;
+      --space-7: 48px;
+      --space-8: 64px;
+      --space-9: 96px;
+      --speed-2: 0.25s;
+      --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+      --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+      --blur-glass: 12px;
+      --text-xs: 12px;
+      --text-sm: 14px;
+      --text-md: 17px;
+      --text-xl: 26px;
+      --font-display: 'Orbitron', sans-serif;
+      --font-body: 'Rajdhani', sans-serif;
+      --font-mono: ui-monospace, 'Cascadia Mono', Consolas, monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+    body {
+      font-family: var(--font-body);
+      background: var(--bg);
+      color: var(--text-1);
+      line-height: 1.6;
+      min-height: 100vh;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      background:
+        radial-gradient(820px 560px at 82% -8%, rgba(255, 46, 147, 0.14), transparent 62%),
+        radial-gradient(680px 500px at 0% 42%, rgba(34, 211, 238, 0.1), transparent 60%),
+        radial-gradient(600px 480px at 52% 118%, rgba(255, 199, 44, 0.08), transparent 60%),
+        var(--bg);
+    }
+    ::selection { background: rgba(255, 46, 147, 0.4); color: #ffe9f7; }
+    ::-webkit-scrollbar { width: 10px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: rgba(255, 46, 147, 0.35); border-radius: 6px; }
+    :focus-visible { outline: 2px solid var(--magenta); outline-offset: 3px; border-radius: 6px; }
+
+    .skip-link {
+      position: fixed; top: -60px; left: 16px; z-index: 200;
+      background: var(--magenta); color: #ffe9f7; font-weight: 700;
+      padding: 10px 18px; border-radius: 8px; text-decoration: none;
+      transition: top 0.3s ease;
+    }
+    .skip-link:focus { top: 16px; }
+
+    .site-header {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(18, 4, 26, 0.82);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--stroke);
+    }
+    .site-header .bar {
+      max-width: 1120px; margin-inline: auto; padding: 14px clamp(16px, 4vw, 40px);
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    }
+    .wordmark {
+      font-family: var(--font-display); font-weight: 900; font-size: 1.1rem;
+      letter-spacing: 0.2em; color: var(--text-1); text-decoration: none;
+      display: inline-flex; align-items: center; gap: 12px;
+    }
+    .wordmark .sun {
+      width: 18px; height: 18px; border-radius: 50%;
+      background: linear-gradient(180deg, var(--amber), var(--magenta));
+      box-shadow: 0 0 14px rgba(255, 46, 147, 0.7);
+      animation: sun-glint 2.6s ease-in-out infinite;
+    }
+    @keyframes sun-glint { 0%, 100% { transform: scaleY(1); } 50% { transform: scaleY(0.7); } }
+    .site-nav { display: flex; gap: 24px; }
+    .site-nav a { color: var(--text-2); text-decoration: none; font-size: 0.9rem; font-weight: 600; letter-spacing: 0.04em; transition: color 0.25s ease; }
+    .site-nav a:hover { color: var(--cyan); }
+
+    .shell { max-width: 1120px; margin-inline: auto; padding-inline: clamp(16px, 4vw, 40px); }
+
+    .stack { display: flex; flex-direction: column; gap: var(--space-4); }
+    .stack--lg { gap: var(--space-6); }
+    .hero { text-align: center; display: grid; gap: var(--space-4); justify-items: center; margin-bottom: var(--space-6); margin-top: 48px; }
+    .kicker { font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.3em; text-transform: uppercase; color: var(--cyan); }
+    .h1 { font-family: var(--font-display); font-weight: 900; font-size: clamp(2.2rem, 7vw, 4.2rem); letter-spacing: 0.02em; line-height: 1.05; color: var(--text-1); text-transform: uppercase; }
+    .lead { font-size: clamp(1.05rem, 1.6vw, 1.25rem); font-weight: 500; color: var(--text-2); max-width: 58ch; }
+    .grad-text { background: var(--grad-text); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; }
+
+    .stat-row { display: flex; flex-wrap: wrap; gap: var(--space-2); justify-content: center; }
+    .chip {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: var(--text-sm); color: var(--text-2);
+      border: 1px solid var(--stroke); border-radius: var(--radius-full);
+      padding: 7px 15px; background: rgba(30, 10, 44, 0.6);
+      font-family: var(--font-mono); letter-spacing: 0.08em;
+    }
+    .chip .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--magenta); box-shadow: 0 0 10px rgba(255, 46, 147, 0.8); animation: chip-blink 1.4s ease-in-out infinite; }
+    @keyframes chip-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
+
+    .demo-stage {
+      display: block; position: relative; padding: 0; overflow: hidden;
+      height: clamp(480px, 80vh, 900px);
+      background: radial-gradient(120% 120% at 50% 45%, #2a0f3d, #12041a);
+      isolation: isolate;
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--stroke);
+      box-shadow: var(--shadow-card);
+    }
+    .demo-stage canvas { position: absolute; inset: 0; display: block; width: 100%; height: 100%; }
+
+    .hud {
+      position: absolute; z-index: 10; left: var(--space-4); top: var(--space-4);
+      display: grid; gap: var(--space-2);
+    }
+    .hud-card {
+      background: var(--glass); border: 1px solid var(--stroke);
+      -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+      border-radius: var(--radius-md); padding: 10px 16px;
+      display: flex; align-items: center; gap: var(--space-3);
+      color: var(--text-1); font-family: var(--font-mono); font-size: var(--text-sm);
+      letter-spacing: 0.1em;
+    }
+    .hud-card .label { color: var(--text-3); font-size: var(--text-xs); letter-spacing: 0.18em; }
+    .hud-card .val { color: var(--cyan); text-shadow: var(--glow-cyan); font-weight: 500; }
+
+    .track-hint {
+      position: absolute; z-index: 10; left: 50%; bottom: var(--space-5);
+      transform: translateX(-50%); text-align: center;
+      display: grid; gap: var(--space-2); justify-items: center;
+      color: var(--text-2); font-size: var(--text-xs); letter-spacing: 0.14em;
+      text-transform: uppercase; pointer-events: none;
+    }
+    .track-hint strong { color: var(--magenta); text-shadow: var(--glow-violet); font-family: var(--font-display); font-weight: 800; letter-spacing: 0.16em; }
+
+    .small.muted {
+      margin-top: var(--space-4);
+      color: var(--text-3); font-size: var(--text-sm);
+      text-align: center;
+    }
+
+    .site-footer {
+      margin-top: var(--space-9);
+      border-top: 1px solid var(--stroke);
+      padding: 28px clamp(16px, 4vw, 40px);
+      display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; align-items: center;
+      max-width: 1120px; margin-inline: auto;
+      color: var(--text-3); font-size: var(--text-sm);
+    }
+    .site-footer a { color: var(--text-2); text-decoration: none; }
+    .site-footer a:hover { color: var(--cyan); }
+
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s var(--ease-out); transition-delay: var(--reveal-delay, 0ms); }
+    .reveal.in { opacity: 1; transform: none; }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.001s !important; animation-iteration-count: 1 !important; transition-duration: 0.001s !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+
+    @media (max-width: 620px) {
+      .site-nav { display: none; }
+      .demo-stage { height: 66vh; min-height: 440px; }
+      .hud { left: var(--space-3); top: var(--space-3); }
+      .track-hint { max-width: 86%; white-space: normal; }
+    }
+  </style>
+</head>
+<body>
+<script>
+(function () {
+  if (!('ontouchstart' in window) || window.__touchBridge) return;
+  window.__touchBridge = true;
+  var lt = null;
+  function fire(type, t) {
+    var el = document.elementFromPoint(t.clientX, t.clientY) || document;
+    el.dispatchEvent(new MouseEvent(type, {
+      bubbles: true, cancelable: true, view: window,
+      clientX: t.clientX, clientY: t.clientY,
+      button: 0, buttons: type === 'mousemove' ? 1 : 0
+    }));
+  }
+  document.addEventListener('touchstart', function (e) {
+    if (e.touches.length !== 1) return;
+    lt = e.touches[0];
+    fire('mousemove', lt); fire('mousedown', lt);
+  }, { passive: true });
+  document.addEventListener('touchmove', function (e) {
+    if (e.touches.length !== 1 || !lt) return;
+    lt = e.touches[0];
+    fire('mousemove', lt);
+  }, { passive: true });
+  document.addEventListener('touchend', function () {
+    if (!lt) return;
+    fire('mouseup', lt);
+    lt = null;
+  }, { passive: true });
+})();
+</script>
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header class="site-header">
+    <div class="bar">
+      <a class="wordmark" href="#main"><span class="sun" aria-hidden="true"></span>WAAY2TECH</a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="#container">Race</a>
+        <a href="#drive">Drive</a>
+        <a href="#rules">Rules</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="shell">
+    <header class="hero reveal">
+      <p class="kicker">WebGL · Arcade Racing</p>
+      <h1 class="h1">Out<span class="grad-text">run</span></h1>
+      <p class="lead" style="max-width:56ch">A synthwave street pursuit on an infinite neon road. Weave between glowing barriers, dodge collision cubes, and keep the throttle pinned — every passed block banks 10 points.</p>
+      <div class="stat-row">
+        <span class="chip"><span class="dot"></span>infinite road</span>
+        <span class="chip">WASD / arrows</span>
+        <span class="chip">touch swipe</span>
+      </div>
+    </header>
+
+    <section class="demo-stage reveal reveal-zoom" id="container" aria-label="Synthwave car chase — game">
+      <div class="hud">
+        <div class="hud-card"><span class="label">SCORE</span><span class="val" id="score">0</span></div>
+        <div class="hud-card"><span class="label">SPEED</span><span class="val" id="speed">0</span><span class="label">mph</span></div>
+      </div>
+
+      <div class="track-hint" aria-label="Controls">
+        <strong>OUTRUN · SYNTHWAVE PURSUIT</strong>
+        <span id="drive">arrow keys / wasd to drive · swipe to steer on touch</span>
+      </div>
+    </section>
+
+    <p class="small muted reveal" id="rules" style="--reveal-delay:120ms">Collide and you'll drop 20 mph. Pass a barrier clean and the scoreboard jumps. Pure synthwave, zero health bars.</p>
+  </main>
+
+  <footer class="site-footer">
+    <span>WAAY2TECH · <span data-year></span></span>
+    <a href="#main">Back to top</a>
+  </footer>
+
+  <script>
+    'use strict';
+
+    (function () {
+      var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      document.querySelectorAll('[data-year]').forEach(function (el) {
+        el.textContent = new Date().getFullYear();
+      });
+
+      var reveals = document.querySelectorAll('.reveal');
+      if (reduced || !('IntersectionObserver' in window)) {
+        reveals.forEach(function (r) { r.classList.add('in'); });
+      } else {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('in');
+              io.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+        reveals.forEach(function (r) { io.observe(r); });
+      }
+    })();
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script>
+    'use strict';
+
+    (() => {
+      const container = document.getElementById('container');
+
+      let scene, camera, renderer, car;
+      const road = [];
+      const obstacles = [];
+      const particles = [];
+      let speed = 0;
+      let score = 0;
+      const carPosition = { x: 0, z: 0 };
+      const keys = {};
+
+      const colors = {
+        neon: [0xff2e93, 0x22d3ee, 0xffc72c, 0xb026ff, 0x2dd4bf],
+        road: 0x1e0a2c,
+        bg: 0x12041a,
+      };
+
+      const createCar = () => {
+        const carGroup = new THREE.Group();
+
+        const body = new THREE.Mesh(
+          new THREE.BoxGeometry(2, 0.8, 4),
+          new THREE.MeshPhongMaterial({ color: 0xff2e93, emissive: 0x330033 })
+        );
+        body.position.y = 0.4;
+        carGroup.add(body);
+
+        const windshield = new THREE.Mesh(
+          new THREE.BoxGeometry(1.8, 0.6, 1.5),
+          new THREE.MeshPhongMaterial({ color: 0x001133, transparent: true, opacity: 0.7 })
+        );
+        windshield.position.set(0, 1, 0.5);
+        carGroup.add(windshield);
+
+        const wheelGeometry = new THREE.CylinderGeometry(0.3, 0.3, 0.2);
+        const wheelMaterial = new THREE.MeshPhongMaterial({ color: 0x333333 });
+        const wheelPositions = [
+          [-1.2, 0, 1.5],
+          [1.2, 0, 1.5],
+          [-1.2, 0, -1.5],
+          [1.2, 0, -1.5],
+        ];
+        wheelPositions.forEach((pos) => {
+          const wheel = new THREE.Mesh(wheelGeometry, wheelMaterial);
+          wheel.position.set(...pos);
+          wheel.rotation.z = Math.PI / 2;
+          carGroup.add(wheel);
+        });
+
+        const underglow = new THREE.Mesh(
+          new THREE.PlaneGeometry(3, 5),
+          new THREE.MeshBasicMaterial({ color: 0x22d3ee, transparent: true, opacity: 0.3 })
+        );
+        underglow.rotation.x = -Math.PI / 2;
+        underglow.position.y = -0.1;
+        carGroup.add(underglow);
+
+        car = carGroup;
+        scene.add(car);
+      };
+
+      const createRoad = () => {
+        const roadMesh = new THREE.Mesh(
+          new THREE.PlaneGeometry(20, 1000),
+          new THREE.MeshLambertMaterial({ color: colors.road })
+        );
+        roadMesh.rotation.x = -Math.PI / 2;
+        roadMesh.position.z = -500;
+        scene.add(roadMesh);
+
+        for (let i = 0; i < 200; i++) {
+          const line = new THREE.Mesh(
+            new THREE.PlaneGeometry(20, 0.2),
+            new THREE.MeshBasicMaterial({ color: 0xff2e93, emissive: 0x330033 })
+          );
+          line.rotation.x = -Math.PI / 2;
+          line.position.set(0, 0.01, -i * 5);
+          scene.add(line);
+          road.push(line);
+        }
+
+        for (const side of [-1, 1]) {
+          for (let i = 0; i < 200; i++) {
+            const barrier = new THREE.Mesh(
+              new THREE.BoxGeometry(0.5, 2, 1),
+              new THREE.MeshPhongMaterial({
+                color: colors.neon[i % colors.neon.length],
+                emissive: colors.neon[i % colors.neon.length],
+                emissiveIntensity: 0.3,
+              })
+            );
+            barrier.position.set(side * 12, 1, -i * 10);
+            scene.add(barrier);
+          }
+        }
+      };
+
+      const createSkybox = () => {
+        const sun = new THREE.Mesh(
+          new THREE.SphereGeometry(5),
+          new THREE.MeshBasicMaterial({ color: 0xffc72c, emissive: 0xffc72c, emissiveIntensity: 0.8 })
+        );
+        sun.position.set(0, 30, -100);
+        scene.add(sun);
+
+        for (let i = 0; i < 10; i++) {
+          const gridLine = new THREE.Mesh(
+            new THREE.PlaneGeometry(200, 1),
+            new THREE.MeshBasicMaterial({ color: 0xff2e93, transparent: true, opacity: 0.2 })
+          );
+          gridLine.position.set(0, 20 + i * 3, -150);
+          scene.add(gridLine);
+        }
+      };
+
+      const createObstacle = () => {
+        const obstacle = new THREE.Mesh(
+          new THREE.BoxGeometry(2, 1, 2),
+          new THREE.MeshPhongMaterial({
+            color: colors.neon[Math.floor(Math.random() * colors.neon.length)],
+            emissive: colors.neon[Math.floor(Math.random() * colors.neon.length)],
+            emissiveIntensity: 0.4,
+          })
+        );
+        obstacle.position.set((Math.random() - 0.5) * 15, 0.5, -100);
+        obstacles.push(obstacle);
+        scene.add(obstacle);
+      };
+
+      const createParticle = (position) => {
+        const particle = new THREE.Mesh(
+          new THREE.SphereGeometry(0.1),
+          new THREE.MeshBasicMaterial({
+            color: colors.neon[Math.floor(Math.random() * colors.neon.length)],
+            emissive: colors.neon[Math.floor(Math.random() * colors.neon.length)],
+          })
+        );
+        particle.position.copy(position);
+        particle.velocity = new THREE.Vector3(
+          (Math.random() - 0.5) * 0.5,
+          Math.random() * 0.3,
+          Math.random() * 0.5
+        );
+        particle.life = 60;
+        particles.push(particle);
+        scene.add(particle);
+      };
+
+      const updateCar = () => {
+        if (keys.ArrowLeft || keys.KeyA) {
+          carPosition.x = Math.max(-8, carPosition.x - 0.3);
+        }
+        if (keys.ArrowRight || keys.KeyD) {
+          carPosition.x = Math.min(8, carPosition.x + 0.3);
+        }
+        if (keys.ArrowUp || keys.KeyW) {
+          speed = Math.min(200, speed + 2);
+        }
+        if (keys.ArrowDown || keys.KeyS) {
+          speed = Math.max(50, speed - 3);
+        }
+
+        speed = Math.min(150, speed + 0.5);
+
+        car.position.x = carPosition.x;
+
+        if (keys.ArrowLeft || keys.KeyA) {
+          car.rotation.z = Math.min(0.3, car.rotation.z + 0.02);
+        } else if (keys.ArrowRight || keys.KeyD) {
+          car.rotation.z = Math.max(-0.3, car.rotation.z - 0.02);
+        } else {
+          car.rotation.z *= 0.95;
+        }
+
+        if (Math.random() < 0.3) {
+          createParticle(new THREE.Vector3(
+            car.position.x + (Math.random() - 0.5) * 3,
+            0.2,
+            car.position.z - 3
+          ));
+        }
+      };
+
+      const updateWorld = () => {
+        const moveSpeed = speed * 0.01;
+
+        road.forEach((line) => {
+          line.position.z += moveSpeed;
+          if (line.position.z > 50) {
+            line.position.z -= 1000;
+          }
+        });
+
+        for (let index = obstacles.length - 1; index >= 0; index--) {
+          const obstacle = obstacles[index];
+          obstacle.position.z += moveSpeed;
+
+          const distance = car.position.distanceTo(obstacle.position);
+          if (distance < 3) {
+            for (let i = 0; i < 10; i++) {
+              createParticle(obstacle.position.clone());
+            }
+            scene.remove(obstacle);
+            obstacles.splice(index, 1);
+            speed = Math.max(50, speed - 20);
+          } else if (obstacle.position.z > 30) {
+            scene.remove(obstacle);
+            obstacles.splice(index, 1);
+            score += 10;
+          }
+        }
+
+        if (Math.random() < 0.02) {
+          createObstacle();
+        }
+
+        for (let index = particles.length - 1; index >= 0; index--) {
+          const particle = particles[index];
+          particle.position.add(particle.velocity);
+          particle.life--;
+
+          if (particle.life <= 0) {
+            scene.remove(particle);
+            particles.splice(index, 1);
+          }
+        }
+
+        score += speed * 0.01;
+      };
+
+      const updateUI = () => {
+        document.getElementById('score').textContent = Math.floor(score);
+        document.getElementById('speed').textContent = Math.floor(speed);
+      };
+
+      const setupEventListeners = () => {
+        document.addEventListener('keydown', (e) => {
+          keys[e.code] = true;
+        });
+        document.addEventListener('keyup', (e) => {
+          keys[e.code] = false;
+        });
+
+        let touchStartX = 0;
+
+        document.addEventListener('touchstart', (e) => {
+          touchStartX = e.touches[0].clientX;
+          keys.KeyW = true;
+        }, { passive: true });
+
+        document.addEventListener('touchmove', (e) => {
+          e.preventDefault();
+          const touchX = e.touches[0].clientX;
+          const deltaX = touchX - touchStartX;
+
+          if (deltaX > 50) {
+            keys.KeyD = true;
+            keys.KeyA = false;
+          } else if (deltaX < -50) {
+            keys.KeyA = true;
+            keys.KeyD = false;
+          } else {
+            keys.KeyA = false;
+            keys.KeyD = false;
+          }
+        }, { passive: false });
+
+        document.addEventListener('touchend', () => {
+          keys.KeyA = false;
+          keys.KeyD = false;
+          keys.KeyW = false;
+        }, { passive: true });
+
+        window.addEventListener('resize', () => {
+          camera.aspect = container.clientWidth / container.clientHeight;
+          camera.updateProjectionMatrix();
+          renderer.setSize(container.clientWidth, container.clientHeight);
+        }, { passive: true });
+      };
+
+      const animate = () => {
+        requestAnimationFrame(animate);
+
+        updateCar();
+        updateWorld();
+        updateUI();
+
+        camera.position.x = car.position.x * 0.1;
+
+        renderer.render(scene, camera);
+      };
+
+      const init = () => {
+        scene = new THREE.Scene();
+        scene.fog = new THREE.Fog(colors.bg, 50, 200);
+
+        camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
+        camera.position.set(0, 15, 20);
+        camera.lookAt(0, 0, 0);
+
+        renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer.setSize(container.clientWidth, container.clientHeight);
+        renderer.setClearColor(colors.bg);
+        container.appendChild(renderer.domElement);
+
+        scene.add(new THREE.AmbientLight(0x404040, 0.4));
+
+        const directionalLight = new THREE.DirectionalLight(0xffffff, 0.6);
+        directionalLight.position.set(0, 50, 50);
+        scene.add(directionalLight);
+
+        for (let i = 0; i < 4; i++) {
+          const light = new THREE.PointLight(colors.neon[i % colors.neon.length], 2, 100);
+          light.position.set((Math.random() - 0.5) * 100, 20, -i * 30);
+          scene.add(light);
+        }
+
+        createCar();
+        createRoad();
+        createSkybox();
+        setupEventListeners();
+        animate();
+      };
+
+      init();
+    })();
+  </script>
+</body>
+</html>

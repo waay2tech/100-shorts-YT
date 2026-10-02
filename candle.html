@@ -1,0 +1,562 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Ember — two sentient birthday candles with blinking eyes, a wiggling wick, dancing flame and smoke puffs. A tiny theatre of pure CSS keyframes.">
+  <title>Ember · Birthday Candles | Waay2Tech</title>
+  <link rel="canonical" href="candle.html">
+  <meta property="og:site_name" content="WAAY2TECH">
+  <meta name="author" content="Waay2Tech">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Ember · Birthday Candles | Waay2Tech">
+  <meta property="og:description" content="Ember — two sentient birthday candles with blinking eyes, a wiggling wick, dancing flame and smoke puffs. A tiny theatre of pure CSS keyframes.">
+  <meta property="og:url" content="candle.html">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Ember · Birthday Candles">
+  <meta name="twitter:description" content="Ember — two sentient birthday candles with blinking eyes, a wiggling wick, dancing flame and smoke puffs. A tiny theatre of pure CSS keyframes.">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Ember · Birthday Candles | Waay2Tech",
+    "description": "Two sentient birthday candles with blinking eyes, a wiggling wick and a flame that knows how to dance. Every wiggle, puff and eye-roll is hand-timed CSS keyframes.",
+    "about": { "@type": "Thing", "name": "CSS Keyframe Animation" },
+    "keywords": "candles, css animation, keyframes, birthday, flame, ember",
+    "url": "candle.html"
+  }
+  </script>
+  <style>
+    :root {
+      --bg: #0d0a07;
+      --bg-0: #0d0a07;
+      --bg-1: #17110b;
+      --bg-2: #241a10;
+      --bg-3: #2f2313;
+      --text-1: #f3e2c4;
+      --text-2: #d8c19a;
+      --text-3: #8a6f47;
+      --amber: #f59e0b;
+      --magenta: #fb923c;
+      --violet: #fbbf24;
+      --cyan: #f59e0b;
+      --lime: #fbbf24;
+      --indigo: #fb923c;
+      --indigo-soft: #fcd34d;
+      --grad-primary: linear-gradient(135deg, #f59e0b 0%, #fb923c 55%, #fbbf24 100%);
+      --grad-text: linear-gradient(120deg, #fbbf24 0%, #f59e0b 55%, #fb923c 100%);
+      --glow-indigo: 0 0 24px rgba(245, 158, 11, 0.5);
+      --glow-violet: 0 0 30px rgba(251, 191, 36, 0.45);
+      --glow-cyan: 0 0 22px rgba(251, 146, 60, 0.45);
+      --stroke: rgba(251, 191, 36, 0.16);
+      --stroke-strong: rgba(245, 158, 11, 0.45);
+      --glass: rgba(23, 17, 11, 0.6);
+      --shadow-card: 0 26px 60px rgba(0, 0, 0, 0.55);
+      --radius-sm: 10px;
+      --radius-md: 16px;
+      --radius-lg: 24px;
+      --radius-xl: 32px;
+      --radius-full: 999px;
+      --space-1: 4px;
+      --space-2: 8px;
+      --space-3: 12px;
+      --space-4: 16px;
+      --space-5: 24px;
+      --space-6: 32px;
+      --space-7: 48px;
+      --space-8: 64px;
+      --space-9: 96px;
+      --speed-2: 0.25s;
+      --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+      --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+      --blur-glass: 12px;
+      --text-xs: 12px;
+      --text-sm: 14px;
+      --text-md: 17px;
+      --text-xl: 26px;
+      --font-display: 'Fraunces', serif;
+      --font-body: 'Inter', sans-serif;
+      --font-mono: ui-monospace, 'Cascadia Mono', Consolas, monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+    body {
+      font-family: var(--font-body);
+      background: var(--bg);
+      color: var(--text-1);
+      line-height: 1.6;
+      min-height: 100vh;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      background:
+        radial-gradient(820px 560px at 78% -8%, rgba(245, 158, 11, 0.14), transparent 62%),
+        radial-gradient(680px 500px at 0% 42%, rgba(251, 146, 60, 0.1), transparent 60%),
+        radial-gradient(600px 480px at 52% 118%, rgba(251, 191, 36, 0.08), transparent 60%),
+        var(--bg);
+    }
+    ::selection { background: rgba(245, 158, 11, 0.4); color: #2b1b07; }
+    ::-webkit-scrollbar { width: 10px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: rgba(251, 191, 36, 0.3); border-radius: 6px; }
+    :focus-visible { outline: 2px solid var(--amber); outline-offset: 3px; border-radius: 6px; }
+
+    .skip-link {
+      position: fixed; top: -60px; left: 16px; z-index: 200;
+      background: var(--amber); color: #2b1b07; font-weight: 700;
+      padding: 10px 18px; border-radius: 8px; text-decoration: none;
+      transition: top 0.3s ease;
+    }
+    .skip-link:focus { top: 16px; }
+
+    .site-header {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(13, 10, 7, 0.82);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--stroke);
+    }
+    .site-header .bar {
+      max-width: 1120px; margin-inline: auto; padding: 14px clamp(16px, 4vw, 40px);
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    }
+    .wordmark {
+      font-family: var(--font-display); font-weight: 700; font-size: 1.3rem;
+      letter-spacing: 0.16em; color: var(--text-1); text-decoration: none;
+      display: inline-flex; align-items: center; gap: 12px;
+    }
+    .wordmark .wick { width: 3px; height: 14px; border-radius: 4px; background: var(--amber); box-shadow: 0 -6px 14px rgba(245, 158, 11, 0.7); animation: wick-sway 3s infinite linear; transform-origin: bottom center; }
+    @keyframes wick-sway {
+      0%, 40%, 50%, 54%, 59%, 74%, 84%, 92% { transform: rotate(0deg); }
+      62% { transform: rotate(-15deg); }
+      65% { transform: rotate(15deg); }
+      70% { transform: rotate(-5deg); }
+      72% { transform: rotate(5deg); }
+    }
+    .site-nav { display: flex; gap: 24px; }
+    .site-nav a { color: var(--text-2); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.25s ease; }
+    .site-nav a:hover { color: var(--amber); }
+
+    .shell { max-width: 1120px; margin-inline: auto; padding-inline: clamp(16px, 4vw, 40px); }
+
+    .stack { display: flex; flex-direction: column; gap: var(--space-4); }
+    .stack--lg { gap: var(--space-6); }
+    .hero { text-align: center; display: grid; gap: var(--space-4); justify-items: center; margin-bottom: var(--space-6); margin-top: 48px; }
+    .kicker { font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.3em; text-transform: uppercase; color: var(--amber); }
+    .h1 { font-family: var(--font-display); font-weight: 700; font-size: clamp(2.4rem, 7vw, 4.2rem); letter-spacing: -0.02em; line-height: 1.05; color: var(--text-1); }
+    .lead { font-size: clamp(1rem, 1.6vw, 1.15rem); color: var(--text-2); max-width: 58ch; }
+    .grad-text { background: var(--grad-text); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; }
+
+    .stat-row { display: flex; flex-wrap: wrap; gap: var(--space-2); justify-content: center; }
+    .chip {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: var(--text-sm); color: var(--text-2);
+      border: 1px solid var(--stroke); border-radius: var(--radius-full);
+      padding: 7px 15px; background: rgba(23, 17, 11, 0.6);
+    }
+    .chip .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--amber); box-shadow: 0 0 10px rgba(245, 158, 11, 0.8); animation: ember-pulse 1.6s ease-in-out infinite; }
+    @keyframes ember-pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(1.4); } }
+
+    .demo-stage {
+      display: block; position: relative; padding: 0; overflow: hidden;
+      height: clamp(460px, 74vh, 840px);
+      background: radial-gradient(120% 120% at 50% 40%, #241a10, #0d0a07);
+      isolation: isolate;
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--stroke);
+      box-shadow: var(--shadow-card);
+    }
+    .stage-hint {
+      position: absolute; z-index: 30; right: var(--space-4); top: var(--space-4);
+      display: grid; gap: var(--space-2); pointer-events: none; justify-items: end;
+    }
+    .stage-ctl {
+      position: absolute; z-index: 30; left: 50%; bottom: var(--space-5);
+      transform: translateX(-50%);
+    }
+
+    .btn {
+      font-family: var(--font-body); font-weight: 600; font-size: var(--text-sm);
+      border: 1px solid var(--stroke-strong); color: var(--text-1);
+      background: var(--glass); border-radius: var(--radius-full);
+      padding: 10px 20px; cursor: pointer; text-decoration: none; display: inline-flex;
+      align-items: center; gap: 8px;
+      -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+      transition: transform 0.25s var(--ease-spring), border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+    .btn:hover { transform: translateY(-2px); border-color: var(--amber); box-shadow: var(--glow-indigo); }
+    .btn:active { transform: scale(0.97); }
+
+    .wrapper {
+      position: absolute; left: 50%; top: 56%;
+      transform: translate(-50%, -50%) scale(var(--flicker-scale, 1.6));
+      transform-origin: center;
+    }
+
+    .floor {
+      position: absolute; left: 50%; top: 50%;
+      width: 350px; height: 5px; background: var(--violet);
+      transform: translate(-50%, -50%);
+      box-shadow: 0px 2px 5px var(--glow-violet);
+      z-index: 2;
+    }
+
+    .candles {
+      position: absolute; left: 50%; top: 50%;
+      width: 250px; height: 150px; transform: translate(-50%, -100%); z-index: 1;
+    }
+
+    .candle1 {
+      position: absolute; left: 50%; top: 50%; width: 35px; height: 100px;
+      background: var(--text-1); border: 3px solid var(--violet);
+      border-bottom: 0px; border-radius: 3px; transform-origin: center right;
+      transform: translate(60%, -25%);
+      box-shadow: -2px 0px 0px var(--cyan) inset;
+      animation: expand-body 3s infinite linear;
+    }
+
+    .candle1__stick,
+    .candle2__stick {
+      position: absolute; left: 50%; top: 0%; width: 3px; height: 15px;
+      background: var(--violet); border-radius: 8px; transform: translate(-50%, -100%);
+    }
+    .candle2__stick {
+      height: 12px; transform-origin: bottom center;
+      animation: stick-animation 3s infinite linear;
+    }
+
+    .candle1__eyes,
+    .candle2__eyes {
+      position: absolute; left: 50%; top: 0%; width: 35px; height: 30px;
+      transform: translate(-50%, 0%);
+    }
+    .candle1__eyes-one,
+    .candle1__eyes-two {
+      position: absolute; top: 20%; width: 5px; height: 5px; border-radius: 100%;
+      background: var(--violet); transform: translate(-70%, 0%);
+      animation: blink-eyes 3s infinite linear;
+    }
+    .candle1__eyes-one { left: 30%; }
+    .candle1__eyes-two { left: 70%; }
+
+    .candle1__mouth {
+      position: absolute; left: 40%; top: 20%; width: 0px; height: 0px;
+      border-radius: 20px; background: var(--violet); transform: translate(-50%, -50%);
+      animation: uff 3s infinite linear;
+    }
+
+    .candle__smoke-one {
+      position: absolute; left: 30%; top: 50%; width: 30px; height: 3px;
+      background: var(--text-3); transform: translate(-50%, -50%);
+      animation: move-left 3s infinite linear;
+    }
+    .candle__smoke-two {
+      position: absolute; left: 30%; top: 40%; width: 10px; height: 10px;
+      border-radius: 10px; background: var(--text-3); transform: translate(-50%, -50%);
+      animation: move-top 3s infinite linear;
+    }
+
+    .candle2 {
+      position: absolute; left: 20%; top: 65%; width: 42px; height: 60px;
+      background: var(--text-1); border: 3px solid var(--violet);
+      border-bottom: 0px; border-radius: 3px; transform: translate(60%, -15%);
+      transform-origin: center right; box-shadow: -2px 0px 0px var(--cyan) inset;
+      animation: shake-left 3s infinite linear;
+    }
+
+    .candle2__eyes-one,
+    .candle2__eyes-two {
+      position: absolute; top: 50%; width: 5px; height: 5px;
+      display: inline-block; border: 0px solid var(--violet); border-radius: 100%;
+      float: left; background: var(--violet); transform: translate(-80%, 0%);
+    }
+    .candle2__eyes-one { left: 30%; animation: changeto-lower 3s infinite linear; }
+    .candle2__eyes-two { left: 70%; animation: changeto-greater 3s infinite linear; }
+
+    .light__wave {
+      position: absolute; top: 35%; left: 35%; width: 75px; height: 75px;
+      border-radius: 100%; z-index: 0; transform: translate(-25%, -50%) scale(2.5, 2.5);
+      border: 2px solid var(--stroke); animation: expand-light 3s infinite linear;
+    }
+
+    .candle2__fire {
+      position: absolute; top: 50%; left: 40%; display: block;
+      width: 16px; height: 20px; background-color: var(--magenta);
+      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+      background: var(--amber); transform: translate(-50%, -50%);
+      animation: dance-fire 3s infinite linear;
+      box-shadow: 0 0 18px 6px rgba(245, 158, 11, 0.35);
+    }
+
+    .candles.paused .candle1,
+    .candles.paused .candle2,
+    .candles.paused .candle1__eyes-one,
+    .candles.paused .candle1__eyes-two,
+    .candles.paused .candle1__mouth,
+    .candles.paused .candle2__stick,
+    .candles.paused .candle2__fire,
+    .candles.paused .light__wave,
+    .candles.paused .candle__smoke-one,
+    .candles.paused .candle__smoke-two {
+      animation-play-state: paused;
+    }
+
+    @keyframes blink-eyes {
+      0%, 35% { opacity: 1; transform: translate(-70%, 0%); }
+      36%, 39% { opacity: 0; transform: translate(-70%, 0%); }
+      40% { opacity: 1; transform: translate(-70%, 0%); }
+      50%, 65% { transform: translate(-140%, 0%); }
+      66% { transform: translate(-70%, 0%); }
+    }
+    @keyframes expand-body {
+      0%, 40% { transform: scale(1, 1) translate(60%, -25%); }
+      45%, 55% { transform: scale(1.1, 1.1) translate(60%, -28%); }
+      60% { transform: scale(0.89, 0.89) translate(60%, -25%); }
+      65% { transform: scale(1, 1) translate(60%, -25%); }
+      70% { transform: scale(0.95, 0.95) translate(60%, -25%); }
+      75% { transform: scale(1, 1) translate(60%, -25%); }
+    }
+    @keyframes uff {
+      0%, 40% { width: 0px; height: 0px; }
+      50%, 54% { width: 15px; height: 15px; left: 30%; }
+      59% { width: 5px; height: 5px; left: 20%; }
+      62% { width: 2px; height: 2px; left: 20%; }
+      67% { width: 0px; height: 0px; left: 30%; }
+    }
+    @keyframes move-left {
+      0%, 59%, 100% { width: 0px; left: 40%; }
+      60% { width: 30px; left: 30%; }
+      68% { width: 0px; left: 20%; }
+    }
+    @keyframes move-top {
+      0%, 64%, 100% { width: 0px; height: 0px; top: 0%; }
+      65% { width: 10px; height: 10px; top: 40%; left: 40%; }
+      80% { width: 0px; height: 0px; top: 20%; }
+    }
+    @keyframes shake-left {
+      0%, 40% { left: 20%; transform: translate(60%, -15%); }
+      50%, 54%, 59%, 67%, 75%, 91%, 92%, 95%, 97% { left: 20%; transform: translate(60%, -15%); }
+      62% { left: 18%; transform: translate(60%, -15%); }
+      65% { left: 21%; transform: translate(60%, -15%); }
+      75% { transform: scale(1.15, 0.85) translate(60%, -15%); background: var(--text-1); border-color: var(--violet); }
+      91% { transform: scale(1.18, 0.82) translate(60%, -10%); background: var(--magenta); border-color: var(--magenta); box-shadow: -2px 0px 0px var(--magenta) inset; }
+      92% { transform: scale(0.85, 1.15) translate(60%, -15%); }
+      95% { transform: scale(1.05, 0.95) translate(60%, -15%); }
+      97% { transform: scale(1, 1) translate(60%, -15%); }
+    }
+    @keyframes stick-animation {
+      0%, 40%, 50%, 54%, 59%, 74%, 84%, 92% { left: 50%; top: 0%; transform: translate(-50%, -100%); }
+      62% { left: 50%; top: 0%; transform: rotateZ(-15deg) translate(-50%, -100%); }
+      65% { left: 50%; top: 0%; transform: rotateZ(15deg) translate(-50%, -100%); }
+      70% { left: 50%; top: 0%; transform: rotateZ(-5deg) translate(-50%, -100%); }
+      72% { left: 50%; top: 0%; transform: rotateZ(5deg) translate(-50%, -100%); }
+      85% { transform: rotateZ(180deg) translate(0%, 120%); }
+    }
+    @keyframes expand-light {
+      10%, 29%, 59%, 89% { transform: translate(-25%, -50%) scale(0, 0); border: 2px solid rgba(255, 255, 255, 0); }
+      90%, 20%, 50% { transform: translate(-25%, -50%) scale(1, 1); }
+      95%, 96%, 26%, 27%, 56%, 57% { transform: translate(-25%, -50%) scale(2, 2); border: 2px solid var(--stroke-strong); }
+      0%, 28%, 58%, 100% { transform: translate(-25%, -50%) scale(2.5, 2.5); border: 2px solid var(--stroke); }
+    }
+    @keyframes dance-fire {
+      59%, 89% { left: 40%; width: 0px; height: 0px; }
+      90%, 0%, 7%, 15%, 23%, 31%, 39%, 47%, 55% { left: 40.8%; width: 16px; height: 20px; background: var(--amber); }
+      94%, 3%, 11%, 19%, 27%, 35%, 43%, 51%, 58% { left: 41.2%; width: 16px; height: 20px; background: var(--amber); filter: brightness(0.92); }
+    }
+    @keyframes changeto-lower {
+      0%, 70%, 90% { padding: 0px; display: inline-block; border-radius: 100%; background: var(--violet); border: 0px solid var(--violet); transform: translate(-90%, 0%); }
+      71%, 89% { background: none; border: solid var(--violet); border-radius: 0px; border-width: 0 2px 2px 0; display: inline-block; padding: 1px; float: left; transform-origin: bottom left; transform: rotate(-45deg) translate(-50%, -65%); }
+    }
+    @keyframes changeto-greater {
+      0%, 70%, 90% { top: 50%; padding: 0px; display: inline-block; border-radius: 100%; background: var(--violet); border: 0px solid var(--violet); transform: translate(-80%, 0%); }
+      71%, 89% { top: 30%; background: none; border: solid var(--violet); border-radius: 0px; border-width: 0 2px 2px 0; display: inline-block; padding: 1px; float: left; transform-origin: bottom left; transform: rotate(135deg) translate(-80%, 20%); }
+    }
+
+    .site-footer {
+      margin-top: var(--space-9);
+      border-top: 1px solid var(--stroke);
+      padding: 28px clamp(16px, 4vw, 40px);
+      display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; align-items: center;
+      max-width: 1120px; margin-inline: auto;
+      color: var(--text-3); font-size: var(--text-sm);
+    }
+    .site-footer a { color: var(--text-2); text-decoration: none; }
+    .site-footer a:hover { color: var(--amber); }
+
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s var(--ease-out); transition-delay: var(--reveal-delay, 0ms); }
+    .reveal.in { opacity: 1; transform: none; }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.001s !important; animation-iteration-count: 1 !important; transition-duration: 0.001s !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+
+    @media (max-width: 980px) {
+      .wrapper { --flicker-scale: 1.2; }
+    }
+    @media (max-width: 620px) {
+      .site-nav { display: none; }
+      .wrapper { --flicker-scale: 0.78; }
+      .demo-stage { height: 60vh; min-height: 420px; }
+    }
+  </style>
+</head>
+<body>
+<script>
+(function () {
+  if (!('ontouchstart' in window) || window.__touchBridge) return;
+  window.__touchBridge = true;
+  var lt = null;
+  function fire(type, t) {
+    var el = document.elementFromPoint(t.clientX, t.clientY) || document;
+    el.dispatchEvent(new MouseEvent(type, {
+      bubbles: true, cancelable: true, view: window,
+      clientX: t.clientX, clientY: t.clientY,
+      button: 0, buttons: type === 'mousemove' ? 1 : 0
+    }));
+  }
+  document.addEventListener('touchstart', function (e) {
+    if (e.touches.length !== 1) return;
+    lt = e.touches[0];
+    fire('mousemove', lt); fire('mousedown', lt);
+  }, { passive: true });
+  document.addEventListener('touchmove', function (e) {
+    if (e.touches.length !== 1 || !lt) return;
+    lt = e.touches[0];
+    fire('mousemove', lt);
+  }, { passive: true });
+  document.addEventListener('touchend', function () {
+    if (!lt) return;
+    fire('mouseup', lt);
+    lt = null;
+  }, { passive: true });
+})();
+</script>
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header class="site-header">
+    <div class="bar">
+      <a class="wordmark" href="#main"><span class="wick" aria-hidden="true"></span>WAAY2TECH</a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="#stage">Scene</a>
+        <a href="#timeline">Timeline</a>
+        <a href="#notes">Notes</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="shell">
+    <header class="hero reveal">
+      <p class="kicker">Pure CSS · Keyframe Theatre</p>
+      <h1 class="h1">Ember<span class="grad-text">Lab</span></h1>
+      <p class="lead" style="max-width:56ch">Two sentient birthday candles with blinking eyes, a wiggling wick and a flame that knows how to dance. Every wiggle, puff and eye-roll is hand-timed CSS keyframes.</p>
+      <div class="stat-row">
+        <span class="chip"><span class="dot"></span>2 candles</span>
+        <span class="chip">3s loop</span>
+        <span class="chip">zero JS motion</span>
+      </div>
+    </header>
+
+    <section class="demo-stage reveal reveal-zoom" id="stage" aria-label="Animated candles scene">
+      <aside class="stage-hint" aria-label="Facts">
+        <span class="chip"><span class="dot"></span>blink → wiggle → blow</span>
+        <span class="chip">13 keyframes</span>
+      </aside>
+
+      <div class="wrapper" aria-hidden="true">
+        <div class="candles">
+          <div class="light__wave"></div>
+          <div class="candle1">
+            <div class="candle1__body">
+              <div class="candle1__eyes">
+                <span class="candle1__eyes-one"></span>
+                <span class="candle1__eyes-two"></span>
+              </div>
+              <div class="candle1__mouth"></div>
+            </div>
+            <div class="candle1__stick"></div>
+          </div>
+          <div class="candle2">
+            <div class="candle2__body">
+              <div class="candle2__eyes">
+                <div class="candle2__eyes-one"></div>
+                <div class="candle2__eyes-two"></div>
+              </div>
+            </div>
+            <div class="candle2__stick"></div>
+          </div>
+          <div class="candle2__fire"></div>
+          <div class="candle__smoke-one"></div>
+          <div class="candle__smoke-two"></div>
+        </div>
+        <div class="floor"></div>
+      </div>
+
+      <div class="stage-ctl">
+        <button class="btn" id="candle-toggle" aria-pressed="false">❚❚ Freeze the flicker</button>
+      </div>
+    </section>
+
+    <section id="notes" class="stack reveal" style="--reveal-delay:120ms; margin-top:var(--space-7)">
+      <span class="kicker">The choreography</span>
+      <h2 class="h1" style="font-size:clamp(1.6rem,4vw,2.4rem)">A three-second <span class="grad-text">story</span></h2>
+      <p class="lead" id="timeline">On a 3&nbsp;s loop the tall candle stretches, blinks sideways and blows a puff of smoke; the short candle wiggles, its wick twists and the flame dances bright, gutters and blows itself out. Freeze the flicker any time — the pause is one class and zero keyframes broken.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span>WAAY2TECH · <span data-year></span></span>
+    <a href="#main">Back to top</a>
+  </footer>
+
+  <script>
+    'use strict';
+
+    (function () {
+      var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      document.querySelectorAll('[data-year]').forEach(function (el) {
+        el.textContent = new Date().getFullYear();
+      });
+
+      var reveals = document.querySelectorAll('.reveal');
+      if (reduced || !('IntersectionObserver' in window)) {
+        reveals.forEach(function (r) { r.classList.add('in'); });
+      } else {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('in');
+              io.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+        reveals.forEach(function (r) { io.observe(r); });
+      }
+    })();
+
+    (() => {
+      const candles = document.querySelector('.candles');
+      const toggle = document.getElementById('candle-toggle');
+
+      if (candles && toggle) {
+        toggle.addEventListener('click', () => {
+          const paused = candles.classList.toggle('paused');
+          toggle.setAttribute('aria-pressed', String(paused));
+          toggle.innerHTML = paused ? '▶ Unfreeze the flicker' : '❚❚ Freeze the flicker';
+        });
+      }
+    })();
+  </script>
+</body>
+</html>

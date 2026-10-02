@@ -1,0 +1,525 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="CHANGE — true progress is made by change. A kinetic typography animation where the C becomes a G.">
+  <title>CHANGE · Momentum Engine | Waay2Tech</title>
+  <link rel="canonical" href="change.html">
+  <meta property="og:site_name" content="WAAY2TECH">
+  <meta name="author" content="Waay2Tech">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="CHANGE · Momentum Engine | Waay2Tech">
+  <meta property="og:description" content="CHANGE — true progress is made by change. A kinetic typography animation where the C becomes a G.">
+  <meta property="og:url" content="change.html">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="CHANGE · Momentum Engine">
+  <meta name="twitter:description" content="CHANGE — true progress is made by change. A kinetic typography animation where the C becomes a G.">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "CHANGE · Momentum Engine | Waay2Tech",
+    "description": "CHANGE — true progress is made by change. A kinetic typography animation where the C becomes a G.",
+    "url": "change.html"
+  }
+  </script>
+  <style>
+    :root {
+      --bg: #0b0817;
+      --bg-2: #141024;
+      --bg-3: #1d1733;
+      --surface: #141024;
+      --text: #f0e9ff;
+      --text-2: #b8aee0;
+      --text-3: #7c72a6;
+      --line: rgba(167, 139, 250, 0.22);
+      --primary: #a78bfa;
+      --accent: #fbbf24;
+      --accent-2: #8b5cf6;
+      --violet: #a78bfa;
+      --magenta: #8b5cf6;
+      --lime: #fbbf24;
+      --indigo: #a78bfa;
+      --grad-text: linear-gradient(120deg, #a78bfa 0%, #fbbf24 50%, #8b5cf6 100%);
+      --glass: rgba(255, 255, 255, 0.05);
+      --stroke: rgba(255, 255, 255, 0.1);
+      --stroke-strong: rgba(255, 255, 255, 0.18);
+      --s1: 4px; --s2: 8px; --s3: 12px; --s4: 16px; --s5: 20px; --s6: 28px; --s7: 40px; --s8: 56px;
+      --radius-md: 14px; --radius-lg: 22px; --radius-full: 999px;
+      --speed-2: 0.25s;
+      --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+      --glow-lime: 0 0 22px rgba(251, 191, 36, 0.45);
+      --glow-violet: 0 0 30px rgba(139, 92, 246, 0.5);
+      --font-display: 'Sora', sans-serif;
+      --font-body: 'Inter', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: var(--font-body);
+      color: var(--text);
+      background:
+        radial-gradient(55% 40% at 85% -5%, rgba(139, 92, 246, 0.22), transparent 60%),
+        radial-gradient(45% 40% at 0% 20%, rgba(167, 139, 250, 0.12), transparent 55%),
+        radial-gradient(70% 55% at 50% 115%, rgba(251, 191, 36, 0.1), transparent 60%),
+        var(--bg);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+    ::selection { background: var(--accent); color: var(--bg); }
+    ::-webkit-scrollbar { width: 12px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--accent-2); border-radius: 8px; border: 3px solid var(--bg); }
+
+    .skip-link {
+      position: fixed; top: 12px; left: 12px; z-index: 9999;
+      padding: 10px 18px; border-radius: var(--radius-md);
+      background: var(--accent); color: var(--bg);
+      font-family: var(--font-body); font-weight: 700; text-decoration: none;
+      transform: translateY(-200%); transition: transform 0.25s var(--ease-out);
+    }
+    .skip-link:focus { transform: translateY(0); }
+
+    .site-header {
+      width: min(1240px, 92%);
+      margin-inline: auto;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 0;
+    }
+    .wordmark {
+      font-family: var(--font-display); font-weight: 800; font-size: 1.3rem;
+      letter-spacing: 0.14em; color: var(--text); text-decoration: none;
+      display: inline-flex; align-items: center; gap: 10px;
+    }
+    .wordmark .mark {
+      width: 34px; height: 34px; border-radius: 9px;
+      display: grid; place-items: center;
+      background: linear-gradient(135deg, var(--violet), var(--accent));
+      font-size: 1rem; color: var(--bg);
+    }
+    .site-nav { display: flex; gap: 6px; }
+    .site-nav a {
+      color: var(--text-2); text-decoration: none; font-weight: 600; font-size: 0.92rem;
+      padding: 8px 14px; border-radius: var(--radius-full);
+      transition: background 0.25s, color 0.25s;
+    }
+    .site-nav a:hover { background: var(--bg-3); color: var(--text); }
+
+    main { width: min(1240px, 92%); margin-inline: auto; flex: 1; }
+
+    .page-head {
+      padding: clamp(40px, 8vh, 80px) 0 var(--s5);
+      display: grid; gap: var(--s4);
+    }
+    .kicker {
+      font-weight: 600; letter-spacing: 0.3em; text-transform: uppercase;
+      font-size: 0.75rem; color: var(--violet);
+      display: inline-flex; align-items: center; gap: 10px;
+    }
+    .kicker::before { content: ''; width: 26px; height: 2px; background: var(--accent); border-radius: 2px; }
+    h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.3rem, 6.5vw, 4rem);
+      font-weight: 800; line-height: 1.05; letter-spacing: -0.02em;
+      margin: 0;
+    }
+    .grad-text {
+      background: var(--grad-text);
+      -webkit-background-clip: text; background-clip: text;
+      -webkit-text-fill-color: transparent; color: transparent;
+      background-size: 200% auto;
+      animation: grad-shift 6s linear infinite;
+    }
+    @keyframes grad-shift { to { background-position: 200% center; } }
+    .lead { max-width: 60ch; color: var(--text-2); font-size: 1.1rem; line-height: 1.6; margin: 0; }
+    .row { display: flex; align-items: center; gap: var(--s3); flex-wrap: wrap; }
+    .chip {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 0.8rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+      color: var(--text-2); background: var(--glass);
+      border: 1px solid var(--stroke); border-radius: var(--radius-full);
+      padding: 8px 16px;
+      transition: border-color 0.25s, transform 0.25s var(--ease-out);
+    }
+    .chip:hover { border-color: var(--violet); transform: translateY(-2px); }
+    .chip .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); box-shadow: var(--glow-lime); animation: dot-pulse 1.8s ease-in-out infinite; }
+    @keyframes dot-pulse { 50% { transform: scale(0.55); opacity: 0.6; } }
+
+    .demo-stage {
+      display: block;
+      padding: 0;
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius-lg);
+      background: radial-gradient(120% 100% at 50% 0%, var(--bg-2), var(--bg) 70%);
+      overflow: hidden;
+    }
+
+    #stage { position: relative; width: 100%; height: 100%; min-height: 70vh; overflow: hidden; }
+
+    .title {
+      position: absolute;
+      top: 12%;
+      left: 0;
+      width: 100%;
+      color: var(--text);
+      font-size: clamp(1.1rem, 2vw, 1.5rem);
+      text-align: center;
+      font-family: var(--font-body);
+      letter-spacing: 0.04em;
+    }
+    .logo {
+      font-size: clamp(2.6rem, 9vw, 5rem);
+      font-weight: 800;
+      margin-top: 10px;
+      font-family: var(--font-display);
+      letter-spacing: -0.02em;
+    }
+    .c-letter { color: var(--magenta); position: relative; }
+    .g-letter {
+      color: var(--lime);
+      opacity: 0;
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+    }
+    .floor {
+      position: absolute;
+      bottom: 20%;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background-color: var(--lime);
+      box-shadow: 0 0 14px 3px rgba(251, 191, 36, 0.7);
+    }
+    .ball {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: var(--lime);
+      border-radius: 50%;
+      box-shadow: 0 0 14px 3px rgba(251, 191, 36, 0.7);
+      transform: translate(-50%, -50%);
+      opacity: 0;
+    }
+    .particle {
+      position: absolute;
+      width: 5px;
+      height: 5px;
+      background-color: var(--lime);
+      border-radius: 50%;
+      opacity: 0;
+      box-shadow: 0 0 6px 1px rgba(251, 191, 36, 0.8);
+    }
+    .replay-btn {
+      position: absolute;
+      bottom: 8%;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 12px 26px;
+      background: var(--glass);
+      color: var(--text);
+      border: 1px solid var(--lime);
+      border-radius: var(--radius-full);
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 700;
+      font-family: var(--font-body);
+      letter-spacing: 0.04em;
+      opacity: 0;
+      transition: opacity 0.5s var(--ease-out), box-shadow var(--speed-2) var(--ease-out), background var(--speed-2) var(--ease-out);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+    .replay-btn:hover {
+      background: rgba(251, 191, 36, 0.14);
+      box-shadow: var(--glow-lime);
+    }
+    .replay-btn:focus-visible { outline: 2px solid var(--violet); outline-offset: 3px; }
+
+    .site-footer {
+      border-top: 1px solid var(--stroke);
+      margin-top: var(--s8);
+      padding: var(--s5) max(4vw, 16px);
+      display: flex; flex-wrap: wrap; gap: var(--s3);
+      align-items: center; justify-content: space-between;
+      color: var(--text-3); font-size: 0.95rem; font-weight: 500;
+    }
+    .site-footer a { color: var(--violet); text-decoration: none; }
+    .site-footer a:hover { text-decoration: underline; }
+
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out); transition-delay: var(--reveal-delay, 0ms); }
+    .reveal.in { opacity: 1; transform: none; }
+
+    @media (max-width: 620px) {
+      .site-nav { display: none; }
+      #stage { min-height: 60vh; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .reveal { opacity: 1; transform: none; transition: none; }
+      .chip .dot, .grad-text { animation: none; }
+    }
+  </style>
+</head>
+<body>
+<script>
+(function () {
+  if (!('ontouchstart' in window) || window.__touchBridge) return;
+  window.__touchBridge = true;
+  var lt = null;
+  function fire(type, t) {
+    var el = document.elementFromPoint(t.clientX, t.clientY) || document;
+    el.dispatchEvent(new MouseEvent(type, {
+      bubbles: true, cancelable: true, view: window,
+      clientX: t.clientX, clientY: t.clientY,
+      button: 0, buttons: type === 'mousemove' ? 1 : 0
+    }));
+  }
+  document.addEventListener('touchstart', function (e) {
+    if (e.touches.length !== 1) return;
+    lt = e.touches[0];
+    fire('mousemove', lt); fire('mousedown', lt);
+  }, { passive: true });
+  document.addEventListener('touchmove', function (e) {
+    if (e.touches.length !== 1 || !lt) return;
+    lt = e.touches[0];
+    fire('mousemove', lt);
+  }, { passive: true });
+  document.addEventListener('touchend', function () {
+    if (!lt) return;
+    fire('mouseup', lt);
+    lt = null;
+  }, { passive: true });
+})();
+</script>
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header class="site-header">
+    <a href="#main" class="wordmark"><span class="mark" aria-hidden="true">→</span>WAAY2TECH</a>
+    <nav class="site-nav" aria-label="Site">
+      <a href="#">Manifesto</a>
+      <a href="#">The Loop</a>
+      <a href="#">Contact</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="page-head" aria-labelledby="change-title">
+      <p class="kicker reveal">Kinetic Typography · Motivation</p>
+      <h1 class="reveal" id="change-title" style="--reveal-delay:80ms">Momentum only moves <span class="grad-text">when you do.</span></h1>
+      <p class="lead reveal" style="--reveal-delay:160ms">A golden pulse races across the floor, collides with the word CHANGE, and rewrites it — one letter at a time. Watch the C become a G.</p>
+      <div class="row reveal" style="--reveal-delay:240ms">
+        <span class="chip"><span class="dot"></span>auto-plays</span>
+        <span class="chip">timed choreography</span>
+        <span class="chip">replayable</span>
+      </div>
+    </section>
+
+    <section class="demo-stage reveal" style="--reveal-delay:200ms" aria-label="Change animation demo">
+      <div id="stage">
+        <div class="title">
+          True progress is made by
+          <div class="logo">
+            CHAN<span class="c-letter" id="c-letter">C</span>E
+          </div>
+        </div>
+        <div class="floor" aria-hidden="true"></div>
+        <div class="ball" id="ball" aria-hidden="true"></div>
+        <button class="replay-btn" id="replay-btn" type="button">↻ Replay Change</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span>WAAY2TECH · <span data-year></span></span>
+    <a href="#">The only constant is momentum.</a>
+  </footer>
+
+  <script>
+    (() => {
+      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      document.querySelectorAll('[data-year]').forEach((el) => { el.textContent = new Date().getFullYear(); });
+      if (reduced) {
+        document.querySelectorAll('.reveal').forEach((el) => el.classList.add('in'));
+      } else if ('IntersectionObserver' in window) {
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('in');
+              io.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.15 });
+        document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+      } else {
+        document.querySelectorAll('.reveal').forEach((el) => el.classList.add('in'));
+      }
+    })();
+  </script>
+  <script>
+    'use strict';
+
+    window.addEventListener('load', () => {
+      const ball = document.getElementById('ball');
+      const cLetter = document.querySelector('.c-letter');
+      const replayBtn = document.getElementById('replay-btn');
+      const stage = document.getElementById('stage');
+      const floor = document.querySelector('.floor');
+
+      const particleCount = 50;
+      const particles = [];
+
+      for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        stage.appendChild(particle);
+        particles.push(particle);
+      }
+
+      const startAnimation = () => {
+        ball.style.opacity = '0';
+        replayBtn.style.opacity = '0';
+
+        const oldG = document.querySelector('.g-letter');
+        if (oldG) oldG.remove();
+
+        cLetter.style.opacity = '1';
+        cLetter.style.color = 'var(--magenta)';
+
+        const gLetter = document.createElement('span');
+        gLetter.className = 'g-letter';
+        gLetter.textContent = 'G';
+        cLetter.appendChild(gLetter);
+
+        const stageRect = stage.getBoundingClientRect();
+        const floorRect = floor.getBoundingClientRect();
+        const cRect = cLetter.getBoundingClientRect();
+
+        const startX = stageRect.width * 0.18;
+        const startY = stageRect.height * 0.28;
+
+        const impactX = stageRect.width * 0.38;
+        const impactY = floorRect.top - stageRect.top;
+
+        const cX = cRect.left + cRect.width / 2 - stageRect.left;
+        const cY = cRect.top + cRect.height / 2 - stageRect.top;
+
+        const endX = cX + (cX - impactX);
+        const endY = cY + (cY - impactY);
+
+        ball.style.left = `${startX}px`;
+        ball.style.top = `${startY}px`;
+        ball.style.opacity = '1';
+
+        setTimeout(() => {
+          ball.style.transition = 'left 0.7s ease-in, top 0.7s ease-in';
+          ball.style.left = `${impactX}px`;
+          ball.style.top = `${impactY}px`;
+
+          setTimeout(() => {
+            const flash = document.createElement('div');
+            flash.style.position = 'absolute';
+            flash.style.left = `${impactX}px`;
+            flash.style.top = `${impactY}px`;
+            flash.style.width = '40px';
+            flash.style.height = '40px';
+            flash.style.borderRadius = '50%';
+            flash.style.backgroundColor = 'rgba(251, 191, 36, 0.7)';
+            flash.style.boxShadow = '0 0 20px 10px rgba(251, 191, 36, 0.7)';
+            flash.style.transform = 'translate(-50%, -50%)';
+            flash.style.opacity = '0.8';
+            stage.appendChild(flash);
+
+            setTimeout(() => {
+              flash.style.transition = 'opacity 0.3s';
+              flash.style.opacity = '0';
+              setTimeout(() => flash.remove(), 300);
+            }, 100);
+          }, 680);
+
+          setTimeout(() => {
+            ball.style.transition = 'left 0.8s ease-out, top 0.8s ease-out';
+            ball.style.left = `${cX}px`;
+            ball.style.top = `${cY}px`;
+
+            setTimeout(() => {
+              const flash = document.createElement('div');
+              flash.style.position = 'absolute';
+              flash.style.left = `${cX}px`;
+              flash.style.top = `${cY}px`;
+              flash.style.width = '50px';
+              flash.style.height = '50px';
+              flash.style.borderRadius = '50%';
+              flash.style.backgroundColor = 'rgba(251, 191, 36, 0.8)';
+              flash.style.boxShadow = '0 0 30px 15px rgba(251, 191, 36, 0.6)';
+              flash.style.transform = 'translate(-50%, -50%)';
+              flash.style.opacity = '0.9';
+              stage.appendChild(flash);
+
+              setTimeout(() => {
+                flash.style.transition = 'opacity 0.5s';
+                flash.style.opacity = '0';
+                setTimeout(() => flash.remove(), 500);
+              }, 200);
+
+              particles.forEach((particle) => {
+                const offsetX = (Math.random() - 0.5) * 20;
+                const offsetY = (Math.random() - 0.5) * 20;
+
+                particle.style.left = `${cX + offsetX}px`;
+                particle.style.top = `${cY + offsetY}px`;
+                particle.style.opacity = '1';
+
+                const size = Math.random() * 5 + 3;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+
+                const endOffsetX = (Math.random() - 0.5) * 150;
+                const endOffsetY = (Math.random() - 0.5) * 150;
+
+                setTimeout(() => {
+                  particle.style.transition = 'left 2s ease-out, top 2s ease-out, opacity 2s ease-out';
+                  particle.style.left = `${cX + endOffsetX}px`;
+                  particle.style.top = `${cY + endOffsetY}px`;
+                  particle.style.opacity = '0';
+                }, Math.random() * 100);
+              });
+
+              cLetter.style.color = 'transparent';
+              gLetter.style.transition = 'opacity 0.7s ease-in';
+              gLetter.style.opacity = '1';
+            }, 780);
+
+            setTimeout(() => {
+              ball.style.transition = 'left 1s ease-in, top 1s ease-in';
+              ball.style.left = `${endX}px`;
+              ball.style.top = `${endY}px`;
+
+              setTimeout(() => {
+                replayBtn.style.transition = 'opacity 0.5s';
+                replayBtn.style.opacity = '1';
+              }, 1500);
+            }, 800);
+          }, 700);
+        }, 300);
+      };
+
+      startAnimation();
+
+      replayBtn.addEventListener('click', startAnimation);
+    });
+  </script>
+</body>
+</html>

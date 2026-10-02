@@ -1,0 +1,507 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="FORGE — blurred typography that sharpens only when your cursor gets close. The pointer-reactive DO IT poster for relentless builders.">
+  <title>FORGE · DO IT — Pointer-Reactive Typography | Waay2Tech</title>
+  <link rel="canonical" href="do it.html">
+  <meta property="og:site_name" content="WAAY2TECH">
+  <meta name="author" content="Waay2Tech">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="FORGE · DO IT — Pointer-Reactive Typography | Waay2Tech">
+  <meta property="og:description" content="FORGE — blurred typography that sharpens only when your cursor gets close. The pointer-reactive DO IT poster for relentless builders.">
+  <meta property="og:url" content="do it.html">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="FORGE · DO IT — Pointer-Reactive Typography">
+  <meta name="twitter:description" content="FORGE — blurred typography that sharpens only when your cursor gets close. The pointer-reactive DO IT poster for relentless builders.">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "FORGE · DO IT — Pointer-Reactive Typography | Waay2Tech",
+    "description": "Blurred typography that sharpens only when your cursor gets close — the pointer-reactive DO IT poster.",
+    "url": "do it.html"
+  }
+  </script>
+  <style>
+    :root {
+      --bg: #0c0c0c;
+      --bg-2: #171717;
+      --bg-3: #1f1f1f;
+      --surface: #171717;
+      --text: #f5f5f5;
+      --text-2: #b8b8b8;
+      --text-3: #7a7a7a;
+      --line: rgba(255, 255, 255, 0.1);
+      --primary: #ff6b00;
+      --accent: #f5f5f5;
+      --accent-2: #ffb703;
+      --glow-primary: 0 0 10px rgba(255, 107, 0, 0.55), 0 0 40px rgba(255, 107, 0, 0.35);
+      --glow-amber: 0 0 10px rgba(255, 183, 3, 0.5), 0 0 40px rgba(255, 183, 3, 0.3);
+      --radius-sm: 6px;
+      --radius-md: 12px;
+      --radius-lg: 18px;
+      --s1: 4px; --s2: 8px; --s3: 12px; --s4: 16px; --s5: 24px;
+      --s6: 32px; --s7: 48px; --s8: 64px; --s9: 96px;
+      --ease: cubic-bezier(0.22, 1, 0.36, 1);
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --font-display: 'Bebas Neue', sans-serif;
+      --font-body: 'Inter', sans-serif;
+      --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    ::selection { background: var(--primary); color: #0c0c0c; }
+
+    ::-webkit-scrollbar { width: 10px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: rgba(255, 107, 0, 0.5); border-radius: 999px; border: 2px solid var(--bg); }
+
+    :focus-visible { outline: 3px solid var(--primary); outline-offset: 3px; border-radius: 4px; }
+
+    .skip-link {
+      position: fixed; top: -100%; left: var(--s4); z-index: 200;
+      background: var(--primary); color: #0c0c0c; padding: var(--s2) var(--s4);
+      border-radius: 0 0 var(--radius-md) var(--radius-md);
+      font-weight: 800; text-decoration: none; transition: top 0.3s var(--ease);
+    }
+    .skip-link:focus { top: 0; }
+
+    .site-header {
+      position: sticky; top: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: var(--s3) var(--s5);
+      background: rgba(12, 12, 12, 0.86);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line);
+    }
+    .brand {
+      font-family: var(--font-display); font-size: 1.5rem; letter-spacing: 0.06em;
+      text-decoration: none; color: var(--text);
+      display: flex; align-items: center; gap: 10px;
+    }
+    .brand .mark {
+      display: grid; place-items: center; width: 30px; height: 30px;
+      background: linear-gradient(135deg, var(--primary), var(--accent-2));
+      color: #0c0c0c; font-size: 1.05rem; border-radius: 8px;
+      box-shadow: var(--glow-primary);
+    }
+    .nav { display: flex; gap: var(--s4); list-style: none; }
+    .nav a { color: var(--text-2); text-decoration: none; font-weight: 600; font-size: 0.88rem; transition: color 0.25s; }
+    .nav a:hover { color: var(--primary); }
+
+    .wrap { max-width: 1080px; margin-inline: auto; padding-inline: var(--s5); }
+
+    .hero { padding: var(--s8) var(--s5) var(--s6); text-align: center; }
+    .kicker {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase;
+      font-size: 0.72rem; color: var(--primary);
+    }
+    .kicker::before { content: ''; width: 8px; height: 8px; background: var(--accent-2); transform: rotate(45deg); }
+    h1 {
+      font-family: var(--font-display);
+      font-size: clamp(4rem, 14vw, 9rem);
+      line-height: 0.9; letter-spacing: 0.02em;
+      margin: var(--s3) 0;
+    }
+    h1 .grad {
+      background: linear-gradient(120deg, var(--primary), var(--accent-2));
+      -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent;
+    }
+    .lead { max-width: 52ch; margin-inline: auto; color: var(--text-2); }
+
+    .demo-stage {
+      position: relative;
+      min-height: clamp(340px, 52vh, 540px);
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      background:
+        radial-gradient(circle at 50% 50%, rgba(255, 107, 0, 0.14), transparent 60%),
+        linear-gradient(180deg, var(--bg-2), var(--bg));
+      touch-action: none;
+    }
+    .demo-stage::after {
+      content: '';
+      position: absolute; inset: 0; pointer-events: none;
+      background-image: repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.025) 0 1px, transparent 1px 44px);
+    }
+
+    .light {
+      position: fixed;
+      pointer-events: none;
+      width: 800px;
+      height: 700px;
+      border-radius: 50%;
+      background: radial-gradient(
+        circle,
+        rgba(255, 255, 255, 0.09) 0%,
+        rgba(255, 107, 0, 0.1) 30%,
+        rgba(255, 255, 255, 0) 70%
+      );
+      transform: translate(-50%, -50%);
+      z-index: 2;
+    }
+
+    .text-container {
+      position: relative;
+      text-align: center;
+      z-index: 3;
+    }
+
+    .char {
+      display: inline-block;
+      font-family: var(--font-display);
+      font-size: clamp(3.4rem, 16vw, 7rem);
+      font-weight: 400;
+      color: var(--text);
+      text-transform: uppercase;
+      letter-spacing: 0.01em;
+      filter: blur(10px);
+      text-shadow: 0 0 20px rgba(255, 255, 255, 0.12);
+      transition: filter 0.45s var(--ease-out), color 0.45s var(--ease-out), text-shadow 0.45s var(--ease-out);
+    }
+
+    .char.clear {
+      filter: blur(0);
+      color: #ffffff;
+      text-shadow:
+        0 0 10px rgba(255, 107, 0, 0.55),
+        0 0 40px rgba(255, 183, 3, 0.45);
+    }
+
+    .line {
+      white-space: nowrap;
+      margin: 0;
+      line-height: 1.05;
+    }
+
+    .stack { max-width: 1080px; margin-inline: auto; padding-inline: var(--s5); }
+    .stack--lg { padding-top: var(--s6); }
+
+    .code-editor {
+      margin-top: var(--s6);
+      overflow: hidden;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--line);
+      background: var(--bg-2);
+      box-shadow: 0 30px 70px -30px rgba(0, 0, 0, 0.8);
+    }
+
+    .editor-header {
+      height: 44px;
+      background: var(--bg-3);
+      display: flex;
+      align-items: center;
+      padding: 0 var(--s4);
+      border-bottom: 1px solid var(--line);
+      gap: var(--s3);
+    }
+
+    .window-buttons { display: flex; gap: 6px; }
+
+    .window-button { width: 12px; height: 12px; border-radius: 50%; }
+    .close { background: #ff5f56; }
+    .minimize { background: #ffbd2e; }
+    .maximize { background: #27c93f; }
+
+    .file-name { color: var(--text-3); font-size: 0.76rem; font-family: var(--font-mono); }
+
+    .editor-content {
+      padding: var(--s4);
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      line-height: 1.6;
+      color: var(--text-2);
+      overflow-x: auto;
+    }
+
+    .tag { color: var(--primary); }
+    .attr { color: var(--accent-2); }
+    .value { color: var(--text); }
+    .text { color: var(--text-2); }
+
+    .indent-1 { margin-left: 20px; }
+    .indent-2 { margin-left: 40px; }
+    .indent-3 { margin-left: 60px; }
+
+    .hashtags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--s2);
+      padding: var(--s3) var(--s4);
+      border-top: 1px solid var(--line);
+      color: var(--text-3);
+      font-size: 0.76rem;
+    }
+    .hashtags .chip {
+      background: rgba(255, 107, 0, 0.1);
+      border: 1px solid rgba(255, 107, 0, 0.25);
+      border-radius: 999px;
+      padding: 4px 12px;
+      color: var(--text-2);
+    }
+
+    .site-footer {
+      border-top: 1px solid var(--line);
+      padding: var(--s5) var(--s5) var(--s6);
+      text-align: center;
+      color: var(--text-3); font-size: 0.88rem;
+    }
+    .site-footer .brand-mini { font-family: var(--font-display); font-size: 1.1rem; letter-spacing: 0.06em; color: var(--primary); }
+
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.7s var(--ease), transform 0.7s var(--ease); }
+    .reveal.in { opacity: 1; transform: none; }
+
+    @media (max-width: 768px) {
+      .hero { padding-top: var(--s6); }
+    }
+    @media (max-width: 480px) {
+      .site-header { padding: var(--s3) var(--s4); }
+      .nav { gap: var(--s3); }
+      .wrap, .stack { padding-inline: var(--s4); }
+      .editor-content { font-size: 0.68rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.001s !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001s !important;
+        scroll-behavior: auto !important;
+      }
+      .char { filter: blur(0); }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+<script>
+(function () {
+  if (!('ontouchstart' in window) || window.__touchBridge) return;
+  window.__touchBridge = true;
+  var lt = null;
+  function fire(type, t) {
+    var el = document.elementFromPoint(t.clientX, t.clientY) || document;
+    el.dispatchEvent(new MouseEvent(type, {
+      bubbles: true, cancelable: true, view: window,
+      clientX: t.clientX, clientY: t.clientY,
+      button: 0, buttons: type === 'mousemove' ? 1 : 0
+    }));
+  }
+  document.addEventListener('touchstart', function (e) {
+    if (e.touches.length !== 1) return;
+    lt = e.touches[0];
+    fire('mousemove', lt); fire('mousedown', lt);
+  }, { passive: true });
+  document.addEventListener('touchmove', function (e) {
+    if (e.touches.length !== 1 || !lt) return;
+    lt = e.touches[0];
+    fire('mousemove', lt);
+  }, { passive: true });
+  document.addEventListener('touchend', function () {
+    if (!lt) return;
+    fire('mouseup', lt);
+    lt = null;
+  }, { passive: true });
+})();
+</script>
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header class="site-header">
+    <a class="brand" href="#main">WAAY2TECH</span>FORGE</a>
+    <nav aria-label="Primary">
+      <ul class="nav">
+        <li><a href="#">Train</a></li>
+        <li><a href="#">Build</a></li>
+        <li><a href="#">Repeat</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero" aria-labelledby="forge-title">
+      <p class="kicker reveal">Interactive · typography · pointer</p>
+      <h1 id="forge-title" class="reveal">DO IT <span class="grad">NOW</span></h1>
+      <p class="lead reveal">The words stay blurred until your cursor gets close. Prove the point — get closer.</p>
+    </section>
+
+    <section class="demo-stage reveal reveal-zoom" aria-label="Pointer-reactive typography demo">
+      <div class="light" id="light" aria-hidden="true"></div>
+      <div class="text-container" role="img" aria-label="Large text reading DO NOT QUIT then DO IT, sharpened by cursor proximity">
+        <div class="line">
+          <span class="char" data-char="D" id="char-d">D</span>
+          <span class="char" data-char="O" id="char-o">O</span>
+          <span class="char" data-char="N" id="char-n">N</span>
+          <span class="char" data-char="'" id="char-apos">'</span>
+          <span class="char" data-char="T" id="char-t1">T</span>
+        </div>
+        <div class="line">
+          <span class="char" data-char="Q" id="char-q">Q</span>
+          <span class="char" data-char="U" id="char-u">U</span>
+          <span class="char" data-char="I" id="char-i">I</span>
+          <span class="char" data-char="T" id="char-t2">T</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="stack stack--lg" aria-label="Source code">
+      <div class="code-editor reveal">
+        <div class="editor-header">
+          <div class="window-buttons">
+            <div class="window-button close"></div>
+            <div class="window-button minimize"></div>
+            <div class="window-button maximize"></div>
+          </div>
+          <div class="file-name">do-it.html</div>
+        </div>
+        <div class="editor-content">
+          <div><span class="tag">&lt;!DOCTYPE html&gt;</span></div>
+          <div><span class="tag">&lt;html</span> <span class="attr">lang=</span><span class="value">"en"</span><span class="tag">&gt;</span></div>
+          <div><span class="tag">&lt;head&gt;</span></div>
+          <div class="indent-1"><span class="tag">&lt;title&gt;</span><span class="text">DO IT NOW</span><span class="tag">&lt;/title&gt;</span></div>
+          <div><span class="tag">&lt;/head&gt;</span></div>
+          <div><span class="tag">&lt;body&gt;</span></div>
+          <div class="indent-1"><span class="tag">&lt;div</span> <span class="attr">class=</span><span class="value">"light"</span> <span class="attr">id=</span><span class="value">"light"</span><span class="tag">&gt;&lt;/div&gt;</span></div>
+          <div class="indent-1"><span class="tag">&lt;div</span> <span class="attr">class=</span><span class="value">"text-container"</span><span class="tag">&gt;</span></div>
+          <div class="indent-2"><span class="tag">&lt;span</span> <span class="attr">class=</span><span class="value">"char"</span> <span class="attr">data-char=</span><span class="value">"D"</span><span class="tag">&gt;</span><span class="text">D</span><span class="tag">&lt;/span&gt;</span></div>
+          <div class="indent-2"><span class="text">...</span></div>
+          <div class="indent-1"><span class="tag">&lt;/div&gt;</span></div>
+          <div><span class="tag">&lt;script&gt;</span></div>
+          <div class="indent-1"><span class="text">// proximity = focus · blur on contact</span></div>
+          <div><span class="tag">&lt;/script&gt;</span></div>
+          <div><span class="tag">&lt;/body&gt;</span></div>
+          <div><span class="tag">&lt;/html&gt;</span></div>
+        </div>
+        <div class="hashtags">
+          <span class="chip">#interactiveTypography</span>
+          <span class="chip">#webDev</span>
+          <span class="chip">#cssArt</span>
+          <span class="chip">#creativeCoding</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span><span class="brand-mini">WAAY2TECH</span> · <span data-year></span> · no excuses</span>
+  </footer>
+
+  <script>
+    'use strict';
+
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReduced) { document.documentElement.classList.add('reduced-motion'); }
+
+    document.querySelectorAll('[data-year]').forEach(function (el) { el.textContent = new Date().getFullYear(); });
+
+    var revealEls = document.querySelectorAll('.reveal');
+    if ('IntersectionObserver' in window && !prefersReduced) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+      revealEls.forEach(function (el) { io.observe(el); });
+    } else {
+      revealEls.forEach(function (el) { el.classList.add('in'); });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const light = document.getElementById('light');
+      const chars = document.querySelectorAll('.char');
+
+      const charData = [];
+      let lastUpdate = 0;
+
+      const updateCharPositions = () => {
+        charData.length = 0;
+
+        chars.forEach((char) => {
+          const rect = char.getBoundingClientRect();
+          charData.push({
+            element: char,
+            character: char.dataset.char,
+            x: rect.left + rect.width / 2,
+            y: rect.top + rect.height / 2
+          });
+        });
+
+        lastUpdate = Date.now();
+      };
+
+      const checkProximity = (px, py) => {
+        if (Date.now() - lastUpdate > 1000) updateCharPositions();
+
+        charData.forEach((data) => {
+          const dx = px - data.x;
+          const dy = py - data.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+          const focusable = data.character === 'D' || data.character === 'O' ||
+                            data.character === 'I' || data.character === 'T';
+
+          if (focusable && distance < 170) {
+            data.element.classList.add('clear');
+          } else {
+            data.element.classList.remove('clear');
+          }
+        });
+      };
+
+      updateCharPositions();
+
+      window.addEventListener('resize', updateCharPositions);
+
+      document.addEventListener('mousemove', (e) => {
+        light.style.left = `${e.clientX}px`;
+        light.style.top = `${e.clientY}px`;
+        checkProximity(e.clientX, e.clientY);
+      });
+
+      document.addEventListener('touchmove', (e) => {
+        const touch = e.touches && e.touches[0];
+        if (touch) {
+          light.style.left = `${touch.clientX}px`;
+          light.style.top = `${touch.clientY}px`;
+          checkProximity(touch.clientX, touch.clientY);
+        }
+        e.preventDefault();
+      }, { passive: false });
+
+      setInterval(updateCharPositions, 2000);
+
+      setTimeout(() => {
+        const doItChars = ['char-d', 'char-o', 'char-i', 'char-t2'];
+        doItChars.forEach((id) => document.getElementById(id).classList.add('clear'));
+        setTimeout(() => {
+          doItChars.forEach((id) => document.getElementById(id).classList.remove('clear'));
+        }, 1800);
+      }, 700);
+    });
+  </script>
+</body>
+</html>

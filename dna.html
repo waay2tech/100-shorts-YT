@@ -1,0 +1,412 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="HELIX LAB — a pure-CSS 3D DNA double helix. Twirling base pairs and glowing rungs on an electric blue-green terminal, no canvas, no libraries.">
+  <title>HELIX LAB · The Code of Life, In 3D | Waay2Tech</title>
+  <link rel="canonical" href="dna.html">
+  <meta property="og:site_name" content="WAAY2TECH">
+  <meta name="author" content="Waay2Tech">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="HELIX LAB · The Code of Life, In 3D | Waay2Tech">
+  <meta property="og:description" content="HELIX LAB — a pure-CSS 3D DNA double helix. Twirling base pairs and glowing rungs on an electric blue-green terminal, no canvas, no libraries.">
+  <meta property="og:url" content="dna.html">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="HELIX LAB · The Code of Life, In 3D">
+  <meta name="twitter:description" content="HELIX LAB — a pure-CSS 3D DNA double helix. Twirling base pairs and glowing rungs on an electric blue-green terminal.">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "HELIX LAB · The Code of Life, In 3D | Waay2Tech",
+    "description": "A pure-CSS 3D DNA double helix with twirling base pairs and glowing rungs.",
+    "url": "dna.html"
+  }
+  </script>
+  <style>
+    :root {
+      --bg: #04070a;
+      --bg-2: #0a1216;
+      --bg-3: #0d1820;
+      --surface: #0a1216;
+      --text: #d7f7e9;
+      --text-2: #9fb9ae;
+      --text-3: #5f7a70;
+      --line: rgba(45, 212, 191, 0.18);
+      --primary: #2dd4bf;
+      --accent: #34d399;
+      --accent-2: #22d3ee;
+      --glow: 0 0 18px rgba(45, 212, 191, 0.45);
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 16px;
+      --s1: 4px; --s2: 8px; --s3: 12px; --s4: 16px; --s5: 24px;
+      --s6: 32px; --s7: 48px; --s8: 64px; --s9: 96px;
+      --ease: cubic-bezier(0.22, 1, 0.36, 1);
+      --font-mono: 'JetBrains Mono', monospace;
+      --font-body: 'Inter', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--bg);
+      background-image:
+        radial-gradient(90% 60% at 50% -10%, rgba(34, 211, 238, 0.1), transparent 60%),
+        radial-gradient(70% 50% at 90% 110%, rgba(52, 211, 153, 0.08), transparent 60%);
+      background-attachment: fixed;
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body::before {
+      content: '';
+      position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      background-image:
+        linear-gradient(rgba(45, 212, 191, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(45, 212, 191, 0.035) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: radial-gradient(80% 80% at 50% 30%, #000 40%, transparent 100%);
+    }
+
+    ::selection { background: var(--primary); color: #04070a; }
+
+    ::-webkit-scrollbar { width: 10px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: rgba(45, 212, 191, 0.4); border-radius: 999px; border: 2px solid var(--bg); }
+
+    :focus-visible { outline: 2px solid var(--primary); outline-offset: 3px; border-radius: 3px; }
+
+    .skip-link {
+      position: fixed; top: -100%; left: var(--s4); z-index: 200;
+      background: var(--primary); color: #04070a; padding: var(--s2) var(--s4);
+      border-radius: 0 0 var(--radius-md) var(--radius-md);
+      font-family: var(--font-mono); font-weight: 600; text-decoration: none; transition: top 0.3s var(--ease);
+    }
+    .skip-link:focus { top: 0; }
+
+    .site-header {
+      position: sticky; top: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: var(--s3) var(--s5);
+      background: rgba(4, 7, 10, 0.82);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line);
+    }
+    .brand {
+      font-family: var(--font-mono); font-weight: 600; font-size: 1rem;
+      letter-spacing: 0.08em; text-decoration: none; color: var(--text);
+      display: flex; align-items: center; gap: 10px;
+    }
+    .brand .mark {
+      width: 26px; height: 26px; border-radius: 50%;
+      background: radial-gradient(circle at 50% 50%, var(--accent-2), var(--primary), transparent 70%);
+      box-shadow: var(--glow);
+    }
+    .brand .mark::after {
+      content: ''; display: block; width: 100%; height: 100%;
+      border: 3px dotted rgba(4, 7, 10, 0.5); border-radius: 50%;
+    }
+    .nav { display: flex; gap: var(--s4); list-style: none; }
+    .nav a { color: var(--text-2); text-decoration: none; font-size: 0.85rem; font-family: var(--font-mono); transition: color 0.25s; }
+    .nav a:hover { color: var(--primary); }
+
+    .wrap { max-width: 1180px; margin-inline: auto; padding-inline: var(--s5); position: relative; z-index: 1; }
+
+    .page-head { padding: var(--s8) var(--s5) var(--s4); display: grid; gap: var(--s4); max-width: 1180px; margin-inline: auto; position: relative; z-index: 1; }
+    .kicker {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-family: var(--font-mono); font-size: 0.72rem; font-weight: 500;
+      letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent-2);
+    }
+    .kicker::before { content: '▸'; color: var(--primary); }
+    h1 {
+      font-family: var(--font-mono); font-weight: 600;
+      font-size: clamp(1.9rem, 5vw, 3.4rem);
+      line-height: 1.05; letter-spacing: -0.01em;
+    }
+    h1 .grad {
+      background: linear-gradient(120deg, #2dd4bf 0%, #34d399 50%, #22d3ee 100%);
+      -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent;
+    }
+    .lead { max-width: 60ch; color: var(--text-2); font-size: 1.02rem; }
+    .chips { display: flex; flex-wrap: wrap; gap: var(--s2); }
+    .chip {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: var(--font-mono); font-size: 0.76rem;
+      background: rgba(10, 18, 22, 0.8); border: 1px solid var(--line);
+      border-radius: var(--radius-full, 999px); padding: 7px 14px; color: var(--text-2);
+    }
+    .chip .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); box-shadow: var(--glow); }
+
+    .demo-stage {
+      position: relative; z-index: 1;
+      min-height: 74vh;
+      margin: var(--s4) auto var(--s8);
+      max-width: 1180px;
+      overflow: hidden;
+      display: grid;
+      place-items: center;
+      background:
+        radial-gradient(120% 100% at 50% 0%, rgba(13, 24, 32, 0.9), rgba(4, 7, 10, 0) 70%);
+    }
+
+    .dna {
+      position: relative;
+      transform: rotate(15deg);
+      transform-style: preserve-3d;
+    }
+
+    .link {
+      margin: 1em auto;
+      width: 10em;
+      height: 1em;
+      transform-style: preserve-3d;
+      animation: linkY 15s infinite linear;
+      animation-delay: var(--iad);
+    }
+
+    .link:nth-child(1) { --iad: 0s; }
+    .link:nth-child(2) { --iad: -0.625s; }
+    .link:nth-child(3) { --iad: -1.25s; }
+    .link:nth-child(4) { --iad: -1.875s; }
+    .link:nth-child(5) { --iad: -2.5s; }
+    .link:nth-child(6) { --iad: -3.125s; }
+    .link:nth-child(7) { --iad: -3.75s; }
+    .link:nth-child(8) { --iad: -4.375s; }
+    .link:nth-child(9) { --iad: -5s; }
+    .link:nth-child(10) { --iad: -5.625s; }
+    .link:nth-child(11) { --iad: -6.25s; }
+    .link:nth-child(12) { --iad: -6.875s; }
+    .link:nth-child(13) { --iad: -7.5s; }
+    .link:nth-child(14) { --iad: -8.125s; }
+    .link:nth-child(15) { --iad: -8.75s; }
+    .link:nth-child(16) { --iad: -9.375s; }
+    .link:nth-child(17) { --iad: -10s; }
+    .link:nth-child(18) { --iad: -10.625s; }
+    .link:nth-child(19) { --iad: -11.25s; }
+    .link:nth-child(20) { --iad: -11.875s; }
+    .link:nth-child(21) { --iad: -12.5s; }
+    .link:nth-child(22) { --iad: -13.125s; }
+    .link:nth-child(23) { --iad: -13.75s; }
+    .link:nth-child(24) { --iad: -14.375s; }
+
+    .link:nth-child(4n + 1) { --clr1: #2dd4bf; --clr2: #34d399; }
+    .link:nth-child(4n + 2) { --clr1: #22d3ee; --clr2: #2dd4bf; }
+    .link:nth-child(4n + 3) { --clr1: #34d399; --clr2: #22d3ee; }
+    .link:nth-child(4n + 4) { --clr1: #d7f7e9; --clr2: #2dd4bf; }
+
+    .link > div {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0.5;
+      background-image:
+        radial-gradient(#000, #0000),
+        linear-gradient(90deg, var(--clr1), var(--clr2));
+      box-shadow: 0 0 1em #d7f7e9;
+      animation: linkX 7.5s infinite linear reverse;
+    }
+
+    .link > div:nth-child(1) {
+      animation-delay: calc(var(--iad) + 0s);
+    }
+    .link > div:nth-child(2) {
+      animation-delay: calc(var(--iad) + -1.875s);
+    }
+
+    .link::before,
+    .link::after {
+      content: "";
+      position: absolute;
+      top: -0.5em;
+      width: 2em;
+      height: 2em;
+      border-radius: 50%;
+      animation: linkY 15s infinite linear reverse;
+      animation-delay: inherit;
+    }
+
+    .link::before {
+      left: -1.75em;
+      box-shadow: 0 0 1em var(--clr1);
+      background-image: radial-gradient(circle at 50% 25%, #fff, var(--clr1), #000 90%);
+    }
+
+    .link::after {
+      right: -1.75em;
+      box-shadow: 0 0 1em var(--clr2);
+      background-image: radial-gradient(circle at 50% 25%, #fff, var(--clr2), #000 90%);
+    }
+
+    @keyframes linkX {
+      0% { transform: rotateX(0deg); }
+      100% { transform: rotateX(360deg); }
+    }
+
+    @keyframes linkY {
+      0% { transform: rotateY(0deg); }
+      100% { transform: rotateY(360deg); }
+    }
+
+    .site-footer {
+      border-top: 1px solid var(--line);
+      padding: var(--s5) var(--s5) var(--s6);
+      text-align: center;
+      font-family: var(--font-mono); font-size: 0.78rem;
+      color: var(--text-3);
+    }
+    .site-footer .brand-mini { color: var(--accent-2); }
+
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.7s var(--ease), transform 0.7s var(--ease); }
+    .reveal.in { opacity: 1; transform: none; }
+
+    @media (max-width: 768px) {
+      .page-head { padding-top: var(--s6); }
+      .demo-stage { min-height: 62vh; }
+    }
+    @media (max-width: 480px) {
+      .site-header { padding: var(--s3) var(--s4); }
+      .nav { gap: var(--s3); }
+      .wrap, .page-head { padding-inline: var(--s4); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.001s !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001s !important;
+        scroll-behavior: auto !important;
+      }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+  <style>html,body{overflow-x:hidden}</style>
+</head>
+<body>
+<script>
+(function () {
+  if (!('ontouchstart' in window) || window.__touchBridge) return;
+  window.__touchBridge = true;
+  var lt = null;
+  function fire(type, t) {
+    var el = document.elementFromPoint(t.clientX, t.clientY) || document;
+    el.dispatchEvent(new MouseEvent(type, {
+      bubbles: true, cancelable: true, view: window,
+      clientX: t.clientX, clientY: t.clientY,
+      button: 0, buttons: type === 'mousemove' ? 1 : 0
+    }));
+  }
+  document.addEventListener('touchstart', function (e) {
+    if (e.touches.length !== 1) return;
+    lt = e.touches[0];
+    fire('mousemove', lt); fire('mousedown', lt);
+  }, { passive: true });
+  document.addEventListener('touchmove', function (e) {
+    if (e.touches.length !== 1 || !lt) return;
+    lt = e.touches[0];
+    fire('mousemove', lt);
+  }, { passive: true });
+  document.addEventListener('touchend', function () {
+    if (!lt) return;
+    fire('mouseup', lt);
+    lt = null;
+  }, { passive: true });
+})();
+</script>
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header class="site-header">
+    <a class="brand" href="#main">WAAY2TECH</span>HELIX LAB</a>
+    <nav aria-label="Primary">
+      <ul class="nav">
+        <li><a href="#">Sequencer</a></li>
+        <li><a href="#">Alignment</a></li>
+        <li><a href="#">About</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="page-head" aria-labelledby="helix-title">
+      <p class="kicker reveal">pure CSS · 3D geometry</p>
+      <h1 id="helix-title" class="reveal">The code of life, <span class="grad">unzipping in 3D.</span></h1>
+      <p class="lead reveal">24 glowing rungs and 48 spheres twirl on two intersecting axes — a double helix rendered entirely in CSS. No canvas, no libraries, just preserve-3d.</p>
+      <div class="chips reveal">
+        <span class="chip"><span class="dot"></span>24 base pairs</span>
+        <span class="chip">preserve-3d</span>
+        <span class="chip">zero JS</span>
+      </div>
+    </section>
+
+    <section class="demo-stage reveal" aria-label="DNA helix animation demo">
+      <div class="dna" aria-hidden="true">
+        <div class="link"><div></div><div></div></div>
+        <div class="link"><div></div><div></div></div>
+        <div class="link"><div></div><div></div></div>
+        <div class="link"><div></div><div></div></div>
+        <div class="link"><div></div><div></div></div>
+        <div class="link"><div></div><div></div></div>
+        <div class="link"><div></div><div></div></div>
+        <div class="link"><div></div><div></div></div>
+        <div class="link"><div></div><div></div></div>
+        <div class="link"><div></div><div></div></div>
+        <div class="link"><div></div><div></div></div>
+        <div class="link"><div></div><div></div></div>
+        <div class="link"><div></div><div></div></div>
+        <div class="link"><div></div><div></div></div>
+        <div class="link"><div></div><div></div></div>
+        <div class="link"><div></div><div></div></div>
+        <div class="link"><div></div><div></div></div>
+        <div class="link"><div></div><div></div></div>
+        <div class="link"><div></div><div></div></div>
+        <div class="link"><div></div><div></div></div>
+        <div class="link"><div></div><div></div></div>
+        <div class="link"><div></div><div></div></div>
+        <div class="link"><div></div><div></div></div>
+        <div class="link"><div></div><div></div></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span><span class="brand-mini">WAAY2TECH</span> · <span data-year></span> · helix sequenced in pure CSS</span>
+  </footer>
+
+  <script>
+    'use strict';
+
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReduced) { document.documentElement.classList.add('reduced-motion'); }
+
+    document.querySelectorAll('[data-year]').forEach(function (el) { el.textContent = new Date().getFullYear(); });
+
+    var revealEls = document.querySelectorAll('.reveal');
+    if ('IntersectionObserver' in window && !prefersReduced) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+      revealEls.forEach(function (el) { io.observe(el); });
+    } else {
+      revealEls.forEach(function (el) { el.classList.add('in'); });
+    }
+  </script>
+</body>
+</html>

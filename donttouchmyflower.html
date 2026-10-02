@@ -1,0 +1,799 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="PETAL GUARD — a 3D glass emoji guard for a very protective flower. Hover, stare, or poke it — the face goes from bliss to full fury with particles and mouse tilt.">
+  <title>PETAL GUARD · Don't Touch My Flower | Waay2Tech</title>
+  <link rel="canonical" href="donttouchmyflower.html">
+  <meta property="og:site_name" content="WAAY2TECH">
+  <meta name="author" content="Waay2Tech">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="PETAL GUARD · Don't Touch My Flower | Waay2Tech">
+  <meta property="og:description" content="PETAL GUARD — a 3D glass emoji guard for a very protective flower. Hover, stare, or poke it — the face goes from bliss to full fury with particles and mouse tilt.">
+  <meta property="og:url" content="donttouchmyflower.html">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="PETAL GUARD · Don't Touch My Flower">
+  <meta name="twitter:description" content="PETAL GUARD — a 3D glass emoji guard for a very protective flower. Hover, stare, or poke it — the face goes from bliss to full fury.">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "PETAL GUARD · Don't Touch My Flower | Waay2Tech",
+    "description": "A playful spring pastel meadow where a glass emoji guard protects a flower from curious cursors.",
+    "url": "donttouchmyflower.html"
+  }
+  </script>
+  <style>
+    :root {
+      --bg: #f7f2e7;
+      --bg-1: #fffdf7;
+      --bg-0: #4a3f2e;
+      --text: #4a3f2e;
+      --text-1: #4a3f2e;
+      --text-2: #7d6f55;
+      --text-3: #b3a487;
+      --line: rgba(74, 63, 46, 0.14);
+      --lime: #7ed957;
+      --magenta: #ffb3c1;
+      --cyan: #8ac6ff;
+      --amber: #ffc94d;
+      --glass: rgba(255, 253, 247, 0.72);
+      --glass-strong: rgba(255, 253, 247, 0.9);
+      --stroke: rgba(74, 63, 46, 0.14);
+      --shadow-card: 0 24px 70px -30px rgba(74, 63, 46, 0.4);
+      --radius-sm: 10px;
+      --radius-md: 16px;
+      --radius-lg: 22px;
+      --radius-xl: 28px;
+      --radius-full: 999px;
+      --s1: 4px; --s2: 8px; --s3: 12px; --s4: 16px; --s5: 24px;
+      --s6: 32px; --s7: 48px; --s8: 64px; --s9: 96px;
+      --ease: cubic-bezier(0.22, 1, 0.36, 1);
+      --font-display: 'Fredoka', sans-serif;
+      --font-body: 'Nunito', sans-serif;
+      --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--bg);
+      background-image:
+        radial-gradient(50% 34% at 12% 8%, rgba(142, 216, 107, 0.22), transparent 60%),
+        radial-gradient(46% 36% at 88% 12%, rgba(255, 179, 193, 0.3), transparent 60%),
+        radial-gradient(60% 40% at 50% 112%, rgba(138, 198, 255, 0.28), transparent 60%);
+      background-attachment: fixed;
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    ::selection { background: var(--magenta); color: #4a3f2e; }
+
+    ::-webkit-scrollbar { width: 12px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: rgba(126, 217, 87, 0.55); border-radius: 999px; border: 3px solid var(--bg); }
+
+    :focus-visible { outline: 3px solid var(--lime); outline-offset: 3px; border-radius: 6px; }
+
+    .skip-link {
+      position: fixed; top: -100%; left: var(--s4); z-index: 200;
+      background: var(--lime); color: #24330f; padding: var(--s2) var(--s4);
+      border-radius: 0 0 var(--radius-md) var(--radius-md);
+      font-weight: 800; text-decoration: none; transition: top 0.3s var(--ease);
+    }
+    .skip-link:focus { top: 0; }
+
+    .site-header {
+      position: sticky; top: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: var(--s3) var(--s5);
+      background: rgba(255, 253, 247, 0.82);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line);
+    }
+    .brand {
+      font-family: var(--font-display); font-weight: 700; font-size: 1.25rem;
+      text-decoration: none; color: var(--text);
+      display: flex; align-items: center; gap: 8px;
+    }
+    .brand .mark { font-size: 1.35rem; }
+    .nav { display: flex; gap: var(--s4); list-style: none; }
+    .nav a { color: var(--text-2); text-decoration: none; font-weight: 700; font-size: 0.9rem; transition: color 0.25s; }
+    .nav a:hover { color: var(--magenta); }
+
+    .wrap { max-width: 1100px; margin-inline: auto; padding-inline: var(--s5); padding-top: calc(var(--s8) + 24px); }
+
+    .hero { padding: 0 var(--s5) var(--s5); text-align: left; }
+    .kicker {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase;
+      font-size: 0.72rem; color: var(--lime);
+      background: rgba(126, 217, 87, 0.12); border: 1px solid rgba(126, 217, 87, 0.3);
+      padding: 6px 14px; border-radius: var(--radius-full);
+    }
+    h1 {
+      font-family: var(--font-display); font-weight: 700;
+      font-size: clamp(2.4rem, 6.5vw, 4.2rem);
+      line-height: 1.02; margin: var(--s3) 0;
+      letter-spacing: -0.01em;
+    }
+    h1 .grad {
+      background: linear-gradient(120deg, var(--lime), var(--cyan));
+      -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent;
+    }
+    .lead { max-width: 640px; color: var(--text-2); font-size: 1.05rem; }
+    .chips { display: flex; flex-wrap: wrap; gap: var(--s2); margin-top: var(--s4); }
+    .chip {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--bg-1); border: 1px solid var(--line);
+      border-radius: var(--radius-full); padding: 7px 15px;
+      font-size: 0.8rem; font-weight: 800; color: var(--text-2);
+    }
+    .chip .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--magenta); }
+
+    .flower-card {
+      max-width: 760px;
+      margin: var(--s5) auto;
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow-card);
+      overflow: hidden;
+      background: var(--bg-1);
+    }
+
+    .content {
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      min-height: 300px;
+      background:
+        radial-gradient(90% 90% at 15% 10%, rgba(255, 179, 193, 0.35), transparent 55%),
+        radial-gradient(80% 90% at 85% 100%, rgba(126, 217, 87, 0.28), transparent 55%),
+        radial-gradient(70% 60% at 60% 30%, rgba(138, 198, 255, 0.2), transparent 60%);
+      overflow: hidden;
+      padding: var(--s5) var(--s5) var(--s5) var(--s6);
+      z-index: 10;
+      border: 1px solid var(--line);
+    }
+
+    .text-container {
+      flex: 1;
+      z-index: 20;
+      position: relative;
+    }
+    .text-container h2 {
+      font-family: var(--font-display);
+      font-size: var(--text-2xl, 2.2rem);
+      font-weight: 700;
+      text-transform: uppercase;
+      line-height: 1.02;
+      margin-bottom: 4px;
+      letter-spacing: -0.01em;
+      color: var(--text);
+    }
+    .subtitle {
+      font-size: 1.1rem;
+      color: var(--lime);
+      font-weight: 800;
+      text-shadow: 0 0 15px rgba(126, 217, 87, 0.5);
+      transition: opacity 0.5s ease;
+    }
+    .warning {
+      font-size: 1.1rem;
+      color: var(--magenta);
+      font-weight: 800;
+      opacity: 0;
+      position: absolute;
+      top: 100%;
+      text-shadow: 0 0 15px rgba(255, 179, 193, 0.6);
+      transition: opacity 0.5s ease;
+      white-space: nowrap;
+    }
+
+    .flower-container {
+      position: absolute;
+      right: 215px;
+      cursor: pointer;
+      z-index: 25;
+      transition: transform 0.3s ease;
+    }
+    .flower-container:hover { transform: scale(1.1); }
+    .flower {
+      position: relative;
+      width: 80px;
+      height: 80px;
+    }
+    .petal {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      background: var(--magenta);
+      border-radius: 50%;
+      box-shadow: 0 0 10px rgba(255, 179, 193, 0.7);
+    }
+    .petal:nth-child(1) { top: 0; left: 50%; transform: translateX(-50%); }
+    .petal:nth-child(2) { top: 25%; right: 0; }
+    .petal:nth-child(3) { bottom: 25%; right: 0; }
+    .petal:nth-child(4) { bottom: 0; left: 50%; transform: translateX(-50%); }
+    .petal:nth-child(5) { bottom: 25%; left: 0; }
+    .petal:nth-child(6) { top: 25%; left: 0; }
+    .flower-center {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      background: var(--amber);
+      border-radius: 50%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      box-shadow: 0 0 15px rgba(255, 201, 77, 0.8);
+    }
+    .stem {
+      position: absolute;
+      width: 8px;
+      height: 100px;
+      background: linear-gradient(to bottom, #7ed957, #3f9e46);
+      left: 50%;
+      top: 75%;
+      transform: translateX(-50%);
+      box-shadow: 0 0 10px rgba(126, 217, 87, 0.6);
+    }
+    .leaf {
+      position: absolute;
+      width: 30px;
+      height: 20px;
+      background: #7ed957;
+      border-radius: 50%;
+      transform: rotate(45deg);
+      right: -20px;
+      top: 40%;
+      box-shadow: 0 0 10px rgba(126, 217, 87, 0.6);
+    }
+
+    .emoji-container {
+      position: relative;
+      width: 150px;
+      height: 150px;
+      margin-right: 8px;
+      z-index: 2;
+      flex: none;
+    }
+    .emoji {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: var(--amber);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+      box-shadow:
+        inset 0 10px 20px rgba(255, 255, 255, 0.5),
+        inset 0 -10px 20px rgba(0, 0, 0, 0.15),
+        0 0 30px rgba(255, 201, 77, 0.55);
+      overflow: hidden;
+    }
+    .emoji::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle at center, rgba(255, 255, 255, 0.5) 0%, transparent 40%);
+      opacity: 0.7;
+      transform: translateY(-10px);
+    }
+    .face { position: relative; width: 80%; height: 80%; z-index: 2; }
+    .eyes {
+      position: absolute;
+      top: 30%;
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+    }
+    .eye {
+      width: 24px;
+      height: 24px;
+      background: var(--bg-0);
+      border-radius: 50%;
+      position: relative;
+      transition: all 0.5s ease;
+    }
+    .eye::after {
+      content: '';
+      position: absolute;
+      top: 15%;
+      left: 15%;
+      width: 30%;
+      height: 30%;
+      background: #fffdf7;
+      border-radius: 50%;
+    }
+    .mouth {
+      position: absolute;
+      bottom: 25%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 30px;
+      border-radius: 0 0 40px 40px;
+      background: var(--bg-0);
+      overflow: hidden;
+      transition: all 0.5s ease;
+    }
+    .mouth::after {
+      content: '';
+      position: absolute;
+      bottom: 5px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 50px;
+      height: 10px;
+      background: var(--text-1);
+      border-radius: 10px;
+    }
+    .eyebrows {
+      position: absolute;
+      top: 22%;
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+    }
+    .eyebrow {
+      width: 30px;
+      height: 8px;
+      background: var(--bg-0);
+      border-radius: 4px;
+      transform: rotate(0deg);
+      opacity: 0;
+      transition: all 0.5s ease;
+    }
+
+    .fire {
+      position: absolute;
+      bottom: -10%;
+      left: -10%;
+      width: 120%;
+      height: 60%;
+      background: linear-gradient(to top, #ff4500, #ff7700, var(--amber));
+      border-radius: 50% 50% 0 0;
+      transform: scaleY(0);
+      transform-origin: bottom;
+      transition: transform 0.5s ease;
+      opacity: 0.9;
+      z-index: 0;
+    }
+    .fire::before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(ellipse at center, transparent 40%, rgba(255, 69, 0, 0.5) 100%);
+      border-radius: 50% 50% 0 0;
+    }
+
+    .flower-container.hovered + .emoji-container .emoji {
+      background: var(--magenta);
+      box-shadow:
+        inset 0 10px 20px rgba(255, 255, 255, 0.5),
+        inset 0 -10px 20px rgba(0, 0, 0, 0.15),
+        0 0 40px rgba(255, 179, 193, 0.8);
+    }
+    .flower-container.hovered + .emoji-container .eye { transform: scaleY(0.6); }
+    .flower-container.hovered + .emoji-container .eyebrow { opacity: 1; transform-origin: center; }
+    .flower-container.hovered + .emoji-container .eyebrow:first-child { transform: rotate(30deg) translateX(5px); }
+    .flower-container.hovered + .emoji-container .eyebrow:last-child { transform: rotate(-30deg) translateX(-5px); }
+    .flower-container.hovered + .emoji-container .mouth {
+      height: 40px;
+      border-radius: 30px 30px 10px 10px;
+      bottom: 20%;
+    }
+    .flower-container.hovered + .emoji-container .mouth::after { opacity: 0; }
+    .flower-container.hovered + .emoji-container .fire { transform: scaleY(1); }
+    .flower-container.hovered ~ .text-container .subtitle { opacity: 0; }
+    .flower-container.hovered ~ .text-container .warning { opacity: 1; }
+
+    .floating-letters {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .letter {
+      position: absolute;
+      animation: float 10s linear infinite;
+    }
+    @keyframes float {
+      0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+      10% { opacity: 0.5; }
+      90% { opacity: 0.5; }
+      100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+    }
+
+    .particles {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      z-index: 1;
+      pointer-events: none;
+    }
+    .particle {
+      position: absolute;
+      display: block;
+      pointer-events: none;
+      animation: particleAnimation 5s linear infinite;
+      opacity: 0;
+      font-size: 20px;
+    }
+    @keyframes particleAnimation {
+      0% { transform: translateY(0) translateX(0) rotate(0deg); opacity: 0; }
+      10% { opacity: 0.5; }
+      90% { opacity: 0.5; }
+      100% { transform: translateY(-100px) translateX(var(--tx)) rotate(360deg); opacity: 0; }
+    }
+
+    .emoji,
+    .flower { transform-style: preserve-3d; perspective: 1000px; }
+    .tilt-effect {
+      transform: perspective(1000px) rotateX(0deg) rotateY(0deg);
+      transition: transform 0.2s ease-out;
+      will-change: transform;
+    }
+
+    .code-card {
+      max-width: 760px;
+      margin: var(--s5) auto var(--s8);
+      padding: 0;
+      overflow: hidden;
+      text-align: left;
+      background: var(--bg-1);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      box-shadow: 0 16px 44px -26px rgba(74, 63, 46, 0.4);
+    }
+    .editor-header {
+      display: flex;
+      align-items: center;
+      gap: var(--s3);
+      padding: var(--s3) var(--s4);
+      background: var(--glass);
+      border-bottom: 1px solid var(--stroke);
+    }
+    .dot { width: 12px; height: 12px; border-radius: 50%; }
+    .dot.red { background: var(--magenta); }
+    .dot.yellow { background: var(--amber); }
+    .dot.green { background: var(--lime); }
+    .filename {
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      letter-spacing: 0.08em;
+      color: var(--text-2);
+    }
+    .code-content {
+      padding: var(--s4);
+      line-height: 1.5;
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      white-space: pre;
+      overflow-x: auto;
+      color: var(--text-2);
+    }
+    .tag { color: var(--lime); }
+    .attr { color: var(--cyan); }
+    .value { color: var(--text-1); }
+
+    .site-footer {
+      border-top: 1px solid var(--line);
+      padding: var(--s5) var(--s5) var(--s6);
+      text-align: center;
+      color: var(--text-3); font-size: 0.9rem;
+    }
+    .site-footer .brand-mini { font-family: var(--font-display); font-weight: 600; color: var(--text-2); }
+
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.7s var(--ease), transform 0.7s var(--ease); }
+    .reveal.in { opacity: 1; transform: none; }
+
+    @media (max-width: 620px) {
+      .content {
+        flex-direction: column;
+        justify-content: center;
+        gap: var(--s5);
+        min-height: 420px;
+        padding: var(--s5);
+        text-align: center;
+      }
+      .text-container { display: grid; justify-items: center; }
+      .flower-container {
+        position: relative;
+        right: auto;
+        top: auto;
+        transform: none;
+      }
+      .flower-container:hover { transform: scale(1.1); }
+      .emoji-container { width: 130px; height: 130px; margin-right: 0; }
+    }
+    @media (max-width: 480px) {
+      .site-header { padding: var(--s3) var(--s4); }
+      .nav { gap: var(--s3); }
+      .wrap { padding-inline: var(--s4); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.001s !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001s !important;
+        scroll-behavior: auto !important;
+      }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+  <style>html,body{overflow-x:hidden}</style>
+</head>
+<body>
+<script>
+(function () {
+  if (!('ontouchstart' in window) || window.__touchBridge) return;
+  window.__touchBridge = true;
+  var lt = null;
+  function fire(type, t) {
+    var el = document.elementFromPoint(t.clientX, t.clientY) || document;
+    el.dispatchEvent(new MouseEvent(type, {
+      bubbles: true, cancelable: true, view: window,
+      clientX: t.clientX, clientY: t.clientY,
+      button: 0, buttons: type === 'mousemove' ? 1 : 0
+    }));
+  }
+  document.addEventListener('touchstart', function (e) {
+    if (e.touches.length !== 1) return;
+    lt = e.touches[0];
+    fire('mousemove', lt); fire('mousedown', lt);
+  }, { passive: true });
+  document.addEventListener('touchmove', function (e) {
+    if (e.touches.length !== 1 || !lt) return;
+    lt = e.touches[0];
+    fire('mousemove', lt);
+  }, { passive: true });
+  document.addEventListener('touchend', function () {
+    if (!lt) return;
+    fire('mouseup', lt);
+    lt = null;
+  }, { passive: true });
+})();
+</script>
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header class="site-header">
+    <a class="brand" href="#main">WAAY2TECH</span>PETAL GUARD</a>
+    <nav aria-label="Primary">
+      <ul class="nav">
+        <li><a href="#">Meadow</a></li>
+        <li><a href="#">Guard</a></li>
+        <li><a href="#">Story</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="wrap" aria-labelledby="page-title">
+      <div class="hero">
+        <p class="kicker reveal">3D glass guard · touch radar</p>
+        <h1 id="page-title" class="reveal">Don't touch — <span class="grad">my flower</span></h1>
+        <p class="lead reveal">
+          That flower is non-negotiable. Hover, stare, or poke it — the glass
+          emoji guard switches from bliss to full fury in under a second, with
+          particles, glyph rain, and mouse-driven 3D tilt.
+        </p>
+        <div class="chips reveal">
+          <span class="chip"><span class="dot" aria-hidden="true"></span>Hover to anger</span>
+          <span class="chip">3D tilt</span>
+          <span class="chip">Glass emoji</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="flower-card reveal"
+             aria-label="Interactive scene: a flower guarded by an emoji face that gets angry when the flower is touched">
+      <div class="content" id="content">
+        <div class="floating-letters" id="floatingLetters" aria-hidden="true"></div>
+
+        <div class="text-container">
+          <h2>Don't Touch</h2>
+          <h2>My Flower</h2>
+          <div class="subtitle">otherwise…</div>
+          <div class="warning">YOU'LL REGRET IT!</div>
+        </div>
+
+        <div class="flower-container" id="flower" role="button" tabindex="0" aria-label="The flower — do not touch">
+          <div class="flower tilt-effect">
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="flower-center"></div>
+            <div class="stem"></div>
+            <div class="leaf"></div>
+          </div>
+        </div>
+
+        <div class="emoji-container">
+          <div class="emoji tilt-effect">
+            <div class="fire"></div>
+            <div class="face">
+              <div class="eyebrows">
+                <div class="eyebrow"></div>
+                <div class="eyebrow"></div>
+              </div>
+              <div class="eyes">
+                <div class="eye"></div>
+                <div class="eye"></div>
+              </div>
+              <div class="mouth"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="particles" id="particles" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <section class="code-card reveal" aria-label="The CSS that powers the angry emoji">
+      <div class="editor-header">
+        <div class="row" style="display:flex;gap:6px">
+          <span class="dot red" aria-hidden="true"></span>
+          <span class="dot yellow" aria-hidden="true"></span>
+          <span class="dot green" aria-hidden="true"></span>
+        </div>
+        <span class="filename">flower-guard.css</span>
+      </div>
+      <div class="code-content"><span class="tag">.flower-container.hovered + .emoji-container .emoji</span> {
+  <span class="attr">background</span>: <span class="value">var(--magenta)</span>;
+  <span class="attr">box-shadow</span>: <span class="value">0 0 40px rgba(255, 179, 193, 0.8)</span>;
+}
+<span class="tag">.flower-container.hovered + .emoji-container .fire</span> {
+  <span class="attr">transform</span>: <span class="value">scaleY(1)</span>;
+}
+<span class="tag">.flower-container.hovered ~ .text-container .warning</span> {
+  <span class="attr">opacity</span>: <span class="value">1</span>;
+}</div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span><span class="brand-mini">WAAY2TECH</span> · <span data-year></span> · keep off the grass</span>
+  </footer>
+
+  <script>
+    'use strict';
+
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReduced) { document.documentElement.classList.add('reduced-motion'); }
+
+    document.querySelectorAll('[data-year]').forEach(function (el) { el.textContent = new Date().getFullYear(); });
+
+    var revealEls = document.querySelectorAll('.reveal');
+    if ('IntersectionObserver' in window && !prefersReduced) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+      revealEls.forEach(function (el) { io.observe(el); });
+    } else {
+      revealEls.forEach(function (el) { el.classList.add('in'); });
+    }
+
+    (() => {
+      const flower = document.getElementById('flower');
+      const content = document.getElementById('content');
+      const floatingLetters = document.getElementById('floatingLetters');
+      const particles = document.getElementById('particles');
+      const tiltElements = document.querySelectorAll('.tilt-effect');
+
+      const glyphs = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+{}|:"<>?[]\\;\',./`~';
+      const colors = ['var(--lime)', 'var(--magenta)', 'var(--text-1)', 'var(--amber)'];
+
+      const randomGlyph = () => glyphs[Math.floor(Math.random() * glyphs.length)];
+
+      const makeFloatingLetters = () => {
+        const frag = document.createDocumentFragment();
+        for (let i = 0; i < 40; i++) {
+          const letter = document.createElement('div');
+          letter.className = 'letter';
+          letter.textContent = randomGlyph();
+          letter.style.left = `${Math.random() * 100}%`;
+          letter.style.top = `${Math.random() * 100}%`;
+          letter.style.animationDuration = `${8 + Math.random() * 10}s`;
+          letter.style.animationDelay = `${Math.random() * 5}s`;
+          letter.style.color = colors[Math.floor(Math.random() * colors.length)];
+          letter.style.opacity = 0.1 + Math.random() * 0.4;
+          letter.style.fontSize = `${Math.random() * 24 + 12}px`;
+          frag.appendChild(letter);
+        }
+        floatingLetters.appendChild(frag);
+      };
+
+      const createParticles = () => {
+        particles.innerHTML = '';
+        const frag = document.createDocumentFragment();
+        for (let i = 0; i < 30; i++) {
+          const particle = document.createElement('div');
+          particle.className = 'particle';
+          particle.textContent = randomGlyph();
+          particle.style.left = `${210 + (Math.random() * 80 - 40)}px`;
+          particle.style.top = `${150 + (Math.random() * 80 - 40)}px`;
+          particle.style.setProperty('--tx', `${Math.random() * 200 - 100}px`);
+          particle.style.animationDuration = `${1 + Math.random() * 2}s`;
+          particle.style.color = colors[Math.floor(Math.random() * colors.length)];
+          frag.appendChild(particle);
+        }
+        particles.appendChild(frag);
+      };
+
+      flower.addEventListener('pointerenter', () => {
+        flower.classList.add('hovered');
+        createParticles();
+      });
+      flower.addEventListener('pointerleave', () => {
+        flower.classList.remove('hovered');
+        particles.innerHTML = '';
+      });
+      flower.addEventListener('focus', () => {
+        flower.classList.add('hovered');
+        createParticles();
+      });
+      flower.addEventListener('blur', () => {
+        flower.classList.remove('hovered');
+        particles.innerHTML = '';
+      });
+      flower.addEventListener('keydown', (e) => {
+        if (e.code === 'Enter' || e.code === 'Space') {
+          e.preventDefault();
+          flower.classList.add('hovered');
+          createParticles();
+          setTimeout(() => {
+            flower.classList.remove('hovered');
+            particles.innerHTML = '';
+          }, 1200);
+        }
+      });
+
+      content.addEventListener('mousemove', (e) => {
+        const rect = content.getBoundingClientRect();
+        const xAxis = (rect.width / 2 - (e.clientX - rect.left)) / 25;
+        const yAxis = (rect.height / 2 - (e.clientY - rect.top)) / 25;
+        tiltElements.forEach((el) => {
+          el.style.transform = `perspective(1000px) rotateY(${xAxis}deg) rotateX(${-yAxis}deg)`;
+        });
+      });
+      content.addEventListener('mouseleave', () => {
+        tiltElements.forEach((el) => {
+          el.style.transform = 'perspective(1000px) rotateY(0deg) rotateX(0deg)';
+        });
+      });
+
+      makeFloatingLetters();
+    })();
+  </script>
+</body>
+</html>

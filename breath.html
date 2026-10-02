@@ -1,0 +1,540 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Breath — a zen box-breathing loop in soft blue. A pure CSS/SVG breathing circle with a syntax-lit snippet of a breathing-session UI.">
+  <title>Breath · Zen Breathing Loop | WAAY2TECH</title>
+  <link rel="canonical" href="breath.html">
+  <meta property="og:site_name" content="WAAY2TECH">
+  <meta name="author" content="WAAY2TECH">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Breath · Zen Breathing Loop | Waay2Tech">
+  <meta property="og:description" content="Breath — a zen box-breathing loop in soft blue. A pure CSS/SVG breathing circle with a syntax-lit snippet of a breathing-session UI.">
+  <meta property="og:url" content="breath.html">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Breath · Zen Breathing Loop">
+  <meta name="twitter:description" content="Breath — a zen box-breathing loop in soft blue. A pure CSS/SVG breathing circle with a syntax-lit snippet of a breathing-session UI.">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Breath · Zen Breathing Loop | Waay2Tech",
+    "description": "An animated box-breathing loop — inhale, hold, exhale, hold — rendered with pure CSS and a minimal countdown timer.",
+    "about": { "@type": "Thing", "name": "Box Breathing" },
+    "keywords": "breathing, box breathing, meditation, zen, calm, CSS animation",
+    "url": "breath.html"
+  }
+  </script>
+  <style>
+    :root {
+      --bg: #101820;
+      --bg-0: #101820;
+      --bg-1: #182632;
+      --bg-2: #1f303f;
+      --bg-3: #263a4d;
+      --text-1: #e4f2fb;
+      --text-2: #b6ccdc;
+      --text-3: #5f7a94;
+      --blue: #7dd3fc;
+      --blue-soft: #a5b4fc;
+      --blue-mist: #93c5fd;
+      --indigo: #7dd3fc;
+      --cyan: #a5b4fc;
+      --violet: #93c5fd;
+      --lime: #7dd3fc;
+      --magenta: #93c5fd;
+      --amber: #a5b4fc;
+      --stroke: rgba(125, 211, 252, 0.18);
+      --stroke-strong: rgba(165, 180, 252, 0.4);
+      --glass: rgba(24, 38, 50, 0.6);
+      --grad-primary: linear-gradient(135deg, #7dd3fc 0%, #a5b4fc 55%, #93c5fd 100%);
+      --grad-text: linear-gradient(120deg, #7dd3fc 0%, #a5b4fc 55%, #93c5fd 100%);
+      --glow-indigo: 0 0 24px rgba(125, 211, 252, 0.45);
+      --glow-cyan: 0 0 22px rgba(165, 180, 252, 0.4);
+      --shadow-card: 0 26px 60px rgba(0, 0, 0, 0.45);
+      --radius-sm: 10px;
+      --radius-md: 16px;
+      --radius-lg: 24px;
+      --radius-xl: 32px;
+      --radius-full: 999px;
+      --space-1: 4px;
+      --space-2: 8px;
+      --space-3: 12px;
+      --space-4: 16px;
+      --space-5: 24px;
+      --space-6: 32px;
+      --space-7: 48px;
+      --space-8: 64px;
+      --space-9: 96px;
+      --speed-2: 0.25s;
+      --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+      --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+      --blur-glass: 12px;
+      --text-xs: 12px;
+      --text-sm: 14px;
+      --text-md: 17px;
+      --text-xl: 26px;
+      --font-display: 'Lora', serif;
+      --font-body: 'Inter', sans-serif;
+      --font-mono: ui-monospace, 'Cascadia Mono', Consolas, monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+    body {
+      font-family: var(--font-body);
+      background: var(--bg);
+      color: var(--text-1);
+      line-height: 1.6;
+      min-height: 100vh;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      background:
+        radial-gradient(820px 560px at 80% -8%, rgba(125, 211, 252, 0.12), transparent 62%),
+        radial-gradient(640px 480px at 0% 40%, rgba(165, 180, 252, 0.1), transparent 60%),
+        radial-gradient(560px 460px at 55% 115%, rgba(147, 197, 253, 0.08), transparent 60%),
+        var(--bg);
+    }
+    ::selection { background: rgba(125, 211, 252, 0.35); color: #f2faff; }
+    ::-webkit-scrollbar { width: 10px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: rgba(125, 211, 252, 0.3); border-radius: 6px; }
+    :focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; border-radius: 6px; }
+
+    .skip-link {
+      position: fixed; top: -60px; left: 16px; z-index: 200;
+      background: var(--blue); color: #0a1e2b; font-weight: 700;
+      padding: 10px 18px; border-radius: 8px; text-decoration: none;
+      transition: top 0.3s ease;
+    }
+    .skip-link:focus { top: 16px; }
+
+    .site-header {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(16, 24, 32, 0.82);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--stroke);
+    }
+    .site-header .bar {
+      max-width: 1120px; margin-inline: auto; padding: 14px clamp(16px, 4vw, 40px);
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    }
+    .wordmark {
+      font-family: var(--font-display); font-weight: 600; font-size: 1.2rem;
+      letter-spacing: 0.18em; color: var(--text-1); text-decoration: none;
+      display: inline-flex; align-items: center; gap: 12px;
+    }
+    .wordmark .ripple {
+      width: 20px; height: 20px; border-radius: 50%;
+      border: 2px solid var(--blue);
+      box-shadow: 0 0 0 0 rgba(125, 211, 252, 0.5), 0 0 12px rgba(125, 211, 252, 0.6);
+      animation: ripple-ping 3.2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+    @keyframes ripple-ping { 0% { box-shadow: 0 0 0 0 rgba(125,211,252,0.45), 0 0 12px rgba(125,211,252,0.6); } 50% { box-shadow: 0 0 0 10px rgba(125,211,252,0), 0 0 18px rgba(125,211,252,0.5); } 100% { box-shadow: 0 0 0 0 rgba(125,211,252,0), 0 0 12px rgba(125,211,252,0.5); } }
+    .site-nav { display: flex; gap: 24px; }
+    .site-nav a {
+      color: var(--text-2); text-decoration: none; font-size: 0.9rem; font-weight: 500;
+      transition: color 0.25s ease;
+    }
+    .site-nav a:hover { color: var(--blue); }
+
+    .shell { max-width: 1120px; margin-inline: auto; padding-inline: clamp(16px, 4vw, 40px); }
+
+    .stack { display: flex; flex-direction: column; gap: var(--space-4); }
+    .stack--lg { gap: var(--space-6); }
+    .kicker {
+      font-family: var(--font-mono); font-size: var(--text-xs);
+      letter-spacing: 0.3em; text-transform: uppercase; color: var(--blue);
+    }
+    .h1 {
+      font-family: var(--font-display); font-weight: 600;
+      font-size: clamp(2.2rem, 6.5vw, 3.8rem); letter-spacing: -0.01em; color: var(--text-1);
+    }
+    .lead { font-size: clamp(1rem, 1.6vw, 1.15rem); color: var(--text-2); max-width: 58ch; }
+    .grad-text {
+      background: var(--grad-text);
+      -webkit-background-clip: text; background-clip: text;
+      -webkit-text-fill-color: transparent; color: transparent;
+    }
+
+    .card {
+      border-radius: var(--radius-xl); padding: 0;
+      background: var(--bg-1); border: 1px solid var(--stroke);
+      box-shadow: var(--shadow-card); overflow: hidden;
+    }
+
+    .video-section {
+      position: relative;
+      height: clamp(340px, 58vh, 560px);
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background:
+        radial-gradient(640px 420px at 50% 30%, rgba(125, 211, 252, 0.16), transparent 62%),
+        radial-gradient(500px 380px at 18% 82%, rgba(165, 180, 252, 0.14), transparent 62%),
+        radial-gradient(460px 360px at 84% 76%, rgba(147, 197, 253, 0.12), transparent 60%),
+        linear-gradient(180deg, #16232f, #101820);
+    }
+
+    .breath-visual {
+      position: relative;
+      display: grid;
+      place-items: center;
+      width: clamp(220px, 34vw, 300px);
+      height: clamp(220px, 34vw, 300px);
+    }
+    .breath-visual::before {
+      content: '';
+      position: absolute; inset: 8px; border-radius: 50%;
+      border: 1px dashed rgba(125, 211, 252, 0.35);
+      animation: spin-slow 24s linear infinite;
+    }
+    @keyframes spin-slow { to { transform: rotate(360deg); } }
+    .breath-circle {
+      width: 100%; height: 100%; border-radius: 50%;
+      display: grid; place-items: center;
+      background: radial-gradient(circle at 32% 28%, rgba(125, 211, 252, 0.4), rgba(165, 180, 252, 0.12) 70%);
+      border: 2px solid rgba(125, 211, 252, 0.55);
+      box-shadow: 0 0 60px rgba(125, 211, 252, 0.28), inset 0 0 40px rgba(125, 211, 252, 0.12);
+      transform: scale(0.85);
+      transition: transform 4s cubic-bezier(0.4, 0, 0.6, 1), border-color 1.6s ease, box-shadow 1.6s ease;
+    }
+    .breath-circle.inhale { transform: scale(1.18); border-color: rgba(147, 197, 253, 0.8); box-shadow: 0 0 90px rgba(125, 211, 252, 0.45), inset 0 0 50px rgba(125, 211, 252, 0.2); }
+    .breath-circle.hold { transform: scale(1.18); border-color: rgba(165, 180, 252, 0.8); box-shadow: 0 0 90px rgba(165, 180, 252, 0.4), inset 0 0 50px rgba(165, 180, 252, 0.18); }
+    .breath-circle.exhale, .breath-circle.rest { transform: scale(0.85); border-color: rgba(147, 197, 253, 0.5); box-shadow: 0 0 60px rgba(147, 197, 253, 0.24), inset 0 0 40px rgba(147, 197, 253, 0.1); }
+
+    .breath-core {
+      text-align: center; display: grid; gap: 6px;
+      position: relative; z-index: 2;
+    }
+    .breath-phase {
+      font-family: var(--font-display); font-style: italic;
+      font-size: clamp(1.3rem, 3vw, 1.8rem); color: var(--text-1);
+    }
+    .breath-count {
+      font-family: var(--font-mono); font-size: clamp(1.8rem, 5vw, 3rem);
+      color: var(--blue); text-shadow: 0 0 16px rgba(125, 211, 252, 0.6);
+      line-height: 1;
+    }
+
+    .breath-fog {
+      position: absolute; inset: 0; pointer-events: none; overflow: hidden;
+    }
+    .breath-fog i {
+      position: absolute; border-radius: 50%;
+      background: radial-gradient(circle, rgba(125, 211, 252, 0.5), transparent 70%);
+      animation: drift linear infinite;
+    }
+    @keyframes drift {
+      0% { transform: translateY(110%) scale(1); opacity: 0; }
+      15% { opacity: 0.8; }
+      85% { opacity: 0.5; }
+      100% { transform: translateY(-130%) scale(1.6); opacity: 0; }
+    }
+
+    .code-section {
+      background: var(--bg-2);
+      border-top: 1px solid var(--stroke);
+    }
+    .editor-header {
+      height: 50px;
+      background: var(--bg-3);
+      display: flex;
+      align-items: center;
+      padding: 0 var(--space-4);
+      border-bottom: 1px solid var(--stroke);
+      gap: var(--space-3);
+    }
+    .traffic-lights { display: flex; gap: 8px; }
+    .traffic-light { width: 14px; height: 14px; border-radius: 50%; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); }
+    .traffic-light.red { background: #ff5f57; }
+    .traffic-light.yellow { background: #ffbd2e; }
+    .traffic-light.green { background: #28ca42; }
+    .filename {
+      color: var(--text-1);
+      font-family: var(--font-mono);
+      font-size: var(--text-sm);
+      font-weight: 600;
+    }
+    .code-content {
+      padding: var(--space-5);
+      overflow-x: auto;
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      line-height: 1.8;
+    }
+    .code-line { display: flex; align-items: flex-start; white-space: nowrap; margin-bottom: var(--space-1); }
+    .line-number { color: var(--text-3); margin-right: var(--space-4); min-width: 26px; text-align: right; user-select: none; }
+    .tag { color: var(--blue); font-weight: 600; }
+    .attr { color: var(--blue-soft); }
+    .value { color: var(--blue-mist); }
+    .string { color: var(--blue-mist); }
+    .comment { color: var(--text-3); font-style: italic; }
+    .text { color: #cfe0ee; }
+
+    .row { display: flex; align-items: center; gap: var(--space-3); }
+    .row--wrap { flex-wrap: wrap; }
+    .between { justify-content: space-between; }
+    .chip {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: var(--text-sm); color: var(--text-2);
+      border: 1px solid var(--stroke); border-radius: var(--radius-full);
+      padding: 7px 15px; background: rgba(24, 38, 50, 0.55);
+    }
+    .chip .dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--blue); box-shadow: 0 0 10px rgba(125, 211, 252, 0.8);
+      animation: blink-led 3.2s ease-in-out infinite;
+    }
+    @keyframes blink-led { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+    .badge {
+      font-size: var(--text-xs); font-weight: 600; letter-spacing: 0.06em;
+      padding: 6px 12px; border-radius: var(--radius-full);
+      border: 1px solid var(--stroke); color: var(--text-2);
+    }
+    .badge--ghost { background: rgba(24, 38, 50, 0.55); }
+    .mono { font-family: var(--font-mono); }
+
+    .site-footer {
+      margin-top: var(--space-9);
+      border-top: 1px solid var(--stroke);
+      padding: 28px clamp(16px, 4vw, 40px);
+      display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; align-items: center;
+      max-width: 1120px; margin-inline: auto;
+      color: var(--text-3); font-size: var(--text-sm);
+    }
+    .site-footer a { color: var(--text-2); text-decoration: none; }
+    .site-footer a:hover { color: var(--blue); }
+
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s var(--ease-out); transition-delay: var(--reveal-delay, 0ms); }
+    .reveal.in { opacity: 1; transform: none; }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.001s !important; animation-iteration-count: 1 !important; transition-duration: 0.001s !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+
+    @media (max-width: 768px) {
+      .site-nav { display: none; }
+      .row.between { flex-direction: column; align-items: flex-start; gap: 12px; }
+    }
+    @media (max-width: 480px) {
+      .video-section { height: 320px; }
+      .code-content { font-size: 11px; }
+      .site-footer { justify-content: center; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+<script>
+(function () {
+  if (!('ontouchstart' in window) || window.__touchBridge) return;
+  window.__touchBridge = true;
+  var lt = null;
+  function fire(type, t) {
+    var el = document.elementFromPoint(t.clientX, t.clientY) || document;
+    el.dispatchEvent(new MouseEvent(type, {
+      bubbles: true, cancelable: true, view: window,
+      clientX: t.clientX, clientY: t.clientY,
+      button: 0, buttons: type === 'mousemove' ? 1 : 0
+    }));
+  }
+  document.addEventListener('touchstart', function (e) {
+    if (e.touches.length !== 1) return;
+    lt = e.touches[0];
+    fire('mousemove', lt); fire('mousedown', lt);
+  }, { passive: true });
+  document.addEventListener('touchmove', function (e) {
+    if (e.touches.length !== 1 || !lt) return;
+    lt = e.touches[0];
+    fire('mousemove', lt);
+  }, { passive: true });
+  document.addEventListener('touchend', function () {
+    if (!lt) return;
+    fire('mouseup', lt);
+    lt = null;
+  }, { passive: true });
+})();
+</script>
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header class="site-header">
+    <div class="bar">
+      <a class="wordmark" href="#main"><span class="ripple" aria-hidden="true"></span>WAAY2TECH</a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="#post">Loop</a>
+        <a href="#code">Snippet</a>
+        <a href="#method">Method</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="shell">
+    <section class="stack stack--lg">
+      <header class="stack reveal" style="margin-top:48px">
+        <span class="kicker">Breathing Loop · Pure CSS + SVG</span>
+        <h1 class="h1">Breath <span class="grad-text">Lab</span></h1>
+        <p class="lead">A calm, zen breathing loop — inhale four, hold four, exhale four, hold again. Rendered entirely with CSS and a quiet countdown, stacked over a syntax-lit snippet of a breathing-session UI.</p>
+      </header>
+
+      <div class="card post reveal reveal-zoom" id="post">
+        <div class="video-section">
+          <div class="breath-visual" role="img" aria-label="Animated breathing circle">
+            <div class="breath-circle" id="breathCircle">
+              <div class="breath-core">
+                <span class="breath-phase" id="breathPhase">Inhale</span>
+                <span class="breath-count" id="breathTimer">4</span>
+              </div>
+            </div>
+          </div>
+          <div class="breath-fog" aria-hidden="true">
+            <i style="left:12%; width:14px; height:14px; animation-duration:9s;"></i>
+            <i style="left:32%; width:9px; height:9px; animation-duration:7s; animation-delay:1s;"></i>
+            <i style="left:55%; width:12px; height:12px; animation-duration:11s; animation-delay:2s;"></i>
+            <i style="left:74%; width:8px; height:8px; animation-duration:8s; animation-delay:0.5s;"></i>
+            <i style="left:88%; width:11px; height:11px; animation-duration:10s; animation-delay:3s;"></i>
+          </div>
+        </div>
+
+        <div class="code-section" id="code">
+          <div class="editor-header">
+            <div class="traffic-lights">
+              <div class="traffic-light red"></div>
+              <div class="traffic-light yellow"></div>
+              <div class="traffic-light green"></div>
+            </div>
+            <div class="filename">breath.html</div>
+          </div>
+
+          <div class="code-content">
+            <div class="code-line">
+              <span class="line-number">1</span>
+              <div><span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="string">"breathing-container"</span> <span class="attr">id</span>=<span class="string">"breathingContainer"</span><span class="tag">&gt;</span></div>
+            </div>
+            <div class="code-line">
+              <span class="line-number">2</span>
+              <div><span class="comment">// box breath: 4 · 4 · 4 · 4</span></div>
+            </div>
+            <div class="code-line">
+              <span class="line-number">3</span>
+              <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="string">"breath-text"</span> <span class="attr">id</span>=<span class="string">"breathText"</span><span class="tag">&gt;</span><span class="text">Get Ready</span><span class="tag">&lt;/div&gt;</span></div>
+            </div>
+            <div class="code-line">
+              <span class="line-number">4</span>
+              <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="string">"breathing-circle"</span> <span class="attr">id</span>=<span class="string">"breathingCircle"</span><span class="tag">&gt;</span></div>
+            </div>
+            <div class="code-line">
+              <span class="line-number">5</span>
+              <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="string">"timer-display"</span> <span class="attr">id</span>=<span class="string">"timerDisplay"</span><span class="tag">&gt;</span><span class="text">4</span><span class="tag">&lt;/div&gt;</span></div>
+            </div>
+            <div class="code-line">
+              <span class="line-number">6</span>
+              <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;/div&gt;</span></div>
+            </div>
+            <div class="code-line">
+              <span class="line-number">7</span>
+              <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="string">"control-panel"</span><span class="tag">&gt;</span></div>
+            </div>
+            <div class="code-line">
+              <span class="line-number">8</span>
+              <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;button</span> <span class="attr">class</span>=<span class="string">"control-btn"</span> <span class="attr">id</span>=<span class="string">"startBtn"</span><span class="tag">&gt;</span><span class="text">Start Session</span><span class="tag">&lt;/button&gt;</span></div>
+            </div>
+            <div class="code-line">
+              <span class="line-number">9</span>
+              <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;button</span> <span class="attr">class</span>=<span class="string">"control-btn"</span> <span class="attr">id</span>=<span class="string">"resetBtn"</span><span class="tag">&gt;</span><span class="text">Reset</span><span class="tag">&lt;/button&gt;</span></div>
+            </div>
+            <div class="code-line">
+              <span class="line-number">10</span>
+              <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;/div&gt;</span></div>
+            </div>
+            <div class="code-line">
+              <span class="line-number">11</span>
+              <div><span class="tag">&lt;/div&gt;</span> <span class="comment">// breathe in · breathe out</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row row--wrap between reveal" style="--reveal-delay:120ms" id="method">
+        <span class="chip"><span class="dot"></span> Box breath · 4 · 4 · 4 · 4</span>
+        <span class="badge badge--ghost mono">source → pure CSS / SVG</span>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span>WAAY2TECH · <span data-year></span></span>
+    <a href="#main">Back to top</a>
+  </footer>
+
+  <script>
+    'use strict';
+
+    (function () {
+      var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      document.querySelectorAll('[data-year]').forEach(function (el) {
+        el.textContent = new Date().getFullYear();
+      });
+
+      var reveals = document.querySelectorAll('.reveal');
+      if (reduced || !('IntersectionObserver' in window)) {
+        reveals.forEach(function (r) { r.classList.add('in'); });
+      } else {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('in');
+              io.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+        reveals.forEach(function (r) { io.observe(r); });
+      }
+    })();
+
+    (function () {
+      const circle = document.getElementById('breathCircle');
+      const phaseEl = document.getElementById('breathPhase');
+      const timerEl = document.getElementById('breathTimer');
+
+      const phases = [
+        { name: 'Inhale', secs: 4, cls: 'inhale' },
+        { name: 'Hold', secs: 4, cls: 'hold' },
+        { name: 'Exhale', secs: 4, cls: 'exhale' },
+        { name: 'Hold', secs: 4, cls: 'rest' }
+      ];
+
+      let phase = 0;
+      let count = phases[phase].secs;
+      phaseEl.textContent = phases[phase].name;
+      timerEl.textContent = count;
+      circle.className = 'breath-circle ' + phases[phase].cls;
+
+      setInterval(() => {
+        count--;
+        if (count <= 0) {
+          phase = (phase + 1) % phases.length;
+          count = phases[phase].secs;
+          phaseEl.textContent = phases[phase].name;
+          circle.className = 'breath-circle ' + phases[phase].cls;
+        }
+        timerEl.textContent = count;
+      }, 1000);
+    })();
+  </script>
+</body>
+</html>

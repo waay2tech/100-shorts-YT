@@ -1,0 +1,878 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#f7f2e4">
+  <meta name="description" content="FIZZ — a responsive bubbly signal distortion canvas experiment by Waay2Tech.">
+  <meta name="author" content="Waay2Tech">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="WAAY2TECH">
+  <meta property="og:title" content="FIZZ · Bubbly Signal Distortion | Waay2Tech">
+  <meta property="og:description" content="A responsive bubbly signal distortion canvas experiment.">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="FIZZ · Bubbly Signal Distortion">
+  <meta name="twitter:description" content="A responsive bubbly signal distortion canvas experiment.">
+  <title>FIZZ · Bubbly Signal Distortion | Waay2Tech</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"WebPage",
+    "name":"FIZZ · Bubbly Signal Distortion | Waay2Tech",
+    "description":"A responsive bubbly signal distortion canvas experiment."
+  }
+  </script>
+
+  <style>
+    :root {
+      --bg: #f7f2e4;
+      --bg-2: #fffdf6;
+      --surface: rgba(255,253,246,.88);
+      --text: #3c3a2e;
+      --text-2: #6b6857;
+      --text-3: #a49f8a;
+      --line: rgba(60,58,46,.14);
+      --primary: #b4f500;
+      --accent: #ff6b6b;
+      --accent-2: #38bdf8;
+      --radius-lg: 22px;
+      --ease: cubic-bezier(.22,1,.36,1);
+      --font-display: "Fredoka", sans-serif;
+      --font-body: "Nunito", sans-serif;
+      --font-mono: "JetBrains Mono", "Courier New", monospace;
+      --header-h: 69px;
+    }
+
+    *,*::before,*::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: calc(var(--header-h) + 16px);
+    }
+
+    body {
+      min-height: 100vh;
+      overflow-x: hidden;
+      font-family: var(--font-body);
+      line-height: 1.6;
+      color: var(--text);
+      background:
+        radial-gradient(46% 34% at 12% 6%, rgba(180,245,0,.18), transparent 60%),
+        radial-gradient(44% 36% at 90% 10%, rgba(255,107,107,.16), transparent 60%),
+        radial-gradient(64% 46% at 50% 112%, rgba(56,189,248,.16), transparent 60%),
+        var(--bg);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    ::selection {
+      background: var(--primary);
+      color: #2b3a06;
+    }
+
+    ::-webkit-scrollbar { width: 10px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(56,189,248,.55);
+      border-radius: 999px;
+      border: 2px solid var(--bg);
+    }
+
+    :focus-visible {
+      outline: 3px solid var(--accent-2);
+      outline-offset: 3px;
+      border-radius: 5px;
+    }
+
+    a { color: inherit; }
+
+    .skip-link {
+      position: fixed;
+      top: -100px;
+      left: 16px;
+      z-index: 300;
+      padding: 8px 16px;
+      color: #0a2a3a;
+      background: var(--accent-2);
+      border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+      font-weight: 800;
+      text-decoration: none;
+      transition: top .25s var(--ease);
+    }
+
+    .skip-link:focus { top: 0; }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      min-height: var(--header-h);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 12px clamp(16px, 4vw, 32px);
+      background: rgba(255,253,246,.82);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+
+    .brand {
+      flex: 0 0 auto;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text);
+      font-family: var(--font-display);
+      font-size: clamp(1.05rem, 3vw, 1.4rem);
+      font-weight: 700;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .brand .mark {
+      width: 32px;
+      height: 32px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      color: #2b3a06;
+      background: radial-gradient(circle at 35% 30%, #d9ff7a, var(--primary) 45%, #8fc000 100%);
+      box-shadow: 0 0 14px rgba(180,245,0,.55);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: clamp(12px, 3vw, 24px);
+      list-style: none;
+    }
+
+    .nav a {
+      color: var(--text-2);
+      font-size: .9rem;
+      font-weight: 800;
+      text-decoration: none;
+      transition: color .2s ease;
+    }
+
+    .nav a:hover,
+    .nav a:focus-visible {
+      color: var(--accent);
+    }
+
+    .wrap {
+      width: min(1180px, 100%);
+      margin-inline: auto;
+      padding-inline: clamp(16px, 4vw, 32px);
+    }
+
+    .page-head {
+      width: min(1180px, 100%);
+      margin-inline: auto;
+      display: grid;
+      gap: 16px;
+      padding: clamp(48px, 8vw, 80px) clamp(16px, 4vw, 32px) 24px;
+    }
+
+    .kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--accent);
+      font-size: .72rem;
+      font-weight: 800;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    .kicker::before {
+      content: "◉";
+      color: var(--primary);
+    }
+
+    h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.15rem, 7vw, 3.8rem);
+      font-weight: 700;
+      line-height: 1.04;
+      letter-spacing: -.015em;
+    }
+
+    h1 .grad {
+      background: linear-gradient(120deg, #b4f500 0%, #ff6b6b 55%, #38bdf8 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+    }
+
+    .lead {
+      max-width: 60ch;
+      color: var(--text-2);
+      font-size: clamp(.95rem, 2vw, 1.04rem);
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 34px;
+      padding: 6px 14px;
+      color: var(--text-2);
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      font-size: .78rem;
+      font-weight: 800;
+    }
+
+    .chip .dot {
+      width: 8px;
+      height: 8px;
+      flex: 0 0 8px;
+      border-radius: 50%;
+      background: var(--accent-2);
+      box-shadow: 0 0 8px var(--accent-2);
+    }
+
+    .demo-stage {
+      width: min(1180px, 100%);
+      min-height: clamp(280px, 46vh, 560px);
+      margin-inline: auto;
+      padding: clamp(12px, 4vw, 40px);
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      border-radius: var(--radius-lg);
+      background: radial-gradient(120% 100% at 50% 0%, rgba(255,253,246,.92), rgba(247,242,228,0) 62%);
+    }
+
+    .canvas-wrap {
+      width: 100%;
+      display: grid;
+      place-items: center;
+      min-height: 180px;
+    }
+
+    #fuzzyCanvas {
+      display: block;
+      width: min(100%, 1080px);
+      height: auto;
+      max-width: 100%;
+      cursor: crosshair;
+      touch-action: none;
+      user-select: none;
+      -webkit-user-select: none;
+      filter: drop-shadow(0 0 26px rgba(56,189,248,.3));
+    }
+
+    .status {
+      padding: 24px 16px;
+      color: var(--text-3);
+      font-family: var(--font-mono);
+      font-size: clamp(.66rem, 2vw, .76rem);
+      letter-spacing: .12em;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    .status strong {
+      color: var(--accent-2);
+      font-weight: 500;
+    }
+
+    .site-footer {
+      margin-top: 24px;
+      padding: 24px 16px 36px;
+      border-top: 1px solid var(--line);
+      color: var(--text-3);
+      font-size: .9rem;
+      text-align: center;
+    }
+
+    .site-footer .brand-mini {
+      color: var(--text-2);
+      font-family: var(--font-display);
+      font-weight: 600;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity .7s var(--ease), transform .7s var(--ease);
+    }
+
+    .reveal.in {
+      opacity: 1;
+      transform: none;
+    }
+
+    @media (max-width: 600px) {
+      :root { --header-h: 62px; }
+
+      .site-header {
+        gap: 12px;
+        padding: 10px 14px;
+      }
+
+      .brand .mark {
+        width: 29px;
+        height: 29px;
+      }
+
+      .nav {
+        gap: 10px;
+      }
+
+      .nav a {
+        font-size: .78rem;
+      }
+
+      .page-head {
+        padding-top: 42px;
+      }
+
+      .demo-stage {
+        min-height: 260px;
+        border-radius: 16px;
+      }
+
+      .status {
+        padding-inline: 10px;
+        letter-spacing: .08em;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .brand {
+        font-size: .98rem;
+        gap: 6px;
+      }
+
+      .nav {
+        gap: 8px;
+      }
+
+      .nav a {
+        font-size: .72rem;
+      }
+
+      .chips {
+        gap: 6px;
+      }
+
+      .chip {
+        padding-inline: 10px;
+        font-size: .72rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: .001s !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .001s !important;
+      }
+
+      .reveal {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header class="site-header">
+    <a class="brand" href="#main" aria-label="WAAY2TECH FIZZ home">
+      <span class="mark" aria-hidden="true">W</span>
+      <span>WAAY2TECH</span>
+      <span aria-hidden="true">FIZZ</span>
+    </a>
+
+    <nav aria-label="Primary navigation">
+      <ul class="nav">
+        <li><a href="#demo">Soda</a></li>
+        <li><a href="#demo">Pop</a></li>
+        <li><a href="#about">About</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="page-head" aria-labelledby="fizzy-title">
+      <p class="kicker reveal">Canvas FX · 404 distortion</p>
+
+      <h1 id="fizzy-title" class="reveal">
+        The signal <span class="grad">goes flat.</span>
+      </h1>
+
+      <p class="lead reveal">
+        Every frame, horizontal scanlines of type jitter out of phase.
+        Move your pointer or finger over the signal to increase the distortion.
+      </p>
+
+      <div class="chips reveal" aria-label="Features">
+        <span class="chip"><span class="dot" aria-hidden="true"></span>hover to distort</span>
+        <span class="chip">responsive canvas</span>
+        <span class="chip">touch aware</span>
+        <span class="chip">reduced motion</span>
+      </div>
+    </section>
+
+    <section id="demo" class="demo-stage reveal" aria-label="Fuzzy text distortion demo">
+      <div class="canvas-wrap">
+        <canvas
+          id="fuzzyCanvas"
+          aria-label="Animated distorted 404 signal"
+          role="img"
+        ></canvas>
+      </div>
+    </section>
+
+    <p class="status reveal" id="about" role="status" aria-live="polite">
+      status :: <strong id="statusText">CARRIER LOST</strong> — move over the type
+    </p>
+  </main>
+
+  <footer class="site-footer">
+    <span>
+      <span class="brand-mini">WAAY2TECH</span>
+      · <span data-year></span>
+      · shake it up
+    </span>
+  </footer>
+
+  <script>
+    "use strict";
+
+    (() => {
+      const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+      const isReducedMotion = () => reducedMotionQuery.matches;
+
+      document.querySelectorAll("[data-year]").forEach((el) => {
+        el.textContent = new Date().getFullYear();
+      });
+
+      /* ---------------------------
+         Reveal animation
+      --------------------------- */
+      const revealEls = document.querySelectorAll(".reveal");
+
+      if ("IntersectionObserver" in window && !isReducedMotion()) {
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("in");
+              io.unobserve(entry.target);
+            }
+          });
+        }, {
+          threshold: 0.12,
+          rootMargin: "0px 0px -30px 0px"
+        });
+
+        revealEls.forEach((el) => io.observe(el));
+      } else {
+        revealEls.forEach((el) => el.classList.add("in"));
+      }
+
+      /* ---------------------------
+         Fuzzy text canvas
+      --------------------------- */
+      class FuzzyText {
+        constructor(options = {}) {
+          this.text = options.text || "404 · SIGNAL LOST";
+          this.fontWeight = options.fontWeight || 600;
+          this.fontFamily = options.fontFamily || "Fredoka, sans-serif";
+          this.color = options.color || "#38BDF8";
+          this.baseIntensity = options.baseIntensity ?? 0.20;
+          this.hoverIntensity = options.hoverIntensity ?? 1.8;
+          this.fuzzRange = 30;
+          this.padding = 50;
+
+          this.canvas = document.getElementById("fuzzyCanvas");
+          this.ctx = this.canvas?.getContext("2d", {
+            alpha: true,
+            desynchronized: true
+          });
+
+          if (!this.canvas || !this.ctx) return;
+
+          this.offscreen = document.createElement("canvas");
+          this.offCtx = this.offscreen.getContext("2d");
+
+          this.animationFrameId = null;
+          this.isHovering = false;
+          this.isVisible = true;
+          this.isCancelled = false;
+          this.lastFrameTime = 0;
+          this.frameInterval = 1000 / 60;
+          this.pointerInsideCanvas = false;
+          this.initialized = false;
+
+          this.resizeObserver = null;
+          this.intersectionObserver = null;
+          this.cleanup = () => {};
+
+          this.init();
+        }
+
+        getFontSize() {
+          const width = window.innerWidth;
+
+          if (width <= 380) return 38;
+          if (width <= 480) return 48;
+          if (width <= 600) return 58;
+          if (width <= 768) return 72;
+          return Math.min(128, Math.max(64, width * 0.095));
+        }
+
+        setupCanvas() {
+          const fontSize = this.getFontSize();
+          const font = `${this.fontWeight} ${fontSize}px ${this.fontFamily}`;
+
+          this.offCtx.font = font;
+          this.offCtx.textBaseline = "alphabetic";
+
+          const metrics = this.offCtx.measureText(this.text);
+
+          const actualLeft = metrics.actualBoundingBoxLeft ?? 0;
+          const actualRight = metrics.actualBoundingBoxRight ?? metrics.width;
+          const actualAscent = metrics.actualBoundingBoxAscent ?? fontSize;
+          const actualDescent = metrics.actualBoundingBoxDescent ?? fontSize * 0.2;
+
+          const textWidth = Math.ceil(actualLeft + actualRight);
+          const textHeight = Math.ceil(actualAscent + actualDescent);
+
+          const horizontalBuffer = 12;
+
+          this.offscreen.width = textWidth + horizontalBuffer;
+          this.offscreen.height = textHeight;
+
+          this.offCtx.font = font;
+          this.offCtx.textBaseline = "alphabetic";
+          this.offCtx.fillStyle = this.color;
+          this.offCtx.clearRect(0, 0, this.offscreen.width, this.offscreen.height);
+
+          this.offCtx.fillText(
+            this.text,
+            horizontalBuffer / 2 - actualLeft,
+            actualAscent
+          );
+
+          const displayWidth = this.offscreen.width + this.padding * 2;
+          const displayHeight = this.offscreen.height + this.fuzzRange * 2;
+
+          this.cssWidth = displayWidth;
+          this.cssHeight = displayHeight;
+
+          this.canvas.width = Math.ceil(displayWidth * this.getDPR());
+          this.canvas.height = Math.ceil(displayHeight * this.getDPR());
+
+          this.canvas.style.width = `${displayWidth}px`;
+          this.canvas.style.height = `${displayHeight}px`;
+
+          this.ctx.setTransform(
+            this.getDPR(),
+            0,
+            0,
+            this.getDPR(),
+            this.padding,
+            this.fuzzRange
+          );
+
+          this.offscreenWidth = this.offscreen.width;
+          this.textHeight = this.offscreen.height;
+
+          this.interactiveLeft = horizontalBuffer / 2;
+          this.interactiveTop = 0;
+          this.interactiveRight = this.interactiveLeft + textWidth;
+          this.interactiveBottom = this.interactiveTop + textHeight;
+
+          this.canvas.setAttribute(
+            "aria-label",
+            `${this.text}. Interactive distortion canvas.`
+          );
+
+          this.render(true);
+        }
+
+        getDPR() {
+          return Math.min(window.devicePixelRatio || 1, 2);
+        }
+
+        async init() {
+          if (document.fonts?.ready) {
+            try {
+              await document.fonts.ready;
+            } catch (_) {}
+          }
+
+          if (this.isCancelled) return;
+
+          this.setupCanvas();
+          this.setupEvents();
+          this.setupObservers();
+
+          this.initialized = true;
+
+          if (isReducedMotion()) {
+            this.render(true);
+          } else {
+            this.start();
+          }
+        }
+
+        setupEvents() {
+          const updatePointer = (clientX, clientY, active = true) => {
+            const rect = this.canvas.getBoundingClientRect();
+
+            if (!rect.width || !rect.height) {
+              this.isHovering = false;
+              return;
+            }
+
+            const scaleX = this.cssWidth / rect.width;
+            const scaleY = this.cssHeight / rect.height;
+
+            const x = (clientX - rect.left) * scaleX - this.padding;
+            const y = (clientY - rect.top) * scaleY - this.fuzzRange;
+
+            this.isHovering =
+              active &&
+              x >= this.interactiveLeft &&
+              x <= this.interactiveRight &&
+              y >= this.interactiveTop &&
+              y <= this.interactiveBottom;
+          };
+
+          const onPointerMove = (event) => {
+            this.pointerInsideCanvas = true;
+            updatePointer(event.clientX, event.clientY, true);
+          };
+
+          const onPointerEnter = () => {
+            this.pointerInsideCanvas = true;
+          };
+
+          const onPointerLeave = () => {
+            this.pointerInsideCanvas = false;
+            this.isHovering = false;
+          };
+
+          const onPointerDown = (event) => {
+            if (event.pointerType === "touch") {
+              updatePointer(event.clientX, event.clientY, true);
+            }
+          };
+
+          const onPointerUp = () => {
+            this.isHovering = false;
+          };
+
+          this.canvas.addEventListener("pointermove", onPointerMove, { passive: true });
+          this.canvas.addEventListener("pointerenter", onPointerEnter, { passive: true });
+          this.canvas.addEventListener("pointerleave", onPointerLeave, { passive: true });
+          this.canvas.addEventListener("pointerdown", onPointerDown, { passive: true });
+          this.canvas.addEventListener("pointerup", onPointerUp, { passive: true });
+          this.canvas.addEventListener("pointercancel", onPointerUp, { passive: true });
+
+          this.cleanup = () => {
+            this.canvas.removeEventListener("pointermove", onPointerMove);
+            this.canvas.removeEventListener("pointerenter", onPointerEnter);
+            this.canvas.removeEventListener("pointerleave", onPointerLeave);
+            this.canvas.removeEventListener("pointerdown", onPointerDown);
+            this.canvas.removeEventListener("pointerup", onPointerUp);
+            this.canvas.removeEventListener("pointercancel", onPointerUp);
+          };
+        }
+
+        setupObservers() {
+          if ("ResizeObserver" in window) {
+            let resizeTimer = null;
+
+            this.resizeObserver = new ResizeObserver(() => {
+              clearTimeout(resizeTimer);
+              resizeTimer = setTimeout(() => {
+                if (!this.isCancelled) this.setupCanvas();
+              }, 80);
+            });
+
+            this.resizeObserver.observe(this.canvas.parentElement);
+          }
+
+          if ("IntersectionObserver" in window) {
+            this.intersectionObserver = new IntersectionObserver((entries) => {
+              const entry = entries[0];
+              this.isVisible = !!entry?.isIntersecting;
+
+              if (this.isVisible && !isReducedMotion()) {
+                this.start();
+              }
+            }, { threshold: 0.05 });
+
+            this.intersectionObserver.observe(this.canvas);
+          }
+
+          const onVisibilityChange = () => {
+            if (document.hidden) {
+              this.stop();
+            } else if (!isReducedMotion() && this.isVisible) {
+              this.start();
+            }
+          };
+
+          document.addEventListener("visibilitychange", onVisibilityChange);
+
+          const originalCleanup = this.cleanup;
+          this.cleanup = () => {
+            originalCleanup();
+            document.removeEventListener("visibilitychange", onVisibilityChange);
+          };
+        }
+
+        start() {
+          if (this.isCancelled || this.animationFrameId || !this.isVisible) return;
+
+          this.lastFrameTime = performance.now();
+          this.animationFrameId = requestAnimationFrame(this.loop);
+        }
+
+        stop() {
+          if (this.animationFrameId !== null) {
+            cancelAnimationFrame(this.animationFrameId);
+            this.animationFrameId = null;
+          }
+        }
+
+        loop = (timestamp) => {
+          this.animationFrameId = null;
+
+          if (this.isCancelled || document.hidden || !this.isVisible) return;
+
+          if (timestamp - this.lastFrameTime >= this.frameInterval) {
+            this.render();
+            this.lastFrameTime = timestamp;
+          }
+
+          this.animationFrameId = requestAnimationFrame(this.loop);
+        };
+
+        render(staticFrame = false) {
+          if (!this.ctx || !this.offscreen) return;
+
+          const dpr = this.getDPR();
+
+          this.ctx.setTransform(
+            dpr,
+            0,
+            0,
+            dpr,
+            this.padding,
+            this.fuzzRange
+          );
+
+          this.ctx.clearRect(
+            -this.fuzzRange,
+            -this.fuzzRange,
+            this.offscreenWidth + this.fuzzRange * 2,
+            this.textHeight + this.fuzzRange * 2
+          );
+
+          const intensity = staticFrame
+            ? 0
+            : this.isHovering
+              ? this.hoverIntensity
+              : this.baseIntensity;
+
+          /*
+           * Rendering every physical device pixel as a separate draw call is
+           * expensive on phones. Use a step on low-DPR/small screens while
+           * keeping the effect visually smooth.
+           */
+          const isSmallScreen = window.innerWidth <= 600;
+          const rowStep = isSmallScreen ? 2 : 1;
+
+          for (let y = 0; y < this.textHeight; y += rowStep) {
+            const dx = Math.floor(
+              intensity *
+              (Math.random() - 0.5) *
+              this.fuzzRange
+            );
+
+            const height = Math.min(rowStep, this.textHeight - y);
+
+            this.ctx.drawImage(
+              this.offscreen,
+              0, y, this.offscreenWidth, height,
+              dx, y, this.offscreenWidth, height
+            );
+          }
+        }
+
+        destroy() {
+          this.isCancelled = true;
+          this.stop();
+
+          this.resizeObserver?.disconnect();
+          this.intersectionObserver?.disconnect();
+
+          this.cleanup?.();
+        }
+      }
+
+      const fuzzy = new FuzzyText({
+        text: "404 · SIGNAL LOST",
+        fontWeight: 600,
+        fontFamily: "Fredoka, sans-serif",
+        color: "#38BDF8",
+        baseIntensity: 0.20,
+        hoverIntensity: 1.8
+      });
+
+      window.fuzzyTextInstance = fuzzy;
+
+      window.addEventListener("beforeunload", () => {
+        fuzzy?.destroy();
+      });
+
+      reducedMotionQuery.addEventListener?.("change", () => {
+        if (!fuzzy) return;
+
+        if (reducedMotionQuery.matches) {
+          fuzzy.stop();
+          fuzzy.render(true);
+        } else {
+          fuzzy.start();
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

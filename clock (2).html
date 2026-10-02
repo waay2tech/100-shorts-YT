@@ -1,0 +1,624 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="CHRONO II — a soft neumorphic analog clock and 1ms stopwatch engine for the precision era.">
+  <title>CHRONO II · Soft Time Studio | Waay2Tech</title>
+  <link rel="canonical" href="clock (2).html">
+  <meta property="og:site_name" content="WAAY2TECH">
+  <meta name="author" content="Waay2Tech">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="CHRONO II · Soft Time Studio | Waay2Tech">
+  <meta property="og:description" content="CHRONO II — a soft neumorphic analog clock and 1ms stopwatch engine for the precision era.">
+  <meta property="og:url" content="clock (2).html">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="CHRONO II · Soft Time Studio">
+  <meta name="twitter:description" content="CHRONO II — a soft neumorphic analog clock and 1ms stopwatch engine for the precision era.">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "CHRONO II · Soft Time Studio | Waay2Tech",
+    "description": "CHRONO II — a soft neumorphic analog clock and 1ms stopwatch engine for the precision era.",
+    "url": "clock (2).html"
+  }
+  </script>
+  <style>
+    :root {
+      --bg: #e8ecf3;
+      --bg-0: #dfe4ee;
+      --bg-1: #eceff6;
+      --bg-2: #f2f5f9;
+      --surface: #f2f5f9;
+      --text-1: #3b4252;
+      --text-2: #64748b;
+      --text-3: #98a2b3;
+      --stroke: rgba(59, 66, 82, 0.08);
+      --stroke-strong: rgba(59, 66, 82, 0.16);
+      --glass: rgba(255, 255, 255, 0.65);
+      --indigo: #6c7af0;
+      --indigo-soft: #8b93f5;
+      --violet: #8b93f5;
+      --cyan: #34d399;
+      --lime: #34d399;
+      --amber: #6c7af0;
+      --magenta: #64748b;
+      --grad-primary: linear-gradient(135deg, #6c7af0 0%, #34d399 100%);
+      --glow-indigo: 0 6px 16px rgba(108, 122, 240, 0.28);
+      --glow-violet: 0 6px 16px rgba(139, 147, 245, 0.28);
+      --glow-cyan: 0 6px 14px rgba(52, 211, 153, 0.3);
+      --shadow-card: 14px 14px 30px rgba(59, 66, 82, 0.14), -14px -14px 30px rgba(255, 255, 255, 0.9);
+      --shadow-soft: 8px 8px 18px rgba(59, 66, 82, 0.12), -8px -8px 18px rgba(255, 255, 255, 0.85);
+      --shadow-inset: inset 6px 6px 14px rgba(59, 66, 82, 0.1), inset -6px -6px 14px rgba(255, 255, 255, 0.9);
+      --s1: 4px; --s2: 8px; --s3: 12px; --s4: 16px; --s5: 20px; --s6: 28px; --s7: 40px; --s8: 56px; --s9: 80px;
+      --radius-sm: 10px; --radius-md: 16px; --radius-lg: 24px; --radius-full: 999px;
+      --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+      --font-display: 'DM Sans', sans-serif;
+      --font-body: 'DM Sans', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: var(--font-body);
+      color: var(--text-1);
+      background: var(--bg);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    ::selection { background: var(--indigo); color: #fff; }
+    ::-webkit-scrollbar { width: 12px; }
+    ::-webkit-scrollbar-track { background: var(--bg-0); }
+    ::-webkit-scrollbar-thumb { background: #c6cdda; border-radius: 8px; border: 3px solid var(--bg-0); }
+
+    .skip-link {
+      position: fixed; top: 12px; left: 12px; z-index: 9999;
+      padding: 10px 18px; border-radius: var(--radius-md);
+      background: var(--indigo); color: #fff;
+      font-family: var(--font-body); font-weight: 700; text-decoration: none;
+      transform: translateY(-200%); transition: transform 0.25s var(--ease-out);
+    }
+    .skip-link:focus { transform: translateY(0); }
+
+    .site-header {
+      width: min(1240px, 92%);
+      margin-inline: auto;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 0;
+    }
+    .wordmark {
+      font-family: var(--font-mono); font-weight: 600; font-size: 1.15rem;
+      letter-spacing: 0.12em; color: var(--text-1); text-decoration: none;
+      display: inline-flex; align-items: center; gap: 12px;
+    }
+    .wordmark .mark {
+      width: 34px; height: 34px; border-radius: 50%;
+      display: grid; place-items: center;
+      background: var(--bg-2);
+      box-shadow: var(--shadow-soft);
+      font-size: 0.95rem; color: var(--indigo);
+    }
+    .site-nav { display: flex; gap: 6px; }
+    .site-nav a {
+      color: var(--text-2); text-decoration: none; font-weight: 600; font-size: 0.92rem;
+      padding: 8px 14px; border-radius: var(--radius-full);
+      transition: background 0.25s, color 0.25s;
+    }
+    .site-nav a:hover { background: var(--bg-2); color: var(--text-1); box-shadow: var(--shadow-soft); }
+
+    main { width: min(1240px, 92%); margin-inline: auto; flex: 1; padding: var(--s4) 0; }
+
+    .hero { max-width: 760px; margin-bottom: var(--s7); display: grid; gap: var(--s4); }
+    .kicker {
+      font-family: var(--font-mono); font-weight: 500; letter-spacing: 0.3em;
+      text-transform: uppercase; font-size: 0.74rem; color: var(--indigo);
+      display: inline-flex; align-items: center; gap: 10px;
+    }
+    .kicker::before { content: ''; width: 22px; height: 1px; background: var(--cyan); }
+    h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.3rem, 6.5vw, 3.8rem);
+      font-weight: 700; line-height: 1.05; letter-spacing: -0.02em;
+      margin: 0;
+    }
+    .grad-text {
+      background: var(--grad-primary);
+      -webkit-background-clip: text; background-clip: text;
+      -webkit-text-fill-color: transparent; color: transparent;
+    }
+    .lead { color: var(--text-2); font-size: 1.08rem; line-height: 1.6; margin: 0; max-width: 62ch; }
+    .row { display: flex; align-items: center; gap: var(--s3); flex-wrap: wrap; }
+    .chip {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 0.8rem; font-weight: 600; letter-spacing: 0.05em;
+      color: var(--text-2); background: var(--bg-2);
+      border: 1px solid var(--stroke); border-radius: var(--radius-full);
+      padding: 8px 16px; box-shadow: var(--shadow-soft);
+      transition: transform 0.25s var(--ease-out), color 0.25s;
+    }
+    .chip:hover { transform: translateY(-2px); color: var(--indigo); }
+    .chip .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--cyan); box-shadow: 0 0 8px var(--cyan); animation: dot-pulse 1.8s ease-in-out infinite; }
+    @keyframes dot-pulse { 50% { transform: scale(0.55); opacity: 0.6; } }
+
+    .card {
+      position: relative;
+      background: var(--bg-2);
+      border: 1px solid var(--stroke);
+      border-radius: 28px;
+      padding: var(--s7);
+      box-shadow: var(--shadow-card);
+      transition: transform 0.4s var(--ease-out), box-shadow 0.4s var(--ease-out);
+    }
+    .card:hover { transform: translateY(-4px); box-shadow: 18px 18px 36px rgba(59, 66, 82, 0.16), -18px -18px 36px rgba(255, 255, 255, 0.95); }
+
+    .chrono-grid { display: grid; grid-template-columns: 1.15fr 1fr; gap: var(--s7); align-items: center; }
+
+    .panel-label {
+      display: flex; align-items: center; gap: var(--s2);
+      font-family: var(--font-mono); font-size: 0.7rem;
+      letter-spacing: 0.3em; text-transform: uppercase; color: var(--text-3);
+    }
+    .panel-label::before { content: ''; width: 22px; height: 1px; background: var(--cyan); }
+
+    .analog-panel { display: flex; flex-direction: column; align-items: center; gap: var(--s5); }
+    .clock-face {
+      --face: clamp(230px, 54vw, 300px);
+      --face-r: calc(var(--face) / 2);
+      width: var(--face); height: var(--face); position: relative;
+      border-radius: 50%;
+      background: var(--bg-2);
+      border: 1px solid var(--stroke-strong);
+      box-shadow: var(--shadow-card), inset 0 0 70px rgba(108, 122, 240, 0.08);
+      animation: float 6s var(--ease-out) infinite;
+    }
+    .clock-face::after {
+      content: ''; position: absolute; inset: 11px; border-radius: 50%;
+      border: 1px dashed rgba(52, 211, 153, 0.45);
+      pointer-events: none;
+    }
+    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+    .hour-marks { position: absolute; inset: 0; }
+    .hour-mark {
+      position: absolute; left: 50%; top: 50%;
+      width: 6px; height: 15px; margin: -7px 0 0 -3px;
+      border-radius: 3px; background: var(--stroke-strong);
+    }
+    .hour-mark.main {
+      width: 8px; height: 22px; margin: -11px 0 0 -4px;
+      background: var(--cyan);
+    }
+    .clock-hands { position: absolute; inset: 0; }
+    .hand {
+      position: absolute; left: 50%; top: 50%;
+      transform-origin: center bottom; border-radius: var(--radius-full);
+    }
+    .hour-hand { width: 8px; height: 64px; margin: -64px 0 0 -4px; background: var(--indigo-soft); box-shadow: var(--glow-indigo); }
+    .minute-hand { width: 6px; height: 92px; margin: -92px 0 0 -3px; background: var(--violet); box-shadow: var(--glow-violet); }
+    .second-hand { width: 3px; height: 110px; margin: -110px 0 0 -1.5px; background: var(--cyan); box-shadow: var(--glow-cyan); }
+    .center-dot {
+      position: absolute; left: 50%; top: 50%;
+      width: 14px; height: 14px; margin: -7px 0 0 -7px;
+      border-radius: 50%; background: var(--grad-primary); box-shadow: var(--glow-indigo);
+    }
+    .digital-time {
+      font-family: var(--font-mono); font-size: clamp(1.35rem, 2.4vw, 1.85rem);
+      letter-spacing: 0.14em; font-variant-numeric: tabular-nums; color: var(--text-1);
+      background: var(--bg-1); border: 1px solid var(--stroke); border-radius: var(--radius-full);
+      padding: var(--s3) var(--s5);
+      box-shadow: var(--shadow-inset);
+    }
+
+    .sw-panel { display: flex; flex-direction: column; gap: var(--s5); }
+    .sw-display {
+      position: relative; display: flex; align-items: baseline; justify-content: center; gap: var(--s2);
+      font-family: var(--font-mono); font-size: clamp(1.55rem, 3.2vw, 2.35rem);
+      font-variant-numeric: tabular-nums; letter-spacing: 0.05em;
+      background: var(--bg-1); border: 1px solid var(--stroke); border-radius: var(--radius-lg);
+      padding: var(--s5) var(--s4);
+      box-shadow: var(--shadow-inset);
+    }
+    .sw-ms { color: var(--cyan); font-size: 0.55em; }
+    .sw-lap-badge { position: absolute; top: 14px; right: 14px; }
+    .badge {
+      display: inline-block; font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-1);
+      background: var(--bg-2); padding: 5px 12px; border-radius: var(--radius-full);
+      border: 1px solid var(--stroke); box-shadow: var(--shadow-soft);
+    }
+    .badge[hidden] { display: none; }
+
+    .sw-controls { display: flex; justify-content: center; gap: var(--s3); flex-wrap: wrap; }
+    .btn {
+      position: relative; display: inline-flex; align-items: center; justify-content: center;
+      width: 52px; height: 52px; padding: 0; border-radius: 50%;
+      border: 1px solid var(--stroke);
+      background: var(--bg-2); color: var(--text-1); cursor: pointer;
+      box-shadow: var(--shadow-soft);
+      transition: transform 0.25s var(--ease-out), box-shadow 0.25s var(--ease-out);
+    }
+    .btn:hover { transform: translateY(-2px); box-shadow: var(--shadow-card); }
+    .btn:active { transform: translateY(0); box-shadow: var(--shadow-inset); }
+    .btn:disabled { opacity: 0.35; cursor: not-allowed; }
+    .btn:focus-visible { outline: 2px solid var(--indigo); outline-offset: 3px; }
+    .sw-start svg { color: var(--lime); }
+    .sw-pause svg { color: var(--amber); }
+    .sw-reset svg { color: var(--magenta); }
+    .sw-lap svg { color: var(--cyan); }
+
+    .lap-times {
+      list-style: none; margin: 0; padding: var(--s3);
+      display: flex; flex-direction: column; gap: var(--s1);
+      max-height: 190px; overflow-y: auto;
+      background: var(--bg-1); border: 1px solid var(--stroke); border-radius: var(--radius-md);
+      box-shadow: var(--shadow-inset);
+    }
+    .lap-item {
+      display: flex; justify-content: space-between; gap: var(--s3);
+      padding: 8px 12px; border-radius: var(--radius-sm); background: var(--bg-2);
+      font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-2);
+      border: 1px solid var(--stroke);
+    }
+    .lap-time { color: var(--cyan); font-variant-numeric: tabular-nums; }
+
+    .status-line { display: flex; align-items: center; justify-content: space-between; gap: var(--s3); padding-top: var(--s2); }
+    .small { font-size: 0.85rem; color: var(--text-2); }
+    .muted { color: var(--text-2); }
+    .mono { font-family: var(--font-mono); }
+
+    .site-footer {
+      border-top: 1px solid var(--stroke);
+      margin-top: var(--s9);
+      padding: var(--s5) max(4vw, 16px);
+      display: flex; flex-wrap: wrap; gap: var(--s3);
+      align-items: center; justify-content: space-between;
+      color: var(--text-3); font-size: 0.95rem;
+    }
+    .site-footer a { color: var(--indigo); text-decoration: none; }
+    .site-footer a:hover { text-decoration: underline; }
+
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out); transition-delay: var(--reveal-delay, 0ms); }
+    .reveal.in { opacity: 1; transform: none; }
+
+    @media (max-width: 980px) {
+      .chrono-grid { grid-template-columns: 1fr; }
+      .card { padding: var(--s6) var(--s5); }
+    }
+    @media (max-width: 620px) {
+      .site-nav { display: none; }
+      .sw-display { padding: var(--s5) var(--s3); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .reveal { opacity: 1; transform: none; transition: none; }
+      .clock-face, .chip .dot { animation: none; }
+    }
+  </style>
+  <style>html,body{overflow-x:hidden}</style>
+</head>
+<body>
+<script>
+(function () {
+  if (!('ontouchstart' in window) || window.__touchBridge) return;
+  window.__touchBridge = true;
+  var lt = null;
+  function fire(type, t) {
+    var el = document.elementFromPoint(t.clientX, t.clientY) || document;
+    el.dispatchEvent(new MouseEvent(type, {
+      bubbles: true, cancelable: true, view: window,
+      clientX: t.clientX, clientY: t.clientY,
+      button: 0, buttons: type === 'mousemove' ? 1 : 0
+    }));
+  }
+  document.addEventListener('touchstart', function (e) {
+    if (e.touches.length !== 1) return;
+    lt = e.touches[0];
+    fire('mousemove', lt); fire('mousedown', lt);
+  }, { passive: true });
+  document.addEventListener('touchmove', function (e) {
+    if (e.touches.length !== 1 || !lt) return;
+    lt = e.touches[0];
+    fire('mousemove', lt);
+  }, { passive: true });
+  document.addEventListener('touchend', function () {
+    if (!lt) return;
+    fire('mouseup', lt);
+    lt = null;
+  }, { passive: true });
+})();
+</script>
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header class="site-header">
+    <a href="#main" class="wordmark"><span class="mark" aria-hidden="true">◷</span>WAAY2TECH</a>
+    <nav class="site-nav" aria-label="Site">
+      <a href="#">Face</a>
+      <a href="#">Lap Engine</a>
+      <a href="#">About</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <header class="hero reveal">
+      <p class="kicker">Soft-Glass Time Studio</p>
+      <h1>Waay2<span class="grad-text">Tech</span></h1>
+      <p class="lead">A soft neumorphic time engine for the precision era — analog soul, 1ms digital pulse, zero jitter. Watch time, don't just read it.</p>
+      <div class="row" aria-label="Feature highlights">
+        <span class="chip"><span class="dot"></span>Analog Heart</span>
+        <span class="chip">1ms Lap Grid</span>
+        <span class="chip">Zero Jitter</span>
+      </div>
+    </header>
+
+    <section class="card reveal" style="--reveal-delay:120ms" aria-label="Clock and stopwatch studio">
+      <div class="chrono-grid">
+        <section class="analog-panel" aria-label="Analog clock">
+          <p class="panel-label">Analog Core</p>
+          <div class="clock-face">
+            <div class="hour-marks" id="hourMarks" aria-hidden="true"></div>
+            <div class="clock-hands" aria-hidden="true">
+              <div class="hand hour-hand" id="hourHand"></div>
+              <div class="hand minute-hand" id="minuteHand"></div>
+              <div class="hand second-hand" id="secondHand"></div>
+              <div class="center-dot"></div>
+            </div>
+          </div>
+          <p class="digital-time" id="digitalTime" role="timer">10:23:45</p>
+        </section>
+
+        <section class="sw-panel" aria-label="Stopwatch controls">
+          <p class="panel-label">Lap Engine</p>
+
+          <div class="sw-display" role="timer">
+            <span id="stopwatchTime">00:00:00</span><span class="sw-ms" id="milliseconds">.00</span>
+            <span class="badge sw-lap-badge" id="lap-indicator" hidden>0</span>
+          </div>
+
+          <div class="sw-controls">
+            <button class="btn sw-start" aria-label="Start stopwatch" aria-pressed="false">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M5 3L19 12L5 21V3Z" fill="currentColor"/>
+              </svg>
+            </button>
+            <button class="btn sw-pause" aria-label="Pause stopwatch" aria-pressed="false">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect x="6" y="4" width="4" height="16" rx="1" fill="currentColor"/>
+                <rect x="14" y="4" width="4" height="16" rx="1" fill="currentColor"/>
+              </svg>
+            </button>
+            <button class="btn sw-reset" aria-label="Reset stopwatch">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M17.65 6.35C16.2 4.9 14.21 4 12 4C7.58 4 4.01 7.58 4.01 12C4.01 16.42 7.58 20 12 20C15.73 20 18.84 17.45 19.73 14H17.65C16.83 16.33 14.61 18 12 18C8.69 18 6 15.31 6 12C6 8.69 8.69 6 12 6C13.66 6 15.14 6.69 16.22 7.78L13 11H20V4L17.65 6.35Z" fill="currentColor"/>
+              </svg>
+            </button>
+            <button class="btn sw-lap" aria-label="Record a lap" aria-pressed="false">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M19 3H5C3.89 3 3 3.9 3 5V19C3 20.1 3.89 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3ZM19 19H5V5H19V19Z" fill="currentColor"/>
+                <path d="M7 8H10V10H7V8ZM7 11H10V13H7V11ZM7 14H10V16H7V14ZM12 8H17V10H12V8ZM12 11H17V13H12V11ZM12 14H17V16H12V14Z" fill="currentColor"/>
+              </svg>
+            </button>
+          </div>
+
+          <ul class="lap-times" id="lap-times" role="log" aria-live="polite" aria-label="Lap history"></ul>
+
+          <p class="status-line small">
+            <span class="muted">STATE</span>
+            <span class="mono" id="sw-status" role="status" aria-live="polite">READY</span>
+          </p>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span>WAAY2TECH · <span data-year></span></span>
+    <a href="#">Precision, softened.</a>
+  </footer>
+
+  <script>
+    (() => {
+      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      document.querySelectorAll('[data-year]').forEach((el) => { el.textContent = new Date().getFullYear(); });
+      if (reduced) {
+        document.querySelectorAll('.reveal').forEach((el) => el.classList.add('in'));
+      } else if ('IntersectionObserver' in window) {
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('in');
+              io.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.15 });
+        document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+      } else {
+        document.querySelectorAll('.reveal').forEach((el) => el.classList.add('in'));
+      }
+    })();
+  </script>
+  <script>
+    (() => {
+      'use strict';
+
+      /* ---------- Analog clock ---------- */
+      class ChronoClock {
+        constructor() {
+          this.hourHand = document.getElementById('hourHand');
+          this.minuteHand = document.getElementById('minuteHand');
+          this.secondHand = document.getElementById('secondHand');
+          this.digital = document.getElementById('digitalTime');
+          this.hour = Math.floor(Math.random() * 12);
+          this.minute = Math.floor(Math.random() * 60);
+          this.second = Math.floor(Math.random() * 60);
+          this.last = Date.now();
+          this.buildMarks();
+          this.tick();
+          setInterval(() => this.tick(), 1000);
+        }
+
+        buildMarks() {
+          const host = document.getElementById('hourMarks');
+          if (!host) return;
+          const frag = document.createDocumentFragment();
+          for (let i = 0; i < 60; i++) {
+            const mark = document.createElement('div');
+            mark.className = i % 5 === 0 ? 'hour-mark main' : 'hour-mark';
+            mark.style.transform = `rotate(${i * 6}deg) translateY(calc(-1 * var(--face-r)))`;
+            frag.appendChild(mark);
+          }
+          host.appendChild(frag);
+        }
+
+        tick() {
+          const now = Date.now();
+          const dt = (now - this.last) / 1000;
+          this.last = now;
+
+          this.second += dt;
+          this.minute += Math.floor(this.second / 60);
+          this.second %= 60;
+          this.hour += Math.floor(this.minute / 60);
+          this.minute %= 60;
+          this.hour %= 12;
+
+          const pad = (n) => String(n).padStart(2, '0');
+          this.hourHand.style.transform = `rotate(${(this.hour + this.minute / 60) * 30}deg)`;
+          this.minuteHand.style.transform = `rotate(${(this.minute + this.second / 60) * 6}deg)`;
+          this.secondHand.style.transform = `rotate(${this.second * 6}deg)`;
+          this.digital.textContent = `${pad(this.hour === 0 ? 12 : this.hour)}:${pad(Math.floor(this.minute))}:${pad(Math.floor(this.second))}`;
+        }
+      }
+
+      /* ---------- Stopwatch ---------- */
+      class Stopwatch {
+        constructor() {
+          this.display = document.getElementById('stopwatchTime');
+          this.ms = document.getElementById('milliseconds');
+          this.badge = document.getElementById('lap-indicator');
+          this.ledger = document.getElementById('lap-times');
+          this.status = document.getElementById('sw-status');
+          this.controls = {
+            start: document.querySelector('.sw-start'),
+            pause: document.querySelector('.sw-pause'),
+            reset: document.querySelector('.sw-reset'),
+            lap: document.querySelector('.sw-lap'),
+          };
+          this.running = false;
+          this.anchor = 0;
+          this.elapsed = 0;
+          this.timer = null;
+          this.laps = [];
+          this.sample = [
+            { n: 3, t: '00:12:43', m: 21 },
+            { n: 2, t: '00:08:32', m: 45 },
+            { n: 1, t: '00:15:21', m: 87 },
+          ];
+          this.bind();
+          this.reset();
+        }
+
+        bind() {
+          this.controls.start.addEventListener('click', () => this.start());
+          this.controls.pause.addEventListener('click', () => this.pause());
+          this.controls.reset.addEventListener('click', () => this.reset());
+          this.controls.lap.addEventListener('click', () => this.lap());
+        }
+
+        current() { return this.running ? Date.now() - this.anchor : this.elapsed; }
+
+        start() {
+          if (this.running) return;
+          this.running = true;
+          this.anchor = Date.now() - this.elapsed;
+          this.timer = setInterval(() => this.render(), 33);
+          this.sync();
+          this.announce('RUNNING');
+        }
+
+        pause() {
+          if (!this.running) return;
+          this.running = false;
+          clearInterval(this.timer);
+          this.elapsed = Date.now() - this.anchor;
+          this.sync();
+          this.announce('HOLD');
+        }
+
+        reset() {
+          this.running = false;
+          clearInterval(this.timer);
+          this.elapsed = 0;
+          this.laps = this.sample.map((l) => ({ ...l }));
+          this.render();
+          this.renderLaps();
+          this.sync();
+          this.announce('READY');
+        }
+
+        lap() {
+          if (!this.running) return;
+          const t = this.current();
+          this.laps.unshift({ n: this.laps.length + 1, t: this.format(t), m: Math.floor((t % 1000) / 10) });
+          this.renderLaps();
+          this.announce(`LAP ${this.laps.length} LOGGED`);
+        }
+
+        format(t) {
+          const pad = (n) => String(n).padStart(2, '0');
+          const h = Math.floor(t / 3600000);
+          const m = Math.floor((t % 3600000) / 60000);
+          const s = Math.floor((t % 60000) / 1000);
+          return `${pad(h)}:${pad(m)}:${pad(s)}`;
+        }
+
+        render() {
+          const t = this.current();
+          this.display.textContent = this.format(t);
+          this.ms.textContent = `.${String(Math.floor((t % 1000) / 10)).padStart(2, '0')}`;
+          this.badge.textContent = this.laps.length;
+          this.badge.hidden = this.laps.length === 0;
+        }
+
+        renderLaps() {
+          const frag = document.createDocumentFragment();
+          this.laps.forEach((l) => {
+            const li = document.createElement('li');
+            li.className = 'lap-item';
+            const num = document.createElement('span');
+            num.className = 'lap-number';
+            num.textContent = `Lap ${l.n}`;
+            const time = document.createElement('span');
+            time.className = 'lap-time';
+            time.textContent = `${l.t}.${String(l.m).padStart(2, '0')}`;
+            li.append(num, time);
+            frag.appendChild(li);
+          });
+          this.ledger.replaceChildren(frag);
+          this.render();
+        }
+
+        sync() {
+          this.controls.start.disabled = this.running;
+          this.controls.pause.disabled = !this.running;
+          this.controls.lap.disabled = !this.running;
+          this.controls.start.setAttribute('aria-pressed', String(!this.running));
+          this.controls.pause.setAttribute('aria-pressed', String(this.running));
+        }
+
+        announce(msg) { if (this.status) this.status.textContent = msg; }
+      }
+
+      new ChronoClock();
+      new Stopwatch();
+    })();
+  </script>
+</body>
+</html>

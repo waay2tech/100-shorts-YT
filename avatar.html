@@ -1,0 +1,968 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Pandora Now — a bioluminescent fan hub for the Avatar universe. Trailer, cast orbit, watchlist and immersive-world collections rendered in living glow.">
+  <title>Pandora Now · Bioluminescent Avatar Fan Hub | WAAY2TECH</title>
+  <link rel="canonical" href="avatar.html">
+  <meta property="og:site_name" content="WAAY2TECH">
+  <meta name="author" content="WAAY2TECH">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Pandora Now · Bioluminescent Avatar Fan Hub | Waay2Tech">
+  <meta property="og:description" content="Pandora Now — a bioluminescent fan hub for the Avatar universe. Trailer, cast orbit, watchlist and immersive-world collections rendered in living glow.">
+  <meta property="og:url" content="avatar.html">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Pandora Now · Bioluminescent Avatar Fan Hub">
+  <meta name="twitter:description" content="Pandora Now — a bioluminescent fan hub for the Avatar universe. Trailer, cast orbit, watchlist and immersive-world collections rendered in living glow.">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Pandora Now · Bioluminescent Avatar Fan Hub | Waay2Tech",
+    "description": "A living, bioluminescent fan hub for the Avatar universe — trailer, cast orbit, watchlist and immersive-world collections.",
+    "genre": "Science Fiction",
+    "keywords": "Avatar, Pandora, fan hub, bioluminescent, sci-fi, James Cameron",
+    "url": "avatar.html"
+  }
+  </script>
+  <style>
+    :root {
+      --bg: #02070c;
+      --bg-1: #06141f;
+      --bg-2: #0a2130;
+      --bg-3: #0d2a3c;
+      --text-1: #d7f4ff;
+      --text-2: #9cc0d4;
+      --text-3: #5f8396;
+      --cyan: #2dd4bf;
+      --teal: #2dd4bf;
+      --indigo: #a855f7;
+      --violet: #a855f7;
+      --magenta: #ff6b9d;
+      --pink: #ff6b9d;
+      --lime: #86efac;
+      --amber: #fbbf24;
+      --stroke: rgba(45, 212, 191, 0.18);
+      --stroke-strong: rgba(45, 212, 191, 0.42);
+      --glass: rgba(6, 20, 31, 0.55);
+      --glass-strong: rgba(10, 33, 48, 0.78);
+      --grad-primary: linear-gradient(135deg, #2dd4bf 0%, #a855f7 55%, #ff6b9d 100%);
+      --grad-lime: linear-gradient(135deg, #86efac 0%, #2dd4bf 100%);
+      --grad-cyan: linear-gradient(90deg, #2dd4bf, #a855f7);
+      --grad-indigo: linear-gradient(90deg, #a855f7, #ff6b9d);
+      --grad-magenta: linear-gradient(90deg, #ff6b9d, #fbbf24);
+      --grad-text: linear-gradient(120deg, #2dd4bf 0%, #a855f7 55%, #ff6b9d 100%);
+      --glow-indigo: 0 0 24px rgba(168, 85, 247, 0.5);
+      --glow-cyan: 0 0 22px rgba(45, 212, 191, 0.45);
+      --glow-lime: 0 0 22px rgba(134, 239, 172, 0.4);
+      --glow-violet: 0 0 30px rgba(168, 85, 247, 0.45);
+      --shadow-card: 0 20px 50px rgba(0, 0, 0, 0.5);
+      --radius-sm: 10px;
+      --radius-md: 16px;
+      --radius-lg: 22px;
+      --radius-xl: 28px;
+      --radius-full: 999px;
+      --space-1: 4px;
+      --space-2: 8px;
+      --space-3: 12px;
+      --space-4: 16px;
+      --space-5: 24px;
+      --space-6: 32px;
+      --space-7: 48px;
+      --space-8: 64px;
+      --space-9: 96px;
+      --speed-2: 0.25s;
+      --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+      --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+      --blur-glass: 12px;
+      --text-xs: 12px;
+      --text-sm: 14px;
+      --text-md: 17px;
+      --text-xl: 26px;
+      --text-3xl: 40px;
+      --font-display: 'Space Grotesk', sans-serif;
+      --font-body: 'Inter', sans-serif;
+      --font-mono: ui-monospace, 'Cascadia Mono', Consolas, monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+    body {
+      font-family: var(--font-body);
+      background: var(--bg);
+      color: var(--text-1);
+      line-height: 1.6;
+      min-height: 100vh;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      background:
+        radial-gradient(900px 500px at 85% -10%, rgba(45, 212, 191, 0.14), transparent 60%),
+        radial-gradient(700px 500px at 8% 20%, rgba(168, 85, 247, 0.14), transparent 60%),
+        radial-gradient(800px 600px at 60% 110%, rgba(255, 107, 157, 0.1), transparent 60%),
+        var(--bg);
+    }
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      background-image:
+        radial-gradient(1px 1px at 12% 22%, rgba(45, 212, 191, 0.5), transparent),
+        radial-gradient(1px 1px at 34% 8%, rgba(215, 244, 255, 0.4), transparent),
+        radial-gradient(1px 1px at 58% 16%, rgba(168, 85, 247, 0.5), transparent),
+        radial-gradient(1px 1px at 76% 30%, rgba(45, 212, 191, 0.45), transparent),
+        radial-gradient(1px 1px at 90% 12%, rgba(255, 107, 157, 0.45), transparent);
+      pointer-events: none;
+      opacity: 0.7;
+    }
+    ::selection { background: rgba(45, 212, 191, 0.35); color: #eafffa; }
+    ::-webkit-scrollbar { width: 10px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: rgba(45, 212, 191, 0.3); border-radius: 6px; }
+    :focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; border-radius: 4px; }
+
+    .skip-link {
+      position: fixed; top: -60px; left: 16px; z-index: 200;
+      background: var(--teal); color: #02131a; font-weight: 700;
+      padding: 10px 18px; border-radius: 8px; text-decoration: none;
+      transition: top 0.3s ease;
+    }
+    .skip-link:focus { top: 16px; }
+
+    .site-header {
+      position: sticky; top: 0; z-index: 100;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      background: rgba(2, 7, 12, 0.7);
+      border-bottom: 1px solid var(--stroke);
+    }
+    .site-header .bar {
+      max-width: 1200px; margin-inline: auto; padding: 14px clamp(16px, 4vw, 40px);
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    }
+    .wordmark {
+      font-family: var(--font-display); font-weight: 700; font-size: 1.05rem;
+      letter-spacing: 0.24em; color: var(--text-1); text-decoration: none;
+      display: inline-flex; align-items: center; gap: 10px;
+    }
+    .wordmark .orb {
+      width: 12px; height: 12px; border-radius: 50%;
+      background: radial-gradient(circle at 35% 30%, #b9f5e8, var(--teal));
+      box-shadow: 0 0 14px rgba(45, 212, 191, 0.9);
+      animation: orb-breathe 4s ease-in-out infinite;
+    }
+    @keyframes orb-breathe { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.35); } }
+    .site-nav { display: flex; gap: 22px; }
+    .site-nav a {
+      color: var(--text-2); text-decoration: none; font-size: 0.9rem;
+      letter-spacing: 0.06em; transition: color 0.25s ease;
+    }
+    .site-nav a:hover { color: var(--teal); }
+
+    .shell { max-width: 1200px; margin-inline: auto; padding-inline: clamp(16px, 4vw, 40px); }
+
+    .hero {
+      padding: clamp(90px, 16vh, 150px) 0 var(--space-7);
+      display: grid; gap: var(--space-5);
+    }
+    .hero-title { max-width: 14ch; line-height: 1.02; }
+    .stat-row { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+
+    .kicker {
+      font-family: var(--font-mono); font-size: var(--text-xs);
+      letter-spacing: 0.3em; text-transform: uppercase; color: var(--teal);
+      display: flex; align-items: center; gap: 10px;
+    }
+    .kicker::before {
+      content: ''; width: 26px; height: 1px; background: var(--teal); opacity: 0.6;
+    }
+    .h1 {
+      font-family: var(--font-display); font-weight: 700;
+      font-size: clamp(2.4rem, 7vw, 4.6rem); letter-spacing: -0.02em; color: var(--text-1);
+    }
+    .h2 {
+      font-family: var(--font-display); font-weight: 700;
+      font-size: clamp(1.9rem, 4.5vw, 3rem); letter-spacing: -0.01em; color: var(--text-1);
+    }
+    .h3 {
+      font-family: var(--font-display); font-weight: 600;
+      font-size: clamp(1.25rem, 2.6vw, 1.6rem); color: var(--text-1);
+    }
+    .lead { font-size: clamp(1.02rem, 1.6vw, 1.18rem); color: var(--text-2); }
+    .grad-text {
+      background: var(--grad-text);
+      -webkit-background-clip: text; background-clip: text;
+      -webkit-text-fill-color: transparent; color: transparent;
+    }
+    .mono { font-family: var(--font-mono); letter-spacing: 0.14em; }
+    .small { font-size: var(--text-sm); }
+    .muted { color: var(--text-2); }
+
+    .chip {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: var(--text-sm); color: var(--text-2);
+      border: 1px solid var(--stroke); border-radius: var(--radius-full);
+      padding: 7px 15px; background: rgba(6, 20, 31, 0.5);
+    }
+    .chip .dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--teal); box-shadow: 0 0 10px rgba(45, 212, 191, 0.8);
+    }
+    .badge {
+      font-size: var(--text-xs); font-weight: 600; letter-spacing: 0.06em;
+      padding: 6px 12px; border-radius: var(--radius-full);
+      border: 1px solid var(--stroke); color: var(--text-2);
+    }
+    .badge--lime {
+      color: #04160f; background: var(--grad-lime); border-color: transparent;
+      box-shadow: var(--glow-lime);
+    }
+    .badge--ghost { background: rgba(6, 20, 31, 0.5); }
+
+    .btn {
+      font-family: var(--font-body); font-weight: 600; font-size: var(--text-sm);
+      border: 1px solid var(--stroke-strong); border-radius: var(--radius-md);
+      padding: 12px 22px; cursor: pointer; transition: all var(--speed-2) var(--ease-out);
+      background: rgba(6, 20, 31, 0.5); color: var(--text-1);
+      letter-spacing: 0.03em;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn--lime {
+      color: #02131a; background: var(--grad-lime); border-color: transparent;
+      box-shadow: var(--glow-lime);
+    }
+    .btn--lime:hover { box-shadow: 0 0 30px rgba(45, 212, 191, 0.6); }
+    .btn--ghost:hover { border-color: var(--teal); color: var(--teal); box-shadow: var(--glow-cyan); }
+
+    .glass {
+      background: var(--glass);
+      -webkit-backdrop-filter: blur(var(--blur-glass));
+      backdrop-filter: blur(var(--blur-glass));
+      border: 1px solid var(--stroke);
+    }
+    .card {
+      border-radius: var(--radius-lg); padding: var(--space-5);
+      box-shadow: var(--shadow-card);
+    }
+
+    .stack { display: flex; flex-direction: column; gap: var(--space-4); }
+    .stack--lg { gap: var(--space-7); }
+    .row { display: flex; align-items: center; gap: var(--space-3); }
+    .row--wrap { flex-wrap: wrap; }
+    .between { justify-content: space-between; }
+    .grid { display: grid; gap: var(--space-4); }
+    .grid--3 { grid-template-columns: repeat(3, 1fr); }
+    .info-grid { grid-template-columns: repeat(3, 1fr); }
+
+    .rating-bars { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-2); margin-top: var(--space-4); }
+    .rating-bar { height: 8px; border-radius: var(--radius-full); }
+    .bar--lime { background: var(--grad-lime); box-shadow: var(--glow-lime); }
+    .bar--cyan { background: var(--grad-cyan); box-shadow: var(--glow-cyan); }
+    .bar--indigo { background: var(--grad-indigo); box-shadow: var(--glow-indigo); }
+    .bar--magenta { background: var(--grad-magenta); }
+
+    .media-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-3); }
+    .media-item {
+      position: relative; height: 150px; border-radius: var(--radius-md);
+      overflow: hidden; border: 1px solid var(--stroke); cursor: pointer;
+    }
+    .media-art, .poster-art { width: 100%; height: 100%; display: block; transition: transform 0.6s var(--ease-out); }
+    .media-item:hover .media-art { transform: scale(1.1); }
+    .media-overlay {
+      position: absolute; inset: 0;
+      display: grid; place-items: center;
+      background: linear-gradient(to top, rgba(2, 7, 12, 0.78), rgba(2, 7, 12, 0.1));
+      opacity: 0; transition: opacity 0.35s var(--ease-out);
+    }
+    .media-item:hover .media-overlay, .media-overlay.show { opacity: 1; }
+    .media-item .play-dot {
+      width: 52px; height: 52px; border-radius: 50%;
+      display: grid; place-items: center;
+      background: var(--glass-strong);
+      -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+      border: 1px solid var(--stroke-strong); color: var(--text-1);
+      transition: all var(--speed-2) var(--ease-spring);
+    }
+    .media-item:hover .play-dot { background: var(--grad-primary); border-color: transparent; box-shadow: var(--glow-indigo); }
+
+    .media-actions { margin-top: var(--space-4); }
+    .friends { display: flex; align-items: center; gap: var(--space-3); margin-top: var(--space-4); }
+    .avatar-stack { display: flex; }
+    .avatar-stack .dot-avatar {
+      width: 34px; height: 34px; border-radius: 50%;
+      margin-left: -10px; border: 2px solid var(--bg-1);
+      display: grid; place-items: center;
+      font-family: var(--font-mono); font-size: var(--text-xs); font-weight: 700; color: #eafffa;
+    }
+    .avatar-stack .dot-avatar:first-child { margin-left: 0; }
+    .dot-avatar--1 { background: linear-gradient(135deg, var(--teal), var(--indigo)); }
+    .dot-avatar--2 { background: linear-gradient(135deg, var(--indigo), var(--pink)); }
+    .dot-avatar--3 { background: linear-gradient(135deg, var(--pink), var(--amber)); color: #1a050d; }
+
+    .info-card { display: flex; flex-direction: column; gap: var(--space-2); }
+    .info-card .mono { color: var(--teal); font-size: var(--text-xs); letter-spacing: 0.18em; text-transform: uppercase; }
+    .info-card p { font-size: var(--text-sm); color: var(--text-2); }
+
+    .card-art {
+      position: relative; height: 170px; border-radius: var(--radius-md);
+      overflow: hidden; border: 1px solid var(--stroke);
+    }
+    .movie-card:hover .card-art .poster-art { transform: scale(1.08); }
+    .movie-card { text-decoration: none; }
+    .movie-card .card-body { padding: var(--space-4); }
+    .movie-card h3 { font-size: var(--text-md); font-family: var(--font-display); margin-bottom: var(--space-2); color: var(--text-1); }
+    .movie-card .card-meta { display: flex; justify-content: space-between; font-size: var(--text-xs); color: var(--text-3); font-family: var(--font-mono); }
+
+    .collection-card { display: flex; flex-direction: column; gap: var(--space-3); }
+    .collection-card h3 { font-size: var(--text-md); font-family: var(--font-display); }
+    .thumbs { display: flex; gap: var(--space-3); }
+    .thumb {
+      width: 64px; height: 64px; border-radius: var(--radius-sm);
+      display: grid; place-items: center; color: var(--teal); font-size: 22px;
+      border: 1px solid var(--stroke);
+      background: rgba(6, 20, 31, 0.6);
+    }
+    .collection-card .count { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--text-3); letter-spacing: 0.16em; }
+
+    .video-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-5); }
+    .video-item {
+      position: relative; height: 220px; border-radius: var(--radius-md);
+      overflow: hidden; border: 1px solid var(--stroke); display: block; text-decoration: none;
+    }
+    .video-item .media-art { transition: transform 0.6s var(--ease-out); }
+    .video-item:hover .media-art { transform: scale(1.08); }
+    .video-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(2, 7, 12, 0.9), transparent 55%);
+      display: flex; align-items: flex-end; padding: var(--space-4);
+    }
+    .video-overlay h3 { font-size: var(--text-md); font-family: var(--font-display); color: var(--text-1); }
+    .video-overlay .meta { font-size: var(--text-xs); color: var(--text-3); }
+    .video-item .play-ctl {
+      position: absolute; top: var(--space-4); right: var(--space-4);
+      width: 52px; height: 52px; border-radius: 50%;
+      display: grid; place-items: center;
+      background: var(--glass-strong);
+      -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+      border: 1px solid var(--stroke-strong); color: var(--text-1);
+    }
+
+    .carousel { position: relative; }
+    .carousel-track {
+      display: flex; gap: var(--space-5); overflow-x: auto;
+      scroll-behavior: smooth; scrollbar-width: none; padding: var(--space-2);
+    }
+    .carousel-track::-webkit-scrollbar { display: none; }
+    .cast-item { flex: 0 0 170px; text-align: center; }
+    .cast-avatar {
+      width: 108px; height: 108px; border-radius: 50%; margin: 0 auto var(--space-3);
+      overflow: hidden; border: 2px solid var(--stroke-strong);
+      box-shadow: var(--glow-indigo);
+    }
+    .cast-face { width: 100%; height: 100%; display: block; }
+    .cast-item h3 { font-size: var(--text-sm); font-family: var(--font-display); color: var(--text-1); }
+    .cast-item .role { font-size: var(--text-xs); color: var(--teal); font-family: var(--font-mono); margin-top: 2px; }
+    .cast-item .known { font-size: var(--text-xs); color: var(--text-3); margin-top: var(--space-2); }
+    .cast-item .known span { display: block; }
+
+    .section-block { margin-top: var(--space-9); }
+
+    .site-footer {
+      margin-top: var(--space-9);
+      border-top: 1px solid var(--stroke);
+      padding: 28px clamp(16px, 4vw, 40px);
+      display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; align-items: center;
+      max-width: 1200px; margin-inline: auto;
+      color: var(--text-3); font-size: var(--text-sm);
+    }
+    .site-footer a { color: var(--text-2); text-decoration: none; }
+    .site-footer a:hover { color: var(--teal); }
+
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s var(--ease-out); transition-delay: var(--reveal-delay, 0ms); }
+    .reveal.in { opacity: 1; transform: none; }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.001s !important; animation-iteration-count: 1 !important; transition-duration: 0.001s !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+
+    @media (max-width: 980px) {
+      .feature { grid-template-columns: 1fr; }
+      .info-grid { grid-template-columns: 1fr; }
+      .grid--3 { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 768px) {
+      .site-nav { display: none; }
+      .media-grid { grid-template-columns: 1fr; }
+      .video-grid { grid-template-columns: 1fr; }
+      .video-item { height: 190px; }
+    }
+    @media (max-width: 480px) {
+      .rating-bars { gap: 6px; }
+      .hero { padding-top: 70px; }
+      .site-footer { justify-content: center; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+<script>
+(function () {
+  if (!('ontouchstart' in window) || window.__touchBridge) return;
+  window.__touchBridge = true;
+  var lt = null;
+  function fire(type, t) {
+    var el = document.elementFromPoint(t.clientX, t.clientY) || document;
+    el.dispatchEvent(new MouseEvent(type, {
+      bubbles: true, cancelable: true, view: window,
+      clientX: t.clientX, clientY: t.clientY,
+      button: 0, buttons: type === 'mousemove' ? 1 : 0
+    }));
+  }
+  document.addEventListener('touchstart', function (e) {
+    if (e.touches.length !== 1) return;
+    lt = e.touches[0];
+    fire('mousemove', lt); fire('mousedown', lt);
+  }, { passive: true });
+  document.addEventListener('touchmove', function (e) {
+    if (e.touches.length !== 1 || !lt) return;
+    lt = e.touches[0];
+    fire('mousemove', lt);
+  }, { passive: true });
+  document.addEventListener('touchend', function () {
+    if (!lt) return;
+    fire('mouseup', lt);
+    lt = null;
+  }, { passive: true });
+})();
+</script>
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <svg width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute">
+    <defs>
+      <linearGradient id="pna-sky-teal" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#04121e"/>
+        <stop offset="0.55" stop-color="#0a2434"/>
+        <stop offset="1" stop-color="#02070c"/>
+      </linearGradient>
+      <linearGradient id="pna-sky-violet" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#12081f"/>
+        <stop offset="0.55" stop-color="#241040"/>
+        <stop offset="1" stop-color="#06030f"/>
+      </linearGradient>
+      <linearGradient id="pna-sky-pink" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#170610"/>
+        <stop offset="0.55" stop-color="#2c0f22"/>
+        <stop offset="1" stop-color="#080308"/>
+      </linearGradient>
+      <radialGradient id="pna-glow-teal" cx="0.5" cy="0.5" r="0.5">
+        <stop offset="0" stop-color="#2dd4bf" stop-opacity="0.9"/>
+        <stop offset="1" stop-color="#2dd4bf" stop-opacity="0"/>
+      </radialGradient>
+      <radialGradient id="pna-glow-violet" cx="0.5" cy="0.5" r="0.5">
+        <stop offset="0" stop-color="#a855f7" stop-opacity="0.85"/>
+        <stop offset="1" stop-color="#a855f7" stop-opacity="0"/>
+      </radialGradient>
+      <radialGradient id="pna-glow-pink" cx="0.5" cy="0.5" r="0.5">
+        <stop offset="0" stop-color="#ff6b9d" stop-opacity="0.85"/>
+        <stop offset="1" stop-color="#ff6b9d" stop-opacity="0"/>
+      </radialGradient>
+      <linearGradient id="pna-silhouette" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#0a1c28"/>
+        <stop offset="1" stop-color="#02070c"/>
+      </linearGradient>
+      <linearGradient id="pna-poster-t2" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#3d4c5c"/>
+        <stop offset="1" stop-color="#0b1016"/>
+      </linearGradient>
+      <linearGradient id="pna-poster-eg" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#e62429"/>
+        <stop offset="1" stop-color="#2a0608"/>
+      </linearGradient>
+      <linearGradient id="pna-poster-lotr" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#2dd4bf"/>
+        <stop offset="1" stop-color="#0c2b28"/>
+      </linearGradient>
+      <linearGradient id="pna-cast-jc" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#2dd4bf"/>
+        <stop offset="1" stop-color="#0e7490"/>
+      </linearGradient>
+      <linearGradient id="pna-cast-sw" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#a855f7"/>
+        <stop offset="1" stop-color="#4c1d95"/>
+      </linearGradient>
+      <linearGradient id="pna-cast-zs" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#ff6b9d"/>
+        <stop offset="1" stop-color="#9d2453"/>
+      </linearGradient>
+      <linearGradient id="pna-cast-sw2" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#86efac"/>
+        <stop offset="1" stop-color="#15803d"/>
+      </linearGradient>
+      <linearGradient id="pna-cast-sl" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#fbbf24"/>
+        <stop offset="1" stop-color="#92400e"/>
+      </linearGradient>
+    </defs>
+  </svg>
+
+  <header class="site-header">
+    <div class="bar">
+      <a class="wordmark" href="#main"><span class="orb" aria-hidden="true"></span>WAAY2TECH</a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="#feature">Feature</a>
+        <a href="#about">Synopsis</a>
+        <a href="#similar">Movies</a>
+        <a href="#videos">Videos</a>
+        <a href="#cast">Cast</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="shell">
+    <section class="hero" aria-labelledby="avatar-title">
+      <p class="kicker reveal">Fan Hub · Sci-Fi Epic · Reborn</p>
+      <h1 class="h1 hero-title reveal" id="avatar-title" style="--reveal-delay:80ms">Enter <span class="grad-text">Pandora</span> Prime.</h1>
+      <p class="lead reveal" style="max-width:56ch; --reveal-delay:160ms">The Avatar universe, remastered as a living fan hub — trailer, cast orbit, watchlist and immersive-world collections, all glowing in living light.</p>
+      <div class="stat-row reveal" style="--reveal-delay:240ms">
+        <span class="chip"><span class="dot"></span>8.9 / 10 rating</span>
+        <span class="chip">85% Exceptional</span>
+        <span class="chip">162 min · IMAX 3D</span>
+        <span class="chip">24 cast members</span>
+      </div>
+    </section>
+
+    <section class="feature" id="feature" aria-label="Avatar featured movie">
+      <div class="stack stack--lg">
+        <div>
+          <div class="row row--wrap between reveal">
+            <span class="chip">DEC 18, 2009</span>
+            <span class="chip">◷ 162 min playtime</span>
+          </div>
+          <h2 class="h2 grad-text reveal" style="margin-top:var(--space-4)">Avatar</h2>
+          <div class="rating-bars reveal" aria-hidden="true">
+            <div class="rating-bar bar--lime"></div>
+            <div class="rating-bar bar--cyan"></div>
+            <div class="rating-bar bar--indigo"></div>
+            <div class="rating-bar bar--magenta"></div>
+          </div>
+          <div class="row row--wrap reveal" style="margin-top:var(--space-4)">
+            <span class="badge badge--lime">Exceptional ★ 85%</span>
+            <span class="badge badge--ghost">Rank #94 ↗</span>
+            <span class="badge badge--ghost">Recommended</span>
+          </div>
+        </div>
+
+        <div class="glass card reveal" style="display:flex; flex-direction:column; gap:var(--space-4)">
+          <p class="small muted">A paralyzed Marine links his mind to an alien body on the moon Pandora — and finds himself fighting for a world that became his home.</p>
+          <div class="media-actions">
+            <div class="row row--wrap">
+              <button class="btn btn--lime" id="watchlist-btn" aria-pressed="false">＋ Watchlist</button>
+              <button class="btn btn--ghost" id="collection-btn" aria-pressed="false">◇ Collection</button>
+            </div>
+            <p class="small muted" style="margin-top:var(--space-3)" id="action-status" role="status" aria-live="polite">Pick a lane — your watchlist awaits.</p>
+          </div>
+          <div class="friends">
+            <div class="avatar-stack" aria-hidden="true">
+              <span class="dot-avatar dot-avatar--1">J</span>
+              <span class="dot-avatar dot-avatar--2">S</span>
+              <span class="dot-avatar dot-avatar--3">Z</span>
+            </div>
+            <p class="small muted"><strong style="color:var(--text-1)">73 fans</strong> are watching this right now · join the discussion</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="media-grid reveal" style="--reveal-delay:120ms" aria-label="Avatar media">
+        <div class="media-item" role="button" tabindex="0" aria-label="Play Avatar poster media">
+          <svg class="media-art" viewBox="0 0 640 360" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <rect width="640" height="360" fill="url(#pna-sky-teal)"/>
+            <circle cx="500" cy="110" r="150" fill="url(#pna-glow-teal)"/>
+            <circle cx="140" cy="250" r="120" fill="url(#pna-glow-teal)" opacity="0.5"/>
+            <path d="M0 300 L80 240 L150 300 L230 210 L320 300 L400 235 L480 300 L560 245 L640 300 L640 360 L0 360 Z" fill="url(#pna-silhouette)"/>
+            <path d="M320 180 C380 120 400 90 420 30 C460 90 470 130 520 190 Z" fill="#041a16" opacity="0.9"/>
+            <circle cx="90" cy="120" r="3" fill="#2dd4bf" opacity="0.9"/>
+            <circle cx="180" cy="80" r="2" fill="#a855f7" opacity="0.9"/>
+            <circle cx="300" cy="50" r="2.5" fill="#2dd4bf" opacity="0.8"/>
+            <circle cx="520" cy="70" r="2" fill="#ff6b9d" opacity="0.9"/>
+            <circle cx="420" cy="140" r="3" fill="#2dd4bf" opacity="0.85"/>
+            <circle cx="240" cy="170" r="2" fill="#ff6b9d" opacity="0.7"/>
+          </svg>
+          <div class="media-overlay"><span class="play-dot">▶</span></div>
+        </div>
+        <div class="media-item" role="button" tabindex="0" aria-label="Play Avatar scene">
+          <svg class="media-art" viewBox="0 0 640 360" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <rect width="640" height="360" fill="url(#pna-sky-violet)"/>
+            <circle cx="330" cy="90" r="170" fill="url(#pna-glow-violet)"/>
+            <ellipse cx="160" cy="300" rx="200" ry="40" fill="#0d0a1c" opacity="0.85"/>
+            <ellipse cx="520" cy="280" rx="230" ry="46" fill="#0a0818" opacity="0.9"/>
+            <path d="M0 320 L120 250 L230 310 L340 230 L450 300 L560 250 L640 300 L640 360 L0 360 Z" fill="#06030f"/>
+            <circle cx="80" cy="90" r="2.5" fill="#2dd4bf"/>
+            <circle cx="210" cy="60" r="2" fill="#a855f7"/>
+            <circle cx="430" cy="70" r="2" fill="#a855f7"/>
+            <circle cx="560" cy="120" r="3" fill="#2dd4bf"/>
+            <circle cx="300" cy="180" r="2" fill="#ff6b9d" opacity="0.8"/>
+          </svg>
+          <div class="media-overlay"><span class="play-dot">▶</span></div>
+        </div>
+        <div class="media-item" role="button" tabindex="0" aria-label="Play Avatar flight scene">
+          <svg class="media-art" viewBox="0 0 640 360" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <rect width="640" height="360" fill="url(#pna-sky-pink)"/>
+            <circle cx="180" cy="140" r="150" fill="url(#pna-glow-pink)"/>
+            <circle cx="520" cy="260" r="130" fill="url(#pna-glow-pink)" opacity="0.5"/>
+            <path d="M0 290 L90 220 L170 280 L260 190 L360 280 L460 210 L560 280 L640 230 L640 360 L0 360 Z" fill="#12040c"/>
+            <circle cx="60" cy="90" r="2" fill="#2dd4bf"/>
+            <circle cx="300" cy="70" r="2.5" fill="#a855f7"/>
+            <circle cx="470" cy="100" r="2" fill="#2dd4bf"/>
+            <circle cx="580" cy="60" r="2.5" fill="#ff6b9d"/>
+            <circle cx="240" cy="200" r="2" fill="#a855f7" opacity="0.8"/>
+          </svg>
+          <div class="media-overlay"><span class="play-dot">▶</span></div>
+        </div>
+        <div class="media-item" role="button" tabindex="0" aria-label="View all media">
+          <svg class="media-art" viewBox="0 0 640 360" preserveAspectRatio="xMidYMid slice" aria-hidden="true" style="filter:brightness(0.55)">
+            <rect width="640" height="360" fill="url(#pna-sky-teal)"/>
+            <circle cx="320" cy="150" r="170" fill="url(#pna-glow-violet)"/>
+            <path d="M0 300 L110 230 L200 290 L330 200 L440 290 L560 230 L640 290 L640 360 L0 360 Z" fill="#02070c"/>
+            <circle cx="120" cy="90" r="2" fill="#2dd4bf"/>
+            <circle cx="420" cy="70" r="2" fill="#a855f7"/>
+            <circle cx="520" cy="160" r="2.5" fill="#2dd4bf"/>
+          </svg>
+          <div class="media-overlay show"><span class="mono small">VIEW ALL ↗</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="stack stack--lg section-block" id="about" aria-labelledby="about-title">
+      <div class="reveal">
+        <p class="kicker">Synopsis</p>
+        <h2 class="h3" id="about-title" style="margin-top:var(--space-2)">About the world</h2>
+      </div>
+      <div class="glass card reveal">
+        <p class="muted">On the lush alien world of Pandora live the Na'vi — beings who appear primitive but are highly evolved. Because the planet's air is toxic to humans, scientists deploy human/Na'vi hybrids called Avatars. Jake Sully, a paralyzed former Marine, is reborn in one such body and drawn into the fight for a world he has come to love.</p>
+      </div>
+      <div class="grid info-grid">
+        <div class="glass card info-card reveal">
+          <span class="mono">Studio</span>
+          <p>PG-13 · 20th Century Studios</p>
+          <p>Sci-Fi / Action / Adventure</p>
+        </div>
+        <div class="glass card info-card reveal" style="--reveal-delay:100ms">
+          <span class="mono">Release</span>
+          <p>Dec 18, 2009</p>
+          <p>IMAX · 3D · Dolby</p>
+        </div>
+        <div class="glass card info-card reveal" style="--reveal-delay:200ms">
+          <span class="mono">Vision</span>
+          <p>James Cameron</p>
+          <p>Director · Writer · Producer</p>
+        </div>
+      </div>
+      <a class="mono small" style="color:var(--teal)" href="https://www.avatar.com" rel="noopener noreferrer">avatar.com ↗</a>
+    </section>
+
+    <section class="stack stack--lg section-block" id="similar" aria-labelledby="similar-title">
+      <div class="row between reveal">
+        <div>
+          <p class="kicker">Recommendations</p>
+          <h2 class="h3" id="similar-title" style="margin-top:var(--space-2)">Similar movies</h2>
+        </div>
+        <span class="chip">12 titles</span>
+      </div>
+      <div class="grid grid--3">
+        <a class="glass movie-card reveal" href="#" aria-label="Terminator 2">
+          <div class="card-art">
+            <svg class="poster-art" viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+              <rect width="320" height="180" fill="url(#pna-poster-t2)"/>
+              <circle cx="230" cy="70" r="80" fill="url(#pna-glow-pink)" opacity="0.5"/>
+              <path d="M0 150 L70 110 L140 150 L220 95 L320 150 L320 180 L0 180 Z" fill="#06090d"/>
+              <circle cx="60" cy="50" r="2" fill="#e2f5f0"/>
+              <circle cx="160" cy="40" r="2" fill="#2dd4bf"/>
+            </svg>
+          </div>
+          <div class="card-body">
+            <h3>Terminator 2</h3>
+            <div class="card-meta"><span>James Cameron</span><span>93%</span></div>
+          </div>
+        </a>
+        <a class="glass movie-card reveal" href="#" aria-label="Avengers: Endgame" style="--reveal-delay:100ms">
+          <div class="card-art">
+            <svg class="poster-art" viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+              <rect width="320" height="180" fill="url(#pna-poster-eg)"/>
+              <circle cx="160" cy="90" r="85" fill="url(#pna-glow-pink)" opacity="0.65"/>
+              <circle cx="160" cy="90" r="30" fill="none" stroke="#f5b301" stroke-width="3" opacity="0.8"/>
+              <path d="M0 150 L80 110 L160 150 L260 100 L320 150 L320 180 L0 180 Z" fill="#1d0505"/>
+            </svg>
+          </div>
+          <div class="card-body">
+            <h3>Avengers: Endgame</h3>
+            <div class="card-meta"><span>Marvel Studios</span><span>90%</span></div>
+          </div>
+        </a>
+        <a class="glass movie-card reveal" href="#" aria-label="Lord of the Rings" style="--reveal-delay:200ms">
+          <div class="card-art">
+            <svg class="poster-art" viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+              <rect width="320" height="180" fill="url(#pna-poster-lotr)"/>
+              <circle cx="160" cy="100" r="70" fill="url(#pna-glow-teal)" opacity="0.6"/>
+              <circle cx="160" cy="100" r="22" fill="none" stroke="#2dd4bf" stroke-width="2.5" opacity="0.9"/>
+              <path d="M0 140 L90 90 L160 140 L250 85 L320 140 L320 180 L0 180 Z" fill="#061a17"/>
+            </svg>
+          </div>
+          <div class="card-body">
+            <h3>Lord of the Rings</h3>
+            <div class="card-meta"><span>New Line Cinema</span><span>95%</span></div>
+          </div>
+        </a>
+      </div>
+      <a class="btn btn--ghost" href="#" style="align-self:flex-start">View all movies</a>
+    </section>
+
+    <section class="stack stack--lg section-block" aria-labelledby="collections-title">
+      <div class="row between reveal">
+        <div>
+          <p class="kicker">Curated</p>
+          <h2 class="h3" id="collections-title" style="margin-top:var(--space-2)">In collections</h2>
+        </div>
+        <span class="chip">16 collections</span>
+      </div>
+      <div class="grid grid--3">
+        <div class="glass card collection-card reveal">
+          <h3>Immersive worlds</h3>
+          <div class="thumbs">
+            <span class="thumb">◈</span>
+            <span class="thumb">◈</span>
+          </div>
+          <span class="count">63 MOVIES</span>
+        </div>
+        <div class="glass card collection-card reveal" style="--reveal-delay:100ms">
+          <h3>Wow, that ending!</h3>
+          <div class="thumbs">
+            <span class="thumb">✦</span>
+            <span class="thumb">✦</span>
+          </div>
+          <span class="count">42 MOVIES</span>
+        </div>
+        <div class="glass card collection-card reveal" style="--reveal-delay:200ms">
+          <h3>Sci-fi classics</h3>
+          <div class="thumbs">
+            <span class="thumb">◎</span>
+            <span class="thumb">◎</span>
+          </div>
+          <span class="count">87 MOVIES</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="stack stack--lg section-block" id="videos" aria-labelledby="videos-title">
+      <div class="row between reveal">
+        <div>
+          <p class="kicker">Motion</p>
+          <h2 class="h3" id="videos-title" style="margin-top:var(--space-2)">Videos</h2>
+        </div>
+        <span class="chip">25+ clips</span>
+      </div>
+      <div class="video-grid">
+        <a class="video-item reveal" href="https://www.youtube.com/watch?v=5PSNL1qE6VY" target="_blank" rel="noopener noreferrer" aria-label="Play Avatar official trailer">
+          <svg class="media-art" viewBox="0 0 640 360" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <rect width="640" height="360" fill="url(#pna-sky-teal)"/>
+            <circle cx="320" cy="120" r="150" fill="url(#pna-glow-teal)"/>
+            <path d="M0 300 L90 230 L180 290 L280 205 L380 290 L490 225 L640 295 L640 360 L0 360 Z" fill="#02070c"/>
+            <circle cx="90" cy="80" r="2.5" fill="#2dd4bf"/>
+            <circle cx="240" cy="60" r="2" fill="#a855f7"/>
+            <circle cx="420" cy="70" r="2" fill="#2dd4bf"/>
+            <circle cx="560" cy="100" r="3" fill="#ff6b9d"/>
+            <circle cx="180" cy="150" r="2" fill="#a855f7"/>
+          </svg>
+          <span class="play-ctl" aria-hidden="true">▶</span>
+          <div class="video-overlay">
+            <div>
+              <h3>Avatar — Official Trailer</h3>
+              <p class="meta">20 Dec 2009 · 20th Century Studios</p>
+            </div>
+          </div>
+        </a>
+        <a class="video-item reveal" href="#" aria-label="Play Avatar behind the scenes" style="--reveal-delay:120ms">
+          <svg class="media-art" viewBox="0 0 640 360" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <rect width="640" height="360" fill="url(#pna-sky-violet)"/>
+            <circle cx="170" cy="130" r="140" fill="url(#pna-glow-violet)"/>
+            <circle cx="500" cy="250" r="120" fill="url(#pna-glow-teal)" opacity="0.45"/>
+            <path d="M0 300 L100 240 L200 300 L310 215 L420 300 L530 235 L640 300 L640 360 L0 360 Z" fill="#06030f"/>
+            <circle cx="70" cy="70" r="2" fill="#2dd4bf"/>
+            <circle cx="310" cy="60" r="2.5" fill="#a855f7"/>
+            <circle cx="560" cy="90" r="2" fill="#ff6b9d"/>
+            <circle cx="400" cy="140" r="2" fill="#2dd4bf"/>
+          </svg>
+          <span class="play-ctl" aria-hidden="true">▶</span>
+          <div class="video-overlay">
+            <div>
+              <h3>Avatar — Behind the Scenes</h3>
+              <p class="meta">15 Jan 2010 · 20th Century Studios</p>
+            </div>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <section class="stack stack--lg section-block" id="cast" aria-labelledby="cast-title">
+      <div class="row between reveal">
+        <div>
+          <p class="kicker">The crew</p>
+          <h2 class="h3" id="cast-title" style="margin-top:var(--space-2)">Cast &amp; Crew</h2>
+        </div>
+        <span class="chip">24 members</span>
+      </div>
+      <div class="carousel reveal">
+        <div class="carousel-track" id="cast-track" tabindex="0" role="list" aria-label="Cast carousel">
+          <div class="cast-item" role="listitem">
+            <div class="cast-avatar">
+              <svg class="cast-face" viewBox="0 0 108 108" role="img" aria-label="James Cameron">
+                <circle cx="54" cy="54" r="52" fill="url(#pna-cast-jc)"/>
+                <circle cx="54" cy="54" r="52" fill="none" stroke="rgba(215,244,255,0.35)" stroke-width="2"/>
+                <text x="54" y="67" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-size="30" font-weight="700" fill="#02131a">JC</text>
+              </svg>
+            </div>
+            <h3>James Cameron</h3>
+            <p class="role">Director · Writer</p>
+            <p class="known"><span>Known for</span><span>Titanic</span><span>Terminator</span></p>
+          </div>
+          <div class="cast-item" role="listitem">
+            <div class="cast-avatar">
+              <svg class="cast-face" viewBox="0 0 108 108" role="img" aria-label="Sam Worthington">
+                <circle cx="54" cy="54" r="52" fill="url(#pna-cast-sw)"/>
+                <circle cx="54" cy="54" r="52" fill="none" stroke="rgba(215,244,255,0.35)" stroke-width="2"/>
+                <text x="54" y="67" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-size="28" font-weight="700" fill="#fff5f5">SW</text>
+              </svg>
+            </div>
+            <h3>Sam Worthington</h3>
+            <p class="role">Jake Sully</p>
+            <p class="known"><span>Known for</span><span>Terminator Salvation</span><span>Clash of the Titans</span></p>
+          </div>
+          <div class="cast-item" role="listitem">
+            <div class="cast-avatar">
+              <svg class="cast-face" viewBox="0 0 108 108" role="img" aria-label="Zoe Saldana">
+                <circle cx="54" cy="54" r="52" fill="url(#pna-cast-zs)"/>
+                <circle cx="54" cy="54" r="52" fill="none" stroke="rgba(215,244,255,0.35)" stroke-width="2"/>
+                <text x="54" y="67" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-size="28" font-weight="700" fill="#fff5f8">ZS</text>
+              </svg>
+            </div>
+            <h3>Zoe Saldana</h3>
+            <p class="role">Neytiri</p>
+            <p class="known"><span>Known for</span><span>Guardians of the Galaxy</span><span>Star Trek</span></p>
+          </div>
+          <div class="cast-item" role="listitem">
+            <div class="cast-avatar">
+              <svg class="cast-face" viewBox="0 0 108 108" role="img" aria-label="Sigourney Weaver">
+                <circle cx="54" cy="54" r="52" fill="url(#pna-cast-sw2)"/>
+                <circle cx="54" cy="54" r="52" fill="none" stroke="rgba(215,244,255,0.35)" stroke-width="2"/>
+                <text x="54" y="67" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-size="30" font-weight="700" fill="#052e16">SW</text>
+              </svg>
+            </div>
+            <h3>Sigourney Weaver</h3>
+            <p class="role">Dr. Grace Augustine</p>
+            <p class="known"><span>Known for</span><span>Alien</span><span>Ghostbusters</span></p>
+          </div>
+          <div class="cast-item" role="listitem">
+            <div class="cast-avatar">
+              <svg class="cast-face" viewBox="0 0 108 108" role="img" aria-label="Stephen Lang">
+                <circle cx="54" cy="54" r="52" fill="url(#pna-cast-sl)"/>
+                <circle cx="54" cy="54" r="52" fill="none" stroke="rgba(215,244,255,0.35)" stroke-width="2"/>
+                <text x="54" y="67" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-size="28" font-weight="700" fill="#1c0a00">SL</text>
+              </svg>
+            </div>
+            <h3>Stephen Lang</h3>
+            <p class="role">Col. Miles Quaritch</p>
+            <p class="known"><span>Known for</span><span>Don't Breathe</span><span>Avatar: The Way of Water</span></p>
+          </div>
+        </div>
+      </div>
+      <div class="row reveal">
+        <button class="btn btn--ghost" id="carousel-prev" aria-label="Scroll cast carousel left">← Prev</button>
+        <button class="btn btn--ghost" id="carousel-next" aria-label="Scroll cast carousel right">Next →</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span>WAAY2TECH · <span data-year></span></span>
+    <a href="#main">Back to top</a>
+  </footer>
+
+  <script>
+    'use strict';
+
+    (function () {
+      var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      document.querySelectorAll('[data-year]').forEach(function (el) {
+        el.textContent = new Date().getFullYear();
+      });
+
+      var reveals = document.querySelectorAll('.reveal');
+      if (reduced || !('IntersectionObserver' in window)) {
+        reveals.forEach(function (r) { r.classList.add('in'); });
+      } else {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('in');
+              io.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+        reveals.forEach(function (r) { io.observe(r); });
+      }
+    })();
+
+    const status = document.getElementById('action-status');
+    const watchlistBtn = document.getElementById('watchlist-btn');
+    const collectionBtn = document.getElementById('collection-btn');
+
+    const toggleBtn = (btn, label) => {
+      btn.addEventListener('click', () => {
+        const pressed = btn.getAttribute('aria-pressed') === 'true';
+        btn.setAttribute('aria-pressed', String(!pressed));
+        btn.classList.toggle('btn--lime', !pressed);
+        btn.classList.toggle('btn--ghost', pressed);
+        btn.textContent = pressed ? `${label}` : `✓ In ${label}`;
+        status.textContent = pressed
+          ? `${label} cleared. Keeping the queue lean.`
+          : `${label} locked in. Your list just got more electric.`;
+      });
+    };
+
+    toggleBtn(watchlistBtn, '＋ Watchlist');
+    toggleBtn(collectionBtn, '◇ Collection');
+
+    const track = document.getElementById('cast-track');
+    const step = 260;
+
+    document.getElementById('carousel-prev').addEventListener('click', () => {
+      track.scrollBy({ left: -step, behavior: 'smooth' });
+    });
+    document.getElementById('carousel-next').addEventListener('click', () => {
+      track.scrollBy({ left: step, behavior: 'smooth' });
+    });
+
+    track.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        track.scrollBy({ left: -step, behavior: 'smooth' });
+      }
+      if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        track.scrollBy({ left: step, behavior: 'smooth' });
+      }
+    });
+  </script>
+</body>
+</html>

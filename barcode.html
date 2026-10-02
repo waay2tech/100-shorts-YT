@@ -1,0 +1,527 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="BARCODE — a retail scanner studio. Encode any string as a live-rendered Code-128 style barcode on canvas and export to PNG in one tap.">
+  <title>BARCODE · Retail Scanner Studio | WAAY2TECH</title>
+  <link rel="canonical" href="barcode.html">
+  <meta property="og:site_name" content="WAAY2TECH">
+  <meta name="author" content="WAAY2TECH">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="BARCODE · Retail Scanner Studio | Waay2Tech">
+  <meta property="og:description" content="BARCODE — a retail scanner studio. Encode any string as a live-rendered barcode on canvas and export to PNG in one tap.">
+  <meta property="og:url" content="barcode.html">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="BARCODE · Retail Scanner Studio">
+  <meta name="twitter:description" content="BARCODE — a retail scanner studio. Encode any string as a live-rendered barcode on canvas and export to PNG in one tap.">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "BARCODE · Retail Scanner Studio | Waay2Tech",
+    "description": "A zero-dependency Code-128 style barcode encoder rendered live on canvas with one-tap PNG export.",
+    "applicationCategory": "UtilityApplication",
+    "keywords": "barcode, code 128, encoder, scanner, canvas, png",
+    "url": "barcode.html"
+  }
+  </script>
+  <style>
+    :root {
+      --bg: #101210;
+      --bg-0: #101210;
+      --bg-1: #181c18;
+      --bg-2: #202620;
+      --bg-3: #282f28;
+      --text-1: #e2f5e2;
+      --text-2: #b3d6b3;
+      --text-3: #6f9a6f;
+      --green: #22c55e;
+      --green-soft: #86efac;
+      --green-deep: #16a34a;
+      --indigo: #22c55e;
+      --amber: #86efac;
+      --magenta: #f87171;
+      --lime: #86efac;
+      --cyan: #22c55e;
+      --violet: #16a34a;
+      --stroke: rgba(34, 197, 94, 0.22);
+      --stroke-strong: rgba(134, 239, 172, 0.45);
+      --glass: rgba(24, 28, 24, 0.7);
+      --glow-indigo: 0 0 18px rgba(34, 197, 94, 0.5);
+      --glow-lime: 0 0 18px rgba(134, 239, 172, 0.4);
+      --shadow-card: 0 20px 50px rgba(0, 0, 0, 0.5);
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --radius-full: 999px;
+      --space-1: 4px;
+      --space-2: 8px;
+      --space-3: 12px;
+      --space-4: 16px;
+      --space-5: 24px;
+      --space-6: 32px;
+      --space-7: 48px;
+      --space-8: 64px;
+      --speed-2: 0.25s;
+      --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+      --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+      --text-xs: 12px;
+      --text-sm: 14px;
+      --text-md: 17px;
+      --font-display: 'JetBrains Mono', monospace;
+      --font-body: 'Inter', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+    body {
+      font-family: var(--font-body);
+      background: var(--bg);
+      color: var(--text-1);
+      line-height: 1.6;
+      min-height: 100vh;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      background:
+        radial-gradient(760px 480px at 80% -5%, rgba(34, 197, 94, 0.12), transparent 60%),
+        radial-gradient(560px 420px at 0% 40%, rgba(134, 239, 172, 0.06), transparent 60%),
+        var(--bg);
+    }
+    ::selection { background: rgba(34, 197, 94, 0.4); color: #edffee; }
+    ::-webkit-scrollbar { width: 10px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: rgba(34, 197, 94, 0.35); border-radius: 6px; }
+    :focus-visible { outline: 2px solid var(--green); outline-offset: 3px; border-radius: 4px; }
+
+    .skip-link {
+      position: fixed; top: -60px; left: 16px; z-index: 200;
+      background: var(--green); color: #04160b; font-weight: 700;
+      padding: 10px 18px; border-radius: 8px; text-decoration: none;
+      transition: top 0.3s ease;
+    }
+    .skip-link:focus { top: 16px; }
+
+    .site-header {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(16, 18, 16, 0.88);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--stroke);
+    }
+    .site-header .bar {
+      max-width: 1180px; margin-inline: auto; padding: 14px clamp(16px, 4vw, 40px);
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    }
+    .wordmark {
+      font-family: var(--font-display); font-weight: 700; font-size: 1rem;
+      letter-spacing: 0.22em; color: var(--text-1); text-decoration: none;
+      display: inline-flex; align-items: center; gap: 10px;
+    }
+    .wordmark .scan-icon {
+      width: 26px; height: 16px; border: 2px solid var(--green); border-radius: 3px;
+      position: relative; box-shadow: 0 0 10px rgba(34, 197, 94, 0.5);
+    }
+    .wordmark .scan-icon::before {
+      content: ''; position: absolute; left: 3px; top: 3px; bottom: 3px; width: 14px;
+      background: repeating-linear-gradient(90deg, var(--green) 0 2px, transparent 2px 4px);
+    }
+    .wordmark .scan-icon::after {
+      content: ''; position: absolute; left: 0; right: 0; top: 6px; height: 1px;
+      background: #0b2b16;
+    }
+    .site-nav { display: flex; gap: 24px; }
+    .site-nav a {
+      color: var(--text-2); text-decoration: none; font-size: 0.85rem;
+      font-family: var(--font-mono); letter-spacing: 0.1em; text-transform: uppercase;
+      transition: color 0.25s ease;
+    }
+    .site-nav a:hover { color: var(--green); }
+
+    .shell { max-width: 1180px; margin-inline: auto; padding-inline: clamp(16px, 4vw, 40px); }
+
+    .hero {
+      position: relative; padding: clamp(90px, 14vh, 150px) 0 var(--space-6);
+      display: grid; gap: var(--space-4);
+    }
+    .hero .lead { max-width: 58ch; }
+    .kicker {
+      font-family: var(--font-mono); font-size: var(--text-xs);
+      letter-spacing: 0.3em; text-transform: uppercase; color: var(--green-soft);
+      display: flex; align-items: center; gap: 10px;
+    }
+    .kicker::before {
+      content: '▮▮'; font-size: 9px; letter-spacing: 1px; color: var(--green);
+    }
+    .h1 {
+      font-family: var(--font-display); font-weight: 700;
+      font-size: clamp(2rem, 6.5vw, 4rem); letter-spacing: 0.06em; color: var(--text-1);
+    }
+    .lead { font-size: clamp(1rem, 1.6vw, 1.15rem); color: var(--text-2); }
+    .grad-text {
+      background: linear-gradient(120deg, #86efac 0%, #22c55e 60%, #16a34a 100%);
+      -webkit-background-clip: text; background-clip: text;
+      -webkit-text-fill-color: transparent; color: transparent;
+    }
+    .row { display: flex; align-items: center; gap: var(--space-3); }
+    .row--wrap { flex-wrap: wrap; }
+    .chip {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: var(--text-sm); font-family: var(--font-mono);
+      color: var(--text-2);
+      border: 1px solid var(--stroke); border-radius: var(--radius-full);
+      padding: 7px 15px; background: rgba(24, 28, 24, 0.6);
+    }
+    .chip .dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--green); box-shadow: 0 0 10px rgba(34, 197, 94, 0.8);
+      animation: blink-led 1.6s ease-in-out infinite;
+    }
+    @keyframes blink-led { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
+
+    .card {
+      border-radius: var(--radius-lg); padding: var(--space-6);
+      background: var(--bg-1); border: 1px solid var(--stroke);
+      box-shadow: var(--shadow-card);
+    }
+    .forge-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-5); align-items: start; }
+    .form-card { display: grid; gap: var(--space-5); }
+    .form-row { display: grid; gap: var(--space-2); }
+    .form-row label {
+      font-family: var(--font-mono); font-size: var(--text-xs);
+      letter-spacing: 0.22em; text-transform: uppercase; color: var(--green-soft);
+    }
+    .input {
+      width: 100%; font-family: var(--font-mono); font-size: 1rem;
+      color: var(--text-1); background: var(--bg);
+      border: 1px solid var(--stroke-strong); border-radius: var(--radius-md);
+      padding: 14px 16px; outline: none;
+      transition: border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+    .input:focus { border-color: var(--green); box-shadow: var(--glow-indigo); }
+    .input::placeholder { color: var(--text-3); }
+
+    .btn {
+      font-family: var(--font-body); font-weight: 600; font-size: var(--text-sm);
+      border: 1px solid var(--stroke-strong); border-radius: var(--radius-md);
+      padding: 12px 22px; cursor: pointer; transition: all var(--speed-2) var(--ease-out);
+      background: var(--bg); color: var(--text-1);
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn--lime {
+      font-family: var(--font-mono); letter-spacing: 0.08em;
+      color: #04160b; background: linear-gradient(135deg, #86efac 0%, #22c55e 100%);
+      border-color: transparent; box-shadow: var(--glow-indigo);
+    }
+    .btn--lime:hover { box-shadow: 0 0 26px rgba(34, 197, 94, 0.65); }
+    .btn--sm { padding: 10px 18px; font-family: var(--font-mono); font-size: var(--text-sm); }
+    .btn--sm:hover { border-color: var(--green); color: var(--green-soft); }
+    kbd.mono {
+      font-family: var(--font-mono); background: var(--bg); color: var(--green-soft);
+      border: 1px solid var(--stroke); border-bottom-width: 2px; border-radius: 5px; padding: 2px 7px;
+    }
+    .small { font-size: var(--text-sm); color: var(--text-2); }
+
+    .output-panel {
+      display: grid; gap: var(--space-4); text-align: center; min-height: 260px; align-content: center;
+    }
+    .barcode-scroll {
+      max-width: 100%; overflow-x: auto; padding: var(--space-3);
+      background: #f4f8f4; border-radius: var(--radius-md);
+      border: 1px solid var(--stroke-strong);
+      position: relative;
+    }
+    .barcode-scroll::-webkit-scrollbar { height: 6px; }
+    .barcode-scroll::-webkit-scrollbar-thumb { background: var(--indigo); }
+    .barcode-scroll::after {
+      content: '';
+      position: absolute; inset: 0; pointer-events: none;
+      background: repeating-linear-gradient(0deg, rgba(16, 18, 16, 0.05) 0 1px, transparent 1px 3px);
+    }
+    #barcode { margin-inline: auto; }
+    #barcode canvas { display: block; }
+    .barcode-meta {
+      font-family: var(--font-mono); font-size: var(--text-xs);
+      letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-3);
+      word-break: break-all;
+    }
+    .status { min-height: 1.4em; font-size: var(--text-sm); font-family: var(--font-mono); }
+
+    .hint-row { display: flex; flex-wrap: wrap; gap: var(--space-2); justify-content: center; }
+
+    .site-footer {
+      margin-top: var(--space-9);
+      border-top: 1px solid var(--stroke);
+      padding: 28px clamp(16px, 4vw, 40px);
+      display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; align-items: center;
+      max-width: 1180px; margin-inline: auto;
+      color: var(--text-3); font-size: var(--text-sm); font-family: var(--font-mono);
+    }
+    .site-footer a { color: var(--text-2); text-decoration: none; }
+    .site-footer a:hover { color: var(--green); }
+
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s var(--ease-out); transition-delay: var(--reveal-delay, 0ms); }
+    .reveal.in { opacity: 1; transform: none; }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.001s !important; animation-iteration-count: 1 !important; transition-duration: 0.001s !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+
+    @media (max-width: 860px) {
+      .forge-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 768px) {
+      .site-nav { display: none; }
+    }
+    @media (max-width: 480px) {
+      .hero { padding-top: 64px; }
+      .card { padding: var(--space-5); }
+      .site-footer { justify-content: center; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+<script>
+(function () {
+  if (!('ontouchstart' in window) || window.__touchBridge) return;
+  window.__touchBridge = true;
+  var lt = null;
+  function fire(type, t) {
+    var el = document.elementFromPoint(t.clientX, t.clientY) || document;
+    el.dispatchEvent(new MouseEvent(type, {
+      bubbles: true, cancelable: true, view: window,
+      clientX: t.clientX, clientY: t.clientY,
+      button: 0, buttons: type === 'mousemove' ? 1 : 0
+    }));
+  }
+  document.addEventListener('touchstart', function (e) {
+    if (e.touches.length !== 1) return;
+    lt = e.touches[0];
+    fire('mousemove', lt); fire('mousedown', lt);
+  }, { passive: true });
+  document.addEventListener('touchmove', function (e) {
+    if (e.touches.length !== 1 || !lt) return;
+    lt = e.touches[0];
+    fire('mousemove', lt);
+  }, { passive: true });
+  document.addEventListener('touchend', function () {
+    if (!lt) return;
+    fire('mouseup', lt);
+    lt = null;
+  }, { passive: true });
+})();
+</script>
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header class="site-header">
+    <div class="bar">
+      <a class="wordmark" href="#main"><span class="scan-icon" aria-hidden="true"></span>WAAY2TECH</a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="#encode">Encode</a>
+        <a href="#output">Output</a>
+        <a href="#format">Format</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="shell">
+    <section class="hero" aria-labelledby="forge-title">
+      <p class="kicker reveal">Code-128 Encoder · Canvas Rendered</p>
+      <h1 class="h1 reveal" id="forge-title" style="--reveal-delay:80ms">Barcode <span class="grad-text">Forge</span></h1>
+      <p class="lead reveal" style="--reveal-delay:160ms">Type anything — encode it as a scannable barcode, rendered live on canvas, exported to PNG in one tap. Zero dependencies, pure pixels.</p>
+      <div class="row row--wrap reveal" style="--reveal-delay:240ms">
+        <span class="chip"><span class="dot"></span>live render</span>
+        <span class="chip">≤ 50 chars</span>
+        <span class="chip">PNG export</span>
+      </div>
+    </section>
+
+    <section class="forge-grid" id="encode" aria-label="Barcode generator">
+      <div class="card form-card reveal reveal-left">
+        <div class="form-row">
+          <label for="textInput">Payload</label>
+          <input type="text" id="textInput" class="input" placeholder="Enter text to encode…" maxlength="100" autocomplete="off">
+        </div>
+        <button class="btn btn--lime" id="generateBtn">⌁ Forge Barcode</button>
+        <p class="small">Tip: press <kbd class="mono">Enter</kbd> to forge instantly.</p>
+      </div>
+
+      <div class="card output-panel reveal reveal-right" id="output" aria-label="Barcode output">
+        <p class="kicker">Output</p>
+        <div class="barcode-scroll">
+          <div id="barcode"></div>
+        </div>
+        <p class="barcode-meta" id="barcodeText" aria-hidden="true">awaiting payload…</p>
+        <p class="status" id="status" role="status" aria-live="polite"></p>
+        <div class="hint-row">
+          <button class="btn btn--sm" id="downloadBtn" hidden>↓ Export PNG</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span>WAAY2TECH · <span data-year></span></span>
+    <a href="#main">Back to top</a>
+  </footer>
+
+  <script>
+    'use strict';
+
+    (function () {
+      var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      document.querySelectorAll('[data-year]').forEach(function (el) {
+        el.textContent = new Date().getFullYear();
+      });
+
+      var reveals = document.querySelectorAll('.reveal');
+      if (reduced || !('IntersectionObserver' in window)) {
+        reveals.forEach(function (r) { r.classList.add('in'); });
+      } else {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('in');
+              io.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+        reveals.forEach(function (r) { io.observe(r); });
+      }
+    })();
+
+    const code128 = {
+      'A': [2,1,2,2,2,2], 'B': [2,2,2,1,2,2], 'C': [2,2,2,2,2,1], 'D': [1,2,1,2,2,3],
+      'E': [1,2,1,3,2,2], 'F': [1,3,1,2,2,2], 'G': [1,2,2,2,1,3], 'H': [1,2,2,3,1,2],
+      'I': [1,3,2,2,1,2], 'J': [2,2,1,2,1,3], 'K': [2,2,1,3,1,2], 'L': [2,3,1,2,1,2],
+      'M': [1,1,2,2,3,2], 'N': [1,2,2,1,3,2], 'O': [1,2,2,2,3,1], 'P': [1,1,3,2,2,2],
+      'Q': [1,2,3,1,2,2], 'R': [1,2,3,2,2,1], 'S': [2,2,3,2,1,1], 'T': [2,2,1,1,3,2],
+      'U': [2,2,1,2,3,1], 'V': [2,1,3,2,1,2], 'W': [2,2,3,1,1,2], 'X': [3,1,2,1,3,1],
+      'Y': [3,1,1,2,2,2], 'Z': [3,2,1,1,2,2], '0': [3,2,1,2,2,1], '1': [3,1,2,2,1,2],
+      '2': [2,2,2,1,1,3], '3': [2,3,3,1,1,1], '4': [2,1,1,3,3,1], '5': [2,3,1,1,3,1],
+      '6': [1,1,2,3,3,1], '7': [1,3,2,1,3,1], '8': [1,3,2,3,1,1], '9': [2,1,1,3,1,3],
+      ' ': [2,3,3,1,1,1], '!': [4,1,1,1,1,1], '"': [1,1,1,4,1,1], '#': [1,1,1,1,4,1],
+      '$': [1,1,1,1,1,4], '%': [1,4,1,1,1,1], '&': [1,1,4,1,1,1], "'": [4,1,1,1,2,1],
+      '(': [1,1,1,2,4,1], ')': [1,1,1,4,2,1], '*': [1,2,1,1,4,1], '+': [1,2,1,4,1,1],
+      ',': [1,4,1,1,2,1], '-': [1,4,1,2,1,1], '.': [1,1,2,1,4,1], '/': [1,1,2,4,1,1],
+      ':': [1,2,4,1,1,1], ';': [4,1,1,2,1,1], '<': [1,1,1,1,2,4], '=': [1,1,1,2,1,4],
+      '>': [1,2,1,1,1,4], '?': [1,2,1,4,1,1], '@': [2,1,1,4,1,1], '[': [4,1,2,1,1,1],
+      '\\': [1,1,4,2,1,1], ']': [2,1,4,1,1,1], '^': [1,1,2,2,4,1], '_': [2,1,1,1,4,1],
+      '`': [4,1,1,1,1,2], '{': [1,1,1,1,1,4], '|': [1,1,1,1,4,2], '}': [1,1,1,4,1,2],
+      '~': [1,1,4,1,1,2], 'START': [2,1,1,4,1,2], 'STOP': [2,3,3,1,1,1,2]
+    };
+
+    const barcodeEl = document.getElementById('barcode');
+    const barcodeTextEl = document.getElementById('barcodeText');
+    const statusEl = document.getElementById('status');
+    const downloadBtn = document.getElementById('downloadBtn');
+    const textInput = document.getElementById('textInput');
+
+    const render = (message, tone = '') => {
+      statusEl.textContent = message;
+      statusEl.style.color = tone === 'error' ? 'var(--magenta)' : 'var(--amber)';
+    };
+
+    const createSimpleBarcode = (text) => {
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+
+      const barWidth = 2;
+      const barHeight = 80;
+      const totalWidth = text.length * 12 * barWidth + 40;
+
+      canvas.width = totalWidth;
+      canvas.height = barHeight + 20;
+
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      let x = 20;
+      ctx.fillStyle = '#0B0F1A';
+
+      for (let i = 0; i < 3; i++) {
+        ctx.fillRect(x, 10, barWidth, barHeight);
+        x += barWidth * 2;
+      }
+
+      for (let i = 0; i < text.length; i++) {
+        const charCode = text.charCodeAt(i);
+        const pattern = [(charCode % 3) + 1, (charCode % 2) + 1, (charCode % 4) + 1,
+                         (charCode % 2) + 1, (charCode % 3) + 1, (charCode % 2) + 1];
+
+        for (let j = 0; j < pattern.length; j++) {
+          if (j % 2 === 0) {
+            ctx.fillRect(x, 10, barWidth * pattern[j], barHeight);
+          }
+          x += barWidth * pattern[j];
+        }
+      }
+
+      for (let i = 0; i < 3; i++) {
+        ctx.fillRect(x, 10, barWidth, barHeight);
+        x += barWidth * 2;
+      }
+
+      return canvas;
+    };
+
+    const generateBarcode = () => {
+      const text = textInput.value.trim();
+
+      barcodeEl.innerHTML = '';
+      barcodeTextEl.textContent = 'awaiting payload…';
+      downloadBtn.hidden = true;
+
+      if (!text) {
+        render('Enter a payload to forge a barcode.', 'error');
+        textInput.focus();
+        return;
+      }
+      if (text.length > 50) {
+        render('Payload too long — keep it under 50 characters.', 'error');
+        return;
+      }
+
+      try {
+        const canvas = createSimpleBarcode(text);
+        barcodeEl.appendChild(canvas);
+        barcodeTextEl.textContent = text;
+        downloadBtn.hidden = false;
+        render(`✓ Forged ${text.length} chars — scan-ready.`);
+      } catch {
+        render('Encode failed — try a different payload.', 'error');
+      }
+    };
+
+    const downloadBarcode = () => {
+      const canvas = barcodeEl.querySelector('canvas');
+      if (!canvas) return;
+      const link = document.createElement('a');
+      link.download = 'barcode.png';
+      link.href = canvas.toDataURL('image/png');
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+    };
+
+    document.getElementById('generateBtn').addEventListener('click', generateBarcode);
+    downloadBtn.addEventListener('click', downloadBarcode);
+    textInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') generateBarcode();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,527 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="GRIDCODE — a 20x20 reactive 3D lattice in a dev-tool dark theme. Sweep your cursor to ignite cells with code-green and purple, watch them glow, fade and spark on their own.">
+  <title>GRIDCODE · Reactive 3D Lattice | Waay2Tech</title>
+  <link rel="canonical" href="grid.html">
+  <meta property="og:site_name" content="WAAY2TECH">
+  <meta name="author" content="Waay2Tech">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="GRIDCODE · Reactive 3D Lattice | Waay2Tech">
+  <meta property="og:description" content="GRIDCODE — a 20x20 reactive 3D lattice in a dev-tool dark theme. Sweep your cursor to ignite cells with code-green and purple.">
+  <meta property="og:url" content="grid.html">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="GRIDCODE · Reactive 3D Lattice">
+  <meta name="twitter:description" content="GRIDCODE — a 20x20 reactive 3D lattice in a dev-tool dark theme.">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "GRIDCODE · Reactive 3D Lattice | Waay2Tech",
+    "description": "A 20x20 reactive 3D lattice where sweeping your cursor ignites cells with code-green and purple neon.",
+    "url": "grid.html"
+  }
+  </script>
+  <style>
+    :root {
+      --bg: #0a0f0d;
+      --bg-1: #0a0f0d;
+      --bg-2: #111914;
+      --bg-3: #16201a;
+      --surface: #111914;
+      --text: #e6ffe9;
+      --text-2: #a9c9b0;
+      --text-3: #5f7a68;
+      --line: rgba(34, 197, 94, 0.18);
+      --stroke: rgba(34, 197, 94, 0.18);
+      --stroke-strong: rgba(34, 197, 94, 0.5);
+      --primary: #22c55e;
+      --violet: #a855f7;
+      --cyan: #22d3ee;
+      --lime: #22c55e;
+      --amber: #fbbf24;
+      --glow: 0 0 12px rgba(34, 211, 238, 0.5);
+      --shadow-card: 0 24px 60px -26px rgba(0, 0, 0, 0.8);
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --s1: 4px; --s2: 8px; --s3: 12px; --s4: 16px; --s5: 24px;
+      --s6: 32px; --s7: 48px; --s8: 64px; --s9: 96px;
+      --ease: cubic-bezier(0.22, 1, 0.36, 1);
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --font-mono: 'JetBrains Mono', monospace;
+      --font-body: 'Inter', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--bg);
+      background-image:
+        radial-gradient(60% 40% at 80% -5%, rgba(168, 85, 247, 0.1), transparent 60%),
+        radial-gradient(60% 44% at 10% 20%, rgba(34, 211, 238, 0.08), transparent 60%),
+        radial-gradient(70% 50% at 50% 115%, rgba(34, 197, 94, 0.1), transparent 60%);
+      background-attachment: fixed;
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body::before {
+      content: '';
+      position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      background-image:
+        linear-gradient(rgba(34, 197, 94, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(34, 197, 94, 0.04) 1px, transparent 1px);
+      background-size: 44px 44px;
+      mask-image: radial-gradient(70% 70% at 50% 30%, #000 30%, transparent 100%);
+    }
+
+    ::selection { background: var(--primary); color: #04120a; }
+
+    ::-webkit-scrollbar { width: 10px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: rgba(34, 197, 94, 0.45); border-radius: 999px; border: 2px solid var(--bg); }
+
+    :focus-visible { outline: 2px solid var(--primary); outline-offset: 3px; border-radius: 3px; }
+
+    .skip-link {
+      position: fixed; top: -100%; left: var(--s4); z-index: 200;
+      background: var(--primary); color: #04120a; padding: var(--s2) var(--s4);
+      border-radius: 0 0 var(--radius-md) var(--radius-md);
+      font-family: var(--font-mono); font-weight: 600; text-decoration: none; transition: top 0.3s var(--ease);
+    }
+    .skip-link:focus { top: 0; }
+
+    .site-header {
+      position: sticky; top: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: var(--s3) var(--s5);
+      background: rgba(10, 15, 13, 0.84);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line);
+    }
+    .brand {
+      font-family: var(--font-mono); font-weight: 600; font-size: 1rem;
+      letter-spacing: 0.08em; text-decoration: none; color: var(--text);
+      display: flex; align-items: center; gap: 10px;
+    }
+    .brand .mark {
+      width: 26px; height: 26px; border-radius: 6px;
+      background:
+        linear-gradient(135deg, rgba(34, 197, 94, 0.25), rgba(168, 85, 247, 0.25)),
+        repeating-linear-gradient(0deg, var(--primary) 0 2px, transparent 2px 4px),
+        repeating-linear-gradient(90deg, var(--primary) 0 2px, transparent 2px 4px);
+      border: 1px solid rgba(34, 197, 94, 0.5);
+      box-shadow: 0 0 12px rgba(34, 197, 94, 0.35);
+    }
+    .nav { display: flex; gap: var(--s4); list-style: none; }
+    .nav a { color: var(--text-2); text-decoration: none; font-size: 0.85rem; font-family: var(--font-mono); transition: color 0.25s; }
+    .nav a:hover { color: var(--primary); }
+
+    .wrap { max-width: 1180px; margin-inline: auto; padding-inline: var(--s5); position: relative; z-index: 1; }
+
+    .hero { padding: var(--s8) var(--s5) var(--s5); text-align: center; }
+    .kicker {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-family: var(--font-mono); font-size: 0.72rem; font-weight: 500;
+      letter-spacing: 0.18em; text-transform: uppercase; color: var(--primary);
+    }
+    .kicker::before { content: '▮'; color: var(--violet); }
+    h1 {
+      font-family: var(--font-mono); font-weight: 600;
+      font-size: clamp(2rem, 5.5vw, 3.6rem);
+      line-height: 1.06; letter-spacing: -0.01em;
+      margin: var(--s4) 0 var(--s3);
+    }
+    h1 .grad {
+      background: linear-gradient(120deg, #22c55e 0%, #a855f7 55%, #22d3ee 100%);
+      -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent;
+    }
+    .lead { max-width: 58ch; margin-inline: auto; color: var(--text-2); font-size: 1.02rem; }
+    .chips { display: flex; flex-wrap: wrap; gap: var(--s2); justify-content: center; margin-top: var(--s4); }
+    .chip {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: var(--font-mono); font-size: 0.76rem;
+      background: rgba(17, 25, 20, 0.85); border: 1px solid var(--line);
+      border-radius: 999px; padding: 7px 14px; color: var(--text-2);
+    }
+    .chip .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--primary); box-shadow: 0 0 10px var(--primary); }
+
+    .demo-stage {
+      position: relative; z-index: 1;
+      height: clamp(480px, 68vh, 760px);
+      margin: var(--s4) auto var(--s8);
+      max-width: 1180px;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--line);
+      background:
+        radial-gradient(80% 70% at 50% 40%, rgba(17, 25, 20, 0.6), rgba(10, 15, 13, 0) 70%),
+        var(--bg-1);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow-card);
+    }
+
+    .scene {
+      width: 88%; height: 82%;
+      transform-style: preserve-3d;
+      transform: rotateX(12deg) rotateY(0deg);
+      transition: transform 0.5s var(--ease-out);
+      position: relative;
+    }
+    .grid-box {
+      position: absolute; inset: 0;
+      display: grid;
+      grid-template-columns: repeat(20, 1fr);
+      grid-template-rows: repeat(20, 1fr);
+      gap: 2px;
+      transform-style: preserve-3d;
+    }
+    .cell {
+      background: var(--bg-2); border-radius: 3px;
+      border: 1px solid var(--stroke);
+      transition: transform 0.3s var(--ease-out), box-shadow 0.3s;
+      transform: translateZ(0);
+    }
+    .cell.active {
+      box-shadow: 0 0 12px var(--cell-glow, var(--cyan));
+      animation: cell-zap 2s var(--ease-out) forwards;
+    }
+    @keyframes cell-zap {
+      0% { transform: translateZ(0); filter: brightness(0.7); }
+      12% { transform: translateZ(16px); filter: brightness(1.25); }
+      72% { transform: translateZ(16px); filter: brightness(1.25); }
+      100% { transform: translateZ(0); filter: brightness(0.7); box-shadow: none; }
+    }
+    .cell .sheen {
+      position: absolute; inset: 0; border-radius: 3px; opacity: 0;
+      pointer-events: none;
+    }
+    .cell.active .sheen {
+      opacity: 1; animation: sheen-fade 2s var(--ease-out) forwards;
+      background: radial-gradient(circle at 50% 50%, var(--cell-color), transparent 70%);
+    }
+    @keyframes sheen-fade {
+      0% { opacity: 0; } 12% { opacity: 0.8; } 72% { opacity: 0.55; } 100% { opacity: 0; }
+    }
+    .cell:hover { outline: 1px solid var(--stroke-strong); }
+
+    .editor {
+      max-width: 1180px;
+      margin: 0 auto var(--s8);
+      width: 100%;
+      overflow: hidden;
+      background: var(--bg-1); border: 1px solid var(--line);
+      border-radius: var(--radius-md); box-shadow: var(--shadow-card);
+    }
+    .editor-bar {
+      display: flex; align-items: center; gap: var(--s2);
+      padding: var(--s2) var(--s3);
+      background: var(--bg-2); border-bottom: 1px solid var(--line);
+    }
+    .dot { width: 11px; height: 11px; border-radius: 50%; }
+    .dot--r { background: #ff5f56; }
+    .dot--y { background: #ffbd2e; }
+    .dot--g { background: #27c93f; }
+    .editor-bar .mono { color: var(--text-3); margin-left: var(--s2); font-size: 0.74rem; }
+    .editor pre {
+      padding: var(--s4); overflow-x: auto;
+      font-family: var(--font-mono); font-size: 0.74rem; line-height: 1.6;
+      color: var(--text-2);
+    }
+    .c-kw { color: var(--violet); }
+    .c-fn { color: var(--cyan); }
+    .c-str { color: var(--lime); }
+    .c-cm { color: var(--text-3); font-style: italic; }
+    .c-num { color: var(--amber); }
+
+    .site-footer {
+      border-top: 1px solid var(--line);
+      padding: var(--s5) var(--s5) var(--s6);
+      text-align: center;
+      font-family: var(--font-mono); font-size: 0.76rem;
+      color: var(--text-3);
+    }
+    .site-footer .brand-mini { color: var(--primary); }
+
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.7s var(--ease), transform 0.7s var(--ease); }
+    .reveal.in { opacity: 1; transform: none; }
+
+    @media (max-width: 620px) {
+      .scene { width: 96%; height: 78%; }
+      .demo-stage { margin-inline: var(--s3); }
+    }
+    @media (max-width: 480px) {
+      .site-header { padding: var(--s3) var(--s4); }
+      .nav { gap: var(--s3); }
+      .wrap { padding-inline: var(--s4); }
+      .hero { padding-top: var(--s6); }
+      .editor { margin-inline: var(--s3); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.001s !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001s !important;
+        scroll-behavior: auto !important;
+      }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+  <style>html,body{overflow-x:hidden}</style>
+</head>
+<body>
+<script>
+(function () {
+  if (!('ontouchstart' in window) || window.__touchBridge) return;
+  window.__touchBridge = true;
+  var lt = null;
+  function fire(type, t) {
+    var el = document.elementFromPoint(t.clientX, t.clientY) || document;
+    el.dispatchEvent(new MouseEvent(type, {
+      bubbles: true, cancelable: true, view: window,
+      clientX: t.clientX, clientY: t.clientY,
+      button: 0, buttons: type === 'mousemove' ? 1 : 0
+    }));
+  }
+  document.addEventListener('touchstart', function (e) {
+    if (e.touches.length !== 1) return;
+    lt = e.touches[0];
+    fire('mousemove', lt); fire('mousedown', lt);
+  }, { passive: true });
+  document.addEventListener('touchmove', function (e) {
+    if (e.touches.length !== 1 || !lt) return;
+    lt = e.touches[0];
+    fire('mousemove', lt);
+  }, { passive: true });
+  document.addEventListener('touchend', function () {
+    if (!lt) return;
+    fire('mouseup', lt);
+    lt = null;
+  }, { passive: true });
+})();
+</script>
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header class="site-header">
+    <a class="brand" href="#main">WAAY2TECH</span>GRIDCODE</a>
+    <nav aria-label="Primary">
+      <ul class="nav">
+        <li><a href="#">Lattice</a></li>
+        <li><a href="#">Source</a></li>
+        <li><a href="#">About</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero" aria-labelledby="grid-title">
+      <p class="kicker reveal">Code showcase · 3D interactive grid</p>
+      <h1 id="grid-title" class="reveal">Touch the <span class="grad">lattice</span>.</h1>
+      <p class="lead reveal">Four hundred cells, one cursor. Sweep across the grid and each cell ignites, glows and collapses — wired to your pointer's velocity and a random idle spark.</p>
+      <div class="chips reveal">
+        <span class="chip"><span class="dot"></span>20 × 20 grid</span>
+        <span class="chip">velocity-reactive</span>
+        <span class="chip">touch enabled</span>
+      </div>
+    </section>
+
+    <section class="demo-stage reveal" aria-label="Interactive 3D grid demo">
+      <div class="scene" id="scene">
+        <div class="grid-box" id="gridBox" role="img" aria-label="20 by 20 grid of light-reactive cells"></div>
+      </div>
+    </section>
+
+    <section class="editor reveal" aria-label="Source code for the grid">
+      <div class="editor-bar">
+        <span class="dot dot--r" aria-hidden="true"></span>
+        <span class="dot dot--y" aria-hidden="true"></span>
+        <span class="dot dot--g" aria-hidden="true"></span>
+        <span class="mono small">gridfire.js</span>
+      </div>
+      <pre><span class="c-cm">// Ignite a cell under the cursor + a few neighbours</span>
+<span class="c-kw">const</span> activate = (x, y) =&gt; {
+  <span class="c-kw">if</span> (x &lt; <span class="c-num">0</span> || x &gt;= GRID || y &lt; <span class="c-num">0</span> || y &gt;= GRID) <span class="c-kw">return</span>;
+  <span class="c-kw">const</span> cell = cells[y * GRID + x];
+  <span class="c-kw">if</span> (cell.classList.contains(<span class="c-str">'active'</span>)) <span class="c-kw">return</span>;
+  cell.style.background = pick(cell);  <span class="c-cm">// neon color</span>
+  cell.classList.add(<span class="c-str">'active'</span>);
+  setTimeout(<span class="c-fn">() =&gt; </span>{
+    cell.classList.remove(<span class="c-str">'active'</span>);
+    cell.style.background = <span class="c-str">'var(--bg-2)'</span>;
+  }, <span class="c-num">2000</span>);
+};</pre>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span><span class="brand-mini">WAAY2TECH</span> · <span data-year></span> · built cell by cell</span>
+  </footer>
+
+  <script>
+    'use strict';
+
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReduced) { document.documentElement.classList.add('reduced-motion'); }
+
+    document.querySelectorAll('[data-year]').forEach(function (el) { el.textContent = new Date().getFullYear(); });
+
+    var revealEls = document.querySelectorAll('.reveal');
+    if ('IntersectionObserver' in window && !prefersReduced) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+      revealEls.forEach(function (el) { io.observe(el); });
+    } else {
+      revealEls.forEach(function (el) { el.classList.add('in'); });
+    }
+
+    const COLORS = ['#22c55e', '#4ade80', '#86efac', '#a855f7', '#c084fc', '#d8b4fe', '#22d3ee', '#67e8f9', '#a7f3d0'];
+    const GRID = 20;
+
+    const box = document.getElementById('gridBox');
+    const scene = document.getElementById('scene');
+    const cells = [];
+
+    for (let i = 0; i < GRID * GRID; i++) {
+      const cell = document.createElement('div');
+      cell.className = 'cell';
+      const sheen = document.createElement('span');
+      sheen.className = 'sheen';
+      cell.appendChild(sheen);
+      box.appendChild(cell);
+      cells.push(cell);
+    }
+
+    let mouseX = 0, mouseY = 0, lastX = 0, lastY = 0, speed = 0;
+
+    const pickColor = (cell) => {
+      const color = COLORS[Math.floor(Math.random() * COLORS.length)];
+      cell.style.setProperty('--cell-color', color);
+      cell.style.setProperty('--cell-glow', color);
+      cell.style.background = color;
+      const sheen = cell.querySelector('.sheen');
+      sheen.style.background = `radial-gradient(circle at 50% 50%, ${color}, transparent 70%)`;
+    };
+
+    const activateCell = (x, y) => {
+      if (x < 0 || x >= GRID || y < 0 || y >= GRID) return;
+      const cell = cells[y * GRID + x];
+      if (cell.classList.contains('active')) return;
+      pickColor(cell);
+      cell.classList.add('active');
+      setTimeout(() => {
+        cell.classList.remove('active');
+        cell.style.background = '';
+      }, 2000);
+    };
+
+    const tiltScene = (px, py) => {
+      const cw = window.innerWidth / 2;
+      const ch = window.innerHeight / 2;
+      const rotY = ((px - cw) / cw) * 5;
+      const rotX = ((ch - py) / ch) * 5;
+      scene.style.transform = `rotateX(${12 + rotX}deg) rotateY(${rotY}deg)`;
+    };
+
+    const onMove = (x, y) => {
+      const dx = x - lastX;
+      const dy = y - lastY;
+      speed = Math.sqrt(dx * dx + dy * dy);
+      mouseX = x;
+      mouseY = y;
+      lastX = x;
+      lastY = y;
+      tiltScene(x, y);
+
+      if (speed < 3) return;
+      const rect = scene.getBoundingClientRect();
+      const relX = mouseX - rect.left;
+      const relY = mouseY - rect.top;
+      if (relX < 0 || relX > rect.width || relY < 0 || relY > rect.height) return;
+
+      const cellW = rect.width / GRID;
+      const cellH = rect.height / GRID;
+      const cx = Math.floor(relX / cellW);
+      const cy = Math.floor(relY / cellH);
+
+      setTimeout(() => activateCell(cx, cy), Math.random() * 50);
+
+      const spread = Math.min(2, Math.floor(speed / 10) + 1);
+      for (let i = 0; i < spread; i++) {
+        const d = Math.random() * 3 + 1;
+        const a = Math.random() * Math.PI * 2;
+        const sx = Math.floor(cx + Math.cos(a) * d);
+        const sy = Math.floor(cy + Math.sin(a) * d);
+        setTimeout(() => activateCell(sx, sy), Math.random() * 100);
+      }
+    };
+
+    document.addEventListener('mousemove', (e) => onMove(e.clientX, e.clientY), { passive: true });
+    document.addEventListener('touchmove', (e) => {
+      const t = e.touches[0];
+      onMove(t.clientX, t.clientY);
+    }, { passive: true });
+
+    const seedPattern = () => {
+      const pattern = [
+        [3, 2], [2, 4], [5, 5], [8, 3], [10, 6], [12, 4], [14, 7], [16, 2],
+        [7, 8], [4, 10], [9, 11], [13, 9], [11, 13], [15, 11], [17, 14], [3, 14],
+        [6, 16], [12, 17], [8, 12], [2, 9], [18, 5], [9, 3], [14, 15], [5, 12],
+        [16, 9], [3, 18], [11, 2], [7, 15]
+      ];
+      pattern.forEach(([x, y], i) => setTimeout(() => activateCell(x, y), i * 100));
+    };
+    seedPattern();
+
+    setInterval(() => {
+      if (Math.random() < 0.12) {
+        activateCell(Math.floor(Math.random() * GRID), Math.floor(Math.random() * GRID));
+      }
+    }, 120);
+
+    let idleAngle = 0;
+    let idleTilt = null;
+    const startIdleTilt = () => {
+      stopIdleTilt();
+      idleTilt = setInterval(() => {
+        idleAngle += 0.01;
+        scene.style.transform = `rotateX(${12 + Math.cos(idleAngle) * 2}deg) rotateY(${Math.sin(idleAngle) * 3}deg)`;
+      }, 16);
+    };
+    const stopIdleTilt = () => {
+      if (idleTilt) {
+        clearInterval(idleTilt);
+        idleTilt = null;
+      }
+    };
+
+    startIdleTilt();
+
+    document.addEventListener('mousemove', () => {
+      stopIdleTilt();
+      clearTimeout(window.__gridfireIdle);
+      window.__gridfireIdle = setTimeout(startIdleTilt, 5000);
+    }, { passive: true });
+    document.addEventListener('touchstart', stopIdleTilt, { passive: true });
+  </script>
+</body>
+</html>

@@ -1,0 +1,344 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A phosphor-green retro LCD clock. Hours, minutes and seconds tick live on a nine-segment readout with AM/PM — zero deps, pure local time.">
+  <title>DIGIT — Retro LCD Clock | Waay2Tech</title>
+  <link rel="canonical" href="digital clock.html">
+  <meta property="og:site_name" content="WAAY2TECH">
+  <meta name="author" content="Waay2Tech">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    /* ============================================================
+       DIGIT — self-contained retro LCD clock.
+       ============================================================ */
+    :root {
+      --bg: #050805;
+      --panel: #0a120a;
+      --digit: #39ff14;
+      --digit-dim: #a3ff9a;
+      --digit-faint: #16a34a;
+      --paper: #c9f7c9;
+      --stroke: rgba(163, 255, 154, 0.2);
+      --font-display: 'Orbitron', 'JetBrains Mono', ui-monospace, monospace;
+      --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--paper);
+      font-family: var(--font-mono);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      background-image:
+        radial-gradient(1200px 700px at 50% -10%, rgba(22, 163, 74, 0.16), transparent 60%),
+        radial-gradient(900px 600px at 85% 110%, rgba(22, 163, 74, 0.1), transparent 60%);
+      background-attachment: fixed;
+    }
+    a { color: var(--digit-dim); }
+    .skip-link {
+      position: fixed; top: -100px; left: 16px; z-index: 100;
+      padding: 10px 18px; background: var(--digit-faint); color: var(--bg);
+      border-radius: 10px; text-decoration: none; font-weight: 700;
+      transition: top 0.2s ease;
+    }
+    .skip-link:focus { top: 16px; }
+    .site-header {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 1rem; padding: 1.25rem clamp(1.25rem, 5vw, 3rem);
+      border-bottom: 1px solid var(--stroke);
+    }
+    .brand {
+      font-family: var(--font-display); font-weight: 900; font-size: 1.2rem;
+      letter-spacing: 0.18em; color: var(--digit); text-decoration: none;
+      text-shadow: 0 0 12px rgba(57, 255, 20, 0.55);
+    }
+    .brand em { font-style: normal; color: var(--digit-faint); text-shadow: none; }
+    .site-nav { display: flex; gap: clamp(1rem, 3vw, 2rem); }
+    .site-nav a {
+      font-size: 0.78rem; font-weight: 700; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--digit-dim); text-decoration: none;
+      opacity: 0.72;
+    }
+    .site-nav a:hover { opacity: 1; color: var(--digit); }
+    .shell { max-width: 1080px; margin-inline: auto; padding: clamp(1.5rem, 4vw, 4rem) clamp(1.25rem, 5vw, 3rem) 5rem; }
+    .stack { display: grid; gap: 1.25rem; }
+    .stack--lg { gap: 1.75rem; }
+    .text-center { text-align: center; }
+    .kicker {
+      margin: 0; font-family: var(--font-display); font-size: 0.76rem;
+      font-weight: 700; letter-spacing: 0.28em; text-transform: uppercase;
+      color: var(--digit-faint);
+    }
+    h1 { margin: 0; font-family: var(--font-display); font-weight: 900; font-size: clamp(2.4rem, 6vw, 4.2rem); line-height: 1.08; letter-spacing: 0.06em; color: var(--digit); text-shadow: 0 0 8px rgba(57, 255, 20, 0.7), 0 0 30px rgba(57, 255, 20, 0.35); }
+    h1 em { font-style: normal; color: var(--digit-faint); text-shadow: none; }
+    .lead { margin: 0 auto; max-width: 640px; font-size: clamp(0.95rem, 2vw, 1.1rem); color: var(--paper); opacity: 0.75; }
+    .mx-auto { margin-inline: auto; }
+    .row { display: flex; align-items: center; }
+    .row--wrap { flex-wrap: wrap; }
+    .justify-center { justify-content: center; }
+    .chip {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.45rem 0.9rem; border: 1px solid var(--stroke);
+      border-radius: 999px; background: rgba(10, 18, 10, 0.7);
+      font-family: var(--font-display); font-size: 0.68rem; font-weight: 700;
+      letter-spacing: 0.16em; text-transform: uppercase; color: var(--digit-dim);
+    }
+    .chip .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--digit); animation: dot-pulse 1.8s ease-in-out infinite; }
+    @keyframes dot-pulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(57, 255, 20, 0.5); opacity: 1; }
+      50% { box-shadow: 0 0 0 6px rgba(57, 255, 20, 0); opacity: 0.55; }
+    }
+    .card {
+      position: relative; background: var(--panel);
+      border: 1px solid var(--stroke); border-radius: 26px;
+      box-shadow: 0 0 0 6px rgba(5, 8, 5, 0.9), 0 30px 70px -30px rgba(0, 0, 0, 0.9), inset 0 1px 0 rgba(163, 255, 154, 0.08);
+      overflow: hidden;
+    }
+    .badge { display: inline-block; padding: 0.35rem 0.75rem; border-radius: 999px; font-family: var(--font-mono); font-size: 0.68rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; }
+    .badge--ghost { border: 1px solid var(--stroke); color: var(--digit-faint); }
+    .mono { font-family: var(--font-mono); }
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.6s ease var(--reveal-delay, 0ms), transform 0.6s ease var(--reveal-delay, 0ms); }
+    .reveal.is-in { opacity: 1; transform: none; }
+    .reveal-zoom { transition: opacity 0.6s ease var(--reveal-delay, 0ms), transform 0.6s ease var(--reveal-delay, 0ms); }
+
+    .screen { padding: clamp(1.25rem, 3vw, 2rem); display: grid; justify-items: center; gap: 1.5rem; }
+    .lcd {
+      position: relative; width: min(680px, 100%); padding: clamp(1.25rem, 3vw, 2.25rem);
+      border-radius: 18px;
+      background: var(--panel);
+      border: 1px solid rgba(57, 255, 20, 0.24);
+      box-shadow: inset 0 0 60px rgba(0, 0, 0, 0.9), inset 0 0 6px rgba(57, 255, 20, 0.12);
+    }
+    .scanlines {
+      position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+      background: repeating-linear-gradient(0deg, rgba(57, 255, 20, 0.045) 0 1px, transparent 1px 3px);
+      mix-blend-mode: screen;
+    }
+    .lcd-top { display: flex; align-items: center; justify-content: space-between; gap: 1rem; font-size: 0.7rem; letter-spacing: 0.18em; color: var(--digit-faint); text-transform: uppercase; }
+    .lcd-brand { color: var(--digit-dim); }
+    .lcd-readout { font-family: var(--font-display); }
+    .led { width: 9px; height: 9px; border-radius: 50%; background: var(--digit); box-shadow: 0 0 10px var(--digit); animation: dot-pulse 2s ease-in-out infinite; }
+    .lcd-time {
+      display: flex; align-items: baseline; justify-content: center; gap: clamp(4px, 1.2vw, 12px);
+      margin-top: 1.5rem; font-family: var(--font-display); font-weight: 700;
+      font-size: clamp(2.6rem, 12vw, 5.6rem); line-height: 1; letter-spacing: 0.04em;
+      color: var(--digit);
+      text-shadow: 0 0 6px rgba(57, 255, 20, 0.9), 0 0 18px rgba(57, 255, 20, 0.5), 0 0 44px rgba(57, 255, 20, 0.3);
+      font-feature-settings: "tnum";
+    }
+    .digit-cell { position: relative; display: inline-grid; place-items: center; }
+    .digit-cell .ghost { position: absolute; color: rgba(22, 163, 74, 0.16); text-shadow: none; }
+    .digit-cell .digit { position: relative; }
+    .colon { animation: colon-blink 2s steps(1, end) infinite; }
+    @keyframes colon-blink {
+      0%, 45% { opacity: 1; }
+      50%, 95% { opacity: 0.12; }
+    }
+    .lcd-meta { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-top: 1.5rem; }
+    #ampm {
+      font-family: var(--font-display); font-size: 0.78rem; font-weight: 700;
+      letter-spacing: 0.2em; color: var(--digit); padding: 0.3rem 0.7rem;
+      border: 1px solid rgba(57, 255, 20, 0.4); border-radius: 999px;
+      text-shadow: 0 0 8px rgba(57, 255, 20, 0.6);
+    }
+    #date { font-size: 0.74rem; letter-spacing: 0.16em; color: var(--digit-faint); text-transform: uppercase; }
+    .spec { margin-top: clamp(2.5rem, 6vw, 4rem); }
+    .spec-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-top: 1.5rem; }
+    .spec-grid article { background: rgba(10, 18, 10, 0.7); border: 1px solid var(--stroke); border-radius: 20px; padding: 1.5rem; text-align: left; }
+    .spec-grid .mono { color: var(--digit); font-weight: 700; text-shadow: 0 0 8px rgba(57, 255, 20, 0.5); }
+    .spec-grid h3 { margin: 0.5rem 0 0.35rem; font-family: var(--font-display); font-size: 1rem; color: var(--digit-dim); }
+    .spec-grid p { margin: 0; font-size: 0.92rem; opacity: 0.72; }
+    .footer {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 1rem; flex-wrap: wrap; padding: 1.5rem clamp(1.25rem, 5vw, 3rem) 2rem;
+      border-top: 1px solid var(--stroke); font-size: 0.8rem; color: var(--paper); opacity: 0.7;
+    }
+    .footer a { color: var(--digit-dim); text-decoration: none; }
+    @media (max-width: 720px) { .spec-grid { grid-template-columns: 1fr; } }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.001s !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001s !important;
+      }
+    }
+  </style>
+  <noscript><style>.reveal { opacity: 1; transform: none; }</style></noscript>
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="DIGIT — Retro LCD Clock | Way2Tech">
+  <meta property="og:description" content="An interactive 3D stag assembler by Way2Tech">
+  <meta property="og:url" content="">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="DIGIT — Retro LCD Clock | Way2Tech">
+  <meta name="twitter:description" content="An interactive 3D stag assembler by Way2Tech">
+  <script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"DIGIT — Retro LCD Clock","author":{"@type":"Organization","name":"Way2Tech"},"description":"An interactive 3D stag assembler"}
+</script>
+  <style>html,body{overflow-x:hidden}</style>
+</head>
+<body>
+<script>
+(function () {
+  if (!('ontouchstart' in window) || window.__touchBridge) return;
+  window.__touchBridge = true;
+  var lt = null;
+  function fire(type, t) {
+    var el = document.elementFromPoint(t.clientX, t.clientY) || document;
+    el.dispatchEvent(new MouseEvent(type, {
+      bubbles: true, cancelable: true, view: window,
+      clientX: t.clientX, clientY: t.clientY,
+      button: 0, buttons: type === 'mousemove' ? 1 : 0
+    }));
+  }
+  document.addEventListener('touchstart', function (e) {
+    if (e.touches.length !== 1) return;
+    lt = e.touches[0];
+    fire('mousemove', lt); fire('mousedown', lt);
+  }, { passive: true });
+  document.addEventListener('touchmove', function (e) {
+    if (e.touches.length !== 1 || !lt) return;
+    lt = e.touches[0];
+    fire('mousemove', lt);
+  }, { passive: true });
+  document.addEventListener('touchend', function () {
+    if (!lt) return;
+    fire('mouseup', lt);
+    lt = null;
+  }, { passive: true });
+})();
+</script>
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header class="site-header">
+    <a class="brand" href="#main">WAAY2TECH</em></a>
+    <nav class="site-nav" aria-label="Page">
+      <a href="#demo">Demo</a>
+      <a href="#specs">Specs</a>
+    </nav>
+  </header>
+
+  <main id="main" class="shell">
+    <section class="stack stack--lg text-center" aria-labelledby="page-title">
+      <p class="kicker reveal mx-auto">Retro LCD · Live Local Time</p>
+      <h1 class="reveal" id="page-title" style="--reveal-delay:80ms">
+        Digit <em>Readout</em>
+      </h1>
+      <p class="lead reveal mx-auto" style="max-width: 640px; --reveal-delay:160ms">
+        A phosphor-green LCD clock. Hours, minutes and seconds tick live on a
+        nine-segment readout with AM/PM — no batteries, just the browser clock.
+      </p>
+      <div class="row row--wrap reveal justify-center" style="--reveal-delay:240ms">
+        <span class="chip"><span class="dot" aria-hidden="true"></span>LIVE · 1S TICKS</span>
+        <span class="chip">12-HOUR READOUT</span>
+        <span class="chip">PHOSPHOR GREEN</span>
+      </div>
+    </section>
+
+    <section id="demo" class="screen card reveal reveal-zoom" style="--reveal-delay:200ms" role="timer" aria-live="off">
+      <span class="badge badge--ghost mono">LCD-84 · ZERO DEPS</span>
+
+      <div class="lcd">
+        <div class="scanlines" aria-hidden="true"></div>
+        <div class="lcd-top">
+          <span class="lcd-brand mono">WAAY2TECH</span>
+          <span class="led" aria-hidden="true"></span>
+          <span class="lcd-readout">READOUT 84</span>
+        </div>
+
+        <div class="lcd-time">
+          <span class="digit-cell"><span class="ghost" aria-hidden="true">8</span><span class="digit" id="hours">08</span></span>
+          <span class="colon" aria-hidden="true">:</span>
+          <span class="digit-cell"><span class="ghost" aria-hidden="true">8</span><span class="digit" id="minutes">14</span></span>
+          <span class="colon" aria-hidden="true">:</span>
+          <span class="digit-cell"><span class="ghost" aria-hidden="true">8</span><span class="digit" id="seconds">26</span></span>
+        </div>
+
+        <div class="lcd-meta">
+          <span id="ampm">AM</span>
+          <span id="date">-- --- ----</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="specs" class="spec reveal" style="--reveal-delay:120ms">
+      <p class="kicker">Specs</p>
+      <div class="spec-grid">
+        <article>
+          <span class="mono">01</span>
+          <h3>Nine-segment readout</h3>
+          <p>Orbitron keeps the classic LCD profile, with a ghost 8 sitting behind every digit like a real display.</p>
+        </article>
+        <article>
+          <span class="mono">02</span>
+          <h3>One-second ticks</h3>
+          <p>The live clock reads local time every 1000 ms — hours, minutes, seconds and AM/PM.</p>
+        </article>
+        <article>
+          <span class="mono">03</span>
+          <h3>Zero dependencies</h3>
+          <p>No libraries, no build step. Open the file and it just runs.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>WAAY2TECH · <span data-year></span></span>
+    <span>Self-contained · zero dependencies</span>
+  </footer>
+
+  <script>
+    (() => {
+      'use strict';
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-in');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      document.querySelectorAll('.reveal').forEach((node) => {
+        if (!('IntersectionObserver' in window)) {
+          node.classList.add('is-in');
+          return;
+        }
+        io.observe(node);
+      });
+
+      const hoursEl = document.getElementById('hours');
+      const minutesEl = document.getElementById('minutes');
+      const secondsEl = document.getElementById('seconds');
+      const ampmEl = document.getElementById('ampm');
+      const dateEl = document.getElementById('date');
+      const monthNames = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
+
+      const tick = () => {
+        const now = new Date();
+        let hours = now.getHours();
+        const minutes = now.getMinutes();
+        const seconds = now.getSeconds();
+        const ampm = hours >= 12 ? 'PM' : 'AM';
+        hours = hours % 12;
+        hours = hours ? hours : 12;
+        hoursEl.textContent = String(hours).padStart(2, '0');
+        minutesEl.textContent = String(minutes).padStart(2, '0');
+        secondsEl.textContent = String(seconds).padStart(2, '0');
+        ampmEl.textContent = ampm;
+        const day = String(now.getDate()).padStart(2, '0');
+        dateEl.textContent = day + ' ' + monthNames[now.getMonth()] + ' ' + now.getFullYear();
+      };
+
+      tick();
+      setInterval(tick, 1000);
+    })();
+  </script>
+</body>
+</html>

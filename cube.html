@@ -1,0 +1,1167 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="CUBE WORKS — an interactive 64-cube 3D grid with pointer tilt, touch drag, click ripple, and responsive mobile controls.">
+  <meta name="theme-color" content="#faf7f0">
+  <title>CUBE WORKS · 3D Tilt Grid | Waay2Tech</title>
+  <link rel="canonical" href="cube.html">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="WAAY2TECH">
+  <meta property="og:title" content="CUBE WORKS · 3D Tilt Grid | Waay2Tech">
+  <meta property="og:description" content="An interactive 64-cube 3D grid with pointer tilt, touch drag, click ripple, and responsive mobile controls.">
+  <meta property="og:url" content="cube.html">
+  <meta property="og:locale" content="en_US">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="CUBE WORKS · 3D Tilt Grid">
+  <meta name="twitter:description" content="An interactive 64-cube 3D grid with pointer tilt, touch drag, click ripple, and responsive mobile controls.">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "CUBE WORKS · 3D Tilt Grid | Waay2Tech",
+    "description": "An interactive 64-cube 3D grid with pointer tilt, touch drag, click ripple, and responsive mobile controls.",
+    "url": "cube.html"
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --col-gap: 5%;
+      --row-gap: 5%;
+      --cube-perspective: 1200px;
+      --cube-face-border: 2px dashed var(--indigo);
+      --cube-face-bg: var(--bg-2);
+      --cube-face-shadow: 0 0 14px rgba(47, 109, 246, 0.28);
+
+      --bg: #faf7f0;
+      --bg-0: #f1ece1;
+      --bg-1: #fffdf8;
+      --bg-2: #ffffff;
+      --surface: #ffffff;
+      --text-1: #17130d;
+      --text-2: #5c5444;
+      --text-3: #8f8674;
+      --stroke: rgba(23, 19, 13, 0.09);
+      --stroke-strong: rgba(23, 19, 13, 0.18);
+      --glass: rgba(255, 255, 255, 0.72);
+      --blur-glass: 18px;
+
+      --indigo: #ff4d2e;
+      --indigo-soft: #ff7a63;
+      --violet: #ff4d2e;
+      --cyan: #2f6df6;
+      --magenta: #2f6df6;
+      --lime: #ffc72c;
+      --amber: #ffc72c;
+
+      --grad-primary: linear-gradient(135deg, #ff4d2e 0%, #ffc72c 60%, #2f6df6 100%);
+      --grad-text: linear-gradient(120deg, #ff4d2e 0%, #ffc72c 50%, #2f6df6 100%);
+
+      --glow-indigo: 0 6px 18px rgba(255, 77, 46, 0.4);
+      --shadow-card: 0 24px 60px rgba(23, 19, 13, 0.14), 0 8px 20px rgba(23, 19, 13, 0.08);
+
+      --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+      --s1: 4px; --s2: 8px; --s3: 12px; --s4: 16px; --s5: 20px;
+      --s6: 28px; --s7: 40px; --s8: 56px; --s9: 80px;
+      --radius-sm: 10px; --radius-md: 16px; --radius-lg: 24px; --radius-full: 999px;
+      --font-display: "Archivo", sans-serif;
+      --font-body: "Inter", sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      min-width: 320px;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      overflow-x: hidden;
+      font-family: var(--font-body);
+      color: var(--text-1);
+      background: var(--bg);
+    }
+
+    body.menu-open { overflow: hidden; }
+
+    ::selection {
+      background: var(--indigo);
+      color: #fff;
+    }
+
+    ::-webkit-scrollbar { width: 12px; }
+    ::-webkit-scrollbar-track { background: var(--bg-0); }
+    ::-webkit-scrollbar-thumb {
+      background: #d8cfbc;
+      border-radius: 8px;
+      border: 3px solid var(--bg-0);
+    }
+
+    a { color: inherit; }
+
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    button:focus-visible,
+    a:focus-visible {
+      outline: 3px solid var(--cyan);
+      outline-offset: 3px;
+    }
+
+    .skip-link {
+      position: fixed;
+      top: 12px;
+      left: 12px;
+      z-index: 9999;
+      padding: 10px 18px;
+      border-radius: var(--radius-md);
+      background: var(--indigo);
+      color: #fff;
+      font-weight: 700;
+      text-decoration: none;
+      transform: translateY(-200%);
+      transition: transform 0.25s var(--ease-out);
+    }
+
+    .skip-link:focus { transform: translateY(0); }
+
+    .site-header {
+      width: min(1240px, 92%);
+      margin-inline: auto;
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      position: relative;
+      z-index: 100;
+    }
+
+    .wordmark {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 1.2rem;
+      letter-spacing: 0.1em;
+      color: var(--text-1);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .wordmark .mark {
+      width: 34px;
+      height: 34px;
+      flex: 0 0 34px;
+      display: grid;
+      place-items: center;
+      background: var(--grad-primary);
+      box-shadow: var(--glow-indigo);
+      font-size: 0.95rem;
+      color: #fff;
+    }
+
+    .site-nav {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .site-nav a,
+    .mobile-nav a {
+      color: var(--text-2);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.92rem;
+      padding: 9px 14px;
+      border-radius: var(--radius-full);
+      transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+    }
+
+    .site-nav a:hover,
+    .mobile-nav a:hover {
+      background: var(--bg-1);
+      color: var(--text-1);
+    }
+
+    .menu-toggle {
+      display: none;
+      width: 42px;
+      height: 42px;
+      border: 1px solid var(--stroke);
+      border-radius: 12px;
+      background: var(--bg-1);
+      cursor: pointer;
+      padding: 0;
+      position: relative;
+    }
+
+    .menu-toggle span,
+    .menu-toggle::before,
+    .menu-toggle::after {
+      content: "";
+      position: absolute;
+      left: 11px;
+      width: 20px;
+      height: 2px;
+      background: var(--text-1);
+      transition: transform 0.2s ease, top 0.2s ease, opacity 0.2s ease;
+    }
+
+    .menu-toggle::before { top: 13px; }
+    .menu-toggle span { top: 20px; }
+    .menu-toggle::after { top: 27px; }
+
+    .menu-toggle[aria-expanded="true"]::before {
+      top: 20px;
+      transform: rotate(45deg);
+    }
+
+    .menu-toggle[aria-expanded="true"] span { opacity: 0; }
+
+    .menu-toggle[aria-expanded="true"]::after {
+      top: 20px;
+      transform: rotate(-45deg);
+    }
+
+    .mobile-menu {
+      display: none;
+    }
+
+    main {
+      width: min(1240px, 92%);
+      margin-inline: auto;
+      padding-top: var(--s7);
+    }
+
+    .hero {
+      text-align: center;
+      display: grid;
+      gap: var(--s4);
+      justify-items: center;
+      margin-bottom: var(--s6);
+    }
+
+    .kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0;
+      font-family: var(--font-display);
+      font-weight: 700;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      font-size: 0.74rem;
+      color: var(--cyan);
+    }
+
+    .kicker::before,
+    .kicker::after {
+      content: "";
+      width: 22px;
+      height: 1px;
+      background: var(--indigo);
+    }
+
+    h1 {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 7vw, 4.2rem);
+      font-weight: 900;
+      line-height: 1.02;
+      letter-spacing: -0.02em;
+    }
+
+    .grad-text {
+      background: var(--grad-text);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+    }
+
+    .lead {
+      max-width: 56ch;
+      margin: 0;
+      color: var(--text-2);
+      font-size: 1.08rem;
+      line-height: 1.6;
+    }
+
+    .stat-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: var(--s2);
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 36px;
+      padding: 8px 14px;
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius-full);
+      background: var(--bg-1);
+      color: var(--text-2);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+
+    .chip .dot {
+      width: 7px;
+      height: 7px;
+      flex: 0 0 7px;
+      border-radius: 50%;
+      background: var(--magenta);
+      box-shadow: 0 0 10px var(--magenta);
+      animation: dot-pulse 1.8s ease-in-out infinite;
+    }
+
+    @keyframes dot-pulse {
+      50% { transform: scale(0.55); opacity: 0.6; }
+    }
+
+    .demo-stage {
+      position: relative;
+      display: grid;
+      place-items: center;
+      min-height: 480px;
+      height: clamp(480px, 82vh, 920px);
+      padding: var(--s6);
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius-lg);
+      background: radial-gradient(120% 120% at 50% 45%, var(--bg-2), var(--bg-0));
+      box-shadow: var(--shadow-card);
+      overflow: hidden;
+      touch-action: pan-y;
+    }
+
+    .stage-hint {
+      position: absolute;
+      z-index: 5;
+      top: var(--s4);
+      left: var(--s4);
+      display: grid;
+      gap: var(--s2);
+      max-width: min(310px, calc(100% - 32px));
+      padding: var(--s3);
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius-md);
+      background: var(--glass);
+      -webkit-backdrop-filter: blur(var(--blur-glass));
+      backdrop-filter: blur(var(--blur-glass));
+      pointer-events: none;
+      transition: opacity 0.35s ease, transform 0.35s ease;
+    }
+
+    .stage-hint.is-hidden {
+      opacity: 0;
+      transform: translateY(-8px);
+    }
+
+    .stage-hint .chip {
+      justify-content: flex-start;
+      background: rgba(255,255,255,0.84);
+    }
+
+    .default-animation {
+      position: relative;
+      width: min(600px, 86%);
+      aspect-ratio: 1 / 1;
+      max-width: 90vw;
+      max-height: 90vh;
+    }
+
+    .default-animation--scene {
+      width: 100%;
+      height: 100%;
+      display: grid;
+      grid-template-columns: repeat(8, minmax(0, 1fr));
+      grid-template-rows: repeat(8, minmax(0, 1fr));
+      column-gap: var(--col-gap);
+      row-gap: var(--row-gap);
+      perspective: var(--cube-perspective);
+      transform-style: preserve-3d;
+    }
+
+    .cube {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      min-width: 0;
+      aspect-ratio: 1 / 1;
+      transform-style: preserve-3d;
+      cursor: pointer;
+      will-change: transform;
+      contain: layout style paint;
+    }
+
+    .cube::before {
+      content: "";
+      position: absolute;
+      inset: -28px;
+      pointer-events: none;
+    }
+
+    .cube-face {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--cube-face-bg);
+      border: var(--cube-face-border);
+      opacity: 1;
+      box-shadow: var(--cube-face-shadow);
+      backface-visibility: hidden;
+      will-change: background-color;
+    }
+
+    .cube-face--top { transform: translateY(-50%) rotateX(90deg); }
+    .cube-face--bottom { transform: translateY(50%) rotateX(-90deg); }
+    .cube-face--left { transform: translateX(-50%) rotateY(-90deg); }
+    .cube-face--right { transform: translateX(50%) rotateY(90deg); }
+    .cube-face--back,
+    .cube-face--front {
+      transform: rotateY(-90deg) translateX(50%) rotateY(90deg);
+    }
+
+    .note {
+      margin: var(--s6) 0 0;
+      text-align: center;
+      font-size: 0.78rem;
+      line-height: 1.5;
+      color: var(--text-3);
+    }
+
+    .site-footer {
+      width: min(1240px, 92%);
+      margin: var(--s9) auto 0;
+      padding: var(--s5) 0;
+      border-top: 1px solid var(--stroke);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--s3);
+      color: var(--text-3);
+      font-size: 0.95rem;
+    }
+
+    .site-footer a {
+      color: var(--indigo);
+      text-decoration: none;
+    }
+
+    .site-footer a:hover { text-decoration: underline; }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition:
+        opacity 0.8s var(--ease-out),
+        transform 0.8s var(--ease-out);
+      transition-delay: var(--reveal-delay, 0ms);
+    }
+
+    .reveal.in {
+      opacity: 1;
+      transform: none;
+    }
+
+    .reveal-zoom.in {
+      animation: stage-in 0.9s var(--ease-out) both;
+    }
+
+    @keyframes stage-in {
+      from { transform: scale(0.96); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    @media (max-width: 720px) {
+      .site-nav { display: none; }
+      .menu-toggle { display: block; }
+
+      .mobile-menu {
+        position: fixed;
+        inset: 76px 12px auto;
+        z-index: 99;
+        display: grid;
+        gap: 4px;
+        padding: 10px;
+        border: 1px solid var(--stroke);
+        border-radius: 18px;
+        background: rgba(255,253,248,0.96);
+        box-shadow: var(--shadow-card);
+        -webkit-backdrop-filter: blur(18px);
+        backdrop-filter: blur(18px);
+        opacity: 0;
+        transform: translateY(-10px) scale(0.98);
+        pointer-events: none;
+        transition: opacity 0.2s ease, transform 0.2s ease;
+      }
+
+      .mobile-menu.open {
+        opacity: 1;
+        transform: none;
+        pointer-events: auto;
+      }
+
+      .mobile-nav a {
+        display: block;
+        padding: 14px;
+      }
+
+      main {
+        padding-top: var(--s6);
+      }
+
+      .demo-stage {
+        height: min(72vw, 520px);
+        min-height: 320px;
+        padding: var(--s4);
+      }
+
+      .stage-hint {
+        top: var(--s3);
+        left: var(--s3);
+        max-width: calc(100% - 24px);
+      }
+
+      .stage-hint .chip {
+        font-size: 0.72rem;
+        padding: 7px 10px;
+        min-height: 32px;
+      }
+
+      .default-animation {
+        width: min(520px, 88vw);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .site-header {
+        min-height: 68px;
+      }
+
+      .wordmark {
+        font-size: 1rem;
+        letter-spacing: 0.07em;
+        gap: 9px;
+      }
+
+      .wordmark .mark {
+        width: 30px;
+        height: 30px;
+        flex-basis: 30px;
+      }
+
+      .kicker {
+        font-size: 0.64rem;
+        letter-spacing: 0.18em;
+      }
+
+      .kicker::before,
+      .kicker::after {
+        width: 14px;
+      }
+
+      .lead {
+        font-size: 0.95rem;
+      }
+
+      .chip {
+        font-size: 0.72rem;
+        padding-inline: 11px;
+      }
+
+      .demo-stage {
+        height: min(82vw, 430px);
+        min-height: 300px;
+        border-radius: 18px;
+      }
+
+      .stage-hint {
+        max-width: calc(100% - 20px);
+      }
+
+      .stage-hint .chip:nth-child(2) {
+        display: none;
+      }
+
+      .site-footer {
+        font-size: 0.82rem;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .site-header,
+      main,
+      .site-footer {
+        width: calc(100% - 24px);
+      }
+
+      .demo-stage {
+        height: min(84vw, 360px);
+        min-height: 280px;
+        padding: 10px;
+      }
+
+      .default-animation {
+        width: 90%;
+      }
+
+      .stage-hint .chip {
+        font-size: 0.66rem;
+      }
+
+      .stat-row {
+        gap: 6px;
+      }
+    }
+
+    @media (min-width: 721px) and (max-width: 1100px) {
+      .demo-stage {
+        height: min(76vw, 720px);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+      }
+
+      .reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
+
+      .reveal-zoom.in {
+        animation: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header class="site-header">
+    <a href="#main" class="wordmark" aria-label="CUBE WORKS home">
+      <span class="mark" aria-hidden="true">▦</span>
+      CUBE WORKS
+    </a>
+
+    <nav class="site-nav" aria-label="Primary navigation">
+      <a href="#grid">Grid</a>
+      <a href="#physics">Physics</a>
+      <a href="#materials">Materials</a>
+    </nav>
+
+    <button
+      class="menu-toggle"
+      type="button"
+      aria-label="Open menu"
+      aria-expanded="false"
+      aria-controls="mobileMenu">
+      <span></span>
+    </button>
+  </header>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <nav class="mobile-nav" aria-label="Mobile navigation">
+      <a href="#grid">Grid</a>
+      <a href="#physics">Physics</a>
+      <a href="#materials">Materials</a>
+    </nav>
+  </div>
+
+  <main id="main">
+    <header class="hero reveal">
+      <p class="kicker">Vanilla · 3D Grid Physics</p>
+
+      <h1>
+        Cube<span class="grad-text">Squad</span>
+      </h1>
+
+      <p class="lead">
+        Sixty-four dashed-wire cubes lean into your pointer or finger.
+        Tap to send a ripple across the grid — then it gently sways on its own.
+      </p>
+
+      <div class="stat-row" aria-label="Features">
+        <span class="chip"><span class="dot"></span>8 × 8 grid</span>
+        <span class="chip">pointer / touch tilt</span>
+        <span class="chip">tap ripple</span>
+      </div>
+    </header>
+
+    <section
+      class="demo-stage reveal reveal-zoom"
+      id="grid"
+      style="--reveal-delay:120ms"
+      aria-label="Interactive 3D cube grid">
+
+      <aside class="stage-hint" id="stageHint" aria-label="Interaction instructions">
+        <span class="chip">
+          <span class="dot"></span>
+          <span class="desktop-instruction">move over the grid to tilt</span>
+          <span class="mobile-instruction">drag across the grid to tilt</span>
+        </span>
+        <span class="chip">
+          <span class="desktop-instruction">click to ripple</span>
+          <span class="mobile-instruction">tap to ripple</span>
+        </span>
+        <span class="chip">idle → auto-sway</span>
+      </aside>
+
+      <div class="default-animation">
+        <div
+          class="default-animation--scene"
+          id="scene"
+          role="img"
+          aria-label="Interactive 8 by 8 cube grid">
+        </div>
+      </div>
+    </section>
+
+    <p class="note reveal" id="physics">
+      Built with vanilla HTML, CSS and JavaScript. A single animation loop
+      manages the cube motion to keep interaction smoother on mobile devices.
+    </p>
+
+    <p class="note reveal" id="materials">
+      Dashed cube faces, soft shadows and a warm neutral surface create the visual material system.
+    </p>
+  </main>
+
+  <footer class="site-footer">
+    <span>WAAY2TECH · <span data-year></span></span>
+    <a href="#grid">Back to grid ↑</a>
+  </footer>
+
+  <script>
+    "use strict";
+
+    (() => {
+      const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      document.querySelectorAll("[data-year]").forEach((el) => {
+        el.textContent = new Date().getFullYear();
+      });
+
+      // Reveal-on-scroll
+      if (reducedMotion || !("IntersectionObserver" in window)) {
+        document.querySelectorAll(".reveal").forEach((el) => el.classList.add("in"));
+      } else {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("in");
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.15 });
+
+        document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+      }
+
+      // Mobile menu
+      const menuButton = document.querySelector(".menu-toggle");
+      const mobileMenu = document.getElementById("mobileMenu");
+
+      function closeMenu() {
+        if (!menuButton || !mobileMenu) return;
+        menuButton.setAttribute("aria-expanded", "false");
+        menuButton.setAttribute("aria-label", "Open menu");
+        mobileMenu.classList.remove("open");
+        document.body.classList.remove("menu-open");
+      }
+
+      menuButton?.addEventListener("click", () => {
+        const isOpen = menuButton.getAttribute("aria-expanded") === "true";
+        menuButton.setAttribute("aria-expanded", String(!isOpen));
+        menuButton.setAttribute("aria-label", isOpen ? "Open menu" : "Close menu");
+        mobileMenu.classList.toggle("open", !isOpen);
+        document.body.classList.toggle("menu-open", !isOpen);
+      });
+
+      mobileMenu?.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", closeMenu);
+      });
+
+      window.addEventListener("resize", () => {
+        if (window.innerWidth > 720) closeMenu();
+      });
+
+      // Cube engine
+      class Cubes {
+        constructor(options = {}) {
+          this.gridSize = options.gridSize || 8;
+          this.desktopMaxAngle = options.desktopMaxAngle ?? 60;
+          this.mobileMaxAngle = options.mobileMaxAngle ?? 28;
+          this.radius = options.radius ?? 4;
+          this.rippleColor = options.rippleColor || "rgb(47, 109, 246)";
+          this.faceColor = options.faceColor || "rgb(255, 255, 255)";
+          this.autoAnimate = options.autoAnimate ?? true;
+          this.rippleOnClick = options.rippleOnClick ?? true;
+
+          this.scene = document.getElementById("scene");
+          this.stage = document.querySelector(".demo-stage");
+          this.hint = document.getElementById("stageHint");
+
+          this.cubes = [];
+          this.pointerInside = false;
+          this.userActiveUntil = 0;
+          this.lastPointer = { x: 0, y: 0 };
+          this.autoPosition = {
+            x: Math.random() * this.gridSize,
+            y: Math.random() * this.gridSize
+          };
+          this.autoTarget = this.randomTarget();
+          this.autoLastTargetChange = performance.now();
+          this.lastFrame = performance.now();
+          this.raf = null;
+          this.destroyed = false;
+
+          this.onPointerMove = this.onPointerMove.bind(this);
+          this.onPointerLeave = this.onPointerLeave.bind(this);
+          this.onPointerDown = this.onPointerDown.bind(this);
+          this.onKeyDown = this.onKeyDown.bind(this);
+          this.loop = this.loop.bind(this);
+
+          this.init();
+        }
+
+        randomTarget() {
+          return {
+            x: Math.random() * (this.gridSize - 1),
+            y: Math.random() * (this.gridSize - 1)
+          };
+        }
+
+        get maxAngle() {
+          return window.matchMedia("(max-width: 720px)").matches
+            ? this.mobileMaxAngle
+            : this.desktopMaxAngle;
+        }
+
+        init() {
+          if (!this.scene) return;
+
+          this.generateCubes();
+
+          this.scene.addEventListener("pointermove", this.onPointerMove, { passive: true });
+          this.scene.addEventListener("pointerleave", this.onPointerLeave, { passive: true });
+          this.scene.addEventListener("pointerdown", this.onPointerDown, { passive: true });
+          this.scene.addEventListener("keydown", this.onKeyDown);
+
+          this.raf = requestAnimationFrame(this.loop);
+        }
+
+        generateCubes() {
+          const fragment = document.createDocumentFragment();
+
+          for (let row = 0; row < this.gridSize; row++) {
+            for (let col = 0; col < this.gridSize; col++) {
+              const cube = document.createElement("div");
+              cube.className = "cube";
+              cube.dataset.row = row;
+              cube.dataset.col = col;
+              cube.tabIndex = 0;
+              cube.setAttribute("role", "button");
+              cube.setAttribute("aria-label", `Cube row ${row + 1}, column ${col + 1}. Press Enter or Space for ripple.`);
+
+              const faces = [];
+
+              ["top", "bottom", "left", "right", "front", "back"].forEach((faceName) => {
+                const face = document.createElement("div");
+                face.className = `cube-face cube-face--${faceName}`;
+                face.dataset.baseColor = this.faceColor;
+                cube.appendChild(face);
+                faces.push({
+                  el: face,
+                  rippleStart: -Infinity
+                });
+              });
+
+              this.cubes.push({
+                el: cube,
+                row,
+                col,
+                currentX: 0,
+                currentY: 0,
+                targetX: 0,
+                targetY: 0,
+                faces
+              });
+
+              fragment.appendChild(cube);
+            }
+          }
+
+          this.scene.appendChild(fragment);
+        }
+
+        hideHint() {
+          if (!this.hint) return;
+          this.hint.classList.add("is-hidden");
+        }
+
+        registerActivity() {
+          this.userActiveUntil = performance.now() + 3000;
+          this.hideHint();
+        }
+
+        getGridPosition(clientX, clientY) {
+          const rect = this.scene.getBoundingClientRect();
+          const cellW = rect.width / this.gridSize;
+          const cellH = rect.height / this.gridSize;
+
+          return {
+            x: (clientX - rect.left) / cellW,
+            y: (clientY - rect.top) / cellH,
+            col: Math.floor((clientX - rect.left) / cellW),
+            row: Math.floor((clientY - rect.top) / cellH)
+          };
+        }
+
+        setTilt(centerX, centerY) {
+          for (const cube of this.cubes) {
+            const distance = Math.hypot(
+              cube.row - centerY,
+              cube.col - centerX
+            );
+
+            if (distance <= this.radius) {
+              const pct = 1 - distance / this.radius;
+              const angle = pct * this.maxAngle;
+
+              cube.targetX = -angle;
+              cube.targetY = angle;
+            } else {
+              cube.targetX = 0;
+              cube.targetY = 0;
+            }
+          }
+        }
+
+        resetTilt() {
+          for (const cube of this.cubes) {
+            cube.targetX = 0;
+            cube.targetY = 0;
+          }
+        }
+
+        onPointerMove(event) {
+          if (event.pointerType === "touch") {
+            // Touch is handled naturally by Pointer Events.
+            // Keep page scrolling available through touch-action: pan-y.
+          }
+
+          this.pointerInside = true;
+          this.lastPointer = { x: event.clientX, y: event.clientY };
+          this.registerActivity();
+
+          const position = this.getGridPosition(event.clientX, event.clientY);
+          this.setTilt(position.x, position.y);
+        }
+
+        onPointerLeave() {
+          this.pointerInside = false;
+          this.resetTilt();
+        }
+
+        onPointerDown(event) {
+          this.registerActivity();
+
+          if (event.pointerType === "touch" || event.pointerType === "mouse" || event.pointerType === "pen") {
+            const position = this.getGridPosition(event.clientX, event.clientY);
+            this.ripple(position.row, position.col);
+          }
+        }
+
+        onKeyDown(event) {
+          if (event.key !== "Enter" && event.key !== " ") return;
+
+          event.preventDefault();
+
+          const cube = event.currentTarget;
+          const row = Number(cube.dataset.row);
+          const col = Number(cube.dataset.col);
+
+          this.registerActivity();
+          this.ripple(row, col);
+        }
+
+        ripple(row, col) {
+          if (!this.rippleOnClick) return;
+
+          const now = performance.now();
+
+          for (const cube of this.cubes) {
+            const distance = Math.hypot(cube.row - row, cube.col - col);
+            const ring = Math.round(distance);
+            const delay = ring * 110;
+
+            for (const face of cube.faces) {
+              face.rippleStart = now + delay;
+            }
+          }
+        }
+
+        updateRipple(now) {
+          const duration = 300;
+          const hold = 500;
+
+          for (const cube of this.cubes) {
+            for (const face of cube.faces) {
+              if (face.rippleStart === -Infinity) continue;
+
+              const elapsed = now - face.rippleStart;
+
+              if (elapsed < 0) continue;
+
+              if (elapsed < duration) {
+                const progress = elapsed / duration;
+                const eased = 1 - Math.pow(1 - progress, 3);
+                face.el.style.backgroundColor = this.mixColor(
+                  this.faceColor,
+                  this.rippleColor,
+                  eased
+                );
+              } else if (elapsed < duration + hold) {
+                face.el.style.backgroundColor = this.rippleColor;
+              } else if (elapsed < duration * 2 + hold) {
+                const progress = (elapsed - duration - hold) / duration;
+                const eased = 1 - Math.pow(1 - progress, 3);
+                face.el.style.backgroundColor = this.mixColor(
+                  this.rippleColor,
+                  this.faceColor,
+                  eased
+                );
+              } else {
+                face.el.style.backgroundColor = this.faceColor;
+                face.rippleStart = -Infinity;
+              }
+            }
+          }
+        }
+
+        mixColor(from, to, amount) {
+          const a = from.match(/\d+/g)?.map(Number) || [255, 255, 255];
+          const b = to.match(/\d+/g)?.map(Number) || [47, 109, 246];
+
+          const r = Math.round(a[0] + (b[0] - a[0]) * amount);
+          const g = Math.round(a[1] + (b[1] - a[1]) * amount);
+          const bValue = Math.round(a[2] + (b[2] - a[2]) * amount);
+
+          return `rgb(${r}, ${g}, ${bValue})`;
+        }
+
+        updateAutoAnimation(now, delta) {
+          if (!this.autoAnimate || now < this.userActiveUntil || this.pointerInside) return;
+
+          const distance = Math.hypot(
+            this.autoPosition.x - this.autoTarget.x,
+            this.autoPosition.y - this.autoTarget.y
+          );
+
+          const speed = Math.min(0.004 * delta, 1);
+
+          this.autoPosition.x += (this.autoTarget.x - this.autoPosition.x) * speed;
+          this.autoPosition.y += (this.autoTarget.y - this.autoPosition.y) * speed;
+
+          if (distance < 0.15 || now - this.autoLastTargetChange > 9000) {
+            this.autoTarget = this.randomTarget();
+            this.autoLastTargetChange = now;
+          }
+
+          this.setTilt(this.autoPosition.x, this.autoPosition.y);
+        }
+
+        render(delta) {
+          // Frame-rate independent smoothing.
+          const smoothing = 1 - Math.pow(0.001, delta / 16.67);
+
+          for (const cube of this.cubes) {
+            cube.currentX += (cube.targetX - cube.currentX) * smoothing;
+            cube.currentY += (cube.targetY - cube.currentY) * smoothing;
+
+            cube.el.style.transform =
+              `rotateX(${cube.currentX.toFixed(2)}deg) ` +
+              `rotateY(${cube.currentY.toFixed(2)}deg)`;
+          }
+        }
+
+        loop(now) {
+          if (this.destroyed) return;
+
+          const delta = Math.min(50, now - this.lastFrame);
+          this.lastFrame = now;
+
+          this.updateAutoAnimation(now, delta);
+
+          if (this.rippleOnClick) {
+            this.updateRipple(now);
+          }
+
+          this.render(delta);
+
+          this.raf = requestAnimationFrame(this.loop);
+        }
+
+        destroy() {
+          this.destroyed = true;
+
+          if (this.raf) {
+            cancelAnimationFrame(this.raf);
+          }
+
+          this.scene?.removeEventListener("pointermove", this.onPointerMove);
+          this.scene?.removeEventListener("pointerleave", this.onPointerLeave);
+          this.scene?.removeEventListener("pointerdown", this.onPointerDown);
+          this.scene?.removeEventListener("keydown", this.onKeyDown);
+        }
+      }
+
+      const cubes = new Cubes({
+        gridSize: 8,
+        desktopMaxAngle: 60,
+        mobileMaxAngle: 28,
+        radius: 4,
+        rippleColor: "rgb(47, 109, 246)",
+        faceColor: "rgb(255, 255, 255)",
+        autoAnimate: !reducedMotion,
+        rippleOnClick: !reducedMotion
+      });
+
+      window.addEventListener("beforeunload", () => cubes.destroy(), { once: true });
+    })();
+  </script>
+</body>
+</html>
